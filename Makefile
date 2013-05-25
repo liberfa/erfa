@@ -1,5 +1,5 @@
 CFLAGS = -Wall -O
-LDFLAGS = -lm -fPIC 
+LDFLAGS = -fPIC 
 
 SRCDIR = src
 BUILDDIR = build
@@ -26,7 +26,7 @@ cpheaders : mkbuild
 	cp $(HEADERS) $(BUILDDIR)
 
 buildtest : buildstatic
-	$(CC) $(CFLAGS) $(LDFLAGS) $(SRCDIR)/t_erfa_c.c -L$(BUILDDIR) -lerfa -o $(BUILDDIR)/test_erfa
+	$(CC) $(CFLAGS) $(LDFLAGS) -L$(BUILDDIR) $(SRCDIR)/t_erfa_c.c -lerfa -lm -o $(BUILDDIR)/test_erfa
 
 test : buildtest
 	$(BUILDDIR)/test_erfa --verbose
