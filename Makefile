@@ -1,4 +1,3 @@
-LIBTOOL = libtool
 CFLAGS = -Wall -O
 LDFLAGS = -lm -fPIC
 
@@ -12,13 +11,13 @@ HEADERS = $(SRCDIR)/*.h
 UNAME := $(shell uname)
 
 buildstatic : buildobj cpheaders
-	$(LIBTOOL) -static -o $(BUILDDIR)/$(LIBNAME).a $(OBJECTS)
+	ar rcs $(BUILDDIR)/$(LIBNAME).a $(OBJECTS)
 
 buildshared : buildobj cpheaders
 ifeq ($(UNAME), Darwin)
-	$(CC) -shared -o $(BUILDDIR)/$(LIBNAME).dylib $(OBJECTS) -shared
+	$(CC) -shared -o $(BUILDDIR)/$(LIBNAME).dylib $(OBJECTS)
 else
-	$(CC) -shared -o $(BUILDDIR)/$(LIBNAME).so $(OBJECTS) -shared
+	$(CC) -shared -o $(BUILDDIR)/$(LIBNAME).so $(OBJECTS)
 endif
 
 buildobj : $(OBJECTS) mkbuild
