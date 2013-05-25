@@ -1,4 +1,3 @@
-CC = clang
 LIBTOOL = libtool
 CFLAGS = -Wall -O
 LDFLAGS = -lm -fPIC
