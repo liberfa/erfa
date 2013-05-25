@@ -14,7 +14,7 @@ UNAME := $(shell uname)
 buildstatic : buildobj cpheaders
 	$(LIBTOOL) -static -o $(BUILDDIR)/$(LIBNAME).a $(OBJECTS)
 
-buildshared : $(OBJECTS) mkbuild cpheaders
+buildshared : buildobj cpheaders
 ifeq ($(UNAME), Darwin)
 	$(CC) -shared -o $(BUILDDIR)/$(LIBNAME).dylib $(OBJECTS) -shared
 else
@@ -26,7 +26,7 @@ buildobj : $(OBJECTS) mkbuild
 cpheaders : mkbuild
 	cp $(HEADERS) $(BUILDDIR)
 
-buildtest : build
+buildtest : buildstatic
 	$(CC) $(CFLAGS) $(SRCDIR)/t_erfa_c.c -L$(BUILDDIR) -lerfa -o $(BUILDDIR)/test_erfa
 
 test : buildtest
