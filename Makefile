@@ -12,10 +12,10 @@ HEADERS = $(SRCDIR)/*.h
 
 UNAME := $(shell uname)
 
-buildstatic : buildobj
+buildstatic : buildobj cpheaders
 	$(LIBTOOL) -static -o $(BUILDDIR)/$(LIBNAME).a $(OBJECTS)
 
-buildshared : $(OBJECTS) mkbuild
+buildshared : $(OBJECTS) mkbuild cpheaders
 ifeq ($(UNAME), Darwin)
 	$(CC) -shared -o $(BUILDDIR)/$(LIBNAME).dylib $(OBJECTS) -shared
 else
@@ -24,8 +24,7 @@ endif
 
 buildobj : $(OBJECTS) mkbuild
 
-
-headers : mkbuild
+cpheaders : mkbuild
 	cp $(HEADERS) $(BUILDDIR)
 
 buildtest : build
