@@ -1,5 +1,5 @@
 CFLAGS = -Wall -O
-LDFLAGS = -lm -fPIC
+LDFLAGS = -lm -fPIC 
 
 SRCDIR = src
 BUILDDIR = build
@@ -15,9 +15,9 @@ buildstatic : buildobj cpheaders
 
 buildshared : buildobj cpheaders
 ifeq ($(UNAME), Darwin)
-	$(CC) -shared -o $(BUILDDIR)/$(LIBNAME).dylib $(OBJECTS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -shared -o $(BUILDDIR)/$(LIBNAME).dylib $(OBJECTS)
 else
-	$(CC) -shared -o $(BUILDDIR)/$(LIBNAME).so $(OBJECTS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -shared -o $(BUILDDIR)/$(LIBNAME).so $(OBJECTS)
 endif
 
 buildobj : $(OBJECTS) mkbuild
@@ -26,7 +26,7 @@ cpheaders : mkbuild
 	cp $(HEADERS) $(BUILDDIR)
 
 buildtest : buildstatic
-	$(CC) $(CFLAGS) $(SRCDIR)/t_erfa_c.c -L$(BUILDDIR) -lerfa -o $(BUILDDIR)/test_erfa
+	$(CC) $(CFLAGS) $(LDFLAGS) $(SRCDIR)/t_erfa_c.c -L$(BUILDDIR) -lerfa -o $(BUILDDIR)/test_erfa
 
 test : buildtest
 	$(BUILDDIR)/test_erfa --verbose
