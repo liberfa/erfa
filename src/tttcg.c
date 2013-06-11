@@ -68,11 +68,11 @@ int eraTttcg(double tt1, double tt2, double *tcg1, double *tcg2)
 **  available from http://www.iausofa.org.
 **  
 **  The ERFA version is intended to retain identical
-**  functionality to the SOFA library,  but made distinct through
+**  functionality to the SOFA library, but made distinct through
 **  different function and file names, as set out in the SOFA license
 **  conditions. The SOFA original has a role as a reference standard
 **  for the IAU and IERS, and consequently redistribution is permitted only
-**  in its unaltered state.  The ERFA version is not subject to this
+**  in its unaltered state. The ERFA version is not subject to this
 **  restriction and therefore can be included in distributions which do not
 **  support the concept of "read only" software.
 **  
