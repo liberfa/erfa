@@ -9,7 +9,6 @@
 **  Macros used by ERFA library.
 **
 **  Copyright (C) 2013, NumFOCUS Foundation.
-**  Copyright (C) 2012 IAU SOFA Board.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 
@@ -104,22 +103,29 @@
 **  
 **  
 **  Copyright (C) 2013, NumFOCUS Foundation.
-**  Copyright (C) 2012, Standards Of Fundamental Astronomy Board
-**    of the International Astronomical Union.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International
 **  Astronomical Union's "Standards of Fundamental Astronomy" library,
 **  available from http://www.iausofa.org.
 **  
-**  The ERFA version is intended to retain identical functionality to
-**  the SOFA library, but with different routine and file names. Although
-**  the intent is to replicate the SOFA API (other than replacement of
+**  The ERFA version is intended to retain identical
+**  functionality to the SOFA library,  but made distinct through
+**  different function and file names, as set out in the SOFA license
+**  conditions. The SOFA original has a role as a reference standard
+**  for the IAU and IERS, and consequently redistribution is permitted only
+**  in its unaltered state.  The ERFA version is not subject to this
+**  restriction and therefore can be included in distributions which do not
+**  support the concept of "read only" software.
+**  
+**  Although the intent is to replicate the SOFA API (other than replacement of
 **  prefix names) and results (with the exception of bugs; any that are
 **  discovered will be fixed), SOFA is not responsible for any errors found
 **  in this version of the library.
+**  
 **  If you wish to acknowledge the SOFA heritage, please acknowledge that
 **  you are using a library derived from SOFA, rather than SOFA itself.
+**  
 **  
 **  TERMS AND CONDITIONS
 **  
