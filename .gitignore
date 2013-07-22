@@ -3,6 +3,7 @@
 /config.*
 /configure
 /depcomp
+/erfa.pc
 /install-sh
 /libtool
 /ltmain.sh

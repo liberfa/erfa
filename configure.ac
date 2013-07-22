@@ -13,6 +13,7 @@ AM_PROG_LIBTOOL
 AC_SEARCH_LIBS([sin], [m], , AC_MSG_ERROR([cannot find math functions]))
 
 AC_CONFIG_FILES([Makefile
+                 erfa.pc
                  src/Makefile
 ])
 AC_OUTPUT
