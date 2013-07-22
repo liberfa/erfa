@@ -37,4 +37,4 @@ TESTS = t_erfa_c
 check_PROGRAMS = t_erfa_c
 t_erfa_c_SOURCES = t_erfa_c.c
 AM_CPPFLAGS = -I$(top_srcdir)
-LDADD = $(top_builddir)/src/liberfa.la -lm
+LDADD = $(top_builddir)/src/liberfa.la

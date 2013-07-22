@@ -10,6 +10,7 @@ AC_PROG_CC
 AM_PROG_LIBTOOL
 
 # Checks for libraries.
+AC_SEARCH_LIBS([sin], [m], , AC_MSG_ERROR([cannot find math functions]))
 
 AC_CONFIG_FILES([Makefile
                  src/Makefile
