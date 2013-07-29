@@ -7,4 +7,4 @@ compiler:
 # before build script, run autoreconf
 before_script: ./bootstrap.sh
 
-script: ./configure && make && make check
+script: ./configure --disable-shared && make && make check
