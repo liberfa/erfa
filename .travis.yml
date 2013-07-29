@@ -6,3 +6,5 @@ compiler:
 
 # before build script, run autoreconf
 before_script: ./bootstrap.sh
+
+script: ./configure && make && make check
