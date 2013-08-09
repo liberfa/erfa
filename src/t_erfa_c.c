@@ -6321,6 +6321,34 @@ static void t_taitt(int *status)
 
 }
 
+static void t_taitt_neg_jd(int *status)
+/*
+**  - - - - - - - - - - - - - - -
+**   t _ t a i t t _ n e g _ j d
+**  - - - - - - - - - - - - - - -
+**
+**  Test eraTaitt function for negative large JD value
+**
+**  Returned:
+**     status    int         TRUE = success, FALSE = fail
+**
+**  Called:  eraTaitt, vvd, viv
+**
+**  This revision:  2010 September 7
+*/
+{
+   double t1, t2;
+   int j;
+
+
+   j = eraTaitt(-2453750.5, 0.892482639, &t1, &t2);
+
+   vvd(t1, -2453750.5, 1e-6, "eraTaitt", "t1", status);
+   vvd(t2, 0.892855139, 1e-12, "eraTaitt", "t2", status);
+   viv(j, 0, "eraTaitt", "j", status);
+
+}
+
 static void t_taiut1(int *status)
 /*
 **  - - - - - - - - -
@@ -7341,6 +7369,7 @@ int main(int argc, char *argv[])
    t_sxp(&status);
    t_sxpv(&status);
    t_taitt(&status);
+   t_taitt_neg_jd(&status);
    t_taiut1(&status);
    t_taiutc(&status);
    t_tcbtdb(&status);
