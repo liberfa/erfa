@@ -43,7 +43,7 @@ int eraTaitt(double tai1, double tai2, double *tt1, double *tt2)
 
 
 /* Result, safeguarding precision. */
-   if ( tai1 > tai2 ) {
+   if ( fabs(tai1) > fabs(tai2) ) {
       *tt1 = tai1;
       *tt2 = tai2 + dtat;
    } else {

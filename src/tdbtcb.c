@@ -66,7 +66,7 @@ int eraTdbtcb(double tdb1, double tdb2, double *tcb1, double *tcb2)
 
 
 /* Result, preserving date format but safeguarding precision. */
-   if ( tdb1 > tdb2 ) {
+   if ( fabs(tdb1) > fabs(tdb2) ) {
       d = t77td - tdb1;
       f  = tdb2 - tdb0;
       *tcb1 = tdb1;
