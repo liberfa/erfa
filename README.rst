@@ -27,3 +27,28 @@ Travis Build Status
 -------------------
 .. image:: https://travis-ci.org/liberfa/erfa.png
     :target: https://travis-ci.org/liberfa/erfa
+
+
+Differences from SOFA
+---------------------
+
+Maintaining precision for negative Julian Dates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The SOFA time scale conversion routines (e.g. ``iauTaitt``) include code to determine
+which of the two JD components (which represent the time internally) is larger.
+Subsequent arithmetic operations are done accordingly to maintain the
+best overall precision.  The component comparisons are done with code like::
+
+   if ( tai1 > tai2 ) {
+
+However for a date with negative JD, it can happen that ``tai1`` is large and negative
+while ``tai2`` has a small absolute value.  In this case precision will be lost
+because a small value will be added to the large negative value ``tai1``.
+
+The ERFA library changes all such comparison tests to use the absolute value, e.g.::
+
+   if ( fabs(tai1) > fabs(tai2) ) {
+
+All existing regression tests pass after this change, and a new test validating the
+new functionality in one case was added.
