@@ -10,6 +10,8 @@ AM_INIT_AUTOMAKE([foreign])
 AC_PROG_CC
 LT_INIT
 
+ERFA_NUMVER
+
 # Checks for libraries.
 AC_SEARCH_LIBS([sin], [m], , AC_MSG_ERROR([cannot find math functions]))
 
