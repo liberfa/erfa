@@ -10,12 +10,6 @@ range of open source licenses. Permission for this release has been
 obtained from the SOFA board, and is avilable in the ``LICENSE`` file included
 in this source distribution.
 
-Differences from SOFA
----------------------
-
-This version of ERFA (x.x) is based on SOFA version "20120301_a", with the 
-differences outlined below.
-
 ERFA Branding
 ^^^^^^^^^^^^^
 
@@ -31,6 +25,9 @@ Travis Build Status
 
 Differences from SOFA
 ---------------------
+
+This version of ERFA (x.x) is based on SOFA version "20120301_a", with the 
+differences outlined below.
 
 Maintaining precision for negative Julian Dates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
