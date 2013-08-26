@@ -1,6 +1,6 @@
 This is the source code repository for ERFA (Essential Routines for 
 Fundamental Astronomy).  ERFA is a C library containing key algorithms for 
-astronomy, and is based on the SOFA library published by the International 
+astronomy, and is based on the `SOFA library <http://www.iausofa.org/>`_ published by the International 
 Astronomical Union (IAU).  
 
 ERFA is intended to replicate the functionality of SOFA (aside from possible
