@@ -13,7 +13,7 @@ in this source distribution.
 Differences from SOFA
 ---------------------
 
-This version of ERFA (x.x) is based on SOFA version "20120301_a", with the 
+This version of ERFA (v0.0.1) is based on SOFA version "20120301_a", with the 
 differences outlined below.
 
 ERFA Branding
