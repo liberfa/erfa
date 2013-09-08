@@ -1,28 +1,49 @@
 
-How to make a release
-=====================
+Instructions for Doing A Release of ERFA
+========================================
 
- * Clone the erfa repository
+* Clone the ERFA repository from github (if you haven't already done so),
+  and change to the ERFA directory.
 
- * Change directory to the erfa directory
+* Make sure you are on the "master" branch from the "liberfa" github 
+  repository and have the latest version (if you have a fresh clone, this
+  should already be the case).
 
- * Run `./bootstrap.sh`: you need `automake`, `autoconf` and `libtool` 
-   installed.
+* Update the version number in the `AC_INIT` macro of `configure.ac` to
+  the version number you are about to release, and also update the version 
+  mentioned in `README.rst`. 
 
- * If no errors appear, now there is a new `./configure` file
+* Commit these changes using ``git commit``, with a commit message like 
+  ``Preparing release v0.0.1``.
 
- * Run `./configure`
+* Run `./bootstrap.sh`: you need `automake`, `autoconf` and `libtool` 
+  installed.  If no errors appear, this will create a new `./configure`
+  file.
 
- * If the checks are passed, new `Makefile` are created in the top
-   level directory and in ./src
+* Run `./configure`, which should create a `Makefile` in the top level 
+  directory and in ./src
 
- * Run `make check`
+* Run `make check`, which will build the library and run the tests -
+  make sure they pass before proceeding.
 
- * Once the library is built and the test program is run sucessfully
-   we can create the distribution.
+* Run `make distcheck`: this creates the distribution tarball, 
+  unpackages it and runs the check inside the untarred directory.
+  The resulting tarball will be named e.g., `erfa-0.0.1.tar.gz` and
+  will be placed in the working directory.
 
- * Run `make distcheck`: this creates the distribution tarball, 
-   unpackages it and runs the check inside the untarred directory.
+* Tag the current commit with the version number (e.g., ``git tag v0.0.1``).  
 
- * A tarball named according to the version `erfa-x.x.x.tar.gz` is 
-   inside the working direcory
+* Push up your changes and the new tag to github: 
+  ``git push --tags origin master``. (The command here assumes the git remote
+  "origin" points to the "liberfa/erfa" repository.  If not, substitute the
+  appropriate name.)
+
+* Go to the "liberfa/erfa" repository for the github page, and click on the
+  "releases" button, and then the release corresponding to the tag you just 
+  made. 
+
+* Click on the "Draft release notes or downloads".  Leave the title and
+  description blank (the release notes should be in the ``README.rst``),
+  but upload the tarball you created (e.g., `erfa-0.0.1.tar.gz`) by 
+  dropping it in the area that says "Attach binaries for this release 
+  by dropping them here." Click the "Publish release" button.
