@@ -22,6 +22,25 @@ ERFA Branding
 All references to "SOFA" in the source code have been changed to ERFA, and 
 functions have the prefix ``era`` instead of ``iau``. 
 
+Building and Installing ERFA
+----------------------------
+
+To build and install a released version of ERFA in your OS's standard 
+location, simply do::
+
+    ./configure
+    make
+    make install
+
+For Developers
+^^^^^^^^^^^^^^
+
+If you are using a developer version from github, you will need to first do
+``./bootstrap.sh`` before the above commands.
+
+If you wish to build against the ERFA static library without installing, you
+will find it in ``$ERFAROOT/src/.libs/liberfa.a`` after running ``make``.
+
 
 Travis Build Status
 -------------------
