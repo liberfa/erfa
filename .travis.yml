@@ -4,4 +4,7 @@ compiler:
   - clang
   - gcc
 
-script: make test 
+# before build script, run autoreconf
+before_script: ./bootstrap.sh
+
+script: ./configure --disable-shared && make && make check
