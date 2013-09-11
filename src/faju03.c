@@ -42,7 +42,7 @@ double eraFaju03(double t)
 
 
 /* Mean longitude of Jupiter (IERS Conventions 2003). */
-   a = fmod(0.599546497 + 52.9690962641 * t, D2PI);
+   a = fmod(0.599546497 + 52.9690962641 * t, ERFA_D2PI);
 
    return a;
 

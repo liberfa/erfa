@@ -31,7 +31,7 @@ void eraEpb2jd(double epb, double *djm0, double *djm)
 */
 {
    *djm0 = 2400000.5;
-   *djm  =   15019.81352 + (epb - 1900.0) * DTY;
+   *djm  =   15019.81352 + (epb - 1900.0) *ERFA_DTY;
 
    return;
 

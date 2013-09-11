@@ -46,11 +46,11 @@ void eraBi00(double *dpsibi, double *depsbi, double *dra)
 */
 {
 /* The frame bias corrections in longitude and obliquity */
-   const double DPBIAS = -0.041775  * DAS2R,
-                DEBIAS = -0.0068192 * DAS2R;
+   const double DPBIAS = -0.041775  * ERFA_DAS2R,
+                DEBIAS = -0.0068192 * ERFA_DAS2R;
 
 /* The ICRS RA of the J2000.0 equinox (Chapront et al., 2002) */
-   const double DRA0 = -0.0146 * DAS2R;
+   const double DRA0 = -0.0146 * ERFA_DAS2R;
 
 
 /* Return the results (which are fixed). */

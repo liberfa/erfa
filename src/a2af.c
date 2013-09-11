@@ -56,7 +56,7 @@ void eraA2af(int ndp, double angle, char *sign, int idmsf[4])
 */
 {
 /* Hours to degrees * radians to turns */
-   const double F = 15.0 / D2PI;
+   const double F = 15.0 / ERFA_D2PI;
 
 
 /* Scale then use days to h,m,s function. */

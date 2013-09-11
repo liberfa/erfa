@@ -66,7 +66,7 @@ double eraGmst06(double uta, double utb, double tta, double ttb)
 
 
 /* TT Julian centuries since J2000.0. */
-   t = ((tta - DJ00) + ttb) / DJC;
+   t = ((tta - ERFA_DJ00) + ttb) / ERFA_DJC;
 
 /* Greenwich mean sidereal time, IAU 2006. */
    gmst = eraAnp(eraEra00(uta, utb) +
@@ -76,7 +76,7 @@ double eraGmst06(double uta, double utb, double tta, double ttb)
                   (    -0.00000044  +
                   (    -0.000029956 +
                   (    -0.0000000368 )
-          * t) * t) * t) * t) * t) * DAS2R);
+          * t) * t) * t) * t) * t) * ERFA_DAS2R);
 
    return gmst;
 

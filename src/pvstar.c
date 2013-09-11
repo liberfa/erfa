@@ -111,8 +111,8 @@ int eraPvstar(double pv[2][3], double *ra, double *dec,
    vt = eraPm(ut);
 
 /* Special-relativity dimensionless parameters. */
-   bett = vt / DC;
-   betr = vr / DC;
+   bett = vt / ERFA_DC;
+   betr = vr / ERFA_DC;
 
 /* The inertial-to-observed correction terms. */
    d = 1.0 + betr;
@@ -139,14 +139,14 @@ int eraPvstar(double pv[2][3], double *ra, double *dec,
    *ra = eraAnp(a);
 
 /* Return proper motions in radians per year. */
-   *pmr = rad * DJY;
-   *pmd = decd * DJY;
+   *pmr = rad *ERFA_DJY;
+   *pmd = decd *ERFA_DJY;
 
 /* Return parallax in arcsec. */
-   *px = DR2AS / r;
+   *px = ERFA_DR2AS / r;
 
 /* Return radial velocity in km/s. */
-   *rv = 1e-3 * rd * DAU / DAYSEC;
+   *rv = 1e-3 * rd * ERFA_DAU / ERFA_DAYSEC;
 
 /* OK status. */
    return 0;

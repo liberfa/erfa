@@ -69,13 +69,13 @@ double eraEra00(double dj1, double dj2)
       d1 = dj2;
       d2 = dj1;
    }
-   t = d1 + (d2- DJ00);
+   t = d1 + (d2- ERFA_DJ00);
 
 /* Fractional part of T (days). */
    f = fmod(d1, 1.0) + fmod(d2, 1.0);
 
 /* Earth rotation angle at this UT1. */
-   theta = eraAnp(D2PI * (f + 0.7790572732640
+   theta = eraAnp(ERFA_D2PI * (f + 0.7790572732640
                             + 0.00273781191135448 * t));
 
    return theta;

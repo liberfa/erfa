@@ -102,7 +102,7 @@ int eraUt1utc(double ut11, double ut12, double dut1,
       /* UT1 for the start of the UTC day that ends in a leap. */
          if ( eraCal2jd(iy, im, id, &d1, &d2) ) return -1;
          us1 = d1;
-         us2 = d2 - 1.0 + duts/DAYSEC;
+         us2 = d2 - 1.0 + duts/ERFA_DAYSEC;
 
       /* Is the UT1 after this point? */
          du = u1 - us1;
@@ -110,7 +110,7 @@ int eraUt1utc(double ut11, double ut12, double dut1,
          if ( du > 0 ) {
 
          /* Yes:  fraction of the current UTC day that has elapsed. */
-            fd = du * DAYSEC / ( DAYSEC + ddats );
+            fd = du * ERFA_DAYSEC / ( ERFA_DAYSEC + ddats );
 
          /* Ramp UT1-UTC to bring about ERFA's JD(UTC) convention. */
             duts += ddats * ( fd <= 1.0 ? fd : 1.0 );
@@ -123,7 +123,7 @@ int eraUt1utc(double ut11, double ut12, double dut1,
    }
 
 /* Subtract the (possibly adjusted) UT1-UTC from UT1 to give UTC. */
-   u2 -= duts / DAYSEC;
+   u2 -= duts / ERFA_DAYSEC;
 
 /* Result, safeguarding precision. */
    if ( big1 ) {

@@ -44,7 +44,7 @@ double eraFaom03(double t)
              t * ( - 6962890.5431 +
              t * (         7.4722 +
              t * (         0.007702 +
-             t * (       - 0.00005939 ) ) ) ), TURNAS ) * DAS2R;
+             t * (       - 0.00005939 ) ) ) ),ERFA_TURNAS ) * ERFA_DAS2R;
 
    return a;
 

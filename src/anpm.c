@@ -21,8 +21,8 @@ double eraAnpm(double a)
    double w;
 
 
-   w = fmod(a, D2PI);
-   if (fabs(w) >= DPI) w -= dsign(D2PI, a);
+   w = fmod(a, ERFA_D2PI);
+   if (fabs(w) >= ERFA_DPI) w -= ERFA_DSIGN(ERFA_D2PI, a);
 
    return w;
 

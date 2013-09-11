@@ -31,12 +31,12 @@ int eraGd2gc ( int n, double elong, double phi, double height,
 **
 **        n    ellipsoid
 **
-**        1     WGS84
-**        2     GRS80
-**        3     WGS72
+**        1    ERFA_WGS84
+**        2    ERFA_GRS80
+**        3    ERFA_WGS72
 **
 **     The n value has no significance outside the ERFA software.  For
-**     convenience, symbols WGS84 etc. are defined in erfam.h.
+**     convenience, symbolsERFA_WGS84 etc. are defined in erfam.h.
 **
 **  2) The height (height, given) and the geocentric vector (xyz,
 **     returned) are in meters.

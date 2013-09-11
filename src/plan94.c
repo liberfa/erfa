@@ -354,7 +354,7 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
       np--;
 
    /* Time: Julian millennia since J2000.0. */
-      t = ((date1 - DJ00) + date2) / DJM;
+      t = ((date1 - ERFA_DJ00) + date2) /ERFA_DJM;
 
    /* OK status unless remote date. */
       jstat = fabs(t) <= 1.0 ? 0 : 1;
@@ -365,19 +365,19 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
            a[np][2] * t) * t;
       dl = (3600.0 * dlm[np][0] +
                     (dlm[np][1] +
-                     dlm[np][2] * t) * t) * DAS2R;
+                     dlm[np][2] * t) * t) * ERFA_DAS2R;
       de = e[np][0] +
          ( e[np][1] +
            e[np][2] * t) * t;
       dp = eraAnpm((3600.0 * pi[np][0] +
                             (pi[np][1] +
-                             pi[np][2] * t) * t) * DAS2R);
+                             pi[np][2] * t) * t) * ERFA_DAS2R);
       di = (3600.0 * dinc[np][0] +
                     (dinc[np][1] +
-                     dinc[np][2] * t) * t) * DAS2R;
+                     dinc[np][2] * t) * t) * ERFA_DAS2R;
       dom = eraAnpm((3600.0 * omega[np][0] +
                              (omega[np][1] +
-                              omega[np][2] * t) * t) * DAS2R);
+                              omega[np][2] * t) * t) * ERFA_DAS2R);
 
    /* Apply the trigonometric terms. */
       dmu = 0.35953620 * t;
@@ -397,7 +397,7 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
          dl += t * (cl[np][k] * cos(argl) +
                     sl[np][k] * sin(argl)) * 1e-7;
       }
-      dl = fmod(dl, D2PI);
+      dl = fmod(dl, ERFA_D2PI);
 
    /* Iterative soln. of Kepler's equation to get eccentric anomaly. */
       am = dl - dp;

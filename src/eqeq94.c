@@ -58,20 +58,20 @@ double eraEqeq94(double date1, double date2)
 
 
 /* Interval between fundamental epoch J2000.0 and given date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* Longitude of the mean ascending node of the lunar orbit on the */
 /* ecliptic, measured from the mean equinox of date. */
    om = eraAnpm((450160.280 + (-482890.539
-           + (7.455 + 0.008 * t) * t) * t) * DAS2R
-           + fmod(-5.0 * t, 1.0) * D2PI);
+           + (7.455 + 0.008 * t) * t) * t) * ERFA_DAS2R
+           + fmod(-5.0 * t, 1.0) * ERFA_D2PI);
 
 /* Nutation components and mean obliquity. */
    eraNut80(date1, date2, &dpsi, &deps);
    eps0 = eraObl80(date1, date2);
 
 /* Equation of the equinoxes. */
-   ee = dpsi*cos(eps0) + DAS2R*(0.00264*sin(om) + 0.000063*sin(om+om));
+   ee = dpsi*cos(eps0) + ERFA_DAS2R*(0.00264*sin(om) + 0.000063*sin(om+om));
 
    return ee;
 

@@ -39,7 +39,7 @@ int eraTttai(double tt1, double tt2, double *tai1, double *tai2)
 {
 
 /* TT minus TAI (days). */
-   static const double dtat = TTMTAI/DAYSEC;
+   static const double dtat = ERFA_TTMTAI/ERFA_DAYSEC;
 
 
 /* Result, safeguarding precision. */

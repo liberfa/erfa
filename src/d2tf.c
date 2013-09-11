@@ -60,7 +60,7 @@ void eraD2tf(int ndp, double days, char *sign, int ihmsf[4])
    *sign = (char) ( ( days >= 0.0 ) ? '+' : '-' );
 
 /* Interval in seconds. */
-   a = DAYSEC * fabs(days);
+   a = ERFA_DAYSEC * fabs(days);
 
 /* Pre-round if resolution coarser than 1s (then pretend ndp=1). */
    if (ndp < 0) {
@@ -70,7 +70,7 @@ void eraD2tf(int ndp, double days, char *sign, int ihmsf[4])
       }
       rs = (double) nrs;
       w = a / rs;
-      a = rs * dnint(w);
+      a = rs * ERFA_DNINT(w);
    }
 
 /* Express the unit of each field in resolution units. */
@@ -83,17 +83,17 @@ void eraD2tf(int ndp, double days, char *sign, int ihmsf[4])
    rh = rm * 60.0;
 
 /* Round the interval and express in resolution units. */
-   a = dnint(rs * a);
+   a = ERFA_DNINT(rs * a);
 
 /* Break into fields. */
    ah = a / rh;
-   ah = dint(ah);
+   ah = ERFA_DINT(ah);
    a -= ah * rh;
    am = a / rm;
-   am = dint(am);
+   am = ERFA_DINT(am);
    a -= am * rm;
    as = a / rs;
-   as = dint(as);
+   as = ERFA_DINT(as);
    af = a - as * rs;
 
 /* Return results. */

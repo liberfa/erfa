@@ -55,10 +55,10 @@ double eraSp00(double date1, double date2)
 
 
 /* Interval between fundamental epoch J2000.0 and current date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* Approximate s'. */
-   sp = -47e-6 * t * DAS2R;
+   sp = -47e-6 * t * ERFA_DAS2R;
 
    return sp;
 

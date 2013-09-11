@@ -73,12 +73,12 @@ void eraPr00(double date1, double date2, double *dpsipr, double *depspr)
    double t;
 
 /* Precession and obliquity corrections (radians per century) */
-   static const double PRECOR = -0.29965 * DAS2R,
-                       OBLCOR = -0.02524 * DAS2R;
+   static const double PRECOR = -0.29965 * ERFA_DAS2R,
+                       OBLCOR = -0.02524 * ERFA_DAS2R;
 
 
 /* Interval between fundamental epoch J2000.0 and given date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* Precession rate contributions with respect to IAU 1976/80. */
    *dpsipr = PRECOR * t;

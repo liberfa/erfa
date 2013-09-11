@@ -50,7 +50,7 @@ double eraObl06(double date1, double date2)
 
 
 /* Interval between fundamental date J2000.0 and given date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* Mean obliquity. */
    eps0 = (84381.406     +
@@ -58,7 +58,7 @@ double eraObl06(double date1, double date2)
           ( -0.0001831   +
           (  0.00200340  +
           ( -0.000000576 +
-          ( -0.0000000434) * t) * t) * t) * t) * t) * DAS2R;
+          ( -0.0000000434) * t) * t) * t) * t) * t) * ERFA_DAS2R;
 
    return eps0;
 

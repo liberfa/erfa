@@ -230,7 +230,7 @@ double eraS00(double date1, double date2, double x, double y)
 /*--------------------------------------------------------------------*/
 
 /* Interval between fundamental epoch J2000.0 and current date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* Fundamental Arguments (from IERS Conventions 2003) */
 
@@ -311,7 +311,7 @@ double eraS00(double date1, double date2, double x, double y)
        (w2 +
        (w3 +
        (w4 +
-        w5 * t) * t) * t) * t) * t) * DAS2R - x*y/2.0;
+        w5 * t) * t) * t) * t) * t) * ERFA_DAS2R - x*y/2.0;
 
    return s;
 

@@ -84,7 +84,7 @@ int eraTaiutc(double tai1, double tai2, double *utc1, double *utc2)
       if ( js < 0 ) return -1;
       if ( i == -1 ) dats1 = dats2;
       ddats = dats2 - dats1;
-      datd = dats1 / DAYSEC;
+      datd = dats1 / ERFA_DAYSEC;
       if ( fabs(ddats) >= 0.5 ) {
 
       /* Yes.  Get TAI for the start of the UTC day that */
@@ -99,10 +99,10 @@ int eraTaiutc(double tai1, double tai2, double *utc1, double *utc2)
          if ( da > 0 ) {
 
          /* Yes:  fraction of the current UTC day that has elapsed. */
-            fd = da * DAYSEC / ( DAYSEC + ddats );
+            fd = da * ERFA_DAYSEC / ( ERFA_DAYSEC + ddats );
 
          /* Ramp TAI-UTC to bring about ERFA's JD(UTC) convention. */
-            datd += ddats * ( fd <= 1.0 ? fd : 1.0 ) / DAYSEC;
+            datd += ddats * ( fd <= 1.0 ? fd : 1.0 ) / ERFA_DAYSEC;
          }
 
       /* Done. */

@@ -78,7 +78,7 @@ void eraFk5hz(double r5, double d5, double date1, double date2,
 
 
 /* Interval from given date to fundamental epoch J2000.0 (JY). */
-   t = - ((date1 - DJ00) + date2) / DJY;
+   t = - ((date1 - ERFA_DJ00) + date2) /ERFA_DJY;
 
 /* FK5 barycentric position vector. */
    eraS2c(r5, d5, p5e);
