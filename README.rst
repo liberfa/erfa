@@ -41,6 +41,13 @@ If you are using a developer version from github, you will need to first do
 If you wish to build against the ERFA static library without installing, you
 will find it in ``$ERFAROOT/src/.libs/liberfa.a`` after running ``make``.
 
+Alternatively, if you wish to bundle the ERFA source code with a separate 
+package, you can use the ``source_flattener.py`` script from the 
+`erfa-fetch repository <https://github.com/liberfa/erfa-fetch>`_ to combine
+the ERFA source code into a single ``erfa.c`` source file, and an 
+``erfa.h`` include file.  If possible, however, it is recommended that you
+provide an option to use a installed ERFA library, if it is present.
+
 
 Travis Build Status
 -------------------
