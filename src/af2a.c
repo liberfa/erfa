@@ -43,7 +43,7 @@ int eraAf2a(char s, int ideg, int iamin, double asec, double *rad)
    *rad  = ( s == '-' ? -1.0 : 1.0 ) *
            ( 60.0 * ( 60.0 * ( (double) abs(ideg) ) +
                              ( (double) abs(iamin) ) ) +
-                                        fabs(asec) ) * DAS2R;
+                                        fabs(asec) ) * ERFA_DAS2R;
 
 /* Validate arguments and return status. */
    if ( ideg < 0 || ideg > 359 ) return 1;

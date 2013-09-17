@@ -125,14 +125,14 @@ void eraNut00b(double date1, double date2, double *dpsi, double *deps)
    int i;
 
 /* Units of 0.1 microarcsecond to radians */
-   static const double U2R = DAS2R / 1e7;
+   static const double U2R = ERFA_DAS2R / 1e7;
 
 /* ---------------------------------------- */
 /* Fixed offsets in lieu of planetary terms */
 /* ---------------------------------------- */
 
-   static const double DPPLAN = -0.135 * DMAS2R;
-   static const double DEPLAN =  0.388 * DMAS2R;
+   static const double DPPLAN = -0.135 * ERFA_DMAS2R;
+   static const double DEPLAN =  0.388 * ERFA_DMAS2R;
 
 /* --------------------------------------------------- */
 /* Luni-solar nutation: argument and term coefficients */
@@ -250,7 +250,7 @@ void eraNut00b(double date1, double date2, double *dpsi, double *deps)
 /*--------------------------------------------------------------------*/
 
 /* Interval between fundamental epoch J2000.0 and given date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* --------------------*/
 /* LUNI-SOLAR NUTATION */
@@ -259,19 +259,19 @@ void eraNut00b(double date1, double date2, double *dpsi, double *deps)
 /* Fundamental (Delaunay) arguments from Simon et al. (1994) */
 
 /* Mean anomaly of the Moon. */
-   el = fmod(485868.249036 + (1717915923.2178) * t, TURNAS) * DAS2R;
+   el = fmod(485868.249036 + (1717915923.2178) * t,ERFA_TURNAS) * ERFA_DAS2R;
 
 /* Mean anomaly of the Sun. */
-   elp = fmod(1287104.79305 + (129596581.0481) * t, TURNAS) * DAS2R;
+   elp = fmod(1287104.79305 + (129596581.0481) * t,ERFA_TURNAS) * ERFA_DAS2R;
 
 /* Mean argument of the latitude of the Moon. */
-   f = fmod(335779.526232 + (1739527262.8478) * t, TURNAS) * DAS2R;
+   f = fmod(335779.526232 + (1739527262.8478) * t,ERFA_TURNAS) * ERFA_DAS2R;
 
 /* Mean elongation of the Moon from the Sun. */
-   d = fmod(1072260.70369 + (1602961601.2090) * t, TURNAS) * DAS2R;
+   d = fmod(1072260.70369 + (1602961601.2090) * t,ERFA_TURNAS) * ERFA_DAS2R;
 
 /* Mean longitude of the ascending node of the Moon. */
-   om = fmod(450160.398036 + (-6962890.5431) * t, TURNAS) * DAS2R;
+   om = fmod(450160.398036 + (-6962890.5431) * t,ERFA_TURNAS) * ERFA_DAS2R;
 
 /* Initialize the nutation values. */
    dp = 0.0;
@@ -285,7 +285,7 @@ void eraNut00b(double date1, double date2, double *dpsi, double *deps)
                   (double)x[i].nlp * elp +
                   (double)x[i].nf  * f   +
                   (double)x[i].nd  * d   +
-                  (double)x[i].nom * om, D2PI  );
+                  (double)x[i].nom * om, ERFA_D2PI  );
       sarg = sin(arg);
       carg = cos(arg);
 

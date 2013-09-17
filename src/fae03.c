@@ -42,7 +42,7 @@ double eraFae03(double t)
 
 
 /* Mean longitude of Earth (IERS Conventions 2003). */
-   a = fmod(1.753470314 + 628.3075849991 * t, D2PI);
+   a = fmod(1.753470314 + 628.3075849991 * t, ERFA_D2PI);
 
    return a;
 

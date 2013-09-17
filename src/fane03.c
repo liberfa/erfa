@@ -39,7 +39,7 @@ double eraFane03(double t)
 
 
 /* Mean longitude of Neptune (IERS Conventions 2003). */
-   a = fmod(5.311886287 + 3.8133035638 * t, D2PI);
+   a = fmod(5.311886287 + 3.8133035638 * t, ERFA_D2PI);
 
    return a;
 

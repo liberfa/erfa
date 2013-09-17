@@ -84,7 +84,7 @@ void eraHfk5z(double rh, double dh, double date1, double date2,
 
 
 /* Time interval from fundamental epoch J2000.0 to given date (JY). */
-   t = ((date1 - DJ00) + date2) / DJY;
+   t = ((date1 - ERFA_DJ00) + date2) /ERFA_DJY;
 
 /* Hipparcos barycentric position vector (normalized). */
    eraS2c(rh, dh, ph);

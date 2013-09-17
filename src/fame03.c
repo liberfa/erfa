@@ -42,7 +42,7 @@ double eraFame03(double t)
 
 
 /* Mean longitude of Mercury (IERS Conventions 2003). */
-   a = fmod(4.402608842 + 2608.7903141574 * t, D2PI);
+   a = fmod(4.402608842 + 2608.7903141574 * t, ERFA_D2PI);
 
    return a;
 

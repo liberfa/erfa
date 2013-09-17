@@ -104,7 +104,7 @@ int eraD2dtf(const char *scale, int ndp, double d1, double d2,
 
    /* If leap second day, scale the fraction of a day into SI. */
       leap = fabs(ddt) > 0.5;
-      if (leap) fd += fd * ddt/DAYSEC;
+      if (leap) fd += fd * ddt/ERFA_DAYSEC;
    }
 
 /* Provisional time of day. */

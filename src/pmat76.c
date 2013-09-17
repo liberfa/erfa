@@ -74,7 +74,7 @@ void eraPmat76(double date1, double date2, double rmatp[3][3])
 
 
 /* Precession Euler angles, J2000.0 to specified date. */
-   eraPrec76(DJ00, 0.0, date1, date2, &zeta, &z, &theta);
+   eraPrec76(ERFA_DJ00, 0.0, date1, date2, &zeta, &z, &theta);
 
 /* Form the rotation matrix. */
    eraIr(  wmat);

@@ -56,7 +56,7 @@ void eraA2tf(int ndp, double angle, char *sign, int ihmsf[4])
 */
 {
 /* Scale then use days to h,m,s function. */
-   eraD2tf(ndp, angle/D2PI, sign, ihmsf);
+   eraD2tf(ndp, angle/ERFA_D2PI, sign, ihmsf);
 
    return;
 

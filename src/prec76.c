@@ -74,13 +74,13 @@ void eraPrec76(double ep01, double ep02, double ep11, double ep12,
 
 
 /* Interval between fundamental epoch J2000.0 and start epoch (JC). */
-   t0 = ((ep01 - DJ00) + ep02) / DJC;
+   t0 = ((ep01 - ERFA_DJ00) + ep02) / ERFA_DJC;
 
 /* Interval over which precession required (JC). */
-   t = ((ep11 - ep01) + (ep12 - ep02)) / DJC;
+   t = ((ep11 - ep01) + (ep12 - ep02)) / ERFA_DJC;
 
 /* Euler angles. */
-   tas2r = t * DAS2R;
+   tas2r = t * ERFA_DAS2R;
    w = 2306.2181 + (1.39656 - 0.000139 * t0) * t0;
 
    *zeta = (w + ((0.30188 - 0.000344 * t0) + 0.017998 * t) * t) * tas2r;

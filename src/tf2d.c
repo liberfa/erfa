@@ -43,7 +43,7 @@ int eraTf2d(char s, int ihour, int imin, double sec, double *days)
    *days  = ( s == '-' ? -1.0 : 1.0 ) *
             ( 60.0 * ( 60.0 * ( (double) abs(ihour) ) +
                               ( (double) abs(imin) ) ) +
-                                         fabs(sec) ) / DAYSEC;
+                                         fabs(sec) ) / ERFA_DAYSEC;
 
 /* Validate arguments and return status. */
    if ( ihour < 0 || ihour > 23 ) return 1;

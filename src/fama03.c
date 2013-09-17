@@ -42,7 +42,7 @@ double eraFama03(double t)
 
 
 /* Mean longitude of Mars (IERS Conventions 2003). */
-   a = fmod(6.203480913 + 334.0612426700 * t, D2PI);
+   a = fmod(6.203480913 + 334.0612426700 * t, ERFA_D2PI);
 
    return a;
 

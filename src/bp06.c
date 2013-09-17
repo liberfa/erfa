@@ -68,7 +68,7 @@ void eraBp06(double date1, double date2,
 
 
 /* B matrix. */
-   eraPfw06(DJM0, DJM00, &gamb, &phib, &psib, &epsa);
+   eraPfw06(ERFA_DJM0, ERFA_DJM00, &gamb, &phib, &psib, &epsa);
    eraFw2m(gamb, phib, psib, epsa, rb);
 
 /* PxB matrix. */

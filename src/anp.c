@@ -21,8 +21,8 @@ double eraAnp(double a)
    double w;
 
 
-   w = fmod(a, D2PI);
-   if (w < 0) w += D2PI;
+   w = fmod(a, ERFA_D2PI);
+   if (w < 0) w += ERFA_D2PI;
 
    return w;
 

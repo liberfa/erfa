@@ -2388,7 +2388,7 @@ int eraEpv00(double date1, double date2,
 /*--------------------------------------------------------------------*/
 
 /* Time since reference epoch, Julian years. */
-   t = ((date1 - DJ00) + date2) / DJY;
+   t = ((date1 - ERFA_DJ00) + date2) /ERFA_DJY;
    t2 = t*t;
 
 /* Set status. */
@@ -2447,7 +2447,7 @@ int eraEpv00(double date1, double date2,
 
    /* Heliocentric Earth position and velocity component. */
       ph[i] = xyz;
-      vh[i] = xyzd / DJY;
+      vh[i] = xyzd /ERFA_DJY;
 
    /* ------------------------------------------------ */
    /* Obtain component of SSB to Earth ecliptic vector */
@@ -2495,7 +2495,7 @@ int eraEpv00(double date1, double date2,
 
    /* Barycentric Earth position and velocity component. */
      pb[i] = xyz;
-     vb[i] = xyzd / DJY;
+     vb[i] = xyzd /ERFA_DJY;
 
    /* Next Cartesian component. */
    }

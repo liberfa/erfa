@@ -52,10 +52,10 @@ double eraObl80(double date1, double date2)
 
 
 /* Interval between fundamental epoch J2000.0 and given date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* Mean obliquity of date. */
-   eps0 = DAS2R * (84381.448  +
+   eps0 = ERFA_DAS2R * (84381.448  +
                   (-46.8150   +
                   (-0.00059   +
                   ( 0.001813) * t) * t) * t);

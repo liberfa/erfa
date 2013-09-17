@@ -46,7 +46,7 @@ int eraGc2gde ( double a, double f, double xyz[3],
 **  6) The inverse transformation is performed in the function
 **     eraGd2gce.
 **
-**  7) The transformation for a standard ellipsoid (such as WGS84) can
+**  7) The transformation for a standard ellipsoid (such asERFA_WGS84) can
 **     more conveniently be performed by calling eraGc2gd, which uses a
 **     numerical code to identify the required A and F values.
 **
@@ -133,7 +133,7 @@ int eraGc2gde ( double a, double f, double xyz[3],
    } else {
 
    /* Exception: pole. */
-      *phi = DPI / 2.0;
+      *phi = ERFA_DPI / 2.0;
       *height = absz - b;
    }
 

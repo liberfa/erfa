@@ -1601,19 +1601,19 @@ static void t_eform(int *status)
 
    viv(j, -1, "eraEform", "j0", status);
 
-   j = eraEform(WGS84, &a, &f);
+   j = eraEform(ERFA_WGS84, &a, &f);
 
    viv(j, 0, "eraEform", "j1", status);
    vvd(a, 6378137.0, 1e-10, "eraEform", "a1", status);
    vvd(f, 0.0033528106647474807, 1e-18, "eraEform", "f1", status);
 
-   j = eraEform(GRS80, &a, &f);
+   j = eraEform(ERFA_GRS80, &a, &f);
 
    viv(j, 0, "eraEform", "j2", status);
    vvd(a, 6378137.0, 1e-10, "eraEform", "a2", status);
    vvd(f, 0.0033528106811823189, 1e-18, "eraEform", "f2", status);
 
-   j = eraEform(WGS72, &a, &f);
+   j = eraEform(ERFA_WGS72, &a, &f);
 
    viv(j, 0, "eraEform", "j2", status);
    vvd(a, 6378135.0, 1e-10, "eraEform", "a3", status);
@@ -2402,21 +2402,21 @@ static void t_gc2gd(int *status)
 
    viv(j, -1, "eraGc2gd", "j0", status);
 
-   j = eraGc2gd(WGS84, xyz, &e, &p, &h);
+   j = eraGc2gd(ERFA_WGS84, xyz, &e, &p, &h);
 
    viv(j, 0, "eraGc2gd", "j1", status);
    vvd(e, 0.98279372324732907, 1e-14, "eraGc2gd", "e1", status);
    vvd(p, 0.97160184819075459, 1e-14, "eraGc2gd", "p1", status);
    vvd(h, 331.41724614260599, 1e-8, "eraGc2gd", "h1", status);
 
-   j = eraGc2gd(GRS80, xyz, &e, &p, &h);
+   j = eraGc2gd(ERFA_GRS80, xyz, &e, &p, &h);
 
    viv(j, 0, "eraGc2gd", "j2", status);
    vvd(e, 0.98279372324732907, 1e-14, "eraGc2gd", "e2", status);
    vvd(p, 0.97160184820607853, 1e-14, "eraGc2gd", "p2", status);
    vvd(h, 331.41731754844348, 1e-8, "eraGc2gd", "h2", status);
 
-   j = eraGc2gd(WGS72, xyz, &e, &p, &h);
+   j = eraGc2gd(ERFA_WGS72, xyz, &e, &p, &h);
 
    viv(j, 0, "eraGc2gd", "j3", status);
    vvd(e, 0.98279372324732907, 1e-14, "eraGc2gd", "e3", status);
@@ -2481,21 +2481,21 @@ static void t_gd2gc(int *status)
 
    viv(j, -1, "eraGd2gc", "j0", status);
 
-   j = eraGd2gc(WGS84, e, p, h, xyz);
+   j = eraGd2gc(ERFA_WGS84, e, p, h, xyz);
 
    viv(j, 0, "eraGd2gc", "j1", status);
    vvd(xyz[0], -5599000.5577049947, 1e-7, "eraGd2gc", "0/1", status);
    vvd(xyz[1], 233011.67223479203, 1e-7, "eraGd2gc", "1/1", status);
    vvd(xyz[2], -3040909.4706983363, 1e-7, "eraGd2gc", "2/1", status);
 
-   j = eraGd2gc(GRS80, e, p, h, xyz);
+   j = eraGd2gc(ERFA_GRS80, e, p, h, xyz);
 
    viv(j, 0, "eraGd2gc", "j2", status);
    vvd(xyz[0], -5599000.5577260984, 1e-7, "eraGd2gc", "0/2", status);
    vvd(xyz[1], 233011.6722356703, 1e-7, "eraGd2gc", "1/2", status);
    vvd(xyz[2], -3040909.4706095476, 1e-7, "eraGd2gc", "2/2", status);
 
-   j = eraGd2gc(WGS72, e, p, h, xyz);
+   j = eraGd2gc(ERFA_WGS72, e, p, h, xyz);
 
    viv(j, 0, "eraGd2gc", "j3", status);
    vvd(xyz[0], -5598998.7626301490, 1e-7, "eraGd2gc", "0/3", status);

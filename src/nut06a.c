@@ -83,7 +83,7 @@ void eraNut06a(double date1, double date2, double *dpsi, double *deps)
 
 
 /* Interval between fundamental date J2000.0 and given date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* Factor correcting for secular variation of J2. */
    fj2 = -2.7774e-6 * t;

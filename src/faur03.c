@@ -39,7 +39,7 @@ double eraFaur03(double t)
 
 
 /* Mean longitude of Uranus (IERS Conventions 2003). */
-   a = fmod(5.481293872 + 7.4781598567 * t, D2PI);
+   a = fmod(5.481293872 + 7.4781598567 * t, ERFA_D2PI);
 
    return a;
 

@@ -53,7 +53,7 @@ int eraTdbtt(double tdb1, double tdb2, double dtr,
 
 
 /* Result, safeguarding precision. */
-   dtrd = dtr / DAYSEC;
+   dtrd = dtr / ERFA_DAYSEC;
    if ( tdb1 > tdb2 ) {
       *tt1 = tdb1;
       *tt2 = tdb2 - dtrd;

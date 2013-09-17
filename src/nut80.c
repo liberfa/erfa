@@ -56,7 +56,7 @@ void eraNut80(double date1, double date2, double *dpsi, double *deps)
    int j;
 
 /* Units of 0.1 milliarcsecond to radians */
-   const double U2R = DAS2R / 1e4;
+   const double U2R = ERFA_DAS2R / 1e4;
 
 /* ------------------------------------------------ */
 /* Table of multiples of arguments and coefficients */
@@ -206,7 +206,7 @@ void eraNut80(double date1, double date2, double *dpsi, double *deps)
 /*--------------------------------------------------------------------*/
 
 /* Interval between fundamental epoch J2000.0 and given date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* --------------------- */
 /* Fundamental arguments */
@@ -215,28 +215,28 @@ void eraNut80(double date1, double date2, double *dpsi, double *deps)
 /* Mean longitude of Moon minus mean longitude of Moon's perigee. */
    el = eraAnpm(
         (485866.733 + (715922.633 + (31.310 + 0.064 * t) * t) * t)
-        * DAS2R + fmod(1325.0 * t, 1.0) * D2PI);
+        * ERFA_DAS2R + fmod(1325.0 * t, 1.0) * ERFA_D2PI);
 
 /* Mean longitude of Sun minus mean longitude of Sun's perigee. */
    elp = eraAnpm(
          (1287099.804 + (1292581.224 + (-0.577 - 0.012 * t) * t) * t)
-         * DAS2R + fmod(99.0 * t, 1.0) * D2PI);
+         * ERFA_DAS2R + fmod(99.0 * t, 1.0) * ERFA_D2PI);
 
 /* Mean longitude of Moon minus mean longitude of Moon's node. */
    f = eraAnpm(
        (335778.877 + (295263.137 + (-13.257 + 0.011 * t) * t) * t)
-       * DAS2R + fmod(1342.0 * t, 1.0) * D2PI);
+       * ERFA_DAS2R + fmod(1342.0 * t, 1.0) * ERFA_D2PI);
 
 /* Mean elongation of Moon from Sun. */
    d = eraAnpm(
        (1072261.307 + (1105601.328 + (-6.891 + 0.019 * t) * t) * t)
-       * DAS2R + fmod(1236.0 * t, 1.0) * D2PI);
+       * ERFA_DAS2R + fmod(1236.0 * t, 1.0) * ERFA_D2PI);
 
 /* Longitude of the mean ascending node of the lunar orbit on the */
 /* ecliptic, measured from the mean equinox of date. */
    om = eraAnpm(
         (450160.280 + (-482890.539 + (7.455 + 0.008 * t) * t) * t)
-        * DAS2R + fmod(-5.0 * t, 1.0) * D2PI);
+        * ERFA_DAS2R + fmod(-5.0 * t, 1.0) * ERFA_D2PI);
 
 /* --------------- */
 /* Nutation series */

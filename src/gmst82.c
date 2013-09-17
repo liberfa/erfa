@@ -65,7 +65,7 @@ double eraGmst82(double dj1, double dj2)
 */
 {
 /* Coefficients of IAU 1982 GMST-UT1 model */
-   double A = 24110.54841  -  DAYSEC / 2.0;
+   double A = 24110.54841  -  ERFA_DAYSEC / 2.0;
    double B = 8640184.812866;
    double C = 0.093104;
    double D =  -6.2e-6;
@@ -85,13 +85,13 @@ double eraGmst82(double dj1, double dj2)
       d1 = dj2;
       d2 = dj1;
    }
-   t = (d1 + (d2 - DJ00)) / DJC;
+   t = (d1 + (d2 - ERFA_DJ00)) / ERFA_DJC;
 
 /* Fractional part of JD(UT1), in seconds. */
-   f = DAYSEC * (fmod(d1, 1.0) + fmod(d2, 1.0));
+   f = ERFA_DAYSEC * (fmod(d1, 1.0) + fmod(d2, 1.0));
 
 /* GMST at this UT1. */
-   gmst = eraAnp(DS2R * ((A + (B + (C + D * t) * t) * t) + f));
+   gmst = eraAnp(ERFA_DS2R * ((A + (B + (C + D * t) * t) * t) + f));
 
    return gmst;
 

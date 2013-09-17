@@ -86,7 +86,7 @@ int eraUtctai(double utc1, double utc2, double *tai1, double *tai2)
 
 /* If today ends in a leap second, scale the fraction into SI days. */
    ddat = datst - dats;
-   if ( fabs(ddat) > 0.5 ) fd += fd * ddat / DAYSEC;
+   if ( fabs(ddat) > 0.5 ) fd += fd * ddat / ERFA_DAYSEC;
 
 /* Today's calendar date to 2-part JD. */
    if ( eraCal2jd(iy, im, id, &z1, &z2) ) return -1;
@@ -94,7 +94,7 @@ int eraUtctai(double utc1, double utc2, double *tai1, double *tai2)
 /* Assemble the TAI result, preserving the UTC split and order. */
    a2 = z1 - u1;
    a2 += z2;
-   a2 += fd + dats / DAYSEC;
+   a2 += fd + dats / ERFA_DAYSEC;
    if ( big1 ) {
       *tai1 = u1;
       *tai2 = a2;

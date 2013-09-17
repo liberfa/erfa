@@ -42,7 +42,7 @@ double eraFave03(double t)
 
 
 /* Mean longitude of Venus (IERS Conventions 2003). */
-   a = fmod(3.176146697 + 1021.3285546211 * t, D2PI);
+   a = fmod(3.176146697 + 1021.3285546211 * t, ERFA_D2PI);
 
    return a;
 
