@@ -222,7 +222,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
    }
 
 /* Get the Delta(AT). */
-   da = changes[i].delat;
+   da = changes[(i < 0) ? 0 : i].delat;
 
 /* If pre-1972, adjust for drift. */
    if (i < NERA1) da += (djm + fd - drift[i][0]) * drift[i][1];
