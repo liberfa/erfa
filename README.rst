@@ -36,7 +36,8 @@ For Developers
 ^^^^^^^^^^^^^^
 
 If you are using a developer version from github, you will need to first do
-``./bootstrap.sh`` before the above commands.
+``./bootstrap.sh`` before the above commands. This requires ``autoconf`` and 
+``libtool``.
 
 If you wish to build against the ERFA static library without installing, you
 will find it in ``$ERFAROOT/src/.libs/liberfa.a`` after running ``make``.
