@@ -32,6 +32,12 @@ location, simply do::
     make
     make install
 
+If you want to run the tests to make sure ERFA built correctly, before
+installing do::
+
+    make check
+
+
 For Developers
 ^^^^^^^^^^^^^^
 
