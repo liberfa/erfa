@@ -159,7 +159,7 @@ void eraNut00a(double date1, double date2, double *dpsi, double *deps)
           dpsipl, depspl;
 
 /* Units of 0.1 microarcsecond to radians */
-   const double U2R = DAS2R / 1e7;
+   const double U2R = ERFA_DAS2R / 1e7;
 
 /* ------------------------- */
 /* Luni-Solar nutation model */
@@ -1851,7 +1851,7 @@ void eraNut00a(double date1, double date2, double *dpsi, double *deps)
 /*--------------------------------------------------------------------*/
 
 /* Interval between fundamental date J2000.0 and given date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* ------------------- */
 /* LUNI-SOLAR NUTATION */
@@ -1867,7 +1867,7 @@ void eraNut00a(double date1, double date2, double *dpsi, double *deps)
             t * (129596581.0481  +
             t * (-0.5532  +
             t * (0.000136  +
-            t * (-0.00001149)))), TURNAS) * DAS2R;
+            t * (-0.00001149)))), ERFA_TURNAS) * ERFA_DAS2R;
 
 /* Mean longitude of the Moon minus that of the ascending node */
 /* (IERS 2003. */
@@ -1878,7 +1878,7 @@ void eraNut00a(double date1, double date2, double *dpsi, double *deps)
           t * (1602961601.2090  +
           t * (-6.3706  +
           t * (0.006593  +
-          t * (-0.00003169)))), TURNAS) * DAS2R;
+          t * (-0.00003169)))), ERFA_TURNAS) * ERFA_DAS2R;
 
 /* Mean longitude of the ascending node of the Moon (IERS 2003). */
    om = eraFaom03(t);
@@ -1895,7 +1895,7 @@ void eraNut00a(double date1, double date2, double *dpsi, double *deps)
                  (double)xls[i].nlp * elp +
                  (double)xls[i].nf  * f +
                  (double)xls[i].nd  * d +
-                 (double)xls[i].nom * om, D2PI);
+                 (double)xls[i].nom * om, ERFA_D2PI);
       sarg = sin(arg);
       carg = cos(arg);
 
@@ -1920,17 +1920,17 @@ void eraNut00a(double date1, double date2, double *dpsi, double *deps)
 /* 0.1 microarcsecond. */
 
 /* Mean anomaly of the Moon (MHB2000). */
-   al = fmod(2.35555598 + 8328.6914269554 * t, D2PI);
+   al = fmod(2.35555598 + 8328.6914269554 * t, ERFA_D2PI);
 
 /* Mean longitude of the Moon minus that of the ascending node */
 /*(MHB2000). */
-   af = fmod(1.627905234 + 8433.466158131 * t, D2PI);
+   af = fmod(1.627905234 + 8433.466158131 * t, ERFA_D2PI);
 
 /* Mean elongation of the Moon from the Sun (MHB2000). */
-   ad = fmod(5.198466741 + 7771.3771468121 * t, D2PI);
+   ad = fmod(5.198466741 + 7771.3771468121 * t, ERFA_D2PI);
 
 /* Mean longitude of the ascending node of the Moon (MHB2000). */
-   aom = fmod(2.18243920 - 33.757045 * t, D2PI);
+   aom = fmod(2.18243920 - 33.757045 * t, ERFA_D2PI);
 
 /* General accumulated precession in longitude (IERS 2003). */
    apa = eraFapa03(t);
@@ -1945,7 +1945,7 @@ void eraNut00a(double date1, double date2, double *dpsi, double *deps)
    alur = eraFaur03(t);
 
 /* Neptune longitude (MHB2000). */
-   alne = fmod(5.321159000 + 3.8127774000 * t, D2PI);
+   alne = fmod(5.321159000 + 3.8127774000 * t, ERFA_D2PI);
 
 /* Initialize the nutation values. */
    dp = 0.0;
@@ -1967,7 +1967,7 @@ void eraNut00a(double date1, double date2, double *dpsi, double *deps)
                  (double)xpl[i].nsa * alsa +
                  (double)xpl[i].nur * alur +
                  (double)xpl[i].nne * alne +
-                 (double)xpl[i].npa * apa, D2PI);
+                 (double)xpl[i].npa * apa, ERFA_D2PI);
       sarg = sin(arg);
       carg = cos(arg);
 

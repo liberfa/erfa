@@ -1063,14 +1063,14 @@ double eraDtdb(double date1, double date2,
 
 
 /* Time since J2000.0 in Julian millennia. */
-   t = ((date1 - DJ00) + date2) / DJM;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJM;
 
 /* ================= */
 /* Topocentric terms */
 /* ================= */
 
 /* Convert UT to local solar time in radians. */
-   tsol = fmod(ut, 1.0) * D2PI + elong;
+   tsol = fmod(ut, 1.0) * ERFA_D2PI + elong;
 
 /* FUNDAMENTAL ARGUMENTS:  Simon et al. 1994. */
 
@@ -1078,19 +1078,19 @@ double eraDtdb(double date1, double date2,
    w = t / 3600.0;
 
 /* Sun Mean Longitude. */
-   elsun = fmod(280.46645683 + 1296027711.03429 * w, 360.0) * DD2R;
+   elsun = fmod(280.46645683 + 1296027711.03429 * w, 360.0) * ERFA_DD2R;
 
 /* Sun Mean Anomaly. */
-   emsun = fmod(357.52910918 + 1295965810.481 * w, 360.0) * DD2R;
+   emsun = fmod(357.52910918 + 1295965810.481 * w, 360.0) * ERFA_DD2R;
 
 /* Mean Elongation of Moon from Sun. */
-   d = fmod(297.85019547 + 16029616012.090 * w, 360.0) * DD2R;
+   d = fmod(297.85019547 + 16029616012.090 * w, 360.0) * ERFA_DD2R;
 
 /* Mean Longitude of Jupiter. */
-   elj = fmod(34.35151874 + 109306899.89453 * w, 360.0) * DD2R;
+   elj = fmod(34.35151874 + 109306899.89453 * w, 360.0) * ERFA_DD2R;
 
 /* Mean Longitude of Saturn. */
-   els = fmod(50.07744430 + 44046398.47038 * w, 360.0) * DD2R;
+   els = fmod(50.07744430 + 44046398.47038 * w, 360.0) * ERFA_DD2R;
 
 /* TOPOCENTRIC TERMS:  Moyer 1981 and Murray 1983. */
    wt =   +  0.00029e-10 * u * sin(tsol + elsun - els)

@@ -43,7 +43,7 @@ double eraFalp03(double t)
              t * ( 129596581.0481 +
              t * (       - 0.5532 +
              t * (         0.000136 +
-             t * (       - 0.00001149 ) ) ) ), TURNAS ) * DAS2R;
+             t * (       - 0.00001149 ) ) ) ), ERFA_TURNAS ) * ERFA_DAS2R;
 
    return a;
 

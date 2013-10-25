@@ -36,7 +36,7 @@ double eraEpb(double dj1, double dj2)
    double epb;
 
 
-   epb = 1900.0 + ((dj1 - DJ00) + (dj2 + D1900)) / DTY;
+   epb = 1900.0 + ((dj1 - ERFA_DJ00) + (dj2 + D1900)) / ERFA_DTY;
 
    return epb;
 

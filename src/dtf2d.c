@@ -86,7 +86,7 @@ int eraDtf2d(const char *scale, int iy, int im, int id,
    dj += w;
 
 /* Day length and final minute length in seconds (provisional). */
-   day = DAYSEC;
+   day = ERFA_DAYSEC;
    seclim = 60;
 
 /* Deal with the UTC leap second case. */

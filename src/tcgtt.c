@@ -38,15 +38,15 @@ int eraTcgtt(double tcg1, double tcg2, double *tt1, double *tt2)
 {
 
 /* 1977 Jan 1 00:00:32.184 TT, as MJD */
-   static const double t77t = DJM77 + TTMTAI/DAYSEC;
+   static const double t77t = ERFA_DJM77 + ERFA_TTMTAI/ERFA_DAYSEC;
 
 
 /* Result, safeguarding precision. */
    if ( tcg1 > tcg2 ) {
       *tt1 = tcg1;
-      *tt2 = tcg2 - ( ( tcg1 - DJM0 ) + ( tcg2 - t77t ) ) * ELG;
+      *tt2 = tcg2 - ( ( tcg1 - ERFA_DJM0 ) + ( tcg2 - t77t ) ) * ERFA_ELG;
    } else {
-      *tt1 = tcg1 - ( ( tcg2 - DJM0 ) + ( tcg1 - t77t ) ) * ELG;
+      *tt1 = tcg1 - ( ( tcg2 - ERFA_DJM0 ) + ( tcg1 - t77t ) ) * ERFA_ELG;
       *tt2 = tcg2;
    }
 

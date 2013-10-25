@@ -53,11 +53,11 @@ int eraTcbtdb(double tcb1, double tcb2, double *tdb1, double *tdb2)
 {
 
 /* 1977 Jan 1 00:00:32.184 TT, as two-part JD */
-   static const double t77td = DJM0 + DJM77;
-   static const double t77tf = TTMTAI/DAYSEC;
+   static const double t77td = ERFA_DJM0 + ERFA_DJM77;
+   static const double t77tf = ERFA_TTMTAI/ERFA_DAYSEC;
 
 /* TDB (days) at TAI 1977 Jan 1.0 */
-   static const double tdb0 = TDB0/DAYSEC;
+   static const double tdb0 = ERFA_TDB0/ERFA_DAYSEC;
 
    double d;
 
@@ -66,10 +66,10 @@ int eraTcbtdb(double tcb1, double tcb2, double *tdb1, double *tdb2)
    if ( tcb1 > tcb2 ) {
       d = tcb1 - t77td;
       *tdb1 = tcb1;
-      *tdb2 = tcb2 + tdb0 - ( d + ( tcb2 - t77tf ) ) * ELB;
+      *tdb2 = tcb2 + tdb0 - ( d + ( tcb2 - t77tf ) ) * ERFA_ELB;
    } else {
       d = tcb2 - t77td;
-      *tdb1 = tcb1 + tdb0 - ( d + ( tcb1 - t77tf ) ) * ELB;
+      *tdb1 = tcb1 + tdb0 - ( d + ( tcb1 - t77tf ) ) * ERFA_ELB;
       *tdb2 = tcb2;
    }
 

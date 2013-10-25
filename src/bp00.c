@@ -75,7 +75,7 @@ void eraBp00(double date1, double date2,
 */
 {
 /* J2000.0 obliquity (Lieske et al. 1977) */
-   const double EPS0 = 84381.448 * DAS2R;
+   const double EPS0 = 84381.448 * ERFA_DAS2R;
 
    double t, dpsibi, depsbi;
    double dra0, psia77, oma77, chia, dpsipr, depspr, psia, oma,
@@ -83,15 +83,15 @@ void eraBp00(double date1, double date2,
 
 
 /* Interval between fundamental epoch J2000.0 and current date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* Frame bias. */
    eraBi00(&dpsibi, &depsbi, &dra0);
 
 /* Precession angles (Lieske et al. 1977) */
-   psia77 = (5038.7784 + (-1.07259 + (-0.001147) * t) * t) * t * DAS2R;
-   oma77  =       EPS0 + ((0.05127 + (-0.007726) * t) * t) * t * DAS2R;
-   chia   = (  10.5526 + (-2.38064 + (-0.001125) * t) * t) * t * DAS2R;
+   psia77 = (5038.7784 + (-1.07259 + (-0.001147) * t) * t) * t * ERFA_DAS2R;
+   oma77  =       EPS0 + ((0.05127 + (-0.007726) * t) * t) * t * ERFA_DAS2R;
+   chia   = (  10.5526 + (-2.38064 + (-0.001125) * t) * t) * t * ERFA_DAS2R;
 
 /* Apply IAU 2000 precession corrections. */
    eraPr00(date1, date2, &dpsipr,  &depspr);

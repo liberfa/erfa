@@ -33,7 +33,7 @@ double eraEpj(double dj1, double dj2)
    double epj;
 
 
-   epj = 2000.0 + ((dj1 - DJ00) + dj2) / DJY;
+   epj = 2000.0 + ((dj1 - ERFA_DJ00) + dj2) / ERFA_DJY;
 
    return epj;
 

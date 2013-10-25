@@ -101,7 +101,7 @@ void eraPn06(double date1, double date2, double dpsi, double deps,
 
 
 /* Bias-precession Fukushima-Williams angles of J2000.0 = frame bias. */
-   eraPfw06(DJM0, DJM00, &gamb, &phib, &psib, &eps);
+   eraPfw06(ERFA_DJM0, ERFA_DJM00, &gamb, &phib, &psib, &eps);
 
 /* B matrix. */
    eraFw2m(gamb, phib, psib, eps, r1);

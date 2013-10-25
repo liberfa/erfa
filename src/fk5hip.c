@@ -47,13 +47,13 @@ void eraFk5hip(double r5h[3][3], double s5h[3])
    double omx, omy, omz;
 
 
-   epx = -19.9e-3 * DAS2R;
-   epy =  -9.1e-3 * DAS2R;
-   epz =  22.9e-3 * DAS2R;
+   epx = -19.9e-3 * ERFA_DAS2R;
+   epy =  -9.1e-3 * ERFA_DAS2R;
+   epz =  22.9e-3 * ERFA_DAS2R;
 
-   omx = -0.30e-3 * DAS2R;
-   omy =  0.60e-3 * DAS2R;
-   omz =  0.70e-3 * DAS2R;
+   omx = -0.30e-3 * ERFA_DAS2R;
+   omy =  0.60e-3 * ERFA_DAS2R;
+   omz =  0.70e-3 * ERFA_DAS2R;
 
 /* FK5 to Hipparcos orientation expressed as an r-vector. */
    v[0] = epx;

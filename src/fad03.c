@@ -43,7 +43,7 @@ double eraFad03(double t)
              t * ( 1602961601.2090 +
              t * (        - 6.3706 +
              t * (          0.006593 +
-             t * (        - 0.00003169 ) ) ) ), TURNAS ) * DAS2R;
+             t * (        - 0.00003169 ) ) ) ), ERFA_TURNAS ) * ERFA_DAS2R;
 
    return a;
 

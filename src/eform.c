@@ -26,12 +26,12 @@ int eraEform ( int n, double *a, double *f )
 **
 **        n    ellipsoid
 **
-**        1     WGS84
-**        2     GRS80
-**        3     WGS72
+**        1     ERFA_WGS84
+**        2     ERFA_GRS80
+**        3     ERFA_WGS72
 **
 **     The n value has no significance outside the ERFA software.  For
-**     convenience, symbols WGS84 etc. are defined in erfam.h.
+**     convenience, symbols ERFA_WGS84 etc. are defined in erfam.h.
 **
 **  2) The ellipsoid parameters are returned in the form of equatorial
 **     radius in meters (a) and flattening (f).  The latter is a number
@@ -63,17 +63,17 @@ int eraEform ( int n, double *a, double *f )
 /* Look up a and f for the specified reference ellipsoid. */
    switch ( n ) {
 
-   case WGS84:
+   case ERFA_WGS84:
       *a = 6378137.0;
       *f = 1.0 / 298.257223563;
       break;
 
-   case GRS80:
+   case ERFA_GRS80:
       *a = 6378137.0;
       *f = 1.0 / 298.257222101;
       break;
 
-   case WGS72:
+   case ERFA_WGS72:
       *a = 6378135.0;
       *f = 1.0 / 298.26;
       break;

@@ -53,14 +53,14 @@ int eraTdbtcb(double tdb1, double tdb2, double *tcb1, double *tcb2)
 {
 
 /* 1977 Jan 1 00:00:32.184 TT, as two-part JD */
-   static const double t77td = DJM0 + DJM77;
-   static const double t77tf = TTMTAI/DAYSEC;
+   static const double t77td = ERFA_DJM0 + ERFA_DJM77;
+   static const double t77tf = ERFA_TTMTAI/ERFA_DAYSEC;
 
 /* TDB (days) at TAI 1977 Jan 1.0 */
-   static const double tdb0 = TDB0/DAYSEC;
+   static const double tdb0 = ERFA_TDB0/ERFA_DAYSEC;
 
 /* TDB to TCB rate */
-   static const double elbb = ELB/(1.0-ELB);
+   static const double elbb = ERFA_ELB/(1.0-ERFA_ELB);
 
    double d, f;
 

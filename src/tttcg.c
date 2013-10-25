@@ -38,18 +38,18 @@ int eraTttcg(double tt1, double tt2, double *tcg1, double *tcg2)
 {
 
 /* 1977 Jan 1 00:00:32.184 TT, as MJD */
-   static const double t77t = DJM77 + TTMTAI/DAYSEC;
+   static const double t77t = ERFA_DJM77 + ERFA_TTMTAI/ERFA_DAYSEC;
 
 /* TT to TCG rate */
-   static const double elgg = ELG/(1.0-ELG);
+   static const double elgg = ERFA_ELG/(1.0-ERFA_ELG);
 
 
 /* Result, safeguarding precision. */
    if ( tt1 > tt2 ) {
       *tcg1 = tt1;
-      *tcg2 = tt2 + ( ( tt1 - DJM0 ) + ( tt2 - t77t ) ) * elgg;
+      *tcg2 = tt2 + ( ( tt1 - ERFA_DJM0 ) + ( tt2 - t77t ) ) * elgg;
    } else {
-      *tcg1 = tt1 + ( ( tt2 - DJM0 ) + ( tt1 - t77t ) ) * elgg;
+      *tcg1 = tt1 + ( ( tt2 - ERFA_DJM0 ) + ( tt1 - t77t ) ) * elgg;
       *tcg2 = tt2;
    }
 

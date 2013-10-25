@@ -174,7 +174,7 @@ double eraEect00(double date1, double date2)
 /*--------------------------------------------------------------------*/
 
 /* Interval between fundamental epoch J2000.0 and current date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* Fundamental Arguments (from IERS Conventions 2003) */
 
@@ -222,7 +222,7 @@ double eraEect00(double date1, double date2)
       s1 += e1[i].s * sin(a) + e1[i].c * cos(a);
    }
 
-   eect = (s0 + s1 * t ) * DAS2R;
+   eect = (s0 + s1 * t ) * ERFA_DAS2R;
 
    return eect;
 

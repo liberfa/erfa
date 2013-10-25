@@ -143,21 +143,21 @@ int eraStarpv(double ra, double dec,
       w = PXMIN;
       iwarn = 1;
    }
-   r = DR2AS / w;
+   r = ERFA_DR2AS / w;
 
 /* Radial velocity (AU/day). */
-   rd = DAYSEC * rv * 1e3 / DAU;
+   rd = ERFA_DAYSEC * rv * 1e3 / ERFA_DAU;
 
 /* Proper motion (radian/day). */
-   rad = pmr / DJY;
-   decd = pmd / DJY;
+   rad = pmr / ERFA_DJY;
+   decd = pmd / ERFA_DJY;
 
 /* To pv-vector (AU,AU/day). */
    eraS2pv(ra, dec, r, rad, decd, rd, pv);
 
 /* If excessive velocity, arbitrarily set it to zero. */
    v = eraPm(pv[1]);
-   if (v / DC > VMAX) {
+   if (v / ERFA_DC > VMAX) {
       eraZp(pv[1]);
       iwarn += 2;
    }
@@ -172,8 +172,8 @@ int eraStarpv(double ra, double dec,
    vst = eraPm(ust);
 
 /* Special-relativity dimensionless parameters. */
-   betsr = vsr / DC;
-   betst = vst / DC;
+   betsr = vsr / ERFA_DC;
+   betst = vst / ERFA_DC;
 
 /* Determine the inertial-to-observed relativistic correction terms. */
    bett = betst;

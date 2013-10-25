@@ -42,7 +42,7 @@ int eraUt1tt(double ut11, double ut12, double dt,
 
 
 /* Result, safeguarding precision. */
-   dtd = dt / DAYSEC;
+   dtd = dt / ERFA_DAYSEC;
    if ( ut11 > ut12 ) {
       *tt1 = ut11;
       *tt2 = ut12 + dtd;

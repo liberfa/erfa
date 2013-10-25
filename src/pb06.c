@@ -83,7 +83,7 @@ void eraPb06(double date1, double date2,
    *bzeta = atan2 (r[1][0], r[1][1]);
    r31 = r[2][0];
    r32 = r[2][1];
-   *btheta = atan2(-dsign(sqrt(r31 * r31 + r32 * r32), r[0][2]),
+   *btheta = atan2(-ERFA_DSIGN(sqrt(r31 * r31 + r32 * r32), r[0][2]),
                    r[2][2]);
 
    return;

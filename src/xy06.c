@@ -2558,7 +2558,7 @@ void eraXy06(double date1, double date2, double *x, double *y)
 /*--------------------------------------------------------------------*/
 
 /* Interval between fundamental date J2000.0 and given date (JC). */
-   t = ((date1 - DJ00) + date2) / DJC;
+   t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;
 
 /* Powers of T. */
    w = 1.0;
@@ -2697,8 +2697,8 @@ void eraXy06(double date1, double date2, double *x, double *y)
 /* Results:  CIP unit vector components */
 /* ------------------------------------ */
 
-   *x = DAS2R * (xypr[0] + (xyls[0] + xypl[0]) / 1e6);
-   *y = DAS2R * (xypr[1] + (xyls[1] + xypl[1]) / 1e6);
+   *x = ERFA_DAS2R * (xypr[0] + (xyls[0] + xypl[0]) / 1e6);
+   *y = ERFA_DAS2R * (xypr[1] + (xyls[1] + xypl[1]) / 1e6);
 
    return;
 
