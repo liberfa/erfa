@@ -16,13 +16,19 @@ Differences from SOFA
 This version of ERFA (v0.0.1) is based on SOFA version "20120301_a", with the 
 differences outlined below.
 
-ERFA Branding
+ERFA branding
 ^^^^^^^^^^^^^
 
 All references to "SOFA" in the source code have been changed to ERFA, and 
 functions have the prefix ``era`` instead of ``iau``. 
 
-Building and Installing ERFA
+C macro prefixes
+^^^^^^^^^^^^^^^^ 
+
+All C macros used in ERFA are the same as their SOFA equivalents, but with an
+``ERFA_`` prefix to prevent namespace collisions.
+
+Building and installing ERFA
 ----------------------------
 
 To build and install a released version of ERFA in your OS's standard 
@@ -38,7 +44,7 @@ installing do::
     make check
 
 
-For Developers
+For developers
 ^^^^^^^^^^^^^^
 
 If you are using a developer version from github, you will need to first do
@@ -48,15 +54,24 @@ If you are using a developer version from github, you will need to first do
 If you wish to build against the ERFA static library without installing, you
 will find it in ``$ERFAROOT/src/.libs/liberfa.a`` after running ``make``.
 
+Creating a single-file version of the source code
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Alternatively, if you wish to bundle the ERFA source code with a separate 
 package, you can use the ``source_flattener.py`` script from the 
-`erfa-fetch repository <https://github.com/liberfa/erfa-fetch>`_ to combine
-the ERFA source code into a single ``erfa.c`` source file, and an 
-``erfa.h`` include file.  If possible, however, it is recommended that you
-provide an option to use a installed ERFA library, if it is present.
+`erfa-fetch repository`_ to combine
+the ERFA source code into just two files: a ``erfa.c`` source file, and an 
+``erfa.h`` include file.  You should run this script like this::
 
+    cd /path/to/erfa-source-code
+    python /path/to/erfa-fetch/source_flattener.py src -n erfa
 
-Travis Build Status
+If possible, however, it is recommended that you provide an option to use any
+copy of the ERFA library that is already installed on the system.
+
+Travis build status
 -------------------
 .. image:: https://travis-ci.org/liberfa/erfa.png
     :target: https://travis-ci.org/liberfa/erfa
+
+.. _erfa-fetch repository: https://github.com/liberfa/erfa-fetch

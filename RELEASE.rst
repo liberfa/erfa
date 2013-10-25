@@ -1,6 +1,6 @@
 
-Instructions for Doing A Release of ERFA
-========================================
+Instructions for releasing ERFA
+===============================
 
 * Clone the ERFA repository from github (if you haven't already done so),
   and change to the ERFA directory.
@@ -8,6 +8,12 @@ Instructions for Doing A Release of ERFA
 * Make sure you are on the "master" branch from the "liberfa" github 
   repository and have the latest version (if you have a fresh clone, this
   should already be the case).
+
+* If a new version of SOFA exists, run `sofa_deriver.py` from the `erfa-fetch
+  repository`_ in its own directory.  That will create a directory called `erfa`
+  inside the `erfa-fetch` directory, and   you should copy its contents to the 
+  `src` directory of `erfa`.  Use ``git diff`` in `erfa` to inspect the changes, 
+  and then commit and push them to github.
 
 * Update the version number in the `AC_INIT` macro of `configure.ac` to
   the version number you are about to release, and also update the version 
@@ -56,3 +62,19 @@ Instructions for Doing A Release of ERFA
   Do ``git checkout gh-pages``, add a new ``<li>...</li>`` entry for the
   release in `index.html`, do ``git commit``, and then
   ``git push origin gh-pages``.
+
+Version numbering
+=================
+
+ERFA uses `semantic versioning <http://semver.org/>`_.
+
+  Given a version number MAJOR.MINOR.PATCH, increment the:
+
+  * MAJOR version when you make incompatible API changes
+  * MINOR version when you add functionality in a backwards-compatible manner
+  * PATCH version when you make backwards-compatible bug fixes
+  
+For more on this choice, see 
+`liberfa/erfa#6 <https://github.com/liberfa/erfa/issues/6>`_.
+
+.. _erfa-fetch repository: https://github.com/liberfa/erfa-fetch
