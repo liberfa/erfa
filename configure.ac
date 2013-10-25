@@ -1,7 +1,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
-AC_INIT([erfa],[0.0.1])
+AC_INIT([erfa],[1.0.0])
 AC_CONFIG_SRCDIR([src/erfa.h])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
