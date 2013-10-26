@@ -21,3 +21,4 @@ Makefile
 Makefile.in
 /build-aux
 src/t_erfa_c
+erfa-*.tar.gz
