@@ -37,7 +37,7 @@ include_HEADERS = erfa.h erfam.h
 PKG_MAJ = `echo $(PACKAGE_VERSION) | cut -d . -f 1`
 PKG_MIN = `echo $(PACKAGE_VERSION) | cut -d . -f 2`
 PKG_BUG = `echo $(PACKAGE_VERSION) | cut -d . -f 3`
-VI_CURR =  $(shell echo $(PKG_MAJ)+$(PKG_MIN) | bc)
+VI_CURR =  $(shell expr $(PKG_MAJ) + $(PKG_MIN))
 VI_REV = $(PKG_BUG)
 VI_AGE = $(PKG_MIN)
 
