@@ -13,6 +13,10 @@ LT_INIT
 
 ERFA_NUMVER
 
+AC_SUBST([VI_CURR], 0)
+AC_SUBST([VI_REV], 0)
+AC_SUBST([VI_AGE], 0)
+
 # Checks for libraries.
 AC_SEARCH_LIBS([sin], [m], , AC_MSG_ERROR([cannot find math functions]))
 
