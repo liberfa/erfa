@@ -27,7 +27,8 @@ include_HEADERS = erfa.h erfam.h
 ## Version info is in current : revision : age form
 ## A library supports interfaces from current downto current - age
 ## Revision is the version of the current interface
-## If the source code has changed at all, rev += 1
+
+## VI_ALL is set in the macro ERFA_LIB_VERSION_INFO in configure.ac
 
 liberfa_la_LDFLAGS = -version-info $(VI_ALL)
 
