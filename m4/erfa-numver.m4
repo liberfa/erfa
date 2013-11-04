@@ -29,16 +29,6 @@ AS_VAR_POPDEF([MINOR])dnl
 AS_VAR_POPDEF([MAJOR])dnl
 ])
 
-AC_DEFUN([ERFA_LIB_VERSION_INFO2],[
-if test "_$2 = "_"; then
-  AC_MSG_ERROR([sorry, can't do anything for you])
-fi
-if test "_$3" = "_"; then
-  AC_MSG_ERROR([sorry, can't do anything for you])
-fi
-vi_all=`echo $1:$2:$3`
-AC_SUBST([VI_ALL], [$vi_all])
-])
 AC_DEFUN([ERFA_LIB_VERSION_INFO],[
 m4_ifndef([ERFA_C], [m4_define([ERFA_C], [$1])])
 m4_ifndef([ERFA_R], [m4_define([ERFA_R], [$2])])
