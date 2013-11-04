@@ -29,7 +29,7 @@ include_HEADERS = erfa.h erfam.h
 ## Revision is the version of the current interface
 ## If the source code has changed at all, rev += 1
 
-liberfa_la_LDFLAGS = -version-info $(VI_CURR):$(VI_REV):$(VI_AGE)
+liberfa_la_LDFLAGS = -version-info $(VI_ALL)
 
 
 ## Check program

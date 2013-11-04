@@ -12,10 +12,7 @@ AC_PROG_CC
 LT_INIT
 
 ERFA_NUMVER
-
-AC_SUBST([VI_CURR], 0)
-AC_SUBST([VI_REV], 0)
-AC_SUBST([VI_AGE], 0)
+ERFA_LIB_VERSION_INFO(0, 1, 0)
 
 # Checks for libraries.
 AC_SEARCH_LIBS([sin], [m], , AC_MSG_ERROR([cannot find math functions]))
