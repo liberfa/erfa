@@ -27,21 +27,10 @@ include_HEADERS = erfa.h erfam.h
 ## Version info is in current : revision : age form
 ## A library supports interfaces from current downto current - age
 ## Revision is the version of the current interface
-## If the source code has changed at all, rev += 1
 
-#liberfa_la_LDFLAGS = -version-info 0:0:0
+## VI_ALL is set in the macro ERFA_LIB_VERSION_INFO in configure.ac
 
-#for erfa, we compute this version info. For ERFA x.y.z we set version-info
-#to (x+y):z:y, as this reproduces the appropriate SONAME matching the
-#library version number for semantic versioning
-PKG_MAJ = `echo $(PACKAGE_VERSION) | cut -d . -f 1`
-PKG_MIN = `echo $(PACKAGE_VERSION) | cut -d . -f 2`
-PKG_BUG = `echo $(PACKAGE_VERSION) | cut -d . -f 3`
-VI_CURR =  $(shell expr $(PKG_MAJ) + $(PKG_MIN))
-VI_REV = $(PKG_BUG)
-VI_AGE = $(PKG_MIN)
-
-liberfa_la_LDFLAGS = -version-info $(VI_CURR):$(VI_REV):$(VI_AGE)
+liberfa_la_LDFLAGS = -version-info $(VI_ALL)
 
 
 ## Check program
