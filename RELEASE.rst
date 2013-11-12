@@ -30,18 +30,18 @@ Instructions for releasing ERFA
   installed.  If no errors appear, this will create a new `./configure`
   file.
 
-* Run `./configure`, which should create a `Makefile` in the top level 
+* Run ``./configure``, which should create a `Makefile` in the top level 
   directory and in ./src
 
-* Run `make check`, which will build the library and run the tests -
+* Run ``make check``, which will build the library and run the tests -
   make sure they pass before proceeding.
 
-* Run `make distcheck`: this creates the distribution tarball, 
+* Run ``make distcheck``: this creates the distribution tarball, 
   unpackages it and runs the check inside the untarred directory.
   The resulting tarball will be named e.g., `erfa-0.0.1.tar.gz` and
   will be placed in the working directory.
 
-* Tag the current commit with the version number (e.g., ``git tag v0.0.1``).  
+* Tag the current commit with the version number.  A signed tag is preferred if you have an a signing key (e.g., do ``git tag -s v0.0.1``).  
 
 * Push up your changes and the new tag to github: 
   ``git push --tags origin master``. (The command here assumes the git remote
@@ -52,7 +52,7 @@ Instructions for releasing ERFA
   "releases" button, and then the release corresponding to the tag you just 
   made. 
 
-* Click on the "Draft release notes or downloads".  Put the version number as
+* Click on the "Draft release notes or downloads" button (or it might be "Edit release").  Put the version number as
   the title (e.g., ``v0.0.1``)and for the description put 
   ``See `README.rst` for release notes.``
 
