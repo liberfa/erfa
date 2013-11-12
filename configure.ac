@@ -2,7 +2,7 @@
 
 AC_PREREQ([2.68])
 ## Follow the instructions in RELEASE.rst to change package version
-AC_INIT([erfa],[1.0.0])
+AC_INIT([erfa],[1.0.1])
 AC_CONFIG_SRCDIR([src/erfa.h])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
@@ -17,7 +17,7 @@ ERFA_NUMVER
 ## A library supports interfaces from current downto current - age
 ## Revision is the version of the current interface
 ## Follow the instructions in RELEASE.rst to change the version info
-ERFA_LIB_VERSION_INFO(0, 1, 0)
+ERFA_LIB_VERSION_INFO(1, 0, 0)
 
 # Checks for libraries.
 AC_SEARCH_LIBS([sin], [m], , AC_MSG_ERROR([cannot find math functions]))
