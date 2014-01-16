@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraPb06(double date1, double date2,
              double *bzeta, double *bz, double *btheta)
@@ -63,7 +63,7 @@ void eraPb06(double date1, double date2,
 **     eraPmat06    PB matrix, IAU 2006
 **     eraRz        rotate around Z-axis
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -92,7 +92,7 @@ void eraPb06(double date1, double date2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

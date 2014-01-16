@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraEpj2jd(double epj, double *djm0, double *djm)
 /*
@@ -9,7 +9,7 @@ void eraEpj2jd(double epj, double *djm0, double *djm)
 **  Julian Epoch to Julian Date.
 **
 **  Given:
-**     epj      double    Julian Epoch (e.g. 1996.8D0)
+**     epj      double    Julian Epoch (e.g. 1996.8)
 **
 **  Returned:
 **     djm0     double    MJD zero-point: always 2400000.5
@@ -26,12 +26,12 @@ void eraEpj2jd(double epj, double *djm0, double *djm)
 **
 **     Lieske, J.H., 1979, Astron.Astrophys. 73, 282.
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
-   *djm0 = 2400000.5;
-   *djm  =   51544.5 + (epj - 2000.0) * 365.25;
+   *djm0 = ERFA_DJM0;
+   *djm  = ERFA_DJM00 + (epj - 2000.0) * 365.25;
 
    return;
 
@@ -39,7 +39,7 @@ void eraEpj2jd(double epj, double *djm0, double *djm)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

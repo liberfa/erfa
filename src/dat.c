@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 int eraDat(int iy, int im, int id, double fd, double *deltat )
 /*
@@ -21,8 +21,8 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
 **     :     of statements that initialize the    :
 **     :     array "changes".                     :
 **     :                                          :
-**     :  2) The parameter IYV must be set to     :
-**     :     the current year.                    :
+**     :  2) The constant IYV must be set to the  :
+**     :     current year.                        :
 **     :                                          :
 **     :  3) The "Latest leap second" comment     :
 **     :     below must be set to the new leap    :
@@ -67,13 +67,13 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
 **     Because leap seconds cannot, in principle, be predicted in
 **     advance, a reliable check for dates beyond the valid range is
 **     impossible.  To guard against gross errors, a year five or more
-**     after the release year of the present function (see parameter
+**     after the release year of the present function (see the constant
 **     IYV) is considered dubious.  In this case a warning status is
 **     returned but the result is computed in the normal way.
 **
-**     For both too-early and too-late years, the warning status is
-**     j=+1.  This is distinct from the error status j=-1, which
-**     signifies a year so early that JD could not be computed.
+**     For both too-early and too-late years, the warning status is +1.
+**     This is distinct from the error status -1, which signifies a year
+**     so early that JD could not be computed.
 **
 **  2) If the specified date is for a day which ends with a leap second,
 **     the UTC-TAI value returned is for the period leading up to the
@@ -89,14 +89,14 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
 **  4) The fraction of day is used only for dates before the
 **     introduction of leap seconds, the first of which occurred at the
 **     end of 1971.  It is tested for validity (0 to 1 is the valid
-**     range) even if not used;  if invalid, zero is used and status
-**     j=-4 is returned.  For many applications, setting fd to zero is
+**     range) even if not used;  if invalid, zero is used and status -4
+**     is returned.  For many applications, setting fd to zero is
 **     acceptable;  the resulting error is always less than 3 ms (and
 **     occurs only pre-1972).
 **
 **  5) The status value returned in the case where there are multiple
 **     errors refers to the first error detected.  For example, if the
-**     month and day are 13 and 32 respectively, j=-2 (bad month)
+**     month and day are 13 and 32 respectively, status -2 (bad month)
 **     will be returned.
 **
 **  6) In cases where a valid result is not available, zero is returned.
@@ -110,14 +110,14 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
 **     the 1992 Explanatory Supplement.
 **
 **  Called:
-**     eraCal2jd    Gregorian calendar to Julian Day number
+**     eraCal2jd    Gregorian calendar to JD
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
 /* Release year for this version of eraDat */
-#define IYV (2012)
+   enum { IYV = 2013};
 
 /* Reference dates (MJD) and drift rates (s/day), pre leap seconds */
    static const double drift[][2] = {
@@ -138,7 +138,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
    };
 
 /* Number of Delta(AT) expressions before leap seconds were introduced */
-#define NERA1 ((int) (sizeof drift / sizeof (double) / 2))
+   enum { NERA1 = (int) (sizeof drift / sizeof (double) / 2) };
 
 /* Dates and Delta(AT)s */
    static const struct {
@@ -237,7 +237,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

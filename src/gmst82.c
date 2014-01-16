@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 double eraGmst82(double dj1, double dj2)
 /*
@@ -23,10 +23,10 @@ double eraGmst82(double dj1, double dj2)
 **
 **             dj1            dj2
 **
-**         2450123.7D0        0D0        (JD method)
-**          2451545D0      -1421.3D0     (J2000 method)
-**         2400000.5D0     50123.2D0     (MJD method)
-**         2450123.5D0       0.2D0       (date & time method)
+**         2450123.7          0          (JD method)
+**          2451545        -1421.3       (J2000 method)
+**         2400000.5       50123.2       (MJD method)
+**         2450123.5         0.2         (date & time method)
 **
 **     The JD method is the most natural and convenient to use in
 **     cases where the loss of several decimal digits of resolution
@@ -60,7 +60,7 @@ double eraGmst82(double dj1, double dj2)
 **
 **     Aoki et al., Astron. Astrophys. 105, 359-361 (1982).
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -99,7 +99,7 @@ double eraGmst82(double dj1, double dj2)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

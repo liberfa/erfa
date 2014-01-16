@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 int eraStarpm(double ra1, double dec1,
               double pmr1, double pmd1, double px1, double rv1,
@@ -92,7 +92,7 @@ int eraStarpm(double ra1, double dec1,
 **     this way, the status, initially zero, has 1 added to it.
 **
 **  7) If the space velocity is a significant fraction of c (see the
-**     constant VMAX in the function eraStarpv),  it is arbitrarily set
+**     constant VMAX in the function eraStarpv), it is arbitrarily set
 **     to zero.  When this action occurs, 2 is added to the status.
 **
 **  8) The relativistic adjustment carried out in the eraStarpv function
@@ -106,7 +106,7 @@ int eraStarpm(double ra1, double dec1,
 **     eraPdp       scalar product of two p-vectors
 **     eraPvstar    space motion pv-vector to star catalog data
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -153,7 +153,7 @@ int eraStarpm(double ra1, double dec1,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

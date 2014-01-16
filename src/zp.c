@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraZp(double p[3])
 /*
@@ -11,7 +11,7 @@ void eraZp(double p[3])
 **  Returned:
 **     p        double[3]      p-vector
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -25,7 +25,7 @@ void eraZp(double p[3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

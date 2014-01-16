@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraC2teqx(double rbpn[3][3], double gst, double rpom[3][3],
                double rc2t[3][3])
@@ -12,12 +12,12 @@ void eraC2teqx(double rbpn[3][3], double gst, double rpom[3][3],
 **  Sidereal Time and the polar motion matrix).
 **
 **  Given:
-**     rbpn     double[3][3]    celestial-to-true matrix
-**     gst      double          Greenwich (apparent) Sidereal Time
-**     rpom     double[3][3]    polar-motion matrix
+**     rbpn   double[3][3]  celestial-to-true matrix
+**     gst    double        Greenwich (apparent) Sidereal Time (radians)
+**     rpom   double[3][3]  polar-motion matrix
 **
 **  Returned:
-**     rc2t     double[3][3]    celestial-to-terrestrial matrix (Note 2)
+**     rc2t   double[3][3]  celestial-to-terrestrial matrix (Note 2)
 **
 **  Notes:
 **
@@ -52,7 +52,7 @@ void eraC2teqx(double rbpn[3][3], double gst, double rpom[3][3],
 **     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG (2004)
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -70,7 +70,7 @@ void eraC2teqx(double rbpn[3][3], double gst, double rpom[3][3],
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

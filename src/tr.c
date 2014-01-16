@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraTr(double r[3][3], double rt[3][3])
 /*
@@ -20,7 +20,7 @@ void eraTr(double r[3][3], double rt[3][3])
 **  Called:
 **     eraCr        copy r-matrix
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -41,7 +41,7 @@ void eraTr(double r[3][3], double rt[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 double eraPm(double p[3])
 /*
@@ -14,24 +14,17 @@ double eraPm(double p[3])
 **  Returned (function value):
 **            double        modulus
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
-   double w;
-
-
-   w  = sqrt( p[0] * p[0]
-            + p[1] * p[1]
-            + p[2] * p[2] );
-
-   return w;
+   return sqrt( p[0]*p[0] + p[1]*p[1] + p[2]*p[2] );
 
 }
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 double eraEo06a(double date1, double date2)
 /*
@@ -46,7 +46,7 @@ double eraEo06a(double date1, double date2)
 **     eraPnm06a    classical NPB matrix, IAU 2006/2000A
 **     eraBpn2xy    extract CIP X,Y coordinates from NPB matrix
 **     eraS06       the CIO locator s, given X,Y, IAU 2006
-**     eraEors      equation of the origins, Given NPB matrix and s
+**     eraEors      equation of the origins, given NPB matrix and s
 **
 **  References:
 **
@@ -54,7 +54,7 @@ double eraEo06a(double date1, double date2)
 **
 **     Wallace, P.T. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -79,7 +79,7 @@ double eraEo06a(double date1, double date2)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

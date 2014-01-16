@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 double eraEqeq94(double date1, double date2)
 /*
@@ -40,6 +40,7 @@ double eraEqeq94(double date1, double date2)
 **        Greenwich apparent ST = GMST + equation of the equinoxes
 **
 **  Called:
+**     eraAnpm      normalize angle into range +/- pi
 **     eraNut80     nutation, IAU 1980
 **     eraObl80     mean obliquity, IAU 1980
 **
@@ -50,7 +51,7 @@ double eraEqeq94(double date1, double date2)
 **     Capitaine, N. & Gontier, A.-M., 1993, Astron. Astrophys., 275,
 **     645-650.
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -79,7 +80,7 @@ double eraEqeq94(double date1, double date2)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

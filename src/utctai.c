@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 int eraUtctai(double utc1, double utc2, double *tai1, double *tai2)
 /*
@@ -29,11 +29,14 @@ int eraUtctai(double utc1, double utc2, double *tai1, double *tai2)
 **  2) JD cannot unambiguously represent UTC during a leap second unless
 **     special measures are taken.  The convention in the present
 **     function is that the JD day represents UTC days whether the
-**     length is 86399, 86400 or 86401 SI seconds.
+**     length is 86399, 86400 or 86401 SI seconds.  In the 1960-1972 era
+**     there were smaller jumps (in either direction) each time the
+**     linear UTC(TAI) expression was changed, and these "mini-leaps"
+**     are also included in the ERFA convention.
 **
 **  3) The warning status "dubious year" flags UTCs that predate the
-**     introduction of the time scale and that are too far in the future
-**     to be trusted.  See eraDat  for further details.
+**     introduction of the time scale or that are too far in the future
+**     to be trusted.  See eraDat for further details.
 **
 **  4) The function eraDtf2d converts from calendar date and time of day
 **     into 2-part Julian Date, and in the case of UTC implements the
@@ -55,13 +58,13 @@ int eraUtctai(double utc1, double utc2, double *tai1, double *tai2)
 **     Explanatory Supplement to the Astronomical Almanac,
 **     P. Kenneth Seidelmann (ed), University Science Books (1992)
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
    int big1;
-   int iy, im, id, js, iyt, imt, idt;
-   double u1, u2, fd, dats, fdt, datst, ddat, z1, z2, a2;
+   int iy, im, id, j, iyt, imt, idt;
+   double u1, u2, fd, dat0, dat12, w, dat24, dlod, dleap, z1, z2, a2;
 
 
 /* Put the two parts of the UTC into big-first order. */
@@ -74,19 +77,31 @@ int eraUtctai(double utc1, double utc2, double *tai1, double *tai2)
       u2 = utc1;
    }
 
-/* Get TAI-UTC now. */
-   if ( eraJd2cal(u1, u2, &iy, &im, &id, &fd) ) return -1;
-   js = eraDat(iy, im, id, fd, &dats);
-   if ( js < 0 ) return -1;
+/* Get TAI-UTC at 0h today. */
+   j = eraJd2cal(u1, u2, &iy, &im, &id, &fd);
+   if ( j ) return j;
+   j = eraDat(iy, im, id, 0.0, &dat0);
+   if ( j < 0 ) return j;
 
-/* Get TAI-UTC tomorrow. */
-   if ( eraJd2cal(u1+1.5, u2-fd, &iyt, &imt, &idt, &fdt) ) return -1;
-   js = eraDat(iyt, imt, idt, fdt, &datst);
-   if ( js < 0 ) return -1;
+/* Get TAI-UTC at 12h today (to detect drift). */
+   j = eraDat(iy, im, id, 0.5, &dat12);
+   if ( j < 0 ) return j;
 
-/* If today ends in a leap second, scale the fraction into SI days. */
-   ddat = datst - dats;
-   if ( fabs(ddat) > 0.5 ) fd += fd * ddat / ERFA_DAYSEC;
+/* Get TAI-UTC at 0h tomorrow (to detect jumps). */
+   j = eraJd2cal(u1+1.5, u2-fd, &iyt, &imt, &idt, &w);
+   if ( j ) return j;
+   j = eraDat(iyt, imt, idt, 0.0, &dat24);
+   if ( j < 0 ) return j;
+
+/* Separate TAI-UTC change into per-day (DLOD) and any jump (DLEAP). */
+   dlod = 2.0 * (dat12 - dat0);
+   dleap = dat24 - (dat0 + dlod);
+
+/* Remove any scaling applied to spread leap into preceding day. */
+   fd *= (ERFA_DAYSEC+dleap)/ERFA_DAYSEC;
+
+/* Scale from (pre-1972) UTC seconds to SI seconds. */
+   fd *= (ERFA_DAYSEC+dlod)/ERFA_DAYSEC;
 
 /* Today's calendar date to 2-part JD. */
    if ( eraCal2jd(iy, im, id, &z1, &z2) ) return -1;
@@ -94,7 +109,7 @@ int eraUtctai(double utc1, double utc2, double *tai1, double *tai2)
 /* Assemble the TAI result, preserving the UTC split and order. */
    a2 = z1 - u1;
    a2 += z2;
-   a2 += fd + dats / ERFA_DAYSEC;
+   a2 += fd + dat0/ERFA_DAYSEC;
    if ( big1 ) {
       *tai1 = u1;
       *tai2 = a2;
@@ -104,13 +119,13 @@ int eraUtctai(double utc1, double utc2, double *tai1, double *tai2)
    }
 
 /* Status. */
-   return js;
+   return j;
 
 }
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

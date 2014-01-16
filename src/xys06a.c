@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraXys06a(double date1, double date2,
                double *x, double *y, double *s)
@@ -59,14 +59,14 @@ void eraXys06a(double date1, double date2,
 **
 **     Wallace, P.T. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
    double rbpn[3][3];
 
 
-/* Form the bias-precession-nutation matrix, IAU 2000A. */
+/* Form the bias-precession-nutation matrix, IAU 2006/2000A. */
    eraPnm06a(date1, date2, rbpn);
 
 /* Extract X,Y. */
@@ -81,7 +81,7 @@ void eraXys06a(double date1, double date2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 double eraEpb(double dj1, double dj2)
 /*
@@ -19,32 +19,27 @@ double eraEpb(double dj1, double dj2)
 **     The Julian Date is supplied in two pieces, in the usual ERFA
 **     manner, which is designed to preserve time resolution.  The
 **     Julian Date is available as a single number by adding dj1 and
-**     dj2.  The maximum resolution is achieved if dj1 is 2451545D0
+**     dj2.  The maximum resolution is achieved if dj1 is 2451545.0
 **     (J2000.0).
 **
 **  Reference:
 **
-**     Lieske,J.H., 1979. Astron.Astrophys.,73,282.
+**     Lieske, J.H., 1979. Astron.Astrophys., 73, 282.
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
-/* J2000.0 minus B1900.0 (2415019.81352) in Julian days */
-   static const double D1900 = 36524.68648;
+/* J2000.0-B1900.0 (2415019.81352) in days */
+   const double D1900 = 36524.68648;
 
-   double epb;
-
-
-   epb = 1900.0 + ((dj1 - ERFA_DJ00) + (dj2 + D1900)) / ERFA_DTY;
-
-   return epb;
+   return 1900.0 + ((dj1 - ERFA_DJ00) + (dj2 + D1900)) / ERFA_DTY;
 
 }
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

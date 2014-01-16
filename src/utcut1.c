@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 int eraUtcut1(double utc1, double utc2, double dut1,
               double *ut11, double *ut12)
@@ -18,7 +18,7 @@ int eraUtcut1(double utc1, double utc2, double dut1,
 **     ut11,ut12  double   UT1 as a 2-part Julian Date (Note 6)
 **
 **  Returned (function value):
-**                int      status: +1 = dubious year (Note 7)
+**                int      status: +1 = dubious year (Note 3)
 **                                  0 = OK
 **                                 -1 = unacceptable date
 **
@@ -34,24 +34,20 @@ int eraUtcut1(double utc1, double utc2, double dut1,
 **     length is 86399, 86400 or 86401 SI seconds.
 **
 **  3) The warning status "dubious year" flags UTCs that predate the
-**     introduction of the time scale and that are too far in the future
-**     to be trusted.  See eraDat  for further details.
+**     introduction of the time scale or that are too far in the future
+**     to be trusted.  See eraDat for further details.
 **
-**  4) The function eraDtf2d  converts from calendar date and time of
+**  4) The function eraDtf2d converts from calendar date and time of
 **     day into 2-part Julian Date, and in the case of UTC implements
 **     the leap-second-ambiguity convention described above.
 **
 **  5) Delta UT1 can be obtained from tabulations provided by the
-**     International Earth Rotation and Reference Systems Service.  It
-**     It is the caller's responsibility to supply a DUT argument
+**     International Earth Rotation and Reference Systems Service.
+**     It is the caller's responsibility to supply a dut1 argument
 **     containing the UT1-UTC value that matches the given UTC.
 **
 **  6) The returned ut11,ut12 are such that their sum is the UT1 Julian
 **     Date.
-**
-**  7) The warning status "dubious year" flags UTCs that predate the
-**     introduction of the time scale and that are too far in the future
-**     to be trusted.  See eraDat for further details.
 **
 **  References:
 **
@@ -67,7 +63,7 @@ int eraUtcut1(double utc1, double utc2, double dut1,
 **     eraUtctai    UTC to TAI
 **     eraTaiut1    TAI to UT1
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -99,7 +95,7 @@ int eraUtcut1(double utc1, double utc2, double dut1,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

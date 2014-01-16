@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraC2s(double p[3], double *theta, double *phi)
 /*
@@ -23,7 +23,7 @@ void eraC2s(double p[3], double *theta, double *phi)
 **
 **  3) At either pole, zero theta is returned.
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -44,7 +44,7 @@ void eraC2s(double p[3], double *theta, double *phi)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

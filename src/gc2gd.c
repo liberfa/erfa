@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 int eraGc2gd ( int n, double xyz[3],
                double *elong, double *phi, double *height )
@@ -15,7 +15,7 @@ int eraGc2gd ( int n, double xyz[3],
 **     xyz     double[3]  geocentric vector (Note 2)
 **
 **  Returned:
-**     elong   double     longitude (radians, east +ve)
+**     elong   double     longitude (radians, east +ve, Note 3)
 **     phi     double     latitude (geodetic, radians, Note 3)
 **     height  double     height above ellipsoid (geodetic, Notes 2,3)
 **
@@ -43,7 +43,7 @@ int eraGc2gd ( int n, double xyz[3],
 **
 **  3) An error status -1 means that the identifier n is illegal.  An
 **     error status -2 is theoretically impossible.  In all error cases,
-**     phi and height are both set to -1e9.
+**     all three results are set to -1e9.
 **
 **  4) The inverse transformation is performed in the function eraGd2gc.
 **
@@ -51,7 +51,7 @@ int eraGc2gd ( int n, double xyz[3],
 **     eraEform     Earth reference ellipsoids
 **     eraGc2gde    geocentric to geodetic transformation, general
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -70,6 +70,7 @@ int eraGc2gd ( int n, double xyz[3],
 
 /* Deal with any errors. */
    if ( j < 0 ) {
+      *elong = -1e9;
       *phi = -1e9;
       *height = -1e9;
    }
@@ -81,7 +82,7 @@ int eraGc2gd ( int n, double xyz[3],
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International
