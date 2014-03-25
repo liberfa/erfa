@@ -23,7 +23,6 @@ int eraApco13(double utc1, double utc2, double dut1,
 **     utc1   double     UTC as a 2-part...
 **     utc2   double     ...quasi Julian Date (Notes 1,2)
 **     dut1   double     UT1-UTC (seconds, Note 3)
-**     theta  double     Earth rotation angle (radians)
 **     elong  double     longitude (radians, east +ve, Note 4)
 **     phi    double     latitude (geodetic, radians, Note 4)
 **     hm     double     height above ellipsoid (m, geodetic, Notes 4,6)

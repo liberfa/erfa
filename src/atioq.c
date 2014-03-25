@@ -37,10 +37,11 @@ void eraAtioq(double ri, double di, eraASTROM *astrom,
 **      refb   double       refraction constant B (radians)
 **
 **  Returned:
-**     aob    double     observed azimuth (radians: N=0,E=90)
-**     zob    double     observed zenith distance (radians)
-**     hob    double     observed hour angle (radians)
-**     dob    double     observed right ascension (CIO-based, radians)
+**     aob    double*    observed azimuth (radians: N=0,E=90)
+**     zob    double*    observed zenith distance (radians)
+**     hob    double*    observed hour angle (radians)
+**     dob    double*    observed declination (radians)
+**     rob    double*    observed right ascension (CIO-based, radians)
 **
 **  Notes:
 **
