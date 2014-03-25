@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraPfw06(double date1, double date2,
               double *gamb, double *phib, double *psib, double *epsa)
@@ -73,7 +73,7 @@ void eraPfw06(double date1, double date2,
 **  Called:
 **     eraObl06     mean obliquity, IAU 2006
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -113,7 +113,7 @@ void eraPfw06(double date1, double date2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

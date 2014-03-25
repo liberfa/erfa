@@ -1,6 +1,6 @@
-#include "erfam.h"
+#include "erfa.h"
 
-void eraPrec76(double ep01, double ep02, double ep11, double ep12,
+void eraPrec76(double date01, double date02, double date11, double date12,
                double *zeta, double *z, double *theta)
 /*
 **  - - - - - - - - - -
@@ -10,26 +10,26 @@ void eraPrec76(double ep01, double ep02, double ep11, double ep12,
 **  IAU 1976 precession model.
 **
 **  This function forms the three Euler angles which implement general
-**  precession between two epochs, using the IAU 1976 model (as for
-**  the FK5 catalog).
+**  precession between two dates, using the IAU 1976 model (as for the
+**  FK5 catalog).
 **
 **  Given:
-**     ep01,ep02   double    TDB starting epoch (Note 1)
-**     ep11,ep12   double    TDB ending epoch (Note 1)
+**     date01,date02   double    TDB starting date (Note 1)
+**     date11,date12   double    TDB ending date (Note 1)
 **
 **  Returned:
-**     zeta        double    1st rotation: radians cw around z
-**     z           double    3rd rotation: radians cw around z
-**     theta       double    2nd rotation: radians ccw around y
+**     zeta            double    1st rotation: radians cw around z
+**     z               double    3rd rotation: radians cw around z
+**     theta           double    2nd rotation: radians ccw around y
 **
 **  Notes:
 **
-**  1) The epochs ep01+ep02 and ep11+ep12 are Julian Dates, apportioned
-**     in any convenient way between the arguments epn1 and epn2.  For
-**     example, JD(TDB)=2450123.7 could be expressed in any of these
-**     ways, among others:
+**  1) The dates date01+date02 and date11+date12 are Julian Dates,
+**     apportioned in any convenient way between the arguments daten1
+**     and daten2.  For example, JD(TDB)=2450123.7 could be expressed in
+**     any of these ways, among others:
 **
-**             epn1          epn2
+**           daten1        daten2
 **
 **         2450123.7           0.0       (JD method)
 **         2451545.0       -1421.3       (J2000 method)
@@ -42,7 +42,7 @@ void eraPrec76(double ep01, double ep02, double ep11, double ep12,
 **     argument is handled internally and will deliver the optimum
 **     optimum resolution.  The MJD method and the date & time methods
 **     are both good compromises between resolution and convenience.
-**     The two epochs may be expressed using different methods, but at
+**     The two dates may be expressed using different methods, but at
 **     the risk of losing some resolution.
 **
 **  2) The accumulated precession angles zeta, z, theta are expressed
@@ -66,18 +66,18 @@ void eraPrec76(double ep01, double ep02, double ep11, double ep12,
 **     Lieske, J.H., 1979, Astron.Astrophys. 73, 282, equations
 **     (6) & (7), p283.
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
    double t0, t, tas2r, w;
 
 
-/* Interval between fundamental epoch J2000.0 and start epoch (JC). */
-   t0 = ((ep01 - ERFA_DJ00) + ep02) / ERFA_DJC;
+/* Interval between fundamental epoch J2000.0 and start date (JC). */
+   t0 = ((date01 - ERFA_DJ00) + date02) / ERFA_DJC;
 
 /* Interval over which precession required (JC). */
-   t = ((ep11 - ep01) + (ep12 - ep02)) / ERFA_DJC;
+   t = ((date11 - date01) + (date12 - date02)) / ERFA_DJC;
 
 /* Euler angles. */
    tas2r = t * ERFA_DAS2R;
@@ -96,7 +96,7 @@ void eraPrec76(double ep01, double ep02, double ep11, double ep12,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

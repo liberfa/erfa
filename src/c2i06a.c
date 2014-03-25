@@ -1,9 +1,9 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraC2i06a(double date1, double date2, double rc2i[3][3])
 /*
 **  - - - - - - - - - -
-**   e r a _ c 2 i 0 6 a
+**   e r a C 2 i 0 6 a
 **  - - - - - - - - - -
 **
 **  Form the celestial-to-intermediate matrix for a given date using the
@@ -51,15 +51,15 @@ void eraC2i06a(double date1, double date2, double rc2i[3][3])
 **  Called:
 **     eraPnm06a    classical NPB matrix, IAU 2006/2000A
 **     eraBpn2xy    extract CIP X,Y coordinates from NPB matrix
-**     eraS06       the CIO locator s, Given X,Y, IAU 2006
-**     eraC2ixys    celestial-to-intermediate matrix, Given X,Y and s
+**     eraS06       the CIO locator s, given X,Y, IAU 2006
+**     eraC2ixys    celestial-to-intermediate matrix, given X,Y and s
 **
 **  References:
 **
 **     McCarthy, D. D., Petit, G. (eds.), 2004, IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -84,7 +84,7 @@ void eraC2i06a(double date1, double date2, double rc2i[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

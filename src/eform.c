@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 int eraEform ( int n, double *a, double *f )
 /*
@@ -55,7 +55,7 @@ int eraEform ( int n, double *a, double *f )
 **     P. Kenneth Seidelmann (ed), University Science Books (1992),
 **     p220.
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -94,7 +94,7 @@ int eraEform ( int n, double *a, double *f )
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

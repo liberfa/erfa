@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraA2tf(int ndp, double angle, char *sign, int ihmsf[4])
 /*
@@ -49,9 +49,9 @@ void eraA2tf(int ndp, double angle, char *sign, int ihmsf[4])
 **  3) The absolute value of angle may exceed 2pi.  In cases where it
 **     does not, it is up to the caller to test for and handle the
 **     case where angle is very nearly 2pi and rounds up to 24 hours,
-**     by testing for ihmsf[0]=24 and setting ihmsf(0-3) to zero.
+**     by testing for ihmsf[0]=24 and setting ihmsf[0-3] to zero.
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -64,7 +64,7 @@ void eraA2tf(int ndp, double angle, char *sign, int ihmsf[4])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

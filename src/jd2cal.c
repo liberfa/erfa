@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 int eraJd2cal(double dj1, double dj2,
               int *iy, int *im, int *id, double *fd)
@@ -26,7 +26,7 @@ int eraJd2cal(double dj1, double dj2,
 **  Notes:
 **
 **  1) The earliest valid date is -68569.5 (-4900 March 1).  The
-**     largest value accepted is 10^9.
+**     largest value accepted is 1e9.
 **
 **  2) The Julian Date is apportioned in any convenient way between
 **     the arguments dj1 and dj2.  For example, JD=2450123.7 could
@@ -50,13 +50,13 @@ int eraJd2cal(double dj1, double dj2,
 **     P. Kenneth Seidelmann (ed), University Science Books (1992),
 **     Section 12.92 (p604).
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
 /* Minimum and maximum allowed JD */
-   static const double djmin = -68569.5;
-   static const double djmax = 1e9;
+   const double DJMIN = -68569.5;
+   const double DJMAX = 1e9;
 
    long jd, l, n, i, k;
    double dj, d1, d2, f1, f2, f, d;
@@ -64,7 +64,7 @@ int eraJd2cal(double dj1, double dj2,
 
 /* Verify date is acceptable. */
    dj = dj1 + dj2;
-   if (dj < djmin || dj > djmax) return -1;
+   if (dj < DJMIN || dj > DJMAX) return -1;
 
 /* Copy the date, big then small, and re-align to midnight. */
    if (dj1 >= dj2) {
@@ -103,7 +103,7 @@ int eraJd2cal(double dj1, double dj2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

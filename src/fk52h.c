@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraFk52h(double r5, double d5,
               double dr5, double dd5, double px5, double rv5,
@@ -53,7 +53,7 @@ void eraFk52h(double r5, double d5,
 **
 **     F.Mignard & M.Froeschle, Astron. Astrophys. 354, 732-739 (2000).
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -91,7 +91,7 @@ void eraFk52h(double r5, double d5,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 double eraS00a(double date1, double date2)
 /*
@@ -52,9 +52,9 @@ double eraS00a(double date1, double date2)
 **     instead the IAU 2000B truncated model.
 **
 **  Called:
-**     eraPnm00a     classical NPB matrix, IAU 2000A
-**     eraBnp2xy     extract CIP X,Y from the BPN matrix
-**     eraS00        the CIO locator s, given X,Y, IAU 2000A
+**     eraPnm00a    classical NPB matrix, IAU 2000A
+**     eraBnp2xy    extract CIP X,Y from the BPN matrix
+**     eraS00       the CIO locator s, given X,Y, IAU 2000A
 **
 **  References:
 **
@@ -69,7 +69,7 @@ double eraS00a(double date1, double date2)
 **     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG (2004)
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -91,7 +91,7 @@ double eraS00a(double date1, double date2)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 #include <string.h>
 
 int eraDtf2d(const char *scale, int iy, int im, int id,
@@ -49,7 +49,10 @@ int eraDtf2d(const char *scale, int iy, int im, int id,
 **  4) JD cannot unambiguously represent UTC during a leap second unless
 **     special measures are taken.  The ERFA internal convention is that
 **     the quasi-JD day represents UTC days whether the length is 86399,
-**     86400 or 86401 SI seconds.
+**     86400 or 86401 SI seconds.  In the 1960-1972 era there were
+**     smaller jumps (in either direction) each time the linear UTC(TAI)
+**     expression was changed, and these "mini-leaps" are also included
+**     in the ERFA convention.
 **
 **  5) The warning status "time is after end of day" usually means that
 **     the sec argument is greater than 60.0.  However, in a day ending
@@ -57,7 +60,7 @@ int eraDtf2d(const char *scale, int iy, int im, int id,
 **     of a negative leap second).
 **
 **  6) The warning status "dubious year" flags UTCs that predate the
-**     introduction of the time scale and that are too far in the future
+**     introduction of the time scale or that are too far in the future
 **     to be trusted.  See eraDat for further details.
 **
 **  7) Only in the case of continuous and regular time scales (TAI, TT,
@@ -72,12 +75,12 @@ int eraDtf2d(const char *scale, int iy, int im, int id,
 **     eraDat       delta(AT) = TAI-UTC
 **     eraJd2cal    JD to Gregorian calendar
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
    int js, iy2, im2, id2;
-   double dj, w, day, seclim, dat1, dat2, ddt, time;
+   double dj, w, day, seclim, dat0, dat12, dat24, dleap, time;
 
 
 /* Today's Julian Day Number. */
@@ -87,29 +90,33 @@ int eraDtf2d(const char *scale, int iy, int im, int id,
 
 /* Day length and final minute length in seconds (provisional). */
    day = ERFA_DAYSEC;
-   seclim = 60;
+   seclim = 60.0;
 
 /* Deal with the UTC leap second case. */
    if ( ! strcmp(scale,"UTC") ) {
 
-   /* TAI-UTC today. */
-      js = eraDat(iy, im, id, 0.0, &dat1);
+   /* TAI-UTC at 0h today. */
+      js = eraDat(iy, im, id, 0.0, &dat0);
       if ( js < 0 ) return js;
 
-   /* TAI-UTC tomorrow. */
-      js = eraJd2cal ( dj, 1.0, &iy2, &im2, &id2, &w);
+   /* TAI-UTC at 12h today (to detect drift). */
+      js = eraDat(iy, im, id, 0.5, &dat12);
+      if ( js < 0 ) return js;
+
+   /* TAI-UTC at 0h tomorrow (to detect jumps). */
+      js = eraJd2cal ( dj, 1.5, &iy2, &im2, &id2, &w);
       if ( js ) return js;
-      js = eraDat(iy2, im2, id2, 0.0, &dat2);
+      js = eraDat(iy2, im2, id2, 0.0, &dat24);
       if ( js < 0 ) return js;
 
-   /* The change in TAI-UTC (seconds). */
-      ddt = dat2 - dat1;
+   /* Any sudden change in TAI-UTC between today and tomorrow. */
+      dleap = dat24 - (2.0*dat12 - dat0);
 
    /* If leap second day, correct the day and final minute lengths. */
-      if ( fabs(ddt) > 0.5 ) {
-         day += ddt;
-         if ( ihr == 23 && imn == 59 ) seclim += ddt;
-      }
+      day += dleap;
+      if ( ihr == 23 && imn == 59 ) seclim += dleap;
+
+   /* End of UTC-specific actions. */
    }
 
 /* Validate the time. */
@@ -144,7 +151,7 @@ int eraDtf2d(const char *scale, int iy, int im, int id,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

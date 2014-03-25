@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 int eraCal2jd(int iy, int im, int id, double *djm0, double *djm)
 /*
@@ -43,7 +43,7 @@ int eraCal2jd(int iy, int im, int id, double *djm0, double *djm)
 **     P. Kenneth Seidelmann (ed), University Science Books (1992),
 **     Section 12.92 (p604).
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -74,7 +74,7 @@ int eraCal2jd(int iy, int im, int id, double *djm0, double *djm)
 /* Return result. */
    my = (im - 14) / 12;
    iypmy = (long) (iy + my);
-   *djm0 = 2400000.5;
+   *djm0 = ERFA_DJM0;
    *djm = (double)((1461L * (iypmy + 4800L)) / 4L
                  + (367L * (long) (im - 2 - 12 * my)) / 12L
                  - (3L * ((iypmy + 4900L) / 100L)) / 4L
@@ -87,7 +87,7 @@ int eraCal2jd(int iy, int im, int id, double *djm0, double *djm)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

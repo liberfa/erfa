@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraFw2xy(double gamb, double phib, double psi, double eps,
               double *x, double *y)
@@ -16,7 +16,7 @@ void eraFw2xy(double gamb, double phib, double psi, double eps,
 **     eps      double    F-W angle epsilon (radians)
 **
 **  Returned:
-**     x,y      double    CIP X,Y ("radians")
+**     x,y      double    CIP unit vector X,Y
 **
 **  Notes:
 **
@@ -39,7 +39,8 @@ void eraFw2xy(double gamb, double phib, double psi, double eps,
 **
 **        NxPxB = R_1(-epsA).R_3(-psi).R_1(phib).R_3(gamb)
 **
-**     X,Y are elements (3,1) and (3,2) of the matrix.
+**     The returned values x,y are elements [2][0] and [2][1] of the
+**     matrix.  Near J2000.0, they are essentially angles in radians.
 **
 **  Called:
 **     eraFw2m      F-W angles to r-matrix
@@ -49,7 +50,7 @@ void eraFw2xy(double gamb, double phib, double psi, double eps,
 **
 **     Hilton, J. et al., 2006, Celest.Mech.Dyn.Astron. 94, 351
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -68,7 +69,7 @@ void eraFw2xy(double gamb, double phib, double psi, double eps,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

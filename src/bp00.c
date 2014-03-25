@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraBp00(double date1, double date2,
              double rb[3][3], double rp[3][3], double rbp[3][3])
@@ -70,16 +70,15 @@ void eraBp00(double date1, double date2,
 **     n.b. The celestial ephemeris origin (CEO) was renamed "celestial
 **          intermediate origin" (CIO) by IAU 2006 Resolution 2.
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
 /* J2000.0 obliquity (Lieske et al. 1977) */
    const double EPS0 = 84381.448 * ERFA_DAS2R;
 
-   double t, dpsibi, depsbi;
-   double dra0, psia77, oma77, chia, dpsipr, depspr, psia, oma,
-          rbw[3][3];
+   double t, dpsibi, depsbi, dra0, psia77, oma77, chia,
+          dpsipr, depspr, psia, oma, rbw[3][3];
 
 
 /* Interval between fundamental epoch J2000.0 and current date (JC). */
@@ -94,23 +93,23 @@ void eraBp00(double date1, double date2,
    chia   = (  10.5526 + (-2.38064 + (-0.001125) * t) * t) * t * ERFA_DAS2R;
 
 /* Apply IAU 2000 precession corrections. */
-   eraPr00(date1, date2, &dpsipr,  &depspr);
+   eraPr00(date1, date2, &dpsipr, &depspr);
    psia = psia77 + dpsipr;
    oma  = oma77  + depspr;
 
 /* Frame bias matrix: GCRS to J2000.0. */
    eraIr(rbw);
    eraRz(dra0, rbw);
-   eraRy(dpsibi * sin(EPS0), rbw);
+   eraRy(dpsibi*sin(EPS0), rbw);
    eraRx(-depsbi, rbw);
    eraCr(rbw, rb);
 
 /* Precession matrix: J2000.0 to mean of date. */
    eraIr(rp);
-   eraRx(EPS0,  rp);
+   eraRx(EPS0, rp);
    eraRz(-psia, rp);
-   eraRx(-oma,  rp);
-   eraRz(chia,  rp);
+   eraRx(-oma, rp);
+   eraRz(chia, rp);
 
 /* Bias-precession matrix: GCRS to mean of date. */
    eraRxr(rp, rbw, rbp);
@@ -121,7 +120,7 @@ void eraBp00(double date1, double date2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

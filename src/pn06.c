@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraPn06(double date1, double date2, double dpsi, double deps,
              double *epsa,
@@ -74,8 +74,8 @@ void eraPn06(double date1, double date2, double dpsi, double deps,
 **      equinox of date.  It is the product rn x rbp, applying frame
 **      bias, precession and nutation in that order.
 **
-**  9)  The X,Y,Z coordinates of the IAU 2000B Celestial Intermediate
-**      Pole are elements (3,1-3) of the matrix rbpn.
+**  9)  The X,Y,Z coordinates of the Celestial Intermediate Pole are
+**      elements (3,1-3) of the GCRS-to-true matrix, i.e. rbpn[2][0-2].
 **
 **  10) It is permissible to re-use the same array in the returned
 **      arguments.  The arrays are filled in the stated order.
@@ -93,7 +93,7 @@ void eraPn06(double date1, double date2, double dpsi, double deps,
 **
 **     Wallace, P.T. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -135,7 +135,7 @@ void eraPn06(double date1, double date2, double dpsi, double deps,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

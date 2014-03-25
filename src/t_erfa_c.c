@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "erfa.h"
-#include "erfam.h"
+#include <erfa.h>
 
 static int verbose = 0;
 
@@ -18,7 +17,7 @@ static int verbose = 0;
 **
 **  All messages go to stdout.
 **
-**  This revision:  2012 February 23
+**  This revision:  2013 November 7
 **
 */
 
@@ -40,9 +39,9 @@ static void viv(int ival, int ivalok,
 **     test     char[]       name of individual test
 **
 **  Given and returned:
-**     status   int          set to FALSE if test fails
+**     status   int          set to TRUE if test fails
 **
-**  This revision:  2012 February 12
+**  This revision:  2013 August 7
 */
 {
    if (ival != ivalok) {
@@ -53,7 +52,7 @@ static void viv(int ival, int ivalok,
       printf("%s passed: %s want %d got %d\n",
                     func, test, ivalok, ival);
    }
-   return;
+
 }
 
 static void vvd(double val, double valok, double dval,
@@ -75,9 +74,9 @@ static void vvd(double val, double valok, double dval,
 **     test     char[]       name of individual test
 **
 **  Given and returned:
-**     status   int          set to FALSE if test fails
+**     status   int          set to TRUE if test fails
 **
-**  This revision:  2012 February 12
+**  This revision:  2013 August 7
 */
 {
    double a, f;   /* absolute and fractional error */
@@ -93,7 +92,7 @@ static void vvd(double val, double valok, double dval,
       printf("%s passed: %s want %.20g got %.20g\n",
              func, test, valok, val);
    }
-   return;
+
 }
 
 static void t_a2af(int *status)
@@ -105,11 +104,11 @@ static void t_a2af(int *status)
 **  Test eraA2af function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraA2af, viv
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    int idmsf[4];
@@ -136,11 +135,11 @@ static void t_a2tf(int *status)
 **  Test eraA2tf function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraA2tf, viv
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    int ihmsf[4];
@@ -158,6 +157,42 @@ static void t_a2tf(int *status)
 
 }
 
+static void t_ab(int *status)
+/*
+**  - - - - -
+**   t _ a b
+**  - - - - -
+**
+**  Test eraAb function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraAb, vvd
+**
+**  This revision:  2013 October 1
+*/
+{
+   double pnat[3], v[3], s, bm1, ppr[3];
+
+
+   pnat[0] = -0.76321968546737951;
+   pnat[1] = -0.60869453983060384;
+   pnat[2] = -0.21676408580639883;
+   v[0] =  2.1044018893653786e-5;
+   v[1] = -8.9108923304429319e-5;
+   v[2] = -3.8633714797716569e-5;
+   s = 0.99980921395708788;
+   bm1 = 0.99999999506209258;
+
+   eraAb(pnat, v, s, bm1, ppr);
+
+   vvd(ppr[0], -0.7631631094219556269, 1e-12, "eraAb", "1", status);
+   vvd(ppr[1], -0.6087553082505590832, 1e-12, "eraAb", "2", status);
+   vvd(ppr[2], -0.2167926269368471279, 1e-12, "eraAb", "3", status);
+
+}
+
 static void t_af2a(int *status)
 /*
 **  - - - - - - -
@@ -167,11 +202,11 @@ static void t_af2a(int *status)
 **  Test eraAf2a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraAf2a, viv
 **
-**  This revision:  2010 September 6
+**  This revision:  2013 August 7
 */
 {
    double a;
@@ -194,11 +229,11 @@ static void t_anp(int *status)
 **  Test eraAnp function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraAnp, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    vvd(eraAnp(-0.1), 6.183185307179586477, 1e-12, "eraAnp", "", status);
@@ -213,14 +248,1501 @@ static void t_anpm(int *status)
 **  Test eraAnpm function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraAnpm, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    vvd(eraAnpm(-4.0), 2.283185307179586477, 1e-12, "eraAnpm", "", status);
+}
+
+static void t_apcg(int *status)
+/*
+**  - - - - - - -
+**   t _ a p c g
+**  - - - - - - -
+**
+**  Test eraApcg function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApcg, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double date1, date2, ebpv[2][3], ehp[3];
+   eraASTROM astrom;
+
+
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+   ebpv[0][0] =  0.901310875;
+   ebpv[0][1] = -0.417402664;
+   ebpv[0][2] = -0.180982288;
+   ebpv[1][0] =  0.00742727954;
+   ebpv[1][1] =  0.0140507459;
+   ebpv[1][2] =  0.00609045792;
+   ehp[0] =  0.903358544;
+   ehp[1] = -0.415395237;
+   ehp[2] = -0.180084014;
+
+   eraApcg(date1, date2, ebpv, ehp, &astrom);
+
+   vvd(astrom.pmt, 12.65133794027378508, 1e-11,
+                   "eraApcg", "pmt", status);
+   vvd(astrom.eb[0], 0.901310875, 1e-12,
+                     "eraApcg", "eb(1)", status);
+   vvd(astrom.eb[1], -0.417402664, 1e-12,
+                     "eraApcg", "eb(2)", status);
+   vvd(astrom.eb[2], -0.180982288, 1e-12,
+                     "eraApcg", "eb(3)", status);
+   vvd(astrom.eh[0], 0.8940025429324143045, 1e-12,
+                     "eraApcg", "eh(1)", status);
+   vvd(astrom.eh[1], -0.4110930268679817955, 1e-12,
+                     "eraApcg", "eh(2)", status);
+   vvd(astrom.eh[2], -0.1782189004872870264, 1e-12,
+                     "eraApcg", "eh(3)", status);
+   vvd(astrom.em, 1.010465295811013146, 1e-12,
+                  "eraApcg", "em", status);
+   vvd(astrom.v[0], 0.4289638897813379954e-4, 1e-16,
+                    "eraApcg", "v(1_", status);
+   vvd(astrom.v[1], 0.8115034021720941898e-4, 1e-16,
+                    "eraApcg", "v(2)", status);
+   vvd(astrom.v[2], 0.3517555123437237778e-4, 1e-16,
+                    "eraApcg", "v(3)", status);
+   vvd(astrom.bm1, 0.9999999951686013336, 1e-12,
+                   "eraApcg", "bm1", status);
+   vvd(astrom.bpn[0][0], 1.0, 0.0,
+                         "eraApcg", "bpn(1,1)", status);
+   vvd(astrom.bpn[1][0], 0.0, 0.0,
+                         "eraApcg", "bpn(2,1)", status);
+   vvd(astrom.bpn[2][0], 0.0, 0.0,
+                         "eraApcg", "bpn(3,1)", status);
+   vvd(astrom.bpn[0][1], 0.0, 0.0,
+                         "eraApcg", "bpn(1,2)", status);
+   vvd(astrom.bpn[1][1], 1.0, 0.0,
+                         "eraApcg", "bpn(2,2)", status);
+   vvd(astrom.bpn[2][1], 0.0, 0.0,
+                         "eraApcg", "bpn(3,2)", status);
+   vvd(astrom.bpn[0][2], 0.0, 0.0,
+                         "eraApcg", "bpn(1,3)", status);
+   vvd(astrom.bpn[1][2], 0.0, 0.0,
+                         "eraApcg", "bpn(2,3)", status);
+   vvd(astrom.bpn[2][2], 1.0, 0.0,
+                         "eraApcg", "bpn(3,3)", status);
+
+}
+
+static void t_apcg13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a p c g 1 3
+**  - - - - - - - - -
+**
+**  Test eraApcg13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApcg13, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double date1, date2;
+   eraASTROM astrom;
+
+
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+
+   eraApcg13(date1, date2, &astrom);
+
+   vvd(astrom.pmt, 12.65133794027378508, 1e-11,
+                   "eraApcg13", "pmt", status);
+   vvd(astrom.eb[0], 0.9013108747340644755, 1e-12,
+                   "eraApcg13", "eb(1)", status);
+   vvd(astrom.eb[1], -0.4174026640406119957, 1e-12,
+                   "eraApcg13", "eb(2)", status);
+   vvd(astrom.eb[2], -0.1809822877867817771, 1e-12,
+                   "eraApcg13", "eb(3)", status);
+   vvd(astrom.eh[0], 0.8940025429255499549, 1e-12,
+                   "eraApcg13", "eh(1)", status);
+   vvd(astrom.eh[1], -0.4110930268331896318, 1e-12,
+                   "eraApcg13", "eh(2)", status);
+   vvd(astrom.eh[2], -0.1782189006019749850, 1e-12,
+                   "eraApcg13", "eh(3)", status);
+   vvd(astrom.em, 1.010465295964664178, 1e-12,
+                   "eraApcg13", "em", status);
+   vvd(astrom.v[0], 0.4289638897157027528e-4, 1e-16,
+                   "eraApcg13", "v(1)", status);
+   vvd(astrom.v[1], 0.8115034002544663526e-4, 1e-16,
+                   "eraApcg13", "v(2)", status);
+   vvd(astrom.v[2], 0.3517555122593144633e-4, 1e-16,
+                   "eraApcg13", "v(3)", status);
+   vvd(astrom.bm1, 0.9999999951686013498, 1e-12,
+                   "eraApcg13", "bm1", status);
+   vvd(astrom.bpn[0][0], 1.0, 0.0,
+                         "eraApcg13", "bpn(1,1)", status);
+   vvd(astrom.bpn[1][0], 0.0, 0.0,
+                         "eraApcg13", "bpn(2,1)", status);
+   vvd(astrom.bpn[2][0], 0.0, 0.0,
+                         "eraApcg13", "bpn(3,1)", status);
+   vvd(astrom.bpn[0][1], 0.0, 0.0,
+                         "eraApcg13", "bpn(1,2)", status);
+   vvd(astrom.bpn[1][1], 1.0, 0.0,
+                         "eraApcg13", "bpn(2,2)", status);
+   vvd(astrom.bpn[2][1], 0.0, 0.0,
+                         "eraApcg13", "bpn(3,2)", status);
+   vvd(astrom.bpn[0][2], 0.0, 0.0,
+                         "eraApcg13", "bpn(1,3)", status);
+   vvd(astrom.bpn[1][2], 0.0, 0.0,
+                         "eraApcg13", "bpn(2,3)", status);
+   vvd(astrom.bpn[2][2], 1.0, 0.0,
+                         "eraApcg13", "bpn(3,3)", status);
+
+}
+
+static void t_apci(int *status)
+/*
+**  - - - - - - -
+**   t _ a p c i
+**  - - - - - - -
+**
+**  Test eraApci function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApci, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double date1, date2, ebpv[2][3], ehp[3], x, y, s;
+   eraASTROM astrom;
+
+
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+   ebpv[0][0] =  0.901310875;
+   ebpv[0][1] = -0.417402664;
+   ebpv[0][2] = -0.180982288;
+   ebpv[1][0] =  0.00742727954;
+   ebpv[1][1] =  0.0140507459;
+   ebpv[1][2] =  0.00609045792;
+   ehp[0] =  0.903358544;
+   ehp[1] = -0.415395237;
+   ehp[2] = -0.180084014;
+   x =  0.0013122272;
+   y = -2.92808623e-5;
+   s =  3.05749468e-8;
+
+   eraApci(date1, date2, ebpv, ehp, x, y, s, &astrom);
+
+   vvd(astrom.pmt, 12.65133794027378508, 1e-11,
+                   "eraApci", "pmt", status);
+   vvd(astrom.eb[0], 0.901310875, 1e-12,
+                     "eraApci", "eb(1)", status);
+   vvd(astrom.eb[1], -0.417402664, 1e-12,
+                     "eraApci", "eb(2)", status);
+   vvd(astrom.eb[2], -0.180982288, 1e-12,
+                     "eraApci", "eb(3)", status);
+   vvd(astrom.eh[0], 0.8940025429324143045, 1e-12,
+                     "eraApci", "eh(1)", status);
+   vvd(astrom.eh[1], -0.4110930268679817955, 1e-12,
+                     "eraApci", "eh(2)", status);
+   vvd(astrom.eh[2], -0.1782189004872870264, 1e-12,
+                     "eraApci", "eh(3)", status);
+   vvd(astrom.em, 1.010465295811013146, 1e-12,
+                  "eraApci", "em", status);
+   vvd(astrom.v[0], 0.4289638897813379954e-4, 1e-16,
+                    "eraApci", "v(1)", status);
+   vvd(astrom.v[1], 0.8115034021720941898e-4, 1e-16,
+                    "eraApci", "v(2)", status);
+   vvd(astrom.v[2], 0.3517555123437237778e-4, 1e-16,
+                    "eraApci", "v(3)", status);
+   vvd(astrom.bm1, 0.9999999951686013336, 1e-12,
+                   "eraApci", "bm1", status);
+   vvd(astrom.bpn[0][0], 0.9999991390295159156, 1e-12,
+                         "eraApci", "bpn(1,1)", status);
+   vvd(astrom.bpn[1][0], 0.4978650072505016932e-7, 1e-12,
+                         "eraApci", "bpn(2,1)", status);
+   vvd(astrom.bpn[2][0], 0.1312227200000000000e-2, 1e-12,
+                         "eraApci", "bpn(3,1)", status);
+   vvd(astrom.bpn[0][1], -0.1136336653771609630e-7, 1e-12,
+                         "eraApci", "bpn(1,2)", status);
+   vvd(astrom.bpn[1][1], 0.9999999995713154868, 1e-12,
+                         "eraApci", "bpn(2,2)", status);
+   vvd(astrom.bpn[2][1], -0.2928086230000000000e-4, 1e-12,
+                         "eraApci", "bpn(3,2)", status);
+   vvd(astrom.bpn[0][2], -0.1312227200895260194e-2, 1e-12,
+                         "eraApci", "bpn(1,3)", status);
+   vvd(astrom.bpn[1][2], 0.2928082217872315680e-4, 1e-12,
+                         "eraApci", "bpn(2,3)", status);
+   vvd(astrom.bpn[2][2], 0.9999991386008323373, 1e-12,
+                         "eraApci", "bpn(3,3)", status);
+
+}
+
+static void t_apci13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a p c i 1 3
+**  - - - - - - - - -
+**
+**  Test eraApci13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApci13, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double date1, date2, eo;
+   eraASTROM astrom;
+
+
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+
+   eraApci13(date1, date2, &astrom, &eo);
+
+   vvd(astrom.pmt, 12.65133794027378508, 1e-11,
+                   "eraApci13", "pmt", status);
+   vvd(astrom.eb[0], 0.9013108747340644755, 1e-12,
+                     "eraApci13", "eb(1)", status);
+   vvd(astrom.eb[1], -0.4174026640406119957, 1e-12,
+                     "eraApci13", "eb(2)", status);
+   vvd(astrom.eb[2], -0.1809822877867817771, 1e-12,
+                     "eraApci13", "eb(3)", status);
+   vvd(astrom.eh[0], 0.8940025429255499549, 1e-12,
+                     "eraApci13", "eh(1)", status);
+   vvd(astrom.eh[1], -0.4110930268331896318, 1e-12,
+                     "eraApci13", "eh(2)", status);
+   vvd(astrom.eh[2], -0.1782189006019749850, 1e-12,
+                     "eraApci13", "eh(3)", status);
+   vvd(astrom.em, 1.010465295964664178, 1e-12,
+                  "eraApci13", "em", status);
+   vvd(astrom.v[0], 0.4289638897157027528e-4, 1e-16,
+                    "eraApci13", "v(1)", status);
+   vvd(astrom.v[1], 0.8115034002544663526e-4, 1e-16,
+                    "eraApci13", "v(2)", status);
+   vvd(astrom.v[2], 0.3517555122593144633e-4, 1e-16,
+                    "eraApci13", "v(3)", status);
+   vvd(astrom.bm1, 0.9999999951686013498, 1e-12,
+                   "eraApci13", "bm1", status);
+   vvd(astrom.bpn[0][0], 0.9999992060376761710, 1e-12,
+                         "eraApci13", "bpn(1,1)", status);
+   vvd(astrom.bpn[1][0], 0.4124244860106037157e-7, 1e-12,
+                         "eraApci13", "bpn(2,1)", status);
+   vvd(astrom.bpn[2][0], 0.1260128571051709670e-2, 1e-12,
+                         "eraApci13", "bpn(3,1)", status);
+   vvd(astrom.bpn[0][1], -0.1282291987222130690e-7, 1e-12,
+                         "eraApci13", "bpn(1,2)", status);
+   vvd(astrom.bpn[1][1], 0.9999999997456835325, 1e-12,
+                         "eraApci13", "bpn(2,2)", status);
+   vvd(astrom.bpn[2][1], -0.2255288829420524935e-4, 1e-12,
+                         "eraApci13", "bpn(3,2)", status);
+   vvd(astrom.bpn[0][2], -0.1260128571661374559e-2, 1e-12,
+                         "eraApci13", "bpn(1,3)", status);
+   vvd(astrom.bpn[1][2], 0.2255285422953395494e-4, 1e-12,
+                         "eraApci13", "bpn(2,3)", status);
+   vvd(astrom.bpn[2][2], 0.9999992057833604343, 1e-12,
+                         "eraApci13", "bpn(3,3)", status);
+   vvd(eo, -0.2900618712657375647e-2, 1e-12,
+           "eraApci13", "eo", status);
+
+}
+
+static void t_apco(int *status)
+/*
+**  - - - - - - -
+**   t _ a p c o
+**  - - - - - - -
+**
+**  Test eraApco function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApco, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double date1, date2, ebpv[2][3], ehp[3], x, y, s,
+          theta, elong, phi, hm, xp, yp, sp, refa, refb;
+   eraASTROM astrom;
+
+
+   date1 = 2456384.5;
+   date2 = 0.970031644;
+   ebpv[0][0] = -0.974170438;
+   ebpv[0][1] = -0.211520082;
+   ebpv[0][2] = -0.0917583024;
+   ebpv[1][0] = 0.00364365824;
+   ebpv[1][1] = -0.0154287319;
+   ebpv[1][2] = -0.00668922024;
+   ehp[0] = -0.973458265;
+   ehp[1] = -0.209215307;
+   ehp[2] = -0.0906996477;
+   x = 0.0013122272;
+   y = -2.92808623e-5;
+   s = 3.05749468e-8;
+   theta = 3.14540971;
+   elong = -0.527800806;
+   phi = -1.2345856;
+   hm = 2738.0;
+   xp = 2.47230737e-7;
+   yp = 1.82640464e-6;
+   sp = -3.01974337e-11;
+   refa = 0.000201418779;
+   refb = -2.36140831e-7;
+
+   eraApco(date1, date2, ebpv, ehp, x, y, s,
+           theta, elong, phi, hm, xp, yp, sp,
+           refa, refb, &astrom);
+
+   vvd(astrom.pmt, 13.25248468622587269, 1e-11,
+                   "eraApco", "pmt", status);
+   vvd(astrom.eb[0], -0.9741827110630897003, 1e-12,
+                     "eraApco", "eb(1)", status);
+   vvd(astrom.eb[1], -0.2115130190135014340, 1e-12,
+                     "eraApco", "eb(2)", status);
+   vvd(astrom.eb[2], -0.09179840186968295686, 1e-12,
+                     "eraApco", "eb(3)", status);
+   vvd(astrom.eh[0], -0.9736425571689670428, 1e-12,
+                     "eraApco", "eh(1)", status);
+   vvd(astrom.eh[1], -0.2092452125848862201, 1e-12,
+                     "eraApco", "eh(2)", status);
+   vvd(astrom.eh[2], -0.09075578152261439954, 1e-12,
+                     "eraApco", "eh(3)", status);
+   vvd(astrom.em, 0.9998233241710617934, 1e-12,
+                  "eraApco", "em", status);
+   vvd(astrom.v[0], 0.2078704985147609823e-4, 1e-16,
+                    "eraApco", "v(1)", status);
+   vvd(astrom.v[1], -0.8955360074407552709e-4, 1e-16,
+                    "eraApco", "v(2)", status);
+   vvd(astrom.v[2], -0.3863338980073114703e-4, 1e-16,
+                    "eraApco", "v(3)", status);
+   vvd(astrom.bm1, 0.9999999950277561600, 1e-12,
+                   "eraApco", "bm1", status);
+   vvd(astrom.bpn[0][0], 0.9999991390295159156, 1e-12,
+                         "eraApco", "bpn(1,1)", status);
+   vvd(astrom.bpn[1][0], 0.4978650072505016932e-7, 1e-12,
+                         "eraApco", "bpn(2,1)", status);
+   vvd(astrom.bpn[2][0], 0.1312227200000000000e-2, 1e-12,
+                         "eraApco", "bpn(3,1)", status);
+   vvd(astrom.bpn[0][1], -0.1136336653771609630e-7, 1e-12,
+                         "eraApco", "bpn(1,2)", status);
+   vvd(astrom.bpn[1][1], 0.9999999995713154868, 1e-12,
+                         "eraApco", "bpn(2,2)", status);
+   vvd(astrom.bpn[2][1], -0.2928086230000000000e-4, 1e-12,
+                         "eraApco", "bpn(3,2)", status);
+   vvd(astrom.bpn[0][2], -0.1312227200895260194e-2, 1e-12,
+                         "eraApco", "bpn(1,3)", status);
+   vvd(astrom.bpn[1][2], 0.2928082217872315680e-4, 1e-12,
+                         "eraApco", "bpn(2,3)", status);
+   vvd(astrom.bpn[2][2], 0.9999991386008323373, 1e-12,
+                         "eraApco", "bpn(3,3)", status);
+   vvd(astrom.along, -0.5278008060301974337, 1e-12,
+                     "eraApco", "along", status);
+   vvd(astrom.xpl, 0.1133427418174939329e-5, 1e-17,
+                   "eraApco", "xpl", status);
+   vvd(astrom.ypl, 0.1453347595745898629e-5, 1e-17,
+                   "eraApco", "ypl", status);
+   vvd(astrom.sphi, -0.9440115679003211329, 1e-12,
+                    "eraApco", "sphi", status);
+   vvd(astrom.cphi, 0.3299123514971474711, 1e-12,
+                    "eraApco", "cphi", status);
+   vvd(astrom.diurab, 0, 0,
+                      "eraApco", "diurab", status);
+   vvd(astrom.eral, 2.617608903969802566, 1e-12,
+                    "eraApco", "eral", status);
+   vvd(astrom.refa, 0.2014187790000000000e-3, 1e-15,
+                    "eraApco", "refa", status);
+   vvd(astrom.refb, -0.2361408310000000000e-6, 1e-18,
+                    "eraApco", "refb", status);
+
+}
+
+static void t_apco13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a p c o 1 3
+**  - - - - - - - - -
+**
+**  Test eraApco13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApco13, vvd, viv
+**
+**  This revision:  2013 October 4
+*/
+{
+   double utc1, utc2, dut1, elong, phi, hm, xp, yp,
+          phpa, tc, rh, wl, eo;
+   eraASTROM astrom;
+   int j;
+
+
+   utc1 = 2456384.5;
+   utc2 = 0.969254051;
+   dut1 = 0.1550675;
+   elong = -0.527800806;
+   phi = -1.2345856;
+   hm = 2738.0;
+   xp = 2.47230737e-7;
+   yp = 1.82640464e-6;
+   phpa = 731.0;
+   tc = 12.8;
+   rh = 0.59;
+   wl = 0.55;
+
+   j = eraApco13(utc1, utc2, dut1, elong, phi, hm, xp, yp,
+                 phpa, tc, rh, wl, &astrom, &eo);
+
+   vvd(astrom.pmt, 13.25248468622475727, 1e-11,
+                   "eraApco13", "pmt", status);
+   vvd(astrom.eb[0], -0.9741827107321449445, 1e-12,
+                   "eraApco13", "eb(1)", status);
+   vvd(astrom.eb[1], -0.2115130190489386190, 1e-12,
+                     "eraApco13", "eb(2)", status);
+   vvd(astrom.eb[2], -0.09179840189515518726, 1e-12,
+                     "eraApco13", "eb(3)", status);
+   vvd(astrom.eh[0], -0.9736425572586866640, 1e-12,
+                     "eraApco13", "eh(1)", status);
+   vvd(astrom.eh[1], -0.2092452121602867431, 1e-12,
+                     "eraApco13", "eh(2)", status);
+   vvd(astrom.eh[2], -0.09075578153903832650, 1e-12,
+                     "eraApco13", "eh(3)", status);
+   vvd(astrom.em, 0.9998233240914558422, 1e-12,
+                  "eraApco13", "em", status);
+   vvd(astrom.v[0], 0.2078704986751370303e-4, 1e-16,
+                    "eraApco13", "v(1)", status);
+   vvd(astrom.v[1], -0.8955360100494469232e-4, 1e-16,
+                    "eraApco13", "v(2)", status);
+   vvd(astrom.v[2], -0.3863338978840051024e-4, 1e-16,
+                    "eraApco13", "v(3)", status);
+   vvd(astrom.bm1, 0.9999999950277561368, 1e-12,
+                   "eraApco13", "bm1", status);
+   vvd(astrom.bpn[0][0], 0.9999991390295147999, 1e-12,
+                         "eraApco13", "bpn(1,1)", status);
+   vvd(astrom.bpn[1][0], 0.4978650075315529277e-7, 1e-12,
+                         "eraApco13", "bpn(2,1)", status);
+   vvd(astrom.bpn[2][0], 0.001312227200850293372, 1e-12,
+                         "eraApco13", "bpn(3,1)", status);
+   vvd(astrom.bpn[0][1], -0.1136336652812486604e-7, 1e-12,
+                         "eraApco13", "bpn(1,2)", status);
+   vvd(astrom.bpn[1][1], 0.9999999995713154865, 1e-12,
+                         "eraApco13", "bpn(2,2)", status);
+   vvd(astrom.bpn[2][1], -0.2928086230975367296e-4, 1e-12,
+                         "eraApco13", "bpn(3,2)", status);
+   vvd(astrom.bpn[0][2], -0.001312227201745553566, 1e-12,
+                         "eraApco13", "bpn(1,3)", status);
+   vvd(astrom.bpn[1][2], 0.2928082218847679162e-4, 1e-12,
+                         "eraApco13", "bpn(2,3)", status);
+   vvd(astrom.bpn[2][2], 0.9999991386008312212, 1e-12,
+                         "eraApco13", "bpn(3,3)", status);
+   vvd(astrom.along, -0.5278008060301974337, 1e-12,
+                     "eraApco13", "along", status);
+   vvd(astrom.xpl, 0.1133427418174939329e-5, 1e-17,
+                   "eraApco13", "xpl", status);
+   vvd(astrom.ypl, 0.1453347595745898629e-5, 1e-17,
+                   "eraApco13", "ypl", status);
+   vvd(astrom.sphi, -0.9440115679003211329, 1e-12,
+                    "eraApco13", "sphi", status);
+   vvd(astrom.cphi, 0.3299123514971474711, 1e-12,
+                    "eraApco13", "cphi", status);
+   vvd(astrom.diurab, 0, 0,
+                      "eraApco13", "diurab", status);
+   vvd(astrom.eral, 2.617608909189066140, 1e-12,
+                    "eraApco13", "eral", status);
+   vvd(astrom.refa, 0.2014187785940396921e-3, 1e-15,
+                    "eraApco13", "refa", status);
+   vvd(astrom.refb, -0.2361408314943696227e-6, 1e-18,
+                    "eraApco13", "refb", status);
+   vvd(eo, -0.003020548354802412839, 1e-14,
+           "eraApco13", "eo", status);
+   viv(j, 0, "eraApco13", "j", status);
+
+}
+
+static void t_apcs(int *status)
+/*
+**  - - - - - - -
+**   t _ a p c s
+**  - - - - - - -
+**
+**  Test eraApcs function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApcs, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double date1, date2, pv[2][3], ebpv[2][3], ehp[3];
+   eraASTROM astrom;
+
+
+   date1 = 2456384.5;
+   date2 = 0.970031644;
+   pv[0][0] = -1836024.09;
+   pv[0][1] = 1056607.72;
+   pv[0][2] = -5998795.26;
+   pv[1][0] = -77.0361767;
+   pv[1][1] = -133.310856;
+   pv[1][2] = 0.0971855934;
+   ebpv[0][0] = -0.974170438;
+   ebpv[0][1] = -0.211520082;
+   ebpv[0][2] = -0.0917583024;
+   ebpv[1][0] = 0.00364365824;
+   ebpv[1][1] = -0.0154287319;
+   ebpv[1][2] = -0.00668922024;
+   ehp[0] = -0.973458265;
+   ehp[1] = -0.209215307;
+   ehp[2] = -0.0906996477;
+
+   eraApcs(date1, date2, pv, ebpv, ehp, &astrom);
+
+   vvd(astrom.pmt, 13.25248468622587269, 1e-11,
+                   "eraApcs", "pmt", status);
+   vvd(astrom.eb[0], -0.9741827110630456169, 1e-12,
+                     "eraApcs", "eb(1)", status);
+   vvd(astrom.eb[1], -0.2115130190136085494, 1e-12,
+                     "eraApcs", "eb(2)", status);
+   vvd(astrom.eb[2], -0.09179840186973175487, 1e-12,
+                     "eraApcs", "eb(3)", status);
+   vvd(astrom.eh[0], -0.9736425571689386099, 1e-12,
+                     "eraApcs", "eh(1)", status);
+   vvd(astrom.eh[1], -0.2092452125849967195, 1e-12,
+                     "eraApcs", "eh(2)", status);
+   vvd(astrom.eh[2], -0.09075578152266466572, 1e-12,
+                     "eraApcs", "eh(3)", status);
+   vvd(astrom.em, 0.9998233241710457140, 1e-12,
+                  "eraApcs", "em", status);
+   vvd(astrom.v[0], 0.2078704985513566571e-4, 1e-16,
+                    "eraApcs", "v(1)", status);
+   vvd(astrom.v[1], -0.8955360074245006073e-4, 1e-16,
+                    "eraApcs", "v(2)", status);
+   vvd(astrom.v[2], -0.3863338980073572719e-4, 1e-16,
+                    "eraApcs", "v(3)", status);
+   vvd(astrom.bm1, 0.9999999950277561601, 1e-12,
+                   "eraApcs", "bm1", status);
+   vvd(astrom.bpn[0][0], 1, 0,
+                         "eraApcs", "bpn(1,1)", status);
+   vvd(astrom.bpn[1][0], 0, 0,
+                         "eraApcs", "bpn(2,1)", status);
+   vvd(astrom.bpn[2][0], 0, 0,
+                         "eraApcs", "bpn(3,1)", status);
+   vvd(astrom.bpn[0][1], 0, 0,
+                         "eraApcs", "bpn(1,2)", status);
+   vvd(astrom.bpn[1][1], 1, 0,
+                         "eraApcs", "bpn(2,2)", status);
+   vvd(astrom.bpn[2][1], 0, 0,
+                         "eraApcs", "bpn(3,2)", status);
+   vvd(astrom.bpn[0][2], 0, 0,
+                         "eraApcs", "bpn(1,3)", status);
+   vvd(astrom.bpn[1][2], 0, 0,
+                         "eraApcs", "bpn(2,3)", status);
+   vvd(astrom.bpn[2][2], 1, 0,
+                         "eraApcs", "bpn(3,3)", status);
+
+}
+
+static void t_apcs13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a p c s 1 3
+**  - - - - - - - - -
+**
+**  Test eraApcs13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApcs13, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double date1, date2, pv[2][3];
+   eraASTROM astrom;
+
+
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+   pv[0][0] = -6241497.16;
+   pv[0][1] = 401346.896;
+   pv[0][2] = -1251136.04;
+   pv[1][0] = -29.264597;
+   pv[1][1] = -455.021831;
+   pv[1][2] = 0.0266151194;
+
+   eraApcs13(date1, date2, pv, &astrom);
+
+   vvd(astrom.pmt, 12.65133794027378508, 1e-11,
+                   "eraApcs13", "pmt", status);
+   vvd(astrom.eb[0], 0.9012691529023298391, 1e-12,
+                     "eraApcs13", "eb(1)", status);
+   vvd(astrom.eb[1], -0.4173999812023068781, 1e-12,
+                     "eraApcs13", "eb(2)", status);
+   vvd(astrom.eb[2], -0.1809906511146821008, 1e-12,
+                     "eraApcs13", "eb(3)", status);
+   vvd(astrom.eh[0], 0.8939939101759726824, 1e-12,
+                     "eraApcs13", "eh(1)", status);
+   vvd(astrom.eh[1], -0.4111053891734599955, 1e-12,
+                     "eraApcs13", "eh(2)", status);
+   vvd(astrom.eh[2], -0.1782336880637689334, 1e-12,
+                     "eraApcs13", "eh(3)", status);
+   vvd(astrom.em, 1.010428384373318379, 1e-12,
+                  "eraApcs13", "em", status);
+   vvd(astrom.v[0], 0.4279877278327626511e-4, 1e-16,
+                    "eraApcs13", "v(1)", status);
+   vvd(astrom.v[1], 0.7963255057040027770e-4, 1e-16,
+                    "eraApcs13", "v(2)", status);
+   vvd(astrom.v[2], 0.3517564000441374759e-4, 1e-16,
+                    "eraApcs13", "v(3)", status);
+   vvd(astrom.bm1, 0.9999999952947981330, 1e-12,
+                   "eraApcs13", "bm1", status);
+   vvd(astrom.bpn[0][0], 1, 0,
+                         "eraApcs13", "bpn(1,1)", status);
+   vvd(astrom.bpn[1][0], 0, 0,
+                         "eraApcs13", "bpn(2,1)", status);
+   vvd(astrom.bpn[2][0], 0, 0,
+                         "eraApcs13", "bpn(3,1)", status);
+   vvd(astrom.bpn[0][1], 0, 0,
+                         "eraApcs13", "bpn(1,2)", status);
+   vvd(astrom.bpn[1][1], 1, 0,
+                         "eraApcs13", "bpn(2,2)", status);
+   vvd(astrom.bpn[2][1], 0, 0,
+                         "eraApcs13", "bpn(3,2)", status);
+   vvd(astrom.bpn[0][2], 0, 0,
+                         "eraApcs13", "bpn(1,3)", status);
+   vvd(astrom.bpn[1][2], 0, 0,
+                         "eraApcs13", "bpn(2,3)", status);
+   vvd(astrom.bpn[2][2], 1, 0,
+                         "eraApcs13", "bpn(3,3)", status);
+
+}
+
+static void t_aper(int *status)
+/*
+**  - - - - - - -
+**   t _ a p e r
+**  - - - - - - -
+*
+**  Test eraAper function.
+*
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+*
+**  Called:  eraAper, vvd
+*
+**  This revision:  2013 October 3
+*/
+{
+   double theta;
+   eraASTROM astrom;
+
+
+   astrom.along = 1.234;
+   theta = 5.678;
+
+   eraAper(theta, &astrom);
+
+   vvd(astrom.eral, 6.912000000000000000, 1e-12,
+                    "eraAper", "pmt", status);
+
+}
+
+static void t_aper13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a p e r 1 3
+**  - - - - - - - - -
+**
+**  Test eraAper13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraAper13, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double ut11, ut12;
+   eraASTROM astrom;
+
+
+   astrom.along = 1.234;
+   ut11 = 2456165.5;
+   ut12 = 0.401182685;
+
+   eraAper13(ut11, ut12, &astrom);
+
+   vvd(astrom.eral, 3.316236661789694933, 1e-12,
+                    "eraAper13", "pmt", status);
+
+}
+
+static void t_apio(int *status)
+/*
+**  - - - - - - -
+**   t _ a p i o
+**  - - - - - - -
+**
+**  Test eraApio function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApio, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double sp, theta, elong, phi, hm, xp, yp, refa, refb;
+   eraASTROM astrom;
+
+
+   sp = -3.01974337e-11;
+   theta = 3.14540971;
+   elong = -0.527800806;
+   phi = -1.2345856;
+   hm = 2738.0;
+   xp = 2.47230737e-7;
+   yp = 1.82640464e-6;
+   refa = 0.000201418779;
+   refb = -2.36140831e-7;
+
+   eraApio(sp, theta, elong, phi, hm, xp, yp, refa, refb, &astrom);
+
+   vvd(astrom.along, -0.5278008060301974337, 1e-12,
+                     "eraApio", "along", status);
+   vvd(astrom.xpl, 0.1133427418174939329e-5, 1e-17,
+                   "eraApio", "xpl", status);
+   vvd(astrom.ypl, 0.1453347595745898629e-5, 1e-17,
+                   "eraApio", "ypl", status);
+   vvd(astrom.sphi, -0.9440115679003211329, 1e-12,
+                    "eraApio", "sphi", status);
+   vvd(astrom.cphi, 0.3299123514971474711, 1e-12,
+                    "eraApio", "cphi", status);
+   vvd(astrom.diurab, 0.5135843661699913529e-6, 1e-12,
+                      "eraApio", "diurab", status);
+   vvd(astrom.eral, 2.617608903969802566, 1e-12,
+                    "eraApio", "eral", status);
+   vvd(astrom.refa, 0.2014187790000000000e-3, 1e-15,
+                    "eraApio", "refa", status);
+   vvd(astrom.refb, -0.2361408310000000000e-6, 1e-18,
+                    "eraApio", "refb", status);
+
+}
+
+static void t_apio13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a p i o 1 3
+**  - - - - - - - - -
+**
+**  Test eraApio13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApio13, vvd, viv
+**
+**  This revision:  2013 October 4
+*/
+{
+   double utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl;
+   int j;
+   eraASTROM astrom;
+
+
+   utc1 = 2456384.5;
+   utc2 = 0.969254051;
+   dut1 = 0.1550675;
+   elong = -0.527800806;
+   phi = -1.2345856;
+   hm = 2738.0;
+   xp = 2.47230737e-7;
+   yp = 1.82640464e-6;
+   phpa = 731.0;
+   tc = 12.8;
+   rh = 0.59;
+   wl = 0.55;
+
+   j = eraApio13(utc1, utc2, dut1, elong, phi, hm, xp, yp,
+                 phpa, tc, rh, wl, &astrom);
+
+   vvd(astrom.along, -0.5278008060301974337, 1e-12,
+                     "eraApio13", "along", status);
+   vvd(astrom.xpl, 0.1133427418174939329e-5, 1e-17,
+                   "eraApio13", "xpl", status);
+   vvd(astrom.ypl, 0.1453347595745898629e-5, 1e-17,
+                   "eraApio13", "ypl", status);
+   vvd(astrom.sphi, -0.9440115679003211329, 1e-12,
+                    "eraApio13", "sphi", status);
+   vvd(astrom.cphi, 0.3299123514971474711, 1e-12,
+                    "eraApio13", "cphi", status);
+   vvd(astrom.diurab, 0.5135843661699913529e-6, 1e-12,
+                      "eraApio13", "diurab", status);
+   vvd(astrom.eral, 2.617608909189066140, 1e-12,
+                    "eraApio13", "eral", status);
+   vvd(astrom.refa, 0.2014187785940396921e-3, 1e-15,
+                    "eraApio13", "refa", status);
+   vvd(astrom.refb, -0.2361408314943696227e-6, 1e-18,
+                    "eraApio13", "refb", status);
+   viv(j, 0, "eraApio13", "j", status);
+
+}
+
+static void t_atci13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a t c i 1 3
+**  - - - - - - - - -
+**
+**  Test eraAtci13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraAtci13, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double rc, dc, pr, pd, px, rv, date1, date2, ri, di, eo;
+
+
+   rc = 2.71;
+   dc = 0.174;
+   pr = 1e-5;
+   pd = 5e-6;
+   px = 0.1;
+   rv = 55.0;
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+
+   eraAtci13(rc, dc, pr, pd, px, rv, date1, date2, &ri, &di, &eo);
+
+   vvd(ri, 2.710121572969038991, 1e-12,
+           "eraAtci13", "ri", status);
+   vvd(di, 0.1729371367218230438, 1e-12,
+           "eraAtci13", "di", status);
+   vvd(eo, -0.002900618712657375647, 1e-14,
+           "eraAtci13", "eo", status);
+
+}
+
+static void t_atciq(int *status)
+/*
+**  - - - - - - - -
+**   t _ a t c i q
+**  - - - - - - - -
+**
+**  Test eraAtciq function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApci13, eraAtciq, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double date1, date2, eo, rc, dc, pr, pd, px, rv, ri, di;
+   eraASTROM astrom;
+
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+   eraApci13(date1, date2, &astrom, &eo);
+   rc = 2.71;
+   dc = 0.174;
+   pr = 1e-5;
+   pd = 5e-6;
+   px = 0.1;
+   rv = 55.0;
+
+   eraAtciq(rc, dc, pr, pd, px, rv, &astrom, &ri, &di);
+
+   vvd(ri, 2.710121572969038991, 1e-12, "eraAtciq", "ri", status);
+   vvd(di, 0.1729371367218230438, 1e-12, "eraAtciq", "di", status);
+
+}
+
+static void t_atciqn(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a t c i q n
+**  - - - - - - - - -
+**
+**  Test eraAtciqn function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApci13, eraAtciqn, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   eraLDBODY b[3];
+   double date1, date2, eo, rc, dc, pr, pd, px, rv, ri, di;
+   eraASTROM astrom;
+
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+   eraApci13(date1, date2, &astrom, &eo);
+   rc = 2.71;
+   dc = 0.174;
+   pr = 1e-5;
+   pd = 5e-6;
+   px = 0.1;
+   rv = 55.0;
+   b[0].bm = 0.00028574;
+   b[0].dl = 3e-10;
+   b[0].pv[0][0] = -7.81014427;
+   b[0].pv[0][1] = -5.60956681;
+   b[0].pv[0][2] = -1.98079819;
+   b[0].pv[1][0] =  0.0030723249;
+   b[0].pv[1][1] = -0.00406995477;
+   b[0].pv[1][2] = -0.00181335842;
+   b[1].bm = 0.00095435;
+   b[1].dl = 3e-9;
+   b[1].pv[0][0] =  0.738098796;
+   b[1].pv[0][1] =  4.63658692;
+   b[1].pv[0][2] =  1.9693136;
+   b[1].pv[1][0] = -0.00755816922;
+   b[1].pv[1][1] =  0.00126913722;
+   b[1].pv[1][2] =  0.000727999001;
+   b[2].bm = 1.0;
+   b[2].dl = 6e-6;
+   b[2].pv[0][0] = -0.000712174377;
+   b[2].pv[0][1] = -0.00230478303;
+   b[2].pv[0][2] = -0.00105865966;
+   b[2].pv[1][0] =  6.29235213e-6;
+   b[2].pv[1][1] = -3.30888387e-7;
+   b[2].pv[1][2] = -2.96486623e-7;
+
+   eraAtciqn ( rc, dc, pr, pd, px, rv, &astrom, 3, b, &ri, &di);
+
+   vvd(ri, 2.710122008105325582, 1e-12, "eraAtciqn", "ri", status);
+   vvd(di, 0.1729371916491459122, 1e-12, "eraAtciqn", "di", status);
+
+}
+
+static void t_atciqz(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a t c i q z
+**  - - - - - - - - -
+**
+**  Test eraAtciqz function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApci13, eraAtciqz, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double date1, date2, eo, rc, dc, ri, di;
+   eraASTROM astrom;
+
+
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+   eraApci13(date1, date2, &astrom, &eo);
+   rc = 2.71;
+   dc = 0.174;
+
+   eraAtciqz(rc, dc, &astrom, &ri, &di);
+
+   vvd(ri, 2.709994899247599271, 1e-12, "eraAtciqz", "ri", status);
+   vvd(di, 0.1728740720983623469, 1e-12, "eraAtciqz", "di", status);
+
+}
+
+static void t_atco13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a t c o 1 3
+**  - - - - - - - - -
+**
+**  Test eraAtco13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraAtco13, vvd, viv
+**
+**  This revision:  2013 October 4
+*/
+{
+   double rc, dc, pr, pd, px, rv, utc1, utc2, dut1,
+          elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+          aob, zob, hob, dob, rob, eo;
+   int j;
+
+
+   rc = 2.71;
+   dc = 0.174;
+   pr = 1e-5;
+   pd = 5e-6;
+   px = 0.1;
+   rv = 55.0;
+   utc1 = 2456384.5;
+   utc2 = 0.969254051;
+   dut1 = 0.1550675;
+   elong = -0.527800806;
+   phi = -1.2345856;
+   hm = 2738.0;
+   xp = 2.47230737e-7;
+   yp = 1.82640464e-6;
+   phpa = 731.0;
+   tc = 12.8;
+   rh = 0.59;
+   wl = 0.55;
+
+   j = eraAtco13(rc, dc, pr, pd, px, rv,
+                 utc1, utc2, dut1, elong, phi, hm, xp, yp,
+                 phpa, tc, rh, wl,
+                 &aob, &zob, &hob, &dob, &rob, &eo);
+
+   vvd(aob, 0.09251774485358230653, 1e-12, "eraAtco13", "aob", status);
+   vvd(zob, 1.407661405256767021, 1e-12, "eraAtco13", "zob", status);
+   vvd(hob, -0.09265154431403157925, 1e-12, "eraAtco13", "hob", status);
+   vvd(dob, 0.1716626560075591655, 1e-12, "eraAtco13", "dob", status);
+   vvd(rob, 2.710260453503097719, 1e-12, "eraAtco13", "rob", status);
+   vvd(eo, -0.003020548354802412839, 1e-14, "eraAtco13", "eo", status);
+   viv(j, 0, "eraAtco13", "j", status);
+
+}
+
+static void t_atic13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a t i c 1 3
+**  - - - - - - - - -
+**
+**  Test eraAtic13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraAtic13, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double ri, di, date1, date2, rc, dc, eo;
+
+
+   ri = 2.710121572969038991;
+   di = 0.1729371367218230438;
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+
+   eraAtic13(ri, di, date1, date2, &rc, &dc, &eo);
+
+   vvd(rc, 2.710126504531374930, 1e-12, "eraAtic13", "rc", status);
+   vvd(dc, 0.1740632537628342320, 1e-12, "eraAtic13", "dc", status);
+   vvd(eo, -0.002900618712657375647, 1e-14, "eraAtic13", "eo", status);
+
+}
+
+static void t_aticq(int *status)
+/*
+**  - - - - - - - -
+**   t _ a t i c q
+**  - - - - - - - -
+**
+**  Test eraAticq function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApci13, eraAticq, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double date1, date2, eo, ri, di, rc, dc;
+   eraASTROM astrom;
+
+
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+   eraApci13(date1, date2, &astrom, &eo);
+   ri = 2.710121572969038991;
+   di = 0.1729371367218230438;
+
+   eraAticq(ri, di, &astrom, &rc, &dc);
+
+   vvd(rc, 2.710126504531374930, 1e-12, "eraAticq", "rc", status);
+   vvd(dc, 0.1740632537628342320, 1e-12, "eraAticq", "dc", status);
+
+}
+
+static void t_aticqn(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a t i c q n
+**  - - - - - - - - -
+**
+**  Test eraAticqn function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApci13, eraAticqn, vvd
+**
+**  This revision:  2013 October 3
+*/
+{
+   double date1, date2, eo, ri, di, rc, dc;
+   eraLDBODY b[3];
+   eraASTROM astrom;
+
+
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+   eraApci13(date1, date2, &astrom, &eo);
+   ri = 2.709994899247599271;
+   di = 0.1728740720983623469;
+   b[0].bm = 0.00028574;
+   b[0].dl = 3e-10;
+   b[0].pv[0][0] = -7.81014427;
+   b[0].pv[0][1] = -5.60956681;
+   b[0].pv[0][2] = -1.98079819;
+   b[0].pv[1][0] =  0.0030723249;
+   b[0].pv[1][1] = -0.00406995477;
+   b[0].pv[1][2] = -0.00181335842;
+   b[1].bm = 0.00095435;
+   b[1].dl = 3e-9;
+   b[1].pv[0][0] =  0.738098796;
+   b[1].pv[0][1] =  4.63658692;
+   b[1].pv[0][2] =  1.9693136;
+   b[1].pv[1][0] = -0.00755816922;
+   b[1].pv[1][1] =  0.00126913722;
+   b[1].pv[1][2] =  0.000727999001;
+   b[2].bm = 1.0;
+   b[2].dl = 6e-6;
+   b[2].pv[0][0] = -0.000712174377;
+   b[2].pv[0][1] = -0.00230478303;
+   b[2].pv[0][2] = -0.00105865966;
+   b[2].pv[1][0] =  6.29235213e-6;
+   b[2].pv[1][1] = -3.30888387e-7;
+   b[2].pv[1][2] = -2.96486623e-7;
+
+   eraAticqn(ri, di, &astrom, 3, b, &rc, &dc);
+
+   vvd(rc, 2.709999575032685412, 1e-12, "eraAtciqn", "rc", status);
+   vvd(dc, 0.1739999656317778034, 1e-12, "eraAtciqn", "dc", status);
+
+}
+
+static void t_atio13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a t i o 1 3
+**  - - - - - - - - -
+**
+**  Test eraAtio13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraAtio13, vvd, viv
+**
+**  This revision:  2013 October 3
+*/
+{
+   double ri, di, utc1, utc2, dut1, elong, phi, hm, xp, yp,
+          phpa, tc, rh, wl, aob, zob, hob, dob, rob;
+   int j;
+
+
+   ri = 2.710121572969038991;
+   di = 0.1729371367218230438;
+   utc1 = 2456384.5;
+   utc2 = 0.969254051;
+   dut1 = 0.1550675;
+   elong = -0.527800806;
+   phi = -1.2345856;
+   hm = 2738.0;
+   xp = 2.47230737e-7;
+   yp = 1.82640464e-6;
+   phpa = 731.0;
+   tc = 12.8;
+   rh = 0.59;
+   wl = 0.55;
+
+   j = eraAtio13(ri, di, utc1, utc2, dut1, elong, phi, hm,
+                 xp, yp, phpa, tc, rh, wl,
+                 &aob, &zob, &hob, &dob, &rob);
+
+   vvd(aob, 0.09233952224794989993, 1e-12, "eraAtio13", "aob", status);
+   vvd(zob, 1.407758704513722461, 1e-12, "eraAtio13", "zob", status);
+   vvd(hob, -0.09247619879782006106, 1e-12, "eraAtio13", "hob", status);
+   vvd(dob, 0.1717653435758265198, 1e-12, "eraAtio13", "dob", status);
+   vvd(rob, 2.710085107986886201, 1e-12, "eraAtio13", "rob", status);
+   viv(j, 0, "eraAtio13", "j", status);
+
+}
+
+static void t_atioq(int *status)
+/*
+**  - - - - - - - -
+**   t _ a t i o q
+**  - - - - - - - -
+**
+**  Test eraAtioq function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApio13, eraAtioq, vvd, viv
+**
+**  This revision:  2013 October 4
+*/
+{
+   double utc1, utc2, dut1, elong, phi, hm, xp, yp,
+          phpa, tc, rh, wl, ri, di, aob, zob, hob, dob, rob;
+   eraASTROM astrom;
+
+
+   utc1 = 2456384.5;
+   utc2 = 0.969254051;
+   dut1 = 0.1550675;
+   elong = -0.527800806;
+   phi = -1.2345856;
+   hm = 2738.0;
+   xp = 2.47230737e-7;
+   yp = 1.82640464e-6;
+   phpa = 731.0;
+   tc = 12.8;
+   rh = 0.59;
+   wl = 0.55;
+   (void) eraApio13(utc1, utc2, dut1, elong, phi, hm, xp, yp,
+                    phpa, tc, rh, wl, &astrom);
+   ri = 2.710121572969038991;
+   di = 0.1729371367218230438;
+
+   eraAtioq(ri, di, &astrom, &aob, &zob, &hob, &dob, &rob);
+
+   vvd(aob, 0.09233952224794989993, 1e-12, "eraAtioq", "aob", status);
+   vvd(zob, 1.407758704513722461, 1e-12, "eraAtioq", "zob", status);
+   vvd(hob, -0.09247619879782006106, 1e-12, "eraAtioq", "hob", status);
+   vvd(dob, 0.1717653435758265198, 1e-12, "eraAtioq", "dob", status);
+   vvd(rob, 2.710085107986886201, 1e-12, "eraAtioq", "rob", status);
+
+}
+
+static void t_atoc13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a t o c 1 3
+**  - - - - - - - - -
+**
+**  Test eraAtoc13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraAtoc13, vvd, viv
+**
+**  This revision:  2013 October 3
+*/
+{
+   double utc1, utc2, dut1,
+          elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+          ob1, ob2, rc, dc;
+   int j;
+
+
+   utc1 = 2456384.5;
+   utc2 = 0.969254051;
+   dut1 = 0.1550675;
+   elong = -0.527800806;
+   phi = -1.2345856;
+   hm = 2738.0;
+   xp = 2.47230737e-7;
+   yp = 1.82640464e-6;
+   phpa = 731.0;
+   tc = 12.8;
+   rh = 0.59;
+   wl = 0.55;
+
+   ob1 = 2.710085107986886201;
+   ob2 = 0.1717653435758265198;
+   j = eraAtoc13 ( "R", ob1, ob2, utc1, utc2, dut1,
+                   elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+                   &rc, &dc);
+   vvd(rc, 2.709956744661000609, 1e-12, "eraAtoc13", "R/rc", status);
+   vvd(dc, 0.1741696500895398562, 1e-12, "eraAtoc13", "R/dc", status);
+   viv(j, 0, "eraAtoc13", "R/j", status);
+
+   ob1 = -0.09247619879782006106;
+   ob2 = 0.1717653435758265198;
+   j = eraAtoc13 ( "H", ob1, ob2, utc1, utc2, dut1,
+                   elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+                   &rc, &dc);
+   vvd(rc, 2.709956744661000609, 1e-12, "eraAtoc13", "H/rc", status);
+   vvd(dc, 0.1741696500895398562, 1e-12, "eraAtoc13", "H/dc", status);
+   viv(j, 0, "eraAtoc13", "H/j", status);
+
+   ob1 = 0.09233952224794989993;
+   ob2 = 1.407758704513722461;
+   j = eraAtoc13 ( "A", ob1, ob2, utc1, utc2, dut1,
+                   elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+                   &rc, &dc);
+   vvd(rc, 2.709956744661000609, 1e-12, "eraAtoc13", "A/rc", status);
+   vvd(dc, 0.1741696500895398565, 1e-12, "eraAtoc13", "A/dc", status);
+   viv(j, 0, "eraAtoc13", "A/j", status);
+
+}
+
+static void t_atoi13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a t o i 1 3
+**  - - - - - - - - -
+**
+**  Test eraAtoi13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraAtoi13, vvd, viv
+**
+**  This revision:  2013 October 3
+*/
+{
+   double utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+          ob1, ob2, ri, di;
+   int j;
+
+
+   utc1 = 2456384.5;
+   utc2 = 0.969254051;
+   dut1 = 0.1550675;
+   elong = -0.527800806;
+   phi = -1.2345856;
+   hm = 2738.0;
+   xp = 2.47230737e-7;
+   yp = 1.82640464e-6;
+   phpa = 731.0;
+   tc = 12.8;
+   rh = 0.59;
+   wl = 0.55;
+
+   ob1 = 2.710085107986886201;
+   ob2 = 0.1717653435758265198;
+   j = eraAtoi13 ( "R", ob1, ob2, utc1, utc2, dut1,
+                   elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+                   &ri, &di);
+   vvd(ri, 2.710121574449135955, 1e-12, "eraAtoi13", "R/ri", status);
+   vvd(di, 0.1729371839114567725, 1e-12, "eraAtoi13", "R/di", status);
+   viv(j, 0, "eraAtoi13", "R/J", status);
+
+   ob1 = -0.09247619879782006106;
+   ob2 = 0.1717653435758265198;
+   j = eraAtoi13 ( "H", ob1, ob2, utc1, utc2, dut1,
+                   elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+                   &ri, &di);
+   vvd(ri, 2.710121574449135955, 1e-12, "eraAtoi13", "H/ri", status);
+   vvd(di, 0.1729371839114567725, 1e-12, "eraAtoi13", "H/di", status);
+   viv(j, 0, "eraAtoi13", "H/J", status);
+
+   ob1 = 0.09233952224794989993;
+   ob2 = 1.407758704513722461;
+   j = eraAtoi13 ( "A", ob1, ob2, utc1, utc2, dut1,
+                   elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+                   &ri, &di);
+   vvd(ri, 2.710121574449135955, 1e-12, "eraAtoi13", "A/ri", status);
+   vvd(di, 0.1729371839114567728, 1e-12, "eraAtoi13", "A/di", status);
+   viv(j, 0, "eraAtoi13", "A/J", status);
+
+}
+
+static void t_atoiq(int *status)
+/*
+**  - - - - - - - -
+**   t _ a t o i q
+**  - - - - - - - -
+*
+**  Test eraAtoiq function.
+*
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+*
+**  Called:  eraApio13, eraAtoiq, vvd
+*
+**  This revision:  2013 October 4
+*/
+{
+   double utc1, utc2, dut1, elong, phi, hm, xp, yp, phpa, tc, rh, wl,
+          ob1, ob2, ri, di;
+   eraASTROM astrom;
+
+
+   utc1 = 2456384.5;
+   utc2 = 0.969254051;
+   dut1 = 0.1550675;
+   elong = -0.527800806;
+   phi = -1.2345856;
+   hm = 2738.0;
+   xp = 2.47230737e-7;
+   yp = 1.82640464e-6;
+   phpa = 731.0;
+   tc = 12.8;
+   rh = 0.59;
+   wl = 0.55;
+   (void) eraApio13(utc1, utc2, dut1, elong, phi, hm, xp, yp,
+                    phpa, tc, rh, wl, &astrom);
+
+   ob1 = 2.710085107986886201;
+   ob2 = 0.1717653435758265198;
+   eraAtoiq("R", ob1, ob2, &astrom, &ri, &di);
+   vvd(ri, 2.710121574449135955, 1e-12,
+           "eraAtoiq", "R/ri", status);
+   vvd(di, 0.1729371839114567725, 1e-12,
+           "eraAtoiq", "R/di", status);
+
+   ob1 = -0.09247619879782006106;
+   ob2 = 0.1717653435758265198;
+   eraAtoiq("H", ob1, ob2, &astrom, &ri, &di);
+   vvd(ri, 2.710121574449135955, 1e-12,
+           "eraAtoiq", "H/ri", status);
+   vvd(di, 0.1729371839114567725, 1e-12,
+           "eraAtoiq", "H/di", status);
+
+   ob1 = 0.09233952224794989993;
+   ob2 = 1.407758704513722461;
+   eraAtoiq("A", ob1, ob2, &astrom, &ri, &di);
+   vvd(ri, 2.710121574449135955, 1e-12,
+           "eraAtoiq", "A/ri", status);
+   vvd(di, 0.1729371839114567728, 1e-12,
+           "eraAtoiq", "A/di", status);
+
 }
 
 static void t_bi00(int *status)
@@ -232,11 +1754,11 @@ static void t_bi00(int *status)
 **  Test eraBi00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraBi00, vvd
 **
-**  This revision:  2009 November 4
+**  This revision:  2013 August 7
 */
 {
    double dpsibi, depsbi, dra;
@@ -260,11 +1782,11 @@ static void t_bp00(int *status)
 **  Test eraBp00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraBp00, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rb[3][3], rp[3][3], rbp[3][3];
@@ -339,11 +1861,11 @@ static void t_bp06(int *status)
 **  Test eraBp06 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraBp06, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rb[3][3], rp[3][3], rbp[3][3];
@@ -418,11 +1940,11 @@ static void t_bpn2xy(int *status)
 **  Test eraBpn2xy function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraBpn2xy, vvd
 **
-**  This revision:  2008 May 26
+**  This revision:  2013 August 7
 */
 {
    double rbpn[3][3], x, y;
@@ -456,11 +1978,11 @@ static void t_c2i00a(int *status)
 **  Test eraC2i00a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2i00a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rc2i[3][3];
@@ -500,11 +2022,11 @@ static void t_c2i00b(int *status)
 **  Test eraC2i00b function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2i00b, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rc2i[3][3];
@@ -544,11 +2066,11 @@ static void t_c2i06a(int *status)
 **  Test eraC2i06a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2i06a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rc2i[3][3];
@@ -588,11 +2110,11 @@ static void t_c2ibpn(int *status)
 **  Test eraC2ibpn function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2ibpn, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rbpn[3][3], rc2i[3][3];
@@ -644,11 +2166,11 @@ static void t_c2ixy(int *status)
 **  Test eraC2ixy function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2ixy, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double x, y, rc2i[3][3];
@@ -691,11 +2213,11 @@ static void t_c2ixys(int *status)
 **  Test eraC2ixys function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2ixys, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double x, y, s, rc2i[3][3];
@@ -739,11 +2261,11 @@ static void t_c2s(int *status)
 **  Test eraC2s function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2s, vvd
 **
-**  This revision:  2008 May 27
+**  This revision:  2013 August 7
 */
 {
    double p[3], theta, phi;
@@ -769,11 +2291,11 @@ static void t_c2t00a(int *status)
 **  Test eraC2t00a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2t00a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double tta, ttb, uta, utb, xp, yp, rc2t[3][3];
@@ -820,11 +2342,11 @@ static void t_c2t00b(int *status)
 **  Test eraC2t00b function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2t00b, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double tta, ttb, uta, utb, xp, yp, rc2t[3][3];
@@ -871,11 +2393,11 @@ static void t_c2t06a(int *status)
 **  Test eraC2t06a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2t06a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double tta, ttb, uta, utb, xp, yp, rc2t[3][3];
@@ -922,11 +2444,11 @@ static void t_c2tcio(int *status)
 **  Test eraC2tcio function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2tcio, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rc2i[3][3], era, rpom[3][3], rc2t[3][3];
@@ -993,11 +2515,11 @@ static void t_c2teqx(int *status)
 **  Test eraC2teqx function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2teqx, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rbpn[3][3], gst, rpom[3][3], rc2t[3][3];
@@ -1063,11 +2585,11 @@ static void t_c2tpe(int *status)
 **  Test eraC2tpe function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2tpe, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double tta, ttb, uta, utb, dpsi, deps, xp, yp, rc2t[3][3];
@@ -1116,11 +2638,11 @@ static void t_c2txy(int *status)
 **  Test eraC2txy function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraC2txy, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double tta, ttb, uta, utb, x, y, xp, yp, rc2t[3][3];
@@ -1169,11 +2691,11 @@ static void t_cal2jd(int *status)
 **  Test eraCal2jd function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraCal2jd, vvd, viv
 **
-**  This revision:  2008 May 27
+**  This revision:  2013 August 7
 */
 {
    int j;
@@ -1198,11 +2720,11 @@ static void t_cp(int *status)
 **  Test eraCp function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraCp, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double p[3], c[3];
@@ -1228,11 +2750,11 @@ static void t_cpv(int *status)
 **  Test eraCpv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraCpv, vvd
 **
-**  This revision:  2008 May 25
+**  This revision:  2013 August 7
 */
 {
    double pv[2][3], c[2][3];
@@ -1267,11 +2789,11 @@ static void t_cr(int *status)
 **  Test eraCr function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraCr, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double r[3][3], c[3][3];
@@ -1313,11 +2835,11 @@ static void t_d2dtf(int *status )
 **  Test eraD2dtf function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraD2dtf, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    int j, iy, im, id, ihmsf[4];
@@ -1345,11 +2867,11 @@ static void t_d2tf(int *status)
 **  Test eraD2tf function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraD2tf, viv, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    int ihmsf[4];
@@ -1376,11 +2898,11 @@ static void t_dat(int *status)
 **  Test eraDat function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraDat, vvd, viv
 **
-**  This revision:  2008 November 29
+**  This revision:  2013 August 7
 */
 {
    int j;
@@ -1408,11 +2930,11 @@ static void t_dtdb(int *status)
 **  Test eraDtdb function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraDtdb, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double dtdb;
@@ -1433,11 +2955,11 @@ static void t_dtf2d(int *status)
 **  Test eraDtf2d function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraDtf2d, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double u1, u2;
@@ -1460,11 +2982,11 @@ static void t_ee00(int *status)
 **  Test eraEe00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEe00, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double epsa, dpsi, ee;
@@ -1488,11 +3010,11 @@ static void t_ee00a(int *status)
 **  Test eraEe00a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEe00a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double ee;
@@ -1513,11 +3035,11 @@ static void t_ee00b(int *status)
 **  Test eraEe00b function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEe00b, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double ee;
@@ -1538,11 +3060,11 @@ static void t_ee06a(int *status)
 **  Test eraEe06a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEe06a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double ee;
@@ -1562,11 +3084,11 @@ static void t_eect00(int *status)
 **  Test eraEect00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEect00, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double eect;
@@ -1587,11 +3109,11 @@ static void t_eform(int *status)
 **  Test eraEform function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEform, viv, vvd
 **
-**  This revision:  2012 February 23
+**  This revision:  2013 August 7
 */
 {
    int j;
@@ -1632,11 +3154,11 @@ static void t_eo06a(int *status)
 **  Test eraEo06a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEo06a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double eo;
@@ -1657,11 +3179,11 @@ static void t_eors(int *status)
 **  Test eraEors function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEors, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rnpb[3][3], s, eo;
@@ -1696,11 +3218,11 @@ static void t_epb(int *status)
 **  Test eraEpb function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEpb, vvd
 **
-**  This revision:  2008 May 27
+**  This revision:  2013 August 7
 */
 {
    double epb;
@@ -1721,11 +3243,11 @@ static void t_epb2jd(int *status)
 **  Test eraEpb2jd function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEpb2jd, vvd
 **
-**  This revision:  2008 November 29
+**  This revision:  2013 August 7
 */
 {
    double epb, djm0, djm;
@@ -1749,11 +3271,11 @@ static void t_epj(int *status)
 **  Test eraEpj function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEpj, vvd
 **
-**  This revision:  2008 May 27
+**  This revision:  2013 August 7
 */
 {
    double epj;
@@ -1774,11 +3296,11 @@ static void t_epj2jd(int *status)
 **  Test eraEpj2jd function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEpj2jd, vvd
 **
-**  This revision:  2008 November 29
+**  This revision:  2013 August 7
 */
 {
    double epj, djm0, djm;
@@ -1802,11 +3324,11 @@ static void t_epv00(int *status)
 **  Test eraEpv00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called: eraEpv00, vvd, viv
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double pvh[2][3], pvb[2][3];
@@ -1856,11 +3378,11 @@ static void t_eqeq94(int *status)
 **  Test eraEqeq94 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEqeq94, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double eqeq;
@@ -1881,11 +3403,11 @@ static void t_era00(int *status)
 **  Test eraEra00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraEra00, vvd
 **
-**  This revision:  2008 May 26
+**  This revision:  2013 August 7
 */
 {
    double era00;
@@ -1906,11 +3428,11 @@ static void t_fad03(int *status)
 **  Test eraFad03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFad03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFad03(0.80), 1.946709205396925672, 1e-12,
@@ -1926,11 +3448,11 @@ static void t_fae03(int *status)
 **  Test eraFae03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFae03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFae03(0.80), 1.744713738913081846, 1e-12,
@@ -1946,11 +3468,11 @@ static void t_faf03(int *status)
 **  Test eraFaf03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFaf03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFaf03(0.80), 0.2597711366745499518, 1e-12,
@@ -1966,11 +3488,11 @@ static void t_faju03(int *status)
 **  Test eraFaju03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFaju03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFaju03(0.80), 5.275711665202481138, 1e-12,
@@ -1986,11 +3508,11 @@ static void t_fal03(int *status)
 **  Test eraFal03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFal03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFal03(0.80), 5.132369751108684150, 1e-12,
@@ -2006,11 +3528,11 @@ static void t_falp03(int *status)
 **  Test eraFalp03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFalp03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFalp03(0.80), 6.226797973505507345, 1e-12,
@@ -2026,11 +3548,11 @@ static void t_fama03(int *status)
 **  Test eraFama03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFama03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFama03(0.80), 3.275506840277781492, 1e-12,
@@ -2046,11 +3568,11 @@ static void t_fame03(int *status)
 **  Test eraFame03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFame03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFame03(0.80), 5.417338184297289661, 1e-12,
@@ -2066,11 +3588,11 @@ static void t_fane03(int *status)
 **  Test eraFane03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFane03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFane03(0.80), 2.079343830860413523, 1e-12,
@@ -2086,11 +3608,11 @@ static void t_faom03(int *status)
 **  Test eraFaom03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFaom03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFaom03(0.80), -5.973618440951302183, 1e-12,
@@ -2106,11 +3628,11 @@ static void t_fapa03(int *status)
 **  Test eraFapa03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFapa03, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFapa03(0.80), 0.1950884762240000000e-1, 1e-12,
@@ -2126,11 +3648,11 @@ static void t_fasa03(int *status)
 **  Test eraFasa03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFasa03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFasa03(0.80), 5.371574539440827046, 1e-12,
@@ -2146,11 +3668,11 @@ static void t_faur03(int *status)
 **  Test eraFaur03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFaur03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFaur03(0.80), 5.180636450180413523, 1e-12,
@@ -2166,11 +3688,11 @@ static void t_fave03(int *status)
 **  Test eraFave03 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFave03, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    vvd(eraFave03(0.80), 3.424900460533758000, 1e-12,
@@ -2186,11 +3708,11 @@ static void t_fk52h(int *status)
 **  Test eraFk52h function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFk52h, vvd
 **
-**  This revision:  2009 November 6
+**  This revision:  2013 August 7
 */
 {
    double r5, d5, dr5, dd5, px5, rv5, rh, dh, drh, ddh, pxh, rvh;
@@ -2230,11 +3752,11 @@ static void t_fk5hip(int *status)
 **  Test eraFk5hip function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFk5hip, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double r5h[3][3], s5h[3];
@@ -2278,11 +3800,11 @@ static void t_fk5hz(int *status)
 **  Test eraFk5hz function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFk5hz, vvd
 **
-**  This revision:  2008 May 26
+**  This revision:  2013 August 7
 */
 {
    double r5, d5, rh, dh;
@@ -2307,11 +3829,11 @@ static void t_fw2m(int *status)
 **  Test eraFw2m function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFw2m, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double gamb, phib, psi, eps, r[3][3];
@@ -2356,11 +3878,11 @@ static void t_fw2xy(int *status)
 **  Test eraFw2xy function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraFw2xy, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double gamb, phib, psi, eps, x, y;
@@ -2387,11 +3909,11 @@ static void t_gc2gd(int *status)
 **  Test eraGc2gd function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraGc2gd, viv, vvd
 **
-**  This revision:  2012 February 23
+**  This revision:  2013 August 7
 */
 {
    int j;
@@ -2437,11 +3959,11 @@ static void t_gc2gde(int *status)
 **  Test eraGc2gde function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraGc2gde, viv, vvd
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    int j;
@@ -2466,11 +3988,11 @@ static void t_gd2gc(int *status)
 **  Test eraGd2gc function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraGd2gc, viv, vvd
 **
-**  This revision:  2012 February 23
+**  This revision:  2013 August 7
 */
 {
    int j;
@@ -2516,11 +4038,11 @@ static void t_gd2gce(int *status)
 **  Test eraGd2gce function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraGd2gce, viv, vvd
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    int j;
@@ -2545,11 +4067,11 @@ static void t_gmst00(int *status)
 **  Test eraGmst00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraGmst00, vvd
 **
-**  This revision:  2008 May 26
+**  This revision:  2013 August 7
 */
 {
    double theta;
@@ -2570,11 +4092,11 @@ static void t_gmst06(int *status)
 **  Test eraGmst06 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraGmst06, vvd
 **
-**  This revision:  2008 May 26
+**  This revision:  2013 August 7
 */
 {
    double theta;
@@ -2595,11 +4117,11 @@ static void t_gmst82(int *status)
 **  Test eraGmst82 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraGmst82, vvd
 **
-**  This revision:  2008 May 26
+**  This revision:  2013 August 7
 */
 {
    double theta;
@@ -2620,11 +4142,11 @@ static void t_gst00a(int *status)
 **  Test eraGst00a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraGst00a, vvd
 **
-**  This revision:  2008 May 26
+**  This revision:  2013 August 7
 */
 {
    double theta;
@@ -2645,11 +4167,11 @@ static void t_gst00b(int *status)
 **  Test eraGst00b function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraGst00b, vvd
 **
-**  This revision:  2008 May 26
+**  This revision:  2013 August 7
 */
 {
    double theta;
@@ -2670,11 +4192,11 @@ static void t_gst06(int *status)
 **  Test eraGst06 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraGst06, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rnpb[3][3], theta;
@@ -2707,11 +4229,11 @@ static void t_gst06a(int *status)
 **  Test eraGst06a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraGst06a, vvd
 **
-**  This revision:  2008 May 26
+**  This revision:  2013 August 7
 */
 {
    double theta;
@@ -2732,11 +4254,11 @@ static void t_gst94(int *status)
 **  Test eraGst94 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraGst94, vvd
 **
-**  This revision:  2008 May 26
+**  This revision:  2013 August 7
 */
 {
    double theta;
@@ -2757,11 +4279,11 @@ static void t_h2fk5(int *status)
 **  Test eraH2fk5 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraH2fk5, vvd
 **
-**  This revision:  2009 November 6
+**  This revision:  2013 August 7
 */
 {
    double rh, dh, drh, ddh, pxh, rvh, r5, d5, dr5, dd5, px5, rv5;
@@ -2801,11 +4323,11 @@ static void t_hfk5z(int *status)
 **  Test eraHfk5z function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraHfk5z, vvd
 **
-**  This revision:  2008 November 29
+**  This revision:  2013 August 7
 */
 {
    double rh, dh, r5, d5, dr5, dd5;
@@ -2837,11 +4359,11 @@ static void t_ir(int *status)
 **  Test eraIr function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraIr, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double r[3][3];
@@ -2884,11 +4406,11 @@ static void t_jd2cal(int *status)
 **  Test eraJd2cal function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraJd2cal, viv, vvd
 **
-**  This revision:  2008 November 29
+**  This revision:  2013 August 7
 */
 {
    double dj1, dj2, fd;
@@ -2917,11 +4439,11 @@ static void t_jdcalf(int *status)
 **  Test eraJdcalf function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraJdcalf, viv
 **
-**  This revision:  2008 May 26
+**  This revision:  2013 August 7
 */
 {
    double dj1, dj2;
@@ -2942,6 +4464,151 @@ static void t_jdcalf(int *status)
 
 }
 
+static void t_ld(int *status)
+/*
+**  - - - - -
+**   t _ l d
+**  - - - - -
+**
+**  Test eraLd function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraLd, vvd
+*
+**  This revision:  2013 October 2
+*/
+{
+   double bm, p[3], q[3], e[3], em, dlim, p1[3];
+
+
+   bm = 0.00028574;
+   p[0] = -0.763276255;
+   p[1] = -0.608633767;
+   p[2] = -0.216735543;
+   q[0] = -0.763276255;
+   q[1] = -0.608633767;
+   q[2] = -0.216735543;
+   e[0] = 0.76700421;
+   e[1] = 0.605629598;
+   e[2] = 0.211937094;
+   em = 8.91276983;
+   dlim = 3e-10;
+
+   eraLd(bm, p, q, e, em, dlim, p1);
+
+   vvd(p1[0], -0.7632762548968159627, 1e-12,
+               "eraLd", "1", status);
+   vvd(p1[1], -0.6086337670823762701, 1e-12,
+               "eraLd", "2", status);
+   vvd(p1[2], -0.2167355431320546947, 1e-12,
+               "eraLd", "3", status);
+
+}
+
+static void t_ldn(int *status)
+/*
+**  - - - - - -
+**   t _ l d n
+**  - - - - - -
+**
+**  Test eraLdn function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraLdn, vvd
+**
+**  This revision:  2013 October 2
+*/
+{
+   int n;
+   eraLDBODY b[3];
+   double ob[3], sc[3], sn[3];
+
+
+   n = 3;
+   b[0].bm = 0.00028574;
+   b[0].dl = 3e-10;
+   b[0].pv[0][0] = -7.81014427;
+   b[0].pv[0][1] = -5.60956681;
+   b[0].pv[0][2] = -1.98079819;
+   b[0].pv[1][0] =  0.0030723249;
+   b[0].pv[1][1] = -0.00406995477;
+   b[0].pv[1][2] = -0.00181335842;
+   b[1].bm = 0.00095435;
+   b[1].dl = 3e-9;
+   b[1].pv[0][0] =  0.738098796;
+   b[1].pv[0][1] =  4.63658692;
+   b[1].pv[0][2] =  1.9693136;
+   b[1].pv[1][0] = -0.00755816922;
+   b[1].pv[1][1] =  0.00126913722;
+   b[1].pv[1][2] =  0.000727999001;
+   b[2].bm = 1.0;
+   b[2].dl = 6e-6;
+   b[2].pv[0][0] = -0.000712174377;
+   b[2].pv[0][1] = -0.00230478303;
+   b[2].pv[0][2] = -0.00105865966;
+   b[2].pv[1][0] =  6.29235213e-6;
+   b[2].pv[1][1] = -3.30888387e-7;
+   b[2].pv[1][2] = -2.96486623e-7;
+   ob[0] =  -0.974170437;
+   ob[1] =  -0.2115201;
+   ob[2] =  -0.0917583114;
+   sc[0] =  -0.763276255;
+   sc[1] =  -0.608633767;
+   sc[2] =  -0.216735543;
+
+   eraLdn(n, b, ob, sc, sn);
+
+   vvd(sn[0], -0.7632762579693333866, 1e-12,
+               "eraLdn", "1", status);
+   vvd(sn[1], -0.6086337636093002660, 1e-12,
+               "eraLdn", "2", status);
+   vvd(sn[2], -0.2167355420646328159, 1e-12,
+               "eraLdn", "3", status);
+
+}
+
+static void t_ldsun(int *status)
+/*
+**  - - - - - - - -
+**   t _ l d s u n
+**  - - - - - - - -
+**
+**  Test eraLdsun function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraLdsun, vvd
+**
+**  This revision:  2013 October 2
+*/
+{
+   double p[3], e[3], em, p1[3];
+
+
+   p[0] = -0.763276255;
+   p[1] = -0.608633767;
+   p[2] = -0.216735543;
+   e[0] = -0.973644023;
+   e[1] = -0.20925523;
+   e[2] = -0.0907169552;
+   em = 0.999809214;
+
+   eraLdsun(p, e, em, p1);
+
+   vvd(p1[0], -0.7632762580731413169, 1e-12,
+               "eraLdsun", "1", status);
+   vvd(p1[1], -0.6086337635262647900, 1e-12,
+               "eraLdsun", "2", status);
+   vvd(p1[2], -0.2167355419322321302, 1e-12,
+               "eraLdsun", "3", status);
+
+}
+
 static void t_num00a(int *status)
 /*
 **  - - - - - - - - -
@@ -2951,11 +4618,11 @@ static void t_num00a(int *status)
 **  Test eraNum00a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraNum00a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rmatn[3][3];
@@ -2995,11 +4662,11 @@ static void t_num00b(int *status)
 **  Test eraNum00b function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraNum00b, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
     double rmatn[3][3];
@@ -3038,11 +4705,11 @@ static void t_num06a(int *status)
 **  Test eraNum06a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraNum06a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
     double rmatn[3][3];
@@ -3081,11 +4748,11 @@ static void t_numat(int *status)
 **  Test eraNumat function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraNumat, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double epsa, dpsi, deps, rmatn[3][3];
@@ -3129,11 +4796,11 @@ static void t_nut00a(int *status)
 **  Test eraNut00a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraNut00a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double dpsi, deps;
@@ -3157,11 +4824,11 @@ static void t_nut00b(int *status)
 **  Test eraNut00b function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraNut00b, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double dpsi, deps;
@@ -3185,11 +4852,11 @@ static void t_nut06a(int *status)
 **  Test eraNut06a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraNut06a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double dpsi, deps;
@@ -3213,11 +4880,11 @@ static void t_nut80(int *status)
 **  Test eraNut80 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraNut80, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double dpsi, deps;
@@ -3241,11 +4908,11 @@ static void t_nutm80(int *status)
 **  Test eraNutm80 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraNutm80, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double rmatn[3][3];
@@ -3285,11 +4952,11 @@ static void t_obl06(int *status)
 **  Test eraObl06 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraObl06, vvd
 **
-**  This revision:  2008 November 29
+**  This revision:  2013 August 7
 */
 {
    vvd(eraObl06(2400000.5, 54388.0), 0.4090749229387258204, 1e-14,
@@ -3305,11 +4972,11 @@ static void t_obl80(int *status)
 **  Test eraObl80 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraObl80, vvd
 **
-**  This revision:  2008 November 29
+**  This revision:  2013 August 7
 */
 {
    double eps0;
@@ -3330,11 +4997,11 @@ static void t_p06e(int *status)
 **  Test eraP06e function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraP06e, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
     double eps0, psia, oma, bpa, bqa, pia, bpia,
@@ -3389,11 +5056,11 @@ static void t_p2pv(int *status)
 **  Test eraP2pv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraP2pv, vvd
 **
-**  This revision:  2008 May 26
+**  This revision:  2013 August 7
 */
 {
    double p[3], pv[2][3];
@@ -3432,11 +5099,11 @@ static void t_p2s(int *status)
 **  Test eraP2s function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraP2s, vvd
 **
-**  This revision:  2008 November 29
+**  This revision:  2013 August 7
 */
 {
    double p[3], theta, phi, r;
@@ -3463,11 +5130,11 @@ static void t_pap(int *status)
 **  Test eraPap function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPap, vvd
 **
-**  This revision:  2008 May 25
+**  This revision:  2013 August 7
 */
 {
    double a[3], b[3], theta;
@@ -3496,11 +5163,11 @@ static void t_pas(int *status)
 **  Test eraPas function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPas, vvd
 **
-**  This revision:  2008 May 25
+**  This revision:  2013 August 7
 */
 {
    double al, ap, bl, bp, theta;
@@ -3526,11 +5193,11 @@ static void t_pb06(int *status)
 **  Test eraPb06 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPb06, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double bzeta, bz, btheta;
@@ -3556,11 +5223,11 @@ static void t_pdp(int *status)
 **  Test eraPdp function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPdp, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double a[3], b[3], adb;
@@ -3589,11 +5256,11 @@ static void t_pfw06(int *status)
 **  Test eraPfw06 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPfw06, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double gamb, phib, psib, epsa;
@@ -3621,11 +5288,11 @@ static void t_plan94(int *status)
 **  Test eraPlan94 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
-**  Called:  eraPlan94, VVD, VIV
+**  Called:  eraPlan94, vvd, viv
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 October 2
 */
 {
    double pv[2][3];
@@ -3695,11 +5362,11 @@ static void t_pmat00(int *status)
 **  Test eraPmat00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPmat00, vvd
 **
-**  This revision:  2008 November 29
+**  This revision:  2013 August 7
 */
 {
    double rbp[3][3];
@@ -3739,11 +5406,11 @@ static void t_pmat06(int *status)
 **  Test eraPmat06 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPmat06, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double rbp[3][3];
@@ -3783,11 +5450,11 @@ static void t_pmat76(int *status)
 **  Test eraPmat76 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPmat76, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rmatp[3][3];
@@ -3827,11 +5494,11 @@ static void t_pm(int *status)
 **  Test eraPm function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPm, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double p[3], r;
@@ -3856,11 +5523,11 @@ static void t_pmp(int *status)
 **  Test eraPmp function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPmp, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double a[3], b[3], amb[3];
@@ -3882,6 +5549,99 @@ static void t_pmp(int *status)
 
 }
 
+static void t_pmpx(int *status)
+/*
+**  - - - - - - -
+**   t _ p m p x
+**  - - - - - - -
+**
+**  Test eraPmpx function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraPmpx, vvd
+**
+**  This revision:  2013 October 2
+*/
+{
+   double rc, dc, pr, pd, px, rv, pmt, pob[3], pco[3];
+
+
+   rc = 1.234;
+   dc = 0.789;
+   pr = 1e-5;
+   pd = -2e-5;
+   px = 1e-2;
+   rv = 10.0;
+   pmt = 8.75;
+   pob[0] = 0.9;
+   pob[1] = 0.4;
+   pob[2] = 0.1;
+
+   eraPmpx(rc, dc, pr, pd, px, rv, pmt, pob, pco);
+
+   vvd(pco[0], 0.2328137623960308440, 1e-12,
+               "eraPmpx", "1", status);
+   vvd(pco[1], 0.6651097085397855317, 1e-12,
+               "eraPmpx", "2", status);
+   vvd(pco[2], 0.7095257765896359847, 1e-12,
+               "eraPmpx", "3", status);
+
+}
+
+static void t_pmsafe(int *status)
+/*
+**  - - - - - - - - -
+**   t _ p m s a f e
+**  - - - - - - - - -
+**
+**  Test eraPmsafe function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraPmsafe, vvd, viv
+**
+**  This revision:  2013 October 2
+*/
+{
+   int j;
+   double ra1, dec1, pmr1, pmd1, px1, rv1, ep1a, ep1b, ep2a, ep2b,
+          ra2, dec2, pmr2, pmd2, px2, rv2;
+
+
+   ra1 = 1.234;
+   dec1 = 0.789;
+   pmr1 = 1e-5;
+   pmd1 = -2e-5;
+   px1 = 1e-2;
+   rv1 = 10.0;
+   ep1a = 2400000.5;
+   ep1b = 48348.5625;
+   ep2a = 2400000.5;
+   ep2b = 51544.5;
+
+   j = eraPmsafe(ra1, dec1, pmr1, pmd1, px1, rv1,
+                 ep1a, ep1b, ep2a, ep2b,
+                 &ra2, &dec2, &pmr2, &pmd2, &px2, &rv2);
+
+   vvd(ra2, 1.234087484501017061, 1e-12,
+            "eraPmsafe", "ra2", status);
+   vvd(dec2, 0.7888249982450468574, 1e-12,
+            "eraPmsafe", "dec2", status);
+   vvd(pmr2, 0.9996457663586073988e-5, 1e-12,
+             "eraPmsafe", "pmr2", status);
+   vvd(pmd2, -0.2000040085106737816e-4, 1e-16,
+             "eraPmsafe", "pmd2", status);
+   vvd(px2, 0.9999997295356765185e-2, 1e-12,
+            "eraPmsafe", "px2", status);
+   vvd(rv2, 10.38468380113917014, 1e-10,
+            "eraPmsafe", "rv2", status);
+   viv ( j, 0, "eraPmsafe", "j", status);
+
+}
+
 static void t_pn(int *status)
 /*
 **  - - - - -
@@ -3891,11 +5651,11 @@ static void t_pn(int *status)
 **  Test eraPn function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPn, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double p[3], r, u[3];
@@ -3924,11 +5684,11 @@ static void t_pn00(int *status)
 **  Test eraPn00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPn00, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double dpsi, deps, epsa,
@@ -4059,11 +5819,11 @@ static void t_pn00a(int *status)
 **  Test eraPn00a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPn00a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double dpsi, deps, epsa,
@@ -4195,11 +5955,11 @@ static void t_pn00b(int *status)
 **  Test eraPn00b function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPn00b, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double dpsi, deps, epsa,
@@ -4331,11 +6091,11 @@ static void t_pn06a(int *status)
 **  Test eraPn06a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPn06a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double dpsi, deps, epsa;
@@ -4467,11 +6227,11 @@ static void t_pn06(int *status)
 **  Test eraPn06 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPn06, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double dpsi, deps, epsa,
@@ -4602,11 +6362,11 @@ static void t_pnm00a(int *status)
 **  Test eraPnm00a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPnm00a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rbpn[3][3];
@@ -4646,11 +6406,11 @@ static void t_pnm00b(int *status)
 **  Test eraPnm00b function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPnm00b, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rbpn[3][3];
@@ -4690,11 +6450,11 @@ static void t_pnm06a(int *status)
 **  Test eraPnm06a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPnm06a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rbpn[3][3];
@@ -4734,11 +6494,11 @@ static void t_pnm80(int *status)
 **  Test eraPnm80 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPnm80, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double rmatpn[3][3];
@@ -4778,11 +6538,11 @@ static void t_pom00(int *status)
 **  Test eraPom00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPom00, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double xp, yp, sp, rpom[3][3];
@@ -4826,11 +6586,11 @@ static void t_ppp(int *status)
 **  Test eraPpp function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPpp, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double a[3], b[3], apb[3];
@@ -4861,11 +6621,11 @@ static void t_ppsp(int *status)
 **  Test eraPpsp function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPpsp, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double a[3], s, b[3], apsb[3];
@@ -4898,11 +6658,11 @@ static void t_pr00(int *status)
 **  Test eraPr00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPr00, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double dpsipr, depspr;
@@ -4925,11 +6685,11 @@ static void t_prec76(int *status)
 **  Test eraPrec76 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPrec76, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double ep01, ep02, ep11, ep12, zeta, z, theta;
@@ -4960,11 +6720,11 @@ static void t_pv2p(int *status)
 **  Test eraPv2p function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPv2p, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double pv[2][3], p[3];
@@ -4995,11 +6755,11 @@ static void t_pv2s(int *status)
 **  Test eraPv2s function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPv2s, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double pv[2][3], theta, phi, r, td, pd, rd;
@@ -5033,11 +6793,11 @@ static void t_pvdpv(int *status)
 **  Test eraPvdpv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPvdpv, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double a[2][3], b[2][3], adb[2];
@@ -5075,11 +6835,11 @@ static void t_pvm(int *status)
 **  Test eraPvm function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPvm, vvd
 **
-**  This revision:  2008 May 25
+**  This revision:  2013 August 7
 */
 {
    double pv[2][3], r, s;
@@ -5109,11 +6869,11 @@ static void t_pvmpv(int *status)
 **  Test eraPvmpv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPvmpv, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double a[2][3], b[2][3], amb[2][3];
@@ -5156,11 +6916,11 @@ static void t_pvppv(int *status)
 **  Test eraPvppv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPvppv, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double a[2][3], b[2][3], apb[2][3];
@@ -5203,11 +6963,11 @@ static void t_pvstar(int *status)
 **  Test eraPvstar function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPvstar, vvd, viv
 **
-**  This revision:  2009 November 6
+**  This revision:  2013 August 7
 */
 {
    double pv[2][3], ra, dec, pmr, pmd, px, rv;
@@ -5235,6 +6995,50 @@ static void t_pvstar(int *status)
 
 }
 
+static void t_pvtob(int *status)
+/*
+**  - - - - - - - -
+**   t _ p v t o b
+**  - - - - - - - -
+**
+**  Test eraPvtob function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraPvtob, vvd
+**
+**  This revision:  2013 October 2
+*/
+{
+   double elong, phi, hm, xp, yp, sp, theta, pv[2][3];
+
+
+   elong = 2.0;
+   phi = 0.5;
+   hm = 3000.0;
+   xp = 1e-6;
+   yp = -0.5e-6;
+   sp = 1e-8;
+   theta = 5.0;
+
+   eraPvtob(elong, phi, hm, xp, yp, sp, theta, pv);
+
+   vvd(pv[0][0], 4225081.367071159207, 1e-5,
+                 "eraPvtob", "p(1)", status);
+   vvd(pv[0][1], 3681943.215856198144, 1e-5,
+                 "eraPvtob", "p(2)", status);
+   vvd(pv[0][2], 3041149.399241260785, 1e-5,
+                 "eraPvtob", "p(3)", status);
+   vvd(pv[1][0], -268.4915389365998787, 1e-9,
+                 "eraPvtob", "v(1)", status);
+   vvd(pv[1][1], 308.0977983288903123, 1e-9,
+                 "eraPvtob", "v(2)", status);
+   vvd(pv[1][2], 0, 0,
+                 "eraPvtob", "v(3)", status);
+
+}
+
 static void t_pvu(int *status)
 /*
 **  - - - - - -
@@ -5244,11 +7048,11 @@ static void t_pvu(int *status)
 **  Test eraPvu function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPvu, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double pv[2][3], upv[2][3];
@@ -5289,11 +7093,11 @@ static void t_pvup(int *status)
 **  Test eraPvup function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPvup, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double pv[2][3], p[3];
@@ -5324,11 +7128,11 @@ static void t_pvxpv(int *status)
 **  Test eraPvxpv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPvxpv, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double a[2][3], b[2][3], axb[2][3];
@@ -5371,11 +7175,11 @@ static void t_pxp(int *status)
 **  Test eraPxp function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraPxp, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double a[3], b[3], axb[3];
@@ -5397,6 +7201,39 @@ static void t_pxp(int *status)
 
 }
 
+static void t_refco(int *status)
+/*
+**  - - - - - - - -
+**   t _ r e f c o
+**  - - - - - - - -
+**
+**  Test eraRefco function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraRefco, vvd
+**
+**  This revision:  2013 October 2
+*/
+{
+   double phpa, tc, rh, wl, refa, refb;
+
+
+   phpa = 800.0;
+   tc = 10.0;
+   rh = 0.9;
+   wl = 0.4;
+
+   eraRefco(phpa, tc, rh, wl, &refa, &refb);
+
+   vvd(refa, 0.2264949956241415009e-3, 1e-15,
+             "eraRefco", "refa", status);
+   vvd(refb, -0.2598658261729343970e-6, 1e-18,
+             "eraRefco", "refb", status);
+
+}
+
 static void t_rm2v(int *status)
 /*
 **  - - - - - - -
@@ -5406,11 +7243,11 @@ static void t_rm2v(int *status)
 **  Test eraRm2v function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraRm2v, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double r[3][3], w[3];
@@ -5445,11 +7282,11 @@ static void t_rv2m(int *status)
 **  Test eraRv2m function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraRv2m, vvd
 **
-**  This revision:  2008 May 27
+**  This revision:  2013 August 7
 */
 {
    double w[3], r[3][3];
@@ -5484,11 +7321,11 @@ static void t_rx(int *status)
 **  Test eraRx function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraRx, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double phi, r[3][3];
@@ -5533,11 +7370,11 @@ static void t_rxp(int *status)
 **  Test eraRxp function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraRxp, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double r[3][3], p[3], rp[3];
@@ -5576,11 +7413,11 @@ static void t_rxpv(int *status)
 **  Test eraRxpv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraRxpv, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double r[3][3], pv[2][3], rpv[2][3];
@@ -5628,11 +7465,11 @@ static void t_rxr(int *status)
 **  Test eraRxr function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraRxr, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double a[3][3], b[3][3], atb[3][3];
@@ -5687,11 +7524,11 @@ static void t_ry(int *status)
 **  Test eraRy function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraRy, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double theta, r[3][3];
@@ -5736,11 +7573,11 @@ static void t_rz(int *status)
 **  Test eraRz function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraRz, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double psi, r[3][3];
@@ -5785,11 +7622,11 @@ static void t_s00a(int *status)
 **  Test eraS00a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraS00a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double s;
@@ -5810,11 +7647,11 @@ static void t_s00b(int *status)
 **  Test eraS00b function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraS00b, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double s;
@@ -5835,11 +7672,11 @@ static void t_s00(int *status)
 **  Test eraS00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraS00, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double x, y, s;
@@ -5863,11 +7700,11 @@ static void t_s06a(int *status)
 **  Test eraS06a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraS06a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double s;
@@ -5888,11 +7725,11 @@ static void t_s06(int *status)
 **  Test eraS06 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraS06, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double x, y, s;
@@ -5916,11 +7753,11 @@ static void t_s2c(int *status)
 **  Test eraS2c function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraS2c, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double c[3];
@@ -5943,11 +7780,11 @@ static void t_s2p(int *status)
 **  Test eraS2p function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraS2p, vvd
 **
-**  This revision:  2008 May 25
+**  This revision:  2013 August 7
 */
 {
    double p[3];
@@ -5970,11 +7807,11 @@ static void t_s2pv(int *status)
 **  Test eraS2pv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraS2pv, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double pv[2][3];
@@ -6004,11 +7841,11 @@ static void t_s2xpv(int *status)
 **  Test eraS2xpv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraS2xpv, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double s1, s2, pv[2][3], spv[2][3];
@@ -6046,11 +7883,11 @@ static void t_sepp(int *status)
 **  Test eraSepp function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraSepp, vvd
 **
-**  This revision:  2008 November 29
+**  This revision:  2013 August 7
 */
 {
    double a[3], b[3], s;
@@ -6079,11 +7916,11 @@ static void t_seps(int *status)
 **  Test eraSeps function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraSeps, vvd
 **
-**  This revision:  2008 May 22
+**  This revision:  2013 August 7
 */
 {
    double al, ap, bl, bp, s;
@@ -6110,11 +7947,11 @@ static void t_sp00(int *status)
 **  Test eraSp00 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraSp00, vvd
 **
-**  This revision:  2008 May 25
+**  This revision:  2013 August 7
 */
 {
    vvd(eraSp00(2400000.5, 52541.0),
@@ -6131,11 +7968,11 @@ static void t_starpm(int *status)
 **  Test eraStarpm function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraStarpm, vvd, viv
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double ra1, dec1, pmr1, pmd1, px1, rv1;
@@ -6180,11 +8017,11 @@ static void t_starpv(int *status)
 **  Test eraStarpv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraStarpv, vvd, viv
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double ra, dec, pmr, pmd, px, rv, pv[2][3];
@@ -6227,11 +8064,11 @@ static void t_sxp(int *status)
 **  Test eraSxp function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraSxp, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double s, p[3], sp[3];
@@ -6261,11 +8098,11 @@ static void t_sxpv(int *status)
 **  Test eraSxpv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraSxpv, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double s, pv[2][3], spv[2][3];
@@ -6302,11 +8139,11 @@ static void t_taitt(int *status)
 **  Test eraTaitt function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTaitt, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double t1, t2;
@@ -6330,11 +8167,11 @@ static void t_taiut1(int *status)
 **  Test eraTaiut1 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTaiut1, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double u1, u2;
@@ -6353,7 +8190,7 @@ static void t_taiutc(int *status)
 /*
 **  - - - - - - - - -
 **   t _ t a i u t c
-**  - - - - - - - - - - - -
+**  - - - - - - - - -
 **
 **  Test eraTaiutc function.
 **
@@ -6362,7 +8199,7 @@ static void t_taiutc(int *status)
 **
 **  Called:  eraTaiutc, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 October 3
 */
 {
    double u1, u2;
@@ -6386,11 +8223,11 @@ static void t_tcbtdb(int *status)
 **  Test eraTcbtdb function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTcbtdb, vvd, viv
 **
-**  This revision:  2010 September 6
+**  This revision:  2013 August 7
 */
 {
    double b1, b2;
@@ -6414,11 +8251,11 @@ static void t_tcgtt(int *status)
 **  Test eraTcgtt function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTcgtt, vvd, viv
 **
-**  This revision:  2010 September g
+**  This revision:  2013 August 7
 */
 {
    double t1, t2;
@@ -6442,11 +8279,11 @@ static void t_tdbtcb(int *status)
 **  Test eraTdbtcb function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTdbtcb, vvd, viv
 **
-**  This revision:  2010 September 6
+**  This revision:  2013 August 7
 */
 {
    double b1, b2;
@@ -6470,11 +8307,11 @@ static void t_tdbtt(int *status)
 **  Test eraTdbtt function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTdbtt, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double t1, t2;
@@ -6498,11 +8335,11 @@ static void t_tf2a(int *status)
 **  Test eraTf2a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTf2a, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double a;
@@ -6525,11 +8362,11 @@ static void t_tf2d(int *status)
 **  Test eraTf2d function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTf2d, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double d;
@@ -6552,11 +8389,11 @@ static void t_tr(int *status)
 **  Test eraTr function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTr, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double r[3][3], rt[3][3];
@@ -6599,11 +8436,11 @@ static void t_trxp(int *status)
 **  Test eraTrxp function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTrxp, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double r[3][3], p[3], trp[3];
@@ -6642,11 +8479,11 @@ static void t_trxpv(int *status)
 **  Test eraTrxpv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTrxpv, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double r[3][3], pv[2][3], trpv[2][3];
@@ -6693,11 +8530,11 @@ static void t_tttai(int *status)
 **  Test eraTttai function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTttai, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double a1, a2;
@@ -6721,11 +8558,11 @@ static void t_tttcg(int *status)
 **  Test eraTttcg function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTttcg, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double g1, g2;
@@ -6749,11 +8586,11 @@ static void t_tttdb(int *status)
 **  Test eraTttdb function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTttdb, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double b1, b2;
@@ -6777,11 +8614,11 @@ static void t_ttut1(int *status)
 **  Test eraTtut1 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraTtut1, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double u1, u2;
@@ -6805,11 +8642,11 @@ static void t_ut1tai(int *status)
 **  Test eraUt1tai function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraUt1tai, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double a1, a2;
@@ -6826,18 +8663,18 @@ static void t_ut1tai(int *status)
 
 static void t_ut1tt(int *status)
 /*
-**  - - - - - - - - - - -
+**  - - - - - - - -
 **   t _ u t 1 t t
-**  - - - - - - - - - - -
+**  - - - - - - - -
 **
 **  Test eraUt1tt function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraUt1tt, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 October 3
 */
 {
    double t1, t2;
@@ -6861,11 +8698,11 @@ static void t_ut1utc(int *status)
 **  Test eraUt1utc function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraUt1utc, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double u1, u2;
@@ -6889,11 +8726,11 @@ static void t_utctai(int *status)
 **  Test eraUtctai function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraUtctai, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double u1, u2;
@@ -6917,11 +8754,11 @@ static void t_utcut1(int *status)
 **  Test eraUtcut1 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraUtcut1, vvd, viv
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 August 7
 */
 {
    double u1, u2;
@@ -6945,11 +8782,11 @@ static void t_xy06(int *status)
 **  Test eraXy06 function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraXy06, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double x, y;
@@ -6971,11 +8808,11 @@ static void t_xys00a(int *status)
 **  Test eraXys00a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraXys00a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double x, y, s;
@@ -6998,11 +8835,11 @@ static void t_xys00b(int *status)
 **  Test eraXys00b function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraXys00b, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double x, y, s;
@@ -7025,11 +8862,11 @@ static void t_xys06a(int *status)
 **  Test eraXys06a function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraXys06a, vvd
 **
-**  This revision:  2008 November 28
+**  This revision:  2013 August 7
 */
 {
    double x, y, s;
@@ -7052,11 +8889,11 @@ static void t_zp(int *status)
 **  Test eraZp function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraZp, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double p[3];
@@ -7083,11 +8920,11 @@ static void t_zpv(int *status)
 **  Test eraZpv function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraZpv, vvd
 **
-**  This revision:  2008 May 25
+**  This revision:  2013 August 7
 */
 {
    double pv[2][3];
@@ -7122,11 +8959,11 @@ static void t_zr(int *status)
 **  Test eraZr function.
 **
 **  Returned:
-**     status    int         TRUE = success, FALSE = fail
+**     status    int         FALSE = success, TRUE = fail
 **
 **  Called:  eraZr, vvd
 **
-**  This revision:  2008 November 30
+**  This revision:  2013 August 7
 */
 {
    double r[3][3];
@@ -7166,7 +9003,7 @@ int main(int argc, char *argv[])
 **   m a i n
 **  - - - - -
 **
-**  This revision:  2010 September 7
+**  This revision:  2013 October 3
 */
 {
    int status;
@@ -7184,9 +9021,35 @@ int main(int argc, char *argv[])
 /* Test all of the ERFA functions. */
    t_a2af(&status);
    t_a2tf(&status);
+   t_ab(&status);
    t_af2a(&status);
    t_anp(&status);
    t_anpm(&status);
+   t_apcg(&status);
+   t_apcg13(&status);
+   t_apci(&status);
+   t_apci13(&status);
+   t_apco(&status);
+   t_apco13(&status);
+   t_apcs(&status);
+   t_apcs13(&status);
+   t_aper(&status);
+   t_aper13(&status);
+   t_apio(&status);
+   t_apio13(&status);
+   t_atci13(&status);
+   t_atciq(&status);
+   t_atciqn(&status);
+   t_atciqz(&status);
+   t_atco13(&status);
+   t_atic13(&status);
+   t_aticq(&status);
+   t_aticqn(&status);
+   t_atio13(&status);
+   t_atioq(&status);
+   t_atoc13(&status);
+   t_atoi13(&status);
+   t_atoiq(&status);
    t_bi00(&status);
    t_bp00(&status);
    t_bp06(&status);
@@ -7265,6 +9128,9 @@ int main(int argc, char *argv[])
    t_ir(&status);
    t_jd2cal(&status);
    t_jdcalf(&status);
+   t_ld(&status);
+   t_ldn(&status);
+   t_ldsun(&status);
    t_num00a(&status);
    t_num00b(&status);
    t_num06a(&status);
@@ -7290,6 +9156,8 @@ int main(int argc, char *argv[])
    t_pmat76(&status);
    t_pm(&status);
    t_pmp(&status);
+   t_pmpx(&status);
+   t_pmsafe(&status);
    t_pn(&status);
    t_pn00(&status);
    t_pn00a(&status);
@@ -7312,10 +9180,12 @@ int main(int argc, char *argv[])
    t_pvmpv(&status);
    t_pvppv(&status);
    t_pvstar(&status);
+   t_pvtob(&status);
    t_pvu(&status);
    t_pvup(&status);
    t_pvxpv(&status);
    t_pxp(&status);
+   t_refco(&status);
    t_rm2v(&status);
    t_rv2m(&status);
    t_rx(&status);
@@ -7380,7 +9250,7 @@ int main(int argc, char *argv[])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

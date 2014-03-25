@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraXy06(double date1, double date2, double *x, double *y)
 /*
@@ -85,13 +85,13 @@ void eraXy06(double date1, double date2, double *x, double *y)
 **
 **     Wallace, P.T. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
 
 /* Maximum power of T in the polynomials for X and Y */
-#define MAXPT (5)
+   enum { MAXPT = 5 };
 
 /* Polynomial coefficients (arcsec, X then Y). */
    static const double xyp[2][MAXPT+1] = {
@@ -2706,7 +2706,7 @@ void eraXy06(double date1, double date2, double *x, double *y)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

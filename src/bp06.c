@@ -1,4 +1,4 @@
-#include "erfam.h"
+#include "erfa.h"
 
 void eraBp06(double date1, double date2,
              double rb[3][3], double rp[3][3], double rbp[3][3])
@@ -47,12 +47,16 @@ void eraBp06(double date1, double date2,
 **  4) The matrix rbp transforms vectors from GCRS to mean of date by
 **     applying frame bias then precession.  It is the product rp x rb.
 **
+**  5) It is permissible to re-use the same array in the returned
+**     arguments.  The arrays are filled in the order given.
+**
 **  Called:
 **     eraPfw06     bias-precession F-W angles, IAU 2006
 **     eraFw2m      F-W angles to r-matrix
 **     eraPmat06    PB matrix, IAU 2006
 **     eraTr        transpose r-matrix
 **     eraRxr       product of two r-matrices
+**     eraCr        copy r-matrix
 **
 **  References:
 **
@@ -60,23 +64,26 @@ void eraBp06(double date1, double date2,
 **
 **     Wallace, P.T. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
 **
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
-   double gamb, phib, psib, epsa, rbt[3][3];
+   double gamb, phib, psib, epsa, rbpw[3][3], rbt[3][3];
 
 
 /* B matrix. */
    eraPfw06(ERFA_DJM0, ERFA_DJM00, &gamb, &phib, &psib, &epsa);
    eraFw2m(gamb, phib, psib, epsa, rb);
 
-/* PxB matrix. */
-   eraPmat06(date1, date2, rbp);
+/* PxB matrix (temporary). */
+   eraPmat06(date1, date2, rbpw);
 
 /* P matrix. */
    eraTr(rb, rbt);
-   eraRxr(rbp, rbt, rp);
+   eraRxr(rbpw, rbt, rp);
+
+/* PxB matrix. */
+   eraCr(rbpw, rbp);
 
    return;
 
@@ -84,7 +91,7 @@ void eraBp06(double date1, double date2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013, NumFOCUS Foundation.
+**  Copyright (C) 2013-2014, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International
