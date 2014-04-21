@@ -1,4 +1,3 @@
-
 Instructions for releasing ERFA
 ===============================
 
@@ -77,7 +76,7 @@ The first is the
 For more on this choice, see 
 `liberfa/erfa#6 <https://github.com/liberfa/erfa/issues/6>`_.
 
-The second number is `shared libray version info`. When a program has been 
+The second number is `shared library version info`. When a program has been 
 linked with the ERFA shared library, the dynamic linker checks the version
 info of the library requested by the program with those of the libraries 
 present if the system. This version info is important to binary distributions
@@ -113,7 +112,7 @@ If the version is given in the form MAJOR.MINOR.PATCH, then
 
 Change the version number in the `AC_INIT` macro and in `README.rst`
 
-Shared libray version info
+Shared library version info
 ---------------------------
 
 For the shared  library version info, we are only interested in a subset of
