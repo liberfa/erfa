@@ -51,7 +51,7 @@ void eraApco(double date1, double date2,
              eraASTROM *astrom);
 int eraApco13(double utc1, double utc2, double dut1,
               double elong, double phi, double hm, double xp, double yp,
-              double phpa, double tk, double rh, double wl,
+              double phpa, double tc, double rh, double wl,
               eraASTROM *astrom, double *eo);
 void eraApcs(double date1, double date2, double pv[2][3],
              double ebpv[2][3], double ehp[3],
@@ -66,7 +66,7 @@ void eraApio(double sp, double theta,
              eraASTROM *astrom);
 int eraApio13(double utc1, double utc2, double dut1,
               double elong, double phi, double hm, double xp, double yp,
-              double phpa, double tk, double rh, double wl,
+              double phpa, double tc, double rh, double wl,
               eraASTROM *astrom);
 void eraAtci13(double rc, double dc,
                double pr, double pd, double px, double rv,
@@ -84,7 +84,7 @@ int eraAtco13(double rc, double dc,
               double pr, double pd, double px, double rv,
               double utc1, double utc2, double dut1,
               double elong, double phi, double hm, double xp, double yp,
-              double phpa, double tk, double rh, double wl,
+              double phpa, double tc, double rh, double wl,
               double *aob, double *zob, double *hob,
               double *dob, double *rob, double *eo);
 void eraAtic13(double ri, double di,
@@ -97,7 +97,7 @@ void eraAticqn(double ri, double di, eraASTROM *astrom,
 int eraAtio13(double ri, double di,
               double utc1, double utc2, double dut1,
               double elong, double phi, double hm, double xp, double yp,
-              double phpa, double tk, double rh, double wl,
+              double phpa, double tc, double rh, double wl,
               double *aob, double *zob, double *hob,
               double *dob, double *rob);
 void eraAtioq(double ri, double di, eraASTROM *astrom,
@@ -106,12 +106,12 @@ void eraAtioq(double ri, double di, eraASTROM *astrom,
 int eraAtoc13(const char *type, double ob1, double ob2,
               double utc1, double utc2, double dut1,
               double elong, double phi, double hm, double xp, double yp,
-              double phpa, double tk, double rh, double wl,
+              double phpa, double tc, double rh, double wl,
               double *rc, double *dc);
 int eraAtoi13(const char *type, double ob1, double ob2,
               double utc1, double utc2, double dut1,
               double elong, double phi, double hm, double xp, double yp,
-              double phpa, double tk, double rh, double wl,
+              double phpa, double tc, double rh, double wl,
               double *ri, double *di);
 void eraAtoiq(const char *type,
               double ob1, double ob2, eraASTROM *astrom,
@@ -132,7 +132,7 @@ int eraPmsafe(double ra1, double dec1, double pmr1, double pmd1,
 void eraPvtob(double elong, double phi, double hm,
               double xp, double yp, double sp, double theta,
               double pv[2][3]);
-void eraRefco(double phpa, double tk, double rh, double wl,
+void eraRefco(double phpa, double tc, double rh, double wl,
               double *refa, double *refb);
 
 /* Astronomy/Ephemerides */
