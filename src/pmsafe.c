@@ -136,7 +136,7 @@ int eraPmsafe(double ra1, double dec1, double pmr1, double pmd1,
                  ra2, dec2, pmr2, pmd2, px2, rv2);
 
 /* Revise and return the status. */
-   if (! j%2) j += jpx;
+   if ( !(j%2) ) j += jpx;
    return j;
 
 /* Finished. */
