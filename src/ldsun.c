@@ -6,15 +6,15 @@ void eraLdsun(double p[3], double e[3], double em, double p1[3])
 **   e r a L d s u n
 **  - - - - - - - - -
 **
-**  Light deflection by the Sun.
+**  Deflection of starlight by the Sun.
 **
 **  Given:
-**     p      double[3]  direction from observer to source (unit vector)
+**     p      double[3]  direction from observer to star (unit vector)
 **     e      double[3]  direction from Sun to observer (unit vector)
 **     em     double     distance from Sun to observer (au)
 **
 **  Returned:
-**     p1     double[3]  observer to deflected source (unit vector)
+**     p1     double[3]  observer to deflected star (unit vector)
 **
 **  Notes:
 **

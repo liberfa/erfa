@@ -122,16 +122,13 @@ void eraLdn(int n, eraLDBODY b[], double ob[3], double sc[3],
             double sn[3]);
 void eraLdsun(double p[3], double e[3], double em, double p1[3]);
 void eraPmpx(double rc, double dc, double pr, double pd,
-             double px, double rv, double pmt, double vob[3],
+             double px, double rv, double pmt, double pob[3],
              double pco[3]);
 int eraPmsafe(double ra1, double dec1, double pmr1, double pmd1,
               double px1, double rv1,
               double ep1a, double ep1b, double ep2a, double ep2b,
               double *ra2, double *dec2, double *pmr2, double *pmd2,
               double *px2, double *rv2);
-void eraPvtob(double elong, double phi, double hm,
-              double xp, double yp, double sp, double theta,
-              double pv[2][3]);
 void eraRefco(double phpa, double tc, double rh, double wl,
               double *refa, double *refb);
 
@@ -242,8 +239,10 @@ void eraPnm00b(double date1, double date2, double rbpn[3][3]);
 void eraPnm06a(double date1, double date2, double rnpb[3][3]);
 void eraPnm80(double date1, double date2, double rmatpn[3][3]);
 void eraPom00(double xp, double yp, double sp, double rpom[3][3]);
-void eraPr00(double date1, double date2, double *dpsipr, double *depspr);
-void eraPrec76(double ep01, double ep02, double ep11, double ep12,
+void eraPr00(double date1, double date2,
+             double *dpsipr, double *depspr);
+void eraPrec76(double date01, double date02,
+               double date11, double date12,
                double *zeta, double *z, double *theta);
 double eraS00(double date1, double date2, double x, double y);
 double eraS00a(double date1, double date2);
@@ -439,7 +438,7 @@ void eraSxpv(double s, double pv[2][3], double spv[2][3]);
 
 #endif
 
-
+/* Copyright2 */
 /*----------------------------------------------------------------------
 **  
 **  
