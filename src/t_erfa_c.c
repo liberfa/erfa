@@ -17,7 +17,7 @@ static int verbose = 0;
 **
 **  All messages go to stdout.
 **
-**  This revision:  2013 November 7
+**  This revision:  2015 January 30
 **
 */
 
@@ -2902,7 +2902,7 @@ static void t_dat(int *status)
 **
 **  Called:  eraDat, vvd, viv
 **
-**  This revision:  2013 August 7
+**  This revision:  2015 January 30
 */
 {
    int j;
@@ -2918,6 +2918,11 @@ static void t_dat(int *status)
 
    vvd(deltat, 33.0, 0.0, "eraDat", "d2", status);
    viv(j, 0, "eraDat", "j2", status);
+
+   j = eraDat(2015, 9, 1, 0.0, &deltat);
+
+   vvd(deltat, 36.0, 0.0, "eraDat", "d3", status);
+   viv(j, 0, "eraDat", "j3", status);
 
 }
 
@@ -3900,6 +3905,32 @@ static void t_fw2xy(int *status)
 
 }
 
+static void t_g2icrs(int *status)
+/*
+**  - - - - - - - - -
+**   t _ g 2 i c r s
+**  - - - - - - - - -
+**
+**  Test eraG2icrs function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraG2icrs, vvd
+**
+**  This revision:  2015 January 30
+*/
+{
+   double dl, db, dr, dd;
+
+
+   dl =  5.5850536063818546461558105;
+   db = -0.7853981633974483096156608;
+   eraG2icrs (dl, db, &dr, &dd);
+   vvd(dr,  5.9338074302227188048671, 1e-14, "eraG2icrs", "R", status);
+   vvd(dd, -1.1784870613579944551541, 1e-14, "eraG2icrs", "D", status);
+ }
+
 static void t_gc2gd(int *status)
 /*
 **  - - - - - - - -
@@ -4269,6 +4300,31 @@ static void t_gst94(int *status)
    vvd(theta, 1.754166136020645203, 1e-12, "eraGst94", "", status);
 
 }
+
+static void t_icrs2g(int *status)
+/*
+**  - - - - - - - - -
+**   t _ i c r s 2 g
+**  - - - - - - - - -
+**
+**  Test eraIcrs2g function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraIcrs2g, vvd
+**
+**  This revision:  2015 January 30
+*/
+{
+   double dr, dd, dl, db;
+
+   dr =  5.9338074302227188048671087;
+   dd = -1.1784870613579944551540570;
+   eraIcrs2g (dr, dd, &dl, &db);
+   vvd(dl,  5.5850536063818546461558, 1e-14, "eraIcrs2g", "L", status);
+   vvd(db, -0.7853981633974483096157, 1e-14, "eraIcrs2g", "B", status);
+ }
 
 static void t_h2fk5(int *status)
 /*
@@ -9111,6 +9167,7 @@ int main(int argc, char *argv[])
    t_fk5hz(&status);
    t_fw2m(&status);
    t_fw2xy(&status);
+   t_g2icrs(&status);
    t_gc2gd(&status);
    t_gc2gde(&status);
    t_gd2gc(&status);
@@ -9125,6 +9182,7 @@ int main(int argc, char *argv[])
    t_gst94(&status);
    t_h2fk5(&status);
    t_hfk5z(&status);
+   t_icrs2g(&status);
    t_ir(&status);
    t_jd2cal(&status);
    t_jdcalf(&status);
@@ -9250,7 +9308,7 @@ int main(int argc, char *argv[])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2014, NumFOCUS Foundation.
+**  Copyright (C) 2013-2015, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

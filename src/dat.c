@@ -36,7 +36,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
 **     :  even if no leap seconds have been       :
 **     :  added.                                  :
 **     :                                          :
-**     :  Latest leap second:  2012 June 30       :
+**     :  Latest leap second:  2015 June 30       :
 **     :                                          :
 **     :__________________________________________:
 **
@@ -115,12 +115,12 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
 **  Called:
 **     eraCal2jd    Gregorian calendar to JD
 **
-**  Copyright (C) 2013-2014, NumFOCUS Foundation.
+**  Copyright (C) 2013-2015, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
 /* Release year for this version of eraDat */
-   enum { IYV = 2014};
+   enum { IYV = 2015};
 
 /* Reference dates (MJD) and drift rates (s/day), pre leap seconds */
    static const double drift[][2] = {
@@ -187,11 +187,12 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
       { 1999,  1, 32.0       },
       { 2006,  1, 33.0       },
       { 2009,  1, 34.0       },
-      { 2012,  7, 35.0       }
+      { 2012,  7, 35.0       },
+      { 2015,  7, 36.0       }
    };
 
 /* Number of Delta(AT) changes */
-   enum { NDAT = (int) (sizeof changes / sizeof changes[0]) };
+   const int NDAT = sizeof changes / sizeof changes[0];
 
 /* Miscellaneous local variables */
    int j, i, m;
@@ -228,7 +229,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
    if (i < 0) return -5;
 
 /* Get the Delta(AT). */
-   da = changes[(i < 0) ? 0 : i].delat;
+   da = changes[i].delat;
 
 /* If pre-1972, adjust for drift. */
    if (i < NERA1) da += (djm + fd - drift[i][0]) * drift[i][1];
@@ -243,7 +244,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2014, NumFOCUS Foundation.
+**  Copyright (C) 2013-2015, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International
