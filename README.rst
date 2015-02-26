@@ -34,7 +34,7 @@ Bugfixes
 ERFA includes smaller changes that may or may not eventually make it into SOFA,
 addressing localized bugs or similar smaller issues:
 
-* `Issue #14 <https://github.com/liberfa/erfa/pull/14>`_: Check for possible buffer underrun in ``dat.c``
+* None
 
 Building and installing ERFA
 ----------------------------
