@@ -57,7 +57,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
 **                      -2 = bad month
 **                      -3 = bad day (Note 3)
 **                      -4 = bad fraction (Note 4)
-**                      -5 = internal error
+**                      -5 = internal error (Note 5)
 **
 **  Notes:
 **
@@ -192,7 +192,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
    };
 
 /* Number of Delta(AT) changes */
-   const int NDAT = sizeof changes / sizeof changes[0];
+   enum { NDAT = (int) (sizeof changes / sizeof changes[0]) };
 
 /* Miscellaneous local variables */
    int j, i, m;
