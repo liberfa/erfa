@@ -10,9 +10,9 @@ dtf2d.c ee00a.c ee00b.c ee00.c ee06a.c eect00.c eform.c eo06a.c \
 eors.c epb2jd.c epb.c epj2jd.c epj.c epv00.c eqeq94.c era00.c \
 fad03.c fae03.c faf03.c faju03.c fal03.c falp03.c fama03.c \
 fame03.c fane03.c faom03.c fapa03.c fasa03.c faur03.c fave03.c \
-fk52h.c fk5hip.c fk5hz.c fw2m.c fw2xy.c gc2gd.c gc2gde.c gd2gc.c \
+fk52h.c fk5hip.c fk5hz.c fw2m.c fw2xy.c g2icrs.c gc2gd.c gc2gde.c gd2gc.c \
 gd2gce.c gmst00.c gmst06.c gmst82.c gst00a.c gst00b.c gst06a.c \
-gst06.c gst94.c h2fk5.c hfk5z.c ir.c jd2cal.c jdcalf.c ld.c \
+gst06.c gst94.c h2fk5.c hfk5z.c icrs2g.c ir.c jd2cal.c jdcalf.c ld.c \
 ldn.c ldsun.c num00a.c num00b.c num06a.c numat.c nut00a.c nut00b.c \
 nut06a.c nut80.c nutm80.c obl06.c obl80.c p06e.c p2pv.c p2s.c pap.c \
 pas.c pb06.c pdp.c pfw06.c plan94.c pmat00.c pmat06.c pmat76.c \
