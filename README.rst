@@ -34,7 +34,9 @@ Bugfixes
 ERFA includes smaller changes that may or may not eventually make it into SOFA,
 addressing localized bugs or similar smaller issues:
 
-* None
+* Fixes a possible compiler warning in eraDat. This fix was in SOFA
+  issue 2013-02-02d but inadvertently dropped from SOFA issue 2015-02-09.
+  ERFA retains the fix, which will be included in a future SOFA release.
 
 Building and installing ERFA
 ----------------------------
