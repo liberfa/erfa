@@ -13,7 +13,7 @@ in this source distribution.
 Differences from SOFA
 ---------------------
 
-This version of ERFA (v1.1.1) is based on SOFA version "20150209", with the
+This version of ERFA (v1.2.0) is based on SOFA version "20150209_a", with the
 differences outlined below.
 
 ERFA branding
@@ -34,9 +34,7 @@ Bugfixes
 ERFA includes smaller changes that may or may not eventually make it into SOFA,
 addressing localized bugs or similar smaller issues:
 
-* Fixes a possible compiler warning in eraDat. This fix was in SOFA
-  issue 2013-02-02d but inadvertently dropped from SOFA issue 2015-02-09.
-  ERFA retains the fix, which will be included in a future SOFA release.
+* Currently no bugfixe changes relative to SOFA.
 
 Building and installing ERFA
 ----------------------------
