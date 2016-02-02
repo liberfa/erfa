@@ -34,7 +34,7 @@ Bugfixes
 ERFA includes smaller changes that may or may not eventually make it into SOFA,
 addressing localized bugs or similar smaller issues:
 
-* Currently no bugfixe changes relative to SOFA.
+* A typo has been corrected in the documentation of atco13 (see https://github.com/liberfa/erfa/issues/29).
 
 Building and installing ERFA
 ----------------------------
