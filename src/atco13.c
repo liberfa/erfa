@@ -149,7 +149,7 @@ int eraAtco13(double rc, double dc,
 **  Called:
 **     eraApco13    astrometry parameters, ICRS-observed, 2013
 **     eraAtciq     quick ICRS to CIRS
-**     eraAtioq     quick ICRS to observed
+**     eraAtioq     quick CIRS to observed
 **
 **  Copyright (C) 2013-2015, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
