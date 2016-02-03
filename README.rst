@@ -36,8 +36,8 @@ addressing localized bugs or similar smaller issues:
 
 * Typos have been corrected in the documentation of atco13 and atio13 (see https://github.com/liberfa/erfa/issues/29).
 
-Note: Issues identified in ERFA should always be reported upstream to SOFA
-at sofa@ukho.gov.uk.
+
+Note that issues identified in ERFA should generally also be reported upstream to SOFA at sofa@ukho.gov.uk.
 
 Building and installing ERFA
 ----------------------------
