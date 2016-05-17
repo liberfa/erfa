@@ -11,7 +11,7 @@ Instructions for releasing ERFA
 * If a new version of SOFA exists, run `sofa_deriver.py` from the `erfa-fetch
   repository`_ in its own directory.  That will create a directory called `erfa`
   inside the `erfa-fetch` directory, and   you should copy its contents to the 
-  `src` directory of `erfa`.  Use ``git diff`` in `erfa` to inspect the changes, 
+  `src` directory of `erfa`.  Add any new C files or header files added by SOFA to ``src/Makefile.am``, as appropriate. Use ``git diff`` in `erfa` to inspect the changes, 
   and then commit and push them to github.
 
 * Update the version number in the `AC_INIT` macro of `configure.ac` to
