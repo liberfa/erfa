@@ -17,7 +17,7 @@ static int verbose = 0;
 **
 **  All messages go to stdout.
 **
-**  This revision:  2016 April 21
+**  This revision:  2016 July 11
 **
 */
 
@@ -2902,7 +2902,7 @@ static void t_dat(int *status)
 **
 **  Called:  eraDat, vvd, viv
 **
-**  This revision:  2015 January 30
+**  This revision:  2016 July 11
 */
 {
    int j;
@@ -2919,9 +2919,9 @@ static void t_dat(int *status)
    vvd(deltat, 33.0, 0.0, "eraDat", "d2", status);
    viv(j, 0, "eraDat", "j2", status);
 
-   j = eraDat(2015, 9, 1, 0.0, &deltat);
+   j = eraDat(2017, 9, 1, 0.0, &deltat);
 
-   vvd(deltat, 36.0, 0.0, "eraDat", "d3", status);
+   vvd(deltat, 37.0, 0.0, "eraDat", "d3", status);
    viv(j, 0, "eraDat", "j3", status);
 
 }

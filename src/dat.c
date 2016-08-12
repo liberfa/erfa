@@ -36,7 +36,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
 **     :  even if no leap seconds have been       :
 **     :  added.                                  :
 **     :                                          :
-**     :  Latest leap second:  2015 June 30       :
+**     :  Latest leap second:  2016 December 31   :
 **     :                                          :
 **     :__________________________________________:
 **
@@ -120,7 +120,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
 */
 {
 /* Release year for this version of eraDat */
-   enum { IYV = 2015};
+   enum { IYV = 2016};
 
 /* Reference dates (MJD) and drift rates (s/day), pre leap seconds */
    static const double drift[][2] = {
@@ -188,7 +188,8 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
       { 2006,  1, 33.0       },
       { 2009,  1, 34.0       },
       { 2012,  7, 35.0       },
-      { 2015,  7, 36.0       }
+      { 2015,  7, 36.0       },
+      { 2017,  1, 37.0       }
    };
 
 /* Number of Delta(AT) changes */
