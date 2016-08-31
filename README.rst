@@ -34,13 +34,9 @@ Bugfixes
 ERFA includes smaller changes that may or may not eventually make it into SOFA,
 addressing localized bugs or similar smaller issues:
 
-* ERFA 1.4.0 and SOFA "20160503_a"
+* ERFA 1.3.0 and SOFA "20160503_a"
 
-  + There are no differences between ERFA 1.4.0 and SOFA "20160503_a".
-
-* ERFA 1.3.0 and SOFA "20160503"
-
-  + There are no differences between ERFA 1.3.0 and SOFA "20160503".
+  + There are no differences between ERFA 1.3.0 and SOFA "20160503_a".
 
 * ERFA 1.2.0 and SOFA "20150209_a"
 
