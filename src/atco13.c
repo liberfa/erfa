@@ -151,13 +151,14 @@ int eraAtco13(double rc, double dc,
 **     eraAtciq     quick ICRS to CIRS
 **     eraAtioq     quick CIRS to observed
 **
-**  Copyright (C) 2013-2015, NumFOCUS Foundation.
+**  Copyright (C) 2013-2016, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
    int j;
    eraASTROM astrom;
    double ri, di;
+
 
 /* Star-independent astrometry parameters. */
    j = eraApco13(utc1, utc2, dut1, elong, phi, hm, xp, yp,
@@ -181,7 +182,7 @@ int eraAtco13(double rc, double dc,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2015, NumFOCUS Foundation.
+**  Copyright (C) 2013-2016, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

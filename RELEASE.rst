@@ -11,8 +11,9 @@ Instructions for releasing ERFA
 * If a new version of SOFA exists, run `sofa_deriver.py` from the `erfa-fetch
   repository`_ in its own directory.  That will create a directory called `erfa`
   inside the `erfa-fetch` directory, and   you should copy its contents to the 
-  `src` directory of `erfa`.  Use ``git diff`` in `erfa` to inspect the changes, 
-  and then commit and push them to github.
+  `src` directory of `erfa`.  Add any new C files or header files added by SOFA 
+  to ``src/Makefile.am``, as appropriate. Use ``git diff`` in `erfa` to inspect 
+  the changes, and then commit and push them to github.
 
 * Update the version number in the `AC_INIT` macro of `configure.ac` to
   the version number you are about to release, and also update the version 
@@ -40,7 +41,8 @@ Instructions for releasing ERFA
   The resulting tarball will be named e.g., `erfa-0.0.1.tar.gz` and
   will be placed in the working directory.
 
-* Tag the current commit with the version number.  A signed tag is preferred if you have an a signing key (e.g., do ``git tag -s v0.0.1``).  
+* Tag the current commit with the version number.  A signed tag is preferred if 
+  you have an a signing key (e.g., do ``git tag -s v0.0.1``).  
 
 * Push up your changes and the new tag to github: 
   ``git push --tags origin master``. (The command here assumes the git remote
@@ -51,9 +53,9 @@ Instructions for releasing ERFA
   "releases" button, and then the release corresponding to the tag you just 
   made. 
 
-* Click on the "Draft release notes or downloads" button (or it might be "Edit release").  Put the version number as
-  the title (e.g., ``v0.0.1``)and for the description put 
-  ``See `README.rst` for release notes.``
+* Click on the "Draft release notes or downloads" button (or it might be 
+  "Edit release").  Put the version number as the title (e.g., ``v0.0.1``)and 
+  for the description put ``See `README.rst` for release notes.``
 
 * Upload the tarball you created (e.g., `erfa-0.0.1.tar.gz`) by dropping it
   in the area that says "Attach binaries for this release  by dropping them 
@@ -127,8 +129,9 @@ Again, the release manager has to review the relevant information:
   * upstream SOFA documentation in http://www.iausofa.org/current_changes.html
   * relevant bug reports in the github project page
 
-The shared library version info is stored in three numbers called *current*, *revision* and *age*. These numbers appear in the macro `ERFA_LIB_VERSION_INFO` in
-the mentioned order.
+The shared library version info is stored in three numbers called *current*, 
+*revision* and *age*. These numbers appear in the macro `ERFA_LIB_VERSION_INFO` 
+in the mentioned order.
 
 If the version is given in the form CURRENT,REVISION,AGE then
 
