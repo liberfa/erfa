@@ -180,7 +180,8 @@ int eraStarpv(double ra, double dec,
    betr = betsr;
    for (i = 0; i < IMAX; i++) {
       d = 1.0 + betr;
-      del = sqrt(1.0 - betr*betr - bett*bett) - 1.0;
+      del = -(betr*betr + bett*bett);
+      del /= sqrt(1.0 + del) + 1.0;
       betr = d * betsr + del;
       bett = d * betst;
       if (i > 0) {
