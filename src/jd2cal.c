@@ -81,7 +81,7 @@ int eraJd2cal(double dj1, double dj2,
    f2 = fmod(d2, 1.0);
    f = fmod(f1 + f2, 1.0);
    if (f < 0.0) f += 1.0;
-   d = floor(d1 - f1) + floor(d2 - f2) + floor(f1 + f2 - f);
+   d = floor(d1 - f1 + 0.5) + floor(d2 - f2 + 0.5) + floor(f1 + f2 - f + 0.5);
    jd = (long) floor(d) + 1L;
 
 /* Express day in Gregorian calendar. */
