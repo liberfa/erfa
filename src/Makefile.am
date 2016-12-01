@@ -26,7 +26,8 @@ s06a.c s06.c s2c.c s2p.c s2pv.c s2xpv.c sepp.c seps.c sp00.c \
 starpm.c starpv.c sxp.c sxpv.c taitt.c taiut1.c taiutc.c tcbtdb.c \
 tcgtt.c tdbtcb.c tdbtt.c tf2a.c tf2d.c tr.c trxp.c trxpv.c tttai.c \
 tttcg.c tttdb.c ttut1.c ut1tai.c ut1tt.c ut1utc.c utctai.c utcut1.c \
-xy06.c xys00a.c xys00b.c xys06a.c zp.c zpv.c zr.c
+xy06.c xys00a.c xys00b.c xys06a.c zp.c zpv.c zr.c \
+erfaversion.c
 
 include_HEADERS = erfa.h erfam.h
 
