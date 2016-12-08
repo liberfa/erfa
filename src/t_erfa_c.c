@@ -3850,7 +3850,7 @@ static void t_fk52h(int *status)
        "eraFk52h", "dd5", status);
    vvd(pxh,  0.37921, 1e-14,
        "eraFk52h", "px", status);
-   vvd(rvh, -7.6000000940000254, 1e-11,
+   vvd(rvh, -7.6000000939851349, 1e-11,
        "eraFk52h", "rv", status);
 
 }
