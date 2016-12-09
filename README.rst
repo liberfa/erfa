@@ -44,6 +44,9 @@ addressing localized bugs or similar smaller issues:
 
 Note that issues identified in ERFA should generally also be reported upstream to SOFA at sofa@ukho.gov.uk.
 
+Note: Issues identified in ERFA should always be reported upstream to SOFA
+at sofa@ukho.gov.uk.
+
 Building and installing ERFA
 ----------------------------
 
