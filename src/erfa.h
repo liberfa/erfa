@@ -446,14 +446,12 @@ void eraS2xpv(double s1, double s2, double pv[2][3], double spv[2][3]);
 void eraSxp(double s, double p[3], double sp[3]);
 void eraSxpv(double s, double pv[2][3], double spv[2][3]);
 
-const char* eraVersion();
-int eraVersionMajor();
-int eraVersionMinor();
-int eraVersionMicro();
-
 #ifdef __cplusplus
 }
 #endif
+
+
+#include "erfaextra.h"
 
 #endif
 

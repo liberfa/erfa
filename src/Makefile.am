@@ -29,7 +29,7 @@ tttcg.c tttdb.c ttut1.c ut1tai.c ut1tt.c ut1utc.c utctai.c utcut1.c \
 xy06.c xys00a.c xys00b.c xys06a.c zp.c zpv.c zr.c \
 erfaversion.c
 
-include_HEADERS = erfa.h erfam.h
+include_HEADERS = erfa.h erfam.h erfaextra.h
 
 ## Version info is in current : revision : age form
 ## A library supports interfaces from current downto current - age
