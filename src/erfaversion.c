@@ -1,3 +1,11 @@
+/*
+** Copyright (C) 2016-2017, NumFOCUS Foundation.
+**
+** Licensed under a 3-clause BSD style license - see LICENSE 
+**
+** This file is NOT derived from SOFA sources
+*/
+
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
