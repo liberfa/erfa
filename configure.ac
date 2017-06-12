@@ -19,6 +19,9 @@ ERFA_NUMVER
 ## Follow the instructions in RELEASE.rst to change the version info
 ERFA_LIB_VERSION_INFO(4, 0, 3)
 
+## SOFA version, update if needed in new relases
+AC_DEFINE([SOFA_VERSION], ["20160503_a"], [Define to the version of SOFA])
+
 # Checks for libraries.
 AC_SEARCH_LIBS([sin], [m], , AC_MSG_ERROR([cannot find math functions]))
 

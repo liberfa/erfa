@@ -9671,6 +9671,8 @@ int main(int argc, char *argv[])
    t_zr(&status);
 
 /* Report, set up an appropriate exit status, and finish. */
+   printf("ERFA version: %s\n", eraVersion());
+   printf("SOFA version: %s\n", eraSofaVersion());
    if (status) {
       printf("t_erfa_c validation failed!\n");
    } else {

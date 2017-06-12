@@ -450,6 +450,9 @@ void eraSxpv(double s, double pv[2][3], double spv[2][3]);
 }
 #endif
 
+
+#include "erfaextra.h"
+
 #endif
 
 
