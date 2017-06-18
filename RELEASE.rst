@@ -54,9 +54,11 @@ Instructions for releasing ERFA
   "releases" button, and then the release corresponding to the tag you just
   made.
 
-* Click on the "Draft release notes or downloads" button (or it might be
-  "Edit release").  Put the version number as the title (e.g., ``v0.0.1``)and
-  for the description put ``See `README.rst` for release notes.``
+* Click on the button to change this tag to a release (it might be ""Draft
+  release notes or downloads", or "Edit release" or "Edit tag" or other
+  depending on what Github has decided recently). Put the version number as the
+  title (e.g., ``v0.0.1``) and for the description put
+  ``See `README.rst` for release notes.``
 
 * Upload the tarball you created (e.g., `erfa-0.0.1.tar.gz`) by dropping it
   in the area that says "Attach binaries for this release  by dropping them
@@ -67,7 +69,8 @@ Instructions for releasing ERFA
 * Update the release listing on Github Pages to include this release:
   Do ``git checkout gh-pages``, add a new ``<li>...</li>`` entry for the
   release in `index.html`, do ``git commit``, and then
-  ``git push origin gh-pages``.
+  ``git push origin gh-pages``.  Or just edit it directly on the Github web
+  interface if that's more your thing.
 
 Version numbering
 =================
