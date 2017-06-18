@@ -36,14 +36,14 @@ addressing localized bugs or similar smaller issues:
 
 * ERFA 1.4.0 and SOFA "20170420"
 
-  + ERFA 1.4.0 adds ``eraVersion`` and ``eraSofaVersion`` functions to
+  + ERFA 1.4.0 adds the ``eraVersion`` and ``eraSofaVersion`` functions to
     determine the installed version of ERFA (and the SOFA version it is derived
     from).
 
   + ERFA 1.4.0 includes some bug fixes contributed to ERFA after 1.3.0 but
-    before 1.4.0.  These were incorporated into SOFA "20170420" (without
-    attribution) and hence these are not differences betwee ERFA and SOFA.
-    (See https://github.com/liberfa/erfa/issues/40 and
+    before 1.4.0.  These were incorporated (with modification) into
+    SOFA "20170420" (without attribution) and hence these are not differences
+    between ERFA and SOFA. (See https://github.com/liberfa/erfa/issues/40 and
     https://github.com/liberfa/erfa/issues/41)
 
 * ERFA 1.3.0 and SOFA "20160503_a"
