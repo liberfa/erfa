@@ -103,3 +103,8 @@ Travis build status
     :target: https://travis-ci.org/liberfa/erfa
 
 .. _erfa-fetch repository: https://github.com/liberfa/erfa-fetch
+
+Cite As
+-------
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.1021149.svg
+   :target: https://doi.org/10.5281/zenodo.1021149
