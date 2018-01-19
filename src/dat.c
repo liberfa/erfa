@@ -1,5 +1,14 @@
 #include "erfa.h"
 
+static eraLEAPSECOND *changes = 0;
+static int NDAT = 0;
+
+void eraUpdateLeapSeconds(eraLEAPSECOND *leapseconds, int count)
+{
+   changes = leapseconds;
+   NDAT = count;
+}
+
 int eraDat(int iy, int im, int id, double fd, double *deltat )
 /*
 **  - - - - - - -
@@ -144,10 +153,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
    enum { NERA1 = (int) (sizeof drift / sizeof (double) / 2) };
 
 /* Dates and Delta(AT)s */
-   static const struct {
-      int iyear, month;
-      double delat;
-   } changes[] = {
+   static const eraLEAPSECOND _changes[] = {
       { 1960,  1,  1.4178180 },
       { 1961,  1,  1.4228180 },
       { 1961,  8,  1.3728180 },
@@ -193,7 +199,13 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
    };
 
 /* Number of Delta(AT) changes */
-   enum { NDAT = (int) (sizeof changes / sizeof changes[0]) };
+   enum { _NDAT = (int) (sizeof _changes / sizeof _changes[0]) };
+   
+/* Initialise leap seconds if needed */
+   if ( NDAT == 0) {
+      NDAT = _NDAT;
+      changes = (eraLEAPSECOND *)_changes;
+   }
 
 /* Miscellaneous local variables */
    int j, i, m;
