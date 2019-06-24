@@ -22,7 +22,8 @@ Instructions for releasing ERFA
 
 * Update the version info of the shared library in the `ERFA_LIB_VERSION_INFO`
   macro of `configure.ac`. Follow the instructions in `Version numbering` below.
-  Also be sure to the ``OFA_VERSION` macro in the `configure.ac`.
+  Also be sure to the update ``SOFA_VERSION`` macro in ``configure.ac`` if
+  the SOFA version has changed.
 
 * Commit these changes using ``git commit``, with a commit message like
   ``Preparing release v0.0.1``.
