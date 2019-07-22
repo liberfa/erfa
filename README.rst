@@ -36,8 +36,8 @@ addressing localized bugs or similar smaller issues:
 
 * ERFA 1.5.0 and SOFA "20180130"
 
-  + There are no differences between ERFA 1.4.0 and SOFA "20180130" except
-    for the ``eraVersion`` anderaSofaVersion`` functions added in ERFA 1.4.0.
+  + There are no differences between ERFA 1.5.0 and SOFA "20180130" except
+    for the ``eraVersion`` and ``eraSofaVersion`` functions added in ERFA 1.4.0.
 
 * ERFA 1.4.0 and SOFA "20170420"
 
