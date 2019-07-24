@@ -17,7 +17,7 @@ static int verbose = 0;
 **
 **  All messages go to stdout.
 **
-**  This revision:  2017 March 15
+**  This revision:  2017 October 21
 **
 */
 
@@ -190,6 +190,36 @@ static void t_ab(int *status)
    vvd(ppr[0], -0.7631631094219556269, 1e-12, "eraAb", "1", status);
    vvd(ppr[1], -0.6087553082505590832, 1e-12, "eraAb", "2", status);
    vvd(ppr[2], -0.2167926269368471279, 1e-12, "eraAb", "3", status);
+
+}
+
+static void t_ae2hd(int *status)
+/*
+**  - - - - - - - -
+**   t _ a e 2 h d
+**  - - - - - - - -
+**
+**  Test eraAe2hd function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraAe2hd and vvd
+**
+**  This revision:  2017 October 21
+*/
+{
+   double a, e, p, h, d;
+
+
+   a = 5.5;
+   e = 1.1;
+   p = 0.7;
+
+   eraAe2hd(a, e, p, &h, &d);
+
+   vvd(h, 0.5933291115507309663, 1e-14, "eraAe2hd", "h", status);
+   vvd(d, 0.9613934761647817620, 1e-14, "eraAe2hd", "d", status);
 
 }
 
@@ -4474,6 +4504,65 @@ static void t_h2fk5(int *status)
        "eraH2fk5", "px", status);
    vvd(rv5, -7.6000001309071126, 1e-11,
        "eraH2fk5", "rv", status);
+
+}
+
+static void t_hd2ae(int *status)
+/*
+**  - - - - - - - -
+**   t _ h d 2 a e
+**  - - - - - - - -
+**
+**  Test eraHd2ae function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraHd2ae and vvd
+**
+**  This revision:  2017 October 21
+*/
+{
+   double h, d, p, a, e;
+
+
+   h = 1.1;
+   d = 1.2;
+   p = 0.3;
+
+   eraHd2ae(h, d, p, &a, &e);
+
+   vvd(a, 5.916889243730066194, 1e-13, "eraHd2ae", "a", status);
+   vvd(e, 0.4472186304990486228, 1e-14, "eraHd2ae", "e", status);
+
+}
+
+static void t_hd2pa(int *status)
+/*
+**  - - - - - - - -
+**   t _ h d 2 p a
+**  - - - - - - - -
+**
+**  Test eraHd2pa function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraHd2pa and vvd
+**
+**  This revision:  2017 October 21
+*/
+{
+   double h, d, p, q;
+
+
+   h = 1.1;
+   d = 1.2;
+   p = 0.3;
+
+   q = eraHd2pa(h, d, p);
+
+   vvd(q, 1.906227428001995580, 1e-13, "eraHd2pa", "q", status);
 
 }
 
@@ -8799,6 +8888,223 @@ static void t_tf2d(int *status)
 
 }
 
+static void t_tpors(int *status)
+/*
+**  - - - - - - - -
+**   t _ t p o r s
+**  - - - - - - - -
+**
+**  Test eraTpors function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraTpors, vvd, viv
+**
+**  This revision:  2017 October 21
+*/
+{
+   double xi, eta, ra, dec, az1, bz1, az2, bz2;
+   int n;
+
+
+   xi = -0.03;
+   eta = 0.07;
+   ra = 1.3;
+   dec = 1.5;
+
+   n = eraTpors(xi, eta, ra, dec, &az1, &bz1, &az2, &bz2);
+
+   vvd(az1, 1.736621577783208748, 1e-13, "eraTpors", "az1", status);
+   vvd(bz1, 1.436736561844090323, 1e-13, "eraTpors", "bz1", status);
+
+   vvd(az2, 4.004971075806584490, 1e-13, "eraTpors", "az2", status);
+   vvd(bz2, 1.565084088476417917, 1e-13, "eraTpors", "bz2", status);
+
+   viv(n, 2, "eraTpors", "n", status);
+
+}
+
+static void t_tporv(int *status)
+/*
+**  - - - - - - - -
+**   t _ t p o r v
+**  - - - - - - - -
+**
+**  Test eraTporv function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraTporv, eraS2c, vvd, viv
+**
+**  This revision:  2017 October 21
+*/
+{
+   double xi, eta, ra, dec, v[3], vz1[3], vz2[3];
+   int n;
+
+
+   xi = -0.03;
+   eta = 0.07;
+   ra = 1.3;
+   dec = 1.5;
+   eraS2c(ra, dec, v);
+
+   n = eraTporv(xi, eta, v, vz1, vz2);
+
+   vvd(vz1[0], -0.02206252822366888610, 1e-15,
+       "eraTporv", "x1", status);
+   vvd(vz1[1], 0.1318251060359645016, 1e-14,
+       "eraTporv", "y1", status);
+   vvd(vz1[2], 0.9910274397144543895, 1e-14,
+       "eraTporv", "z1", status);
+
+   vvd(vz2[0], -0.003712211763801968173, 1e-16,
+       "eraTporv", "x2", status);
+   vvd(vz2[1], -0.004341519956299836813, 1e-16,
+       "eraTporv", "y2", status);
+   vvd(vz2[2], 0.9999836852110587012, 1e-14,
+       "eraTporv", "z2", status);
+
+   viv(n, 2, "eraTporv", "n", status);
+
+}
+
+static void t_tpsts(int *status)
+/*
+**  - - - - - - - -
+**   t _ t p s t s
+**  - - - - - - - -
+**
+**  Test eraTpsts function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraTpsts, vvd
+**
+**  This revision:  2017 October 21
+*/
+{
+   double xi, eta, raz, decz, ra, dec;
+
+
+   xi = -0.03;
+   eta = 0.07;
+   raz = 2.3;
+   decz = 1.5;
+
+   eraTpsts(xi, eta, raz, decz, &ra, &dec);
+
+   vvd(ra, 0.7596127167359629775, 1e-14, "eraTpsts", "ra", status);
+   vvd(dec, 1.540864645109263028, 1e-13, "eraTpsts", "dec", status);
+
+}
+
+static void t_tpstv(int *status)
+/*
+**  - - - - - - - -
+**   t _ t p s t v
+**  - - - - - - - -
+**
+**  Test eraTpstv function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraTpstv, eraS2c, vvd
+**
+**  This revision:  2017 October 21
+*/
+{
+   double xi, eta, raz, decz, vz[3], v[3];
+
+
+   xi = -0.03;
+   eta = 0.07;
+   raz = 2.3;
+   decz = 1.5;
+   eraS2c(raz, decz, vz);
+
+   eraTpstv(xi, eta, vz, v);
+
+   vvd(v[0], 0.02170030454907376677, 1e-15, "eraTpstv", "x", status);
+   vvd(v[1], 0.02060909590535367447, 1e-15, "eraTpstv", "y", status);
+   vvd(v[2], 0.9995520806583523804, 1e-14, "eraTpstv", "z", status);
+
+}
+
+static void t_tpxes(int *status)
+/*
+**  - - - - - - - -
+**   t _ t p x e s
+**  - - - - - - - -
+**
+**  Test eraTpxes function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraTpxes, vvd, viv
+**
+**  This revision:  2017 October 21
+*/
+{
+   double ra, dec, raz, decz, xi, eta;
+   int j;
+
+
+   ra = 1.3;
+   dec = 1.55;
+   raz = 2.3;
+   decz = 1.5;
+
+   j = eraTpxes(ra, dec, raz, decz, &xi, &eta);
+
+   vvd(xi, -0.01753200983236980595, 1e-15, "eraTpxes", "xi", status);
+   vvd(eta, 0.05962940005778712891, 1e-15, "eraTpxes", "eta", status);
+
+   viv(j, 0, "eraTpxes", "j", status);
+
+}
+
+static void t_tpxev(int *status)
+/*
+**  - - - - - - - -
+**   t _ t p x e v
+**  - - - - - - - -
+**
+**  Test eraTpxev function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraTpxev, eraS2c, vvd
+**
+**  This revision:  2017 October 21
+*/
+{
+   double ra, dec, raz, decz, v[3], vz[3], xi, eta;
+   int j;
+
+
+   ra = 1.3;
+   dec = 1.55;
+   raz = 2.3;
+   decz = 1.5;
+   eraS2c(ra, dec, v);
+   eraS2c(raz, decz, vz);
+
+   j = eraTpxev(v, vz, &xi, &eta);
+
+   vvd(xi, -0.01753200983236980595, 1e-15, "eraTpxev", "xi", status);
+   vvd(eta, 0.05962940005778712891, 1e-15, "eraTpxev", "eta", status);
+
+   viv(j, 0, "eraTpxev", "j", status);
+
+}
+
 static void t_tr(int *status)
 /*
 **  - - - - -
@@ -9422,7 +9728,7 @@ int main(int argc, char *argv[])
 **   m a i n
 **  - - - - -
 **
-**  This revision:  2016 March 12
+**  This revision:  2017 October 21
 */
 {
    int status;
@@ -9441,6 +9747,7 @@ int main(int argc, char *argv[])
    t_a2af(&status);
    t_a2tf(&status);
    t_ab(&status);
+   t_ae2hd(&status);
    t_af2a(&status);
    t_anp(&status);
    t_anpm(&status);
@@ -9547,6 +9854,8 @@ int main(int argc, char *argv[])
    t_gst06a(&status);
    t_gst94(&status);
    t_h2fk5(&status);
+   t_hd2ae(&status);
+   t_hd2pa(&status);
    t_hfk5z(&status);
    t_icrs2g(&status);
    t_ir(&status);
@@ -9650,6 +9959,12 @@ int main(int argc, char *argv[])
    t_tdbtt(&status);
    t_tf2a(&status);
    t_tf2d(&status);
+   t_tpors(&status);
+   t_tporv(&status);
+   t_tpsts(&status);
+   t_tpstv(&status);
+   t_tpxes(&status);
+   t_tpxev(&status);
    t_tr(&status);
    t_trxp(&status);
    t_trxpv(&status);
@@ -9671,8 +9986,6 @@ int main(int argc, char *argv[])
    t_zr(&status);
 
 /* Report, set up an appropriate exit status, and finish. */
-   printf("ERFA version: %s\n", eraVersion());
-   printf("SOFA version: %s\n", eraSofaVersion());
    if (status) {
       printf("t_erfa_c validation failed!\n");
    } else {
@@ -9683,7 +9996,7 @@ int main(int argc, char *argv[])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2017, NumFOCUS Foundation.
+**  Copyright (C) 2013-2019, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

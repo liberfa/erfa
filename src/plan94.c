@@ -155,9 +155,9 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
 **
 **  Reference:  Simon, J.L, Bretagnon, P., Chapront, J.,
 **              Chapront-Touze, M., Francou, G., and Laskar, J.,
-**              Astron. Astrophys. 282, 663 (1994).
+**              Astron.Astrophys., 282, 663 (1994).
 **
-**  Copyright (C) 2013-2017, NumFOCUS Foundation.
+**  Copyright (C) 2013-2019, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -462,7 +462,7 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2017, NumFOCUS Foundation.
+**  Copyright (C) 2013-2019, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International
