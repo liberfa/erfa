@@ -1,29 +1,64 @@
-Instructions for releasing ERFA
-===============================
+Instructions for updating to a new SOFA version and releasing ERFA
+==================================================================
 
-* Clone the ERFA repository from github (if you haven't already done so),
+We welcome contributors who would like to help with the steps of updating to a
+new version of SOFA! The latter parts of the release process must be done by
+a maintainer with permissions, but the first part can (and should) be done as
+a pull request by anyone.
+
+Updating SOFA
+-------------
+
+These steps can be done by anyone, as they use the Pull Request workflow which
+places no contraints on who has permissions to submit code changes.
+
+
+* Clone your fork of the ERFA repository from github (if you have not already),
   and change to the ERFA directory.
 
-* Make sure you are on the "master" branch from the "liberfa" github
-  repository and have the latest version (if you have a fresh clone, this
-  should already be the case).
+* Create a new branch from the latest ``master`` branch in the ERFA repo.
 
 * If a new version of SOFA exists, run `sofa_deriver.py` from the `erfa-fetch
   repository`_ in its own directory.  That will create a directory called `erfa`
   inside the `erfa-fetch` directory, and   you should copy its contents to the
   `src` directory of `erfa`.  Add any new C files or header files added by SOFA
-  to ``src/Makefile.am``, as appropriate. Use ``git diff`` in `erfa` to inspect
-  the changes, and then commit and push them to github.
+  to ``src/Makefile.am``, as appropriate.
+
+* Use ``git diff`` in `erfa` to inspect the changes, ensuring that you are not
+  overwriting *intentional* changes between SOFA and ERFA (the README from the
+  previous version is generally your friend here.)
+
+* Update the ``SOFA_VERSION`` macro in ``configure.ac`` to reflect the new SOFA
+  version.
+
+* Update the SOFA version mentioned in `README.rst` to reflect what's now in, as
+  well as any relevant changes in the "Differences from SOFA" section or any
+  other part of the README that your changes might have affected.
+
+* Commit the changes and push them up to your fork.
+
+* Create a Pull Request to the main ERFA repository. It is helpful to mention
+  in the PR description if the changes in that SOFA version are
+  backwards-compatible or not, as that helps the maintainers know how to update
+  the version numbers when they do the release (described in more detail in the
+  "Version numbering" section below).
+
+* A maintainer will check the Pull Request and merge once it's reviewed.
+
+
+Releasing SOFA
+--------------
+
+These steps should be done by a maintainer, as they require specific Github
+permissions.
 
 * Update the version number in the `AC_INIT` macro of `configure.ac` to
-  the version number you are about to release, and also update the version
-  mentioned in `README.rst`. Follow the instructions in
-  `Version numbering` below.
+  the version number you are about to release, and also  Follow the instructions
+  in the `Version numbering` "Package version number" section below.
 
 * Update the version info of the shared library in the `ERFA_LIB_VERSION_INFO`
-  macro of `configure.ac`. Follow the instructions in `Version numbering` below.
-  Also be sure to update the ``SOFA_VERSION`` macro in ``configure.ac`` if
-  the SOFA version has changed.
+  macro of `configure.ac`. Follow the instructions in `Version numbering`
+  "Shared library version info" section below.
 
 * Commit these changes using ``git commit``, with a commit message like
   ``Preparing release v0.0.1``.
@@ -36,7 +71,9 @@ Instructions for releasing ERFA
   directory and in ./src
 
 * Run ``make check``, which will build the library and run the tests -
-  make sure they pass before proceeding.
+  make sure they pass before proceeding. (This is already done by continuous
+  integration in Github so it really *should* pass, but better to be safe than
+  sorry!)
 
 * Run ``make distcheck``: this creates the distribution tarball,
   unpackages it and runs the check inside the untarred directory.
