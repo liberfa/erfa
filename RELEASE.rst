@@ -89,18 +89,18 @@ permissions.
   appropriate name.)
 
 * Go to the "liberfa/erfa" repository for the github page, and click on the
-  "releases" button, and then the release corresponding to the tag you just
-  made.
+  "releases" banner, "tags", and then the tag name you just pushed up. Click on
+  the "..." button and choose "Create release". to change this tag to a release
+  (Note that the details of how you find this option might change depending on
+  what Github has decided recently, but the goal is to get to the "draft new
+  release" page for the existing tag.)
 
-* Click on the button to change this tag to a release (it might be ""Draft
-  release notes or downloads", or "Edit release" or "Edit tag" or other
-  depending on what Github has decided recently). Put the version number as the
-  title (e.g., ``v0.0.1``) and for the description put
-  ``See `README.rst` for release notes.``
+* Put the version number as the title (e.g., ``v0.0.1``) and for the description
+  put ``See `README.rst` for release notes.``
 
 * Upload the tarball you created (e.g., `erfa-0.0.1.tar.gz`) by dropping it
-  in the area that says "Attach binaries for this release  by dropping them
-  here."
+  in the area that says "Attach binaries for this release by dropping them
+  here or selecting them."
 
 * Click the "Publish release" button.
 
