@@ -67,7 +67,7 @@ int eraJd2cal(double dj1, double dj2,
    if (dj < DJMIN || dj > DJMAX) return -1;
 
 /* Copy the date, big then small, and re-align to midnight. */
-   if (dj1 >= dj2) {
+   if (fabs(dj1) >= fabs(dj2)) {
       d1 = dj1;
       d2 = dj2;
    } else {

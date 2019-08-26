@@ -10,6 +10,7 @@ dtf2d.c eceq06.c ee00a.c ee00.c eect00.c eo06a.c epb2jd.c epj2jd.c epv00.c \
 eqeq94.c ecm06.c ee00b.c ee06a.c eform.c eors.c epb.c epj.c eqec06.c \
 era00.c fad03.c fae03.c faf03.c faju03.c fal03.c falp03.c fama03.c \
 fame03.c fane03.c faom03.c fapa03.c fasa03.c faur03.c fave03.c \
+fk425.c fk45z.c fk524.c fk54z \
 fk52h.c fk5hip.c fk5hz.c fw2m.c fw2xy.c g2icrs.c gc2gd.c gc2gde.c gd2gc.c \
 gd2gce.c gmst00.c gmst06.c gmst82.c gst00a.c gst00b.c gst06a.c \
 gst06.c gst94.c hd2ae.c hd2pa.c h2fk5.c hfk5z.c icrs2g.c ir.c \

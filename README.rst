@@ -13,7 +13,7 @@ in this source distribution.
 Differences from SOFA
 ---------------------
 
-This version of ERFA (v1.5.0) is based on SOFA version "20180130", with the
+This version of ERFA (v1.6.0) is based on SOFA version "20190722", with the
 differences outlined below.
 
 ERFA branding
@@ -33,6 +33,11 @@ Bugfixes
 
 ERFA includes smaller changes that may or may not eventually make it into SOFA,
 addressing localized bugs or similar smaller issues:
+
+* ERFA 1.6.0 and SOFA "20190722"
+
+  + There are no differences between ERFA 1.6.0 and SOFA "20190722" except
+    for the ``eraVersion`` and ``eraSofaVersion`` functions added in ERFA 1.4.0.
 
 * ERFA 1.5.0 and SOFA "20180130"
 

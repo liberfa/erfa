@@ -45,7 +45,7 @@ int eraTttcg(double tt1, double tt2, double *tcg1, double *tcg2)
 
 
 /* Result, safeguarding precision. */
-   if ( tt1 > tt2 ) {
+   if ( fabs(tt1) > fabs(tt2) ) {
       *tcg1 = tt1;
       *tcg2 = tt2 + ( ( tt1 - ERFA_DJM0 ) + ( tt2 - t77t ) ) * elgg;
    } else {
