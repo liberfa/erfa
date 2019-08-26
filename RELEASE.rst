@@ -188,7 +188,7 @@ If the version is given in the form CURRENT,REVISION,AGE then
   * else
        do not change the version info (c,r,a -> c,r,a)
 
-Change the verion info in `ERFA_LIB_VERSION_INFO`
+Change the version info in `ERFA_LIB_VERSION_INFO`
 
 Examples
 ---------
