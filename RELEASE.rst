@@ -195,7 +195,7 @@ Examples
 We start with ERFA version 1.0.0 and library version info 0,0,0
 
 * SOFA makes a new release. A function is added and two functions change their
-  arguments. This is a backawars incompatible change, so the new package will
+  arguments. This is a backwards incompatible change, so the new package will
   have version 2.0.0 and the shared library version info will be 1,0,0
 
 * We forgot to add README.rst to the release. We make a new one. The change
@@ -215,7 +215,7 @@ We start with ERFA version 1.0.0 and library version info 0,0,0
 * SOFA makes a new release incorporating the bug fix and adding new functions.
   The new package version is 2.2.0. The shared library version is 3,0,2
 
-* SOFA makes a new release removing functions. This is a backawars
+* SOFA makes a new release removing functions. This is a backwards
   incompatible change, so the new package will
   have version 3.0.0 and the shared library version info will be 4,0,0
 
