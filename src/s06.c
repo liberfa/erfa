@@ -224,7 +224,7 @@ double eraS06(double date1, double date2, double x, double y)
    static const int NS3 = (int) (sizeof s3 / sizeof (TERM));
    static const int NS4 = (int) (sizeof s4 / sizeof (TERM));
 
-/*--------------------------------------------------------------------*/
+/* ------------------------------------------------------------------ */
 
 /* Interval between fundamental epoch J2000.0 and current date (JC). */
    t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;

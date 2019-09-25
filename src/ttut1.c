@@ -43,7 +43,7 @@ int eraTtut1(double tt1, double tt2, double dt,
 
 /* Result, safeguarding precision. */
    dtd = dt / ERFA_DAYSEC;
-   if ( tt1 > tt2 ) {
+   if ( fabs(tt1) > fabs(tt2) ) {
       *ut11 = tt1;
       *ut12 = tt2 - dtd;
    } else {

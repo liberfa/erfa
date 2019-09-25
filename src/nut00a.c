@@ -1848,7 +1848,7 @@ void eraNut00a(double date1, double date2, double *dpsi, double *deps)
 /* Number of terms in the planetary nutation model */
    const int NPL = (int) (sizeof xpl / sizeof xpl[0]);
 
-/*--------------------------------------------------------------------*/
+/* ------------------------------------------------------------------ */
 
 /* Interval between fundamental date J2000.0 and given date (JC). */
    t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;

@@ -1,6 +1,6 @@
 #include "erfa.h"
 
-int eraDat(int iy, int im, int id, double fd, double *deltat )
+int eraDat(int iy, int im, int id, double fd, double *deltat)
 /*
 **  - - - - - - -
 **   e r a D a t
@@ -120,7 +120,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat )
 */
 {
 /* Release year for this version of eraDat */
-   enum { IYV = 2017};
+   enum { IYV = 2019};
 
 /* Reference dates (MJD) and drift rates (s/day), pre leap seconds */
    static const double drift[][2] = {

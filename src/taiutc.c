@@ -66,7 +66,7 @@ int eraTaiutc(double tai1, double tai2, double *utc1, double *utc2)
 
 
 /* Put the two parts of the TAI into big-first order. */
-   big1 = ( tai1 >= tai2 );
+   big1 = ( fabs(tai1) >= fabs(tai2) );
    if ( big1 ) {
       a1 = tai1;
       a2 = tai2;

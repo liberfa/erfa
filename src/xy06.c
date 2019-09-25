@@ -2555,7 +2555,7 @@ void eraXy06(double date1, double date2, double *x, double *y)
           sc[2];
    int jpt, i, j, jxy, ialast, ifreq, m, ia, jsc;
 
-/*--------------------------------------------------------------------*/
+/* ------------------------------------------------------------------ */
 
 /* Interval between fundamental date J2000.0 and given date (JC). */
    t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;

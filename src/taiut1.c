@@ -44,7 +44,7 @@ int eraTaiut1(double tai1, double tai2, double dta,
 
 /* Result, safeguarding precision. */
    dtad = dta / ERFA_DAYSEC;
-   if ( tai1 > tai2 ) {
+   if ( fabs(tai1) > fabs(tai2) ) {
       *ut11 = tai1;
       *ut12 = tai2 + dtad;
    } else {

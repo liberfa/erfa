@@ -75,7 +75,7 @@ int eraUt1utc(double ut11, double ut12, double dut1,
    duts = dut1;
 
 /* Put the two parts of the UT1 into big-first order. */
-   big1 = ( ut11 >= ut12 );
+   big1 = ( fabs(ut11) >= fabs(ut12) );
    if ( big1 ) {
       u1 = ut11;
       u2 = ut12;
