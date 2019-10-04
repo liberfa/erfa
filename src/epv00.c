@@ -2385,7 +2385,7 @@ int eraEpv00(double date1, double date2,
    double t, t2, xyz, xyzd, a, b, c, ct, p, cp,
           ph[3], vh[3], pb[3], vb[3], x, y, z;
 
-/*--------------------------------------------------------------------*/
+/* ------------------------------------------------------------------ */
 
 /* Time since reference epoch, Julian years. */
    t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJY;

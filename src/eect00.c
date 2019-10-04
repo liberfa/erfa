@@ -171,7 +171,7 @@ double eraEect00(double date1, double date2)
    const int NE0 = (int) (sizeof e0 / sizeof (TERM));
    const int NE1 = (int) (sizeof e1 / sizeof (TERM));
 
-/*--------------------------------------------------------------------*/
+/* ------------------------------------------------------------------ */
 
 /* Interval between fundamental epoch J2000.0 and current date (JC). */
    t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;

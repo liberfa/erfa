@@ -203,7 +203,7 @@ void eraNut80(double date1, double date2, double *dpsi, double *deps)
 /* Number of terms in the series */
    const int NT = (int) (sizeof x / sizeof x[0]);
 
-/*--------------------------------------------------------------------*/
+/* ------------------------------------------------------------------ */
 
 /* Interval between fundamental epoch J2000.0 and given date (JC). */
    t = ((date1 - ERFA_DJ00) + date2) / ERFA_DJC;

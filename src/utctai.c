@@ -68,7 +68,7 @@ int eraUtctai(double utc1, double utc2, double *tai1, double *tai2)
 
 
 /* Put the two parts of the UTC into big-first order. */
-   big1 = ( utc1 >= utc2 );
+   big1 = ( fabs(utc1) >= fabs(utc2) );
    if ( big1 ) {
       u1 = utc1;
       u2 = utc2;

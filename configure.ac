@@ -20,7 +20,7 @@ ERFA_NUMVER
 ERFA_LIB_VERSION_INFO(6, 0, 5)
 
 ## SOFA version, update if needed in new relases
-AC_DEFINE([SOFA_VERSION], ["20180130"], [Define to the version of SOFA])
+AC_DEFINE([SOFA_VERSION], ["20190722"], [Define to the version of SOFA])
 
 # Checks for libraries.
 AC_SEARCH_LIBS([sin], [m], , AC_MSG_ERROR([cannot find math functions]))

@@ -290,10 +290,28 @@ int eraStarpv(double ra, double dec,
               double pv[2][3]);
 
 /* Astronomy/StarCatalogs */
+
+void eraFk425(double r1950, double d1950,
+              double dr1950, double dd1950,
+              double p1950, double v1950,
+              double *r2000, double *d2000,
+              double *dr2000, double *dd2000,
+              double *p2000, double *v2000);
+void eraFk45z(double r1950, double d1950, double bepoch,
+              double *r2000, double *d2000);
+void eraFk524(double r2000, double d2000,
+              double dr2000, double dd2000,
+              double p2000, double v2000,
+              double *r1950, double *d1950,
+              double *dr1950, double *dd1950,
+              double *p1950, double *v1950);
 void eraFk52h(double r5, double d5,
               double dr5, double dd5, double px5, double rv5,
               double *rh, double *dh,
               double *drh, double *ddh, double *pxh, double *rvh);
+void eraFk54z(double r2000, double d2000, double bepoch,
+              double *r1950, double *d1950,
+              double *dr1950, double *dd1950);
 void eraFk5hip(double r5h[3][3], double s5h[3]);
 void eraFk5hz(double r5, double d5, double date1, double date2,
               double *rh, double *dh);
