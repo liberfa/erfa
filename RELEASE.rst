@@ -33,7 +33,10 @@ places no contraints on who has permissions to submit code changes.
 
 * Update the SOFA version mentioned in `README.rst` to reflect what's now in, as
   well as any relevant changes in the "Differences from SOFA" section or any
-  other part of the README that your changes might have affected.
+  other part of the README that your changes might have affected. This usually
+  requires specifying the upcoming version of ERFA - since that isn't definite
+  until release time, put ``x.y.z`` as the version, and leave it to the release
+  maintainer to fill that in with the correct version (see below).
 
 * Commit the changes and push them up to your fork.
 
@@ -59,6 +62,11 @@ permissions.
 * Update the version info of the shared library in the `ERFA_LIB_VERSION_INFO`
   macro of `configure.ac`. Follow the instructions in `Version numbering`
   "Shared library version info" section below.
+
+* Update the `README.rst` to reference the version you filled in above for
+  `configure.ac` (it may be ``x.y.z`` if a maintainer followed the processes
+  described above).  Ensure the list of changes is accurate for this new
+  version.
 
 * Commit these changes using ``git commit``, with a commit message like
   ``Preparing release v0.0.1``.
