@@ -1,5 +1,8 @@
 language: c
 
+env:
+  - CFLAGS="-Wall -Wstrict-prototypes"
+
 compiler:
   - clang
   - gcc
