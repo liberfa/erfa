@@ -25,6 +25,12 @@ AC_DEFINE([SOFA_VERSION], ["20190722"], [Define to the version of SOFA])
 # Checks for libraries.
 AC_SEARCH_LIBS([sin], [m], , AC_MSG_ERROR([cannot find math functions]))
 
+# Compile the list of the *.c and *.h source files (excluding the test code)
+# into src/Makefile.part such that src/Makefile.am defines liberfa_la_SOURCES.
+# The rationale is to keep the liberfa_la_SOURCES always in sync with the
+# list of source files.
+AC_CONFIG_COMMANDS([src/Makefile.part],[cd src; echo $ECHO_N 'liberfa_la_SOURCES = '>Makefile.part ; ls -1 *.c *.h | grep -v t_erfa | tr '\n' ' ' >> Makefile.part])
+
 AC_CONFIG_FILES([Makefile
                  erfa.pc
                  src/Makefile
