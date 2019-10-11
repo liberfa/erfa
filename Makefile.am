@@ -8,3 +8,6 @@ pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = erfa.pc
 
 EXTRA_DIST = bootstrap.sh INFO LICENSE README.rst
+
+distclean-local:
+	- rm src/Makefile.part
