@@ -35,4 +35,8 @@ AC_CONFIG_FILES([Makefile
                  erfa.pc
                  src/Makefile
 ])
+
 AC_OUTPUT
+
+# remove the file left over from the configure run, internally $ac_tmp
+rm -rf conf??????
