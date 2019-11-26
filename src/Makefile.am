@@ -30,9 +30,9 @@ tcgtt.c tdbtcb.c tdbtt.c tf2a.c tf2d.c tpors.c tporv.c tpsts.c \
 tpstv.c tpxes.c tpxev.c tr.c trxp.c trxpv.c tttai.c \
 tttcg.c tttdb.c ttut1.c ut1tai.c ut1tt.c ut1utc.c utctai.c utcut1.c \
 xy06.c xys00a.c xys00b.c xys06a.c zp.c zpv.c zr.c \
-erfaversion.c
+erfaversion.c erfadatextra.c
 
-include_HEADERS = erfa.h erfam.h erfaextra.h
+include_HEADERS = erfa.h erfam.h erfaextra.h erfadatextra.h
 
 ## Version info is in current : revision : age form
 ## A library supports interfaces from current downto current - age
