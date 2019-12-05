@@ -1,5 +1,5 @@
 /*
-** Copyright (C) 2016-2017, NumFOCUS Foundation.
+** Copyright (C) 2019, NumFOCUS Foundation.
 **
 ** Licensed under a 3-clause BSD style license - see LICENSE
 **
