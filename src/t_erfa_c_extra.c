@@ -19,81 +19,6 @@ static int verbose = 0;
 **
 */
 
-static void viv(int ival, int ivalok,
-                const char *func, const char *test, int *status)
-/*
-**  - - - -
-**   v i v
-**  - - - -
-**
-**  Validate an integer result.
-**
-**  Internal function used by t_erfa_c program.
-**
-**  Given:
-**     ival     int          value computed by function under test
-**     ivalok   int          correct value
-**     func     char[]       name of function under test
-**     test     char[]       name of individual test
-**
-**  Given and returned:
-**     status   int          set to TRUE if test fails
-**
-**  This revision:  2013 August 7
-*/
-{
-   if (ival != ivalok) {
-      *status = 1;
-      printf("%s failed: %s want %d got %d\n",
-             func, test, ivalok, ival);
-   } else if (verbose) {
-      printf("%s passed: %s want %d got %d\n",
-                    func, test, ivalok, ival);
-   }
-
-}
-
-static void vvd(double val, double valok, double dval,
-                const char *func, const char *test, int *status)
-/*
-**  - - - -
-**   v v d
-**  - - - -
-**
-**  Validate a double result.
-**
-**  Internal function used by t_erfa_c program.
-**
-**  Given:
-**     val      double       value computed by function under test
-**     valok    double       expected value
-**     dval     double       maximum allowable error
-**     func     char[]       name of function under test
-**     test     char[]       name of individual test
-**
-**  Given and returned:
-**     status   int          set to TRUE if test fails
-**
-**  This revision:  2016 April 21
-*/
-{
-   double a, f;   /* absolute and fractional error */
-
-
-   a = val - valok;
-   if (a != 0.0 && fabs(a) > fabs(dval)) {
-      f = fabs(valok / a);
-      *status = 1;
-      printf("%s failed: %s want %.20g got %.20g (1/%.3g)\n",
-             func, test, valok, val, f);
-   } else if (verbose) {
-      printf("%s passed: %s want %.20g got %.20g\n",
-             func, test, valok, val);
-   }
-
-}
-
-
 static void t_versions(int *status)
 /*
 **  Test that the version-checking functions yield something.
@@ -135,7 +60,21 @@ static void t_leap_seconds(int *status)
 **  Test that the leap-second machinery yields something
 */
 {
+  int count_init, count_postset;
+  eraLEAPSECOND* leapseconds_init;
+  eraLEAPSECOND* leapseconds_postset;
+  eraLEAPSECOND new_leapsecond[1] = {{ 2050, 5, 35. }};
 
+  count_init = eraGetLeapSeconds(&leapseconds_init);
+  eraSetLeapSeconds(&new_leapsecond, 1);
+  count_postset = eraGetLeapSeconds(&leapseconds_postset);
+
+  if (count_postset == (count_init+1)) {
+    printf("t_leap_seconds passed");
+  } else {
+    *status = 1;
+    printf("t_leap_seconds failed - after adding one change, leap second table has %d entries instead of %d\n", leapseconds_postset, count_init+1);
+  }
 }
 
 int main(int argc, char *argv[])
