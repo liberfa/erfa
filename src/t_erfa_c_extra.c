@@ -50,7 +50,7 @@ static void t_versions(int *status)
   }
 
   if (*status == 0) {
-    printf("t_versions passed");
+    printf("t_versions passed\n");
   }
 
 }
@@ -70,7 +70,7 @@ static void t_leap_seconds(int *status)
   count_postset = eraGetLeapSeconds(&leapseconds_postset);
 
   if (count_postset == (count_init+1)) {
-    printf("t_leap_seconds passed");
+    printf("t_leap_seconds passed\n");
   } else {
     *status = 1;
     printf("t_leap_seconds failed - after adding one change, leap second table has %d entries instead of %d\n", leapseconds_postset, count_init+1);
