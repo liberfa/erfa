@@ -66,7 +66,7 @@ static void t_leap_seconds(int *status)
   eraLEAPSECOND new_leapsecond[1] = {{ 2050, 5, 35. }};
 
   count_init = eraGetLeapSeconds(&leapseconds_init);
-  eraSetLeapSeconds(&new_leapsecond, 1);
+  eraSetLeapSeconds(new_leapsecond, 1);
   count_postset = eraGetLeapSeconds(&leapseconds_postset);
 
   if (count_postset == (count_init+1)) {
