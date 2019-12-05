@@ -32,21 +32,21 @@ static void t_versions(int *status)
   res = strstr(version_str, buf);
   if (!res) {
     *status = 1;
-    printf("t_versions failed - major version %d not in version string %s\n", res, version_str);
+    printf("t_versions failed - major version not in version string %s\n", version_str);
   }
 
   sprintf(buf, "%d", eraVersionMinor());
   res = strstr(version_str, buf);
   if (!res) {
     *status = 1;
-    printf("t_versions failed - minor version %d not in version string %s\n", res, version_str);
+    printf("t_versions failed - minor version not in version string %s\n", version_str);
   }
 
   sprintf(buf, "%d", eraVersionMicro());
   res = strstr(version_str, buf);
   if (!res) {
     *status = 1;
-    printf("t_versions failed - micro version %d not in version string %s\n", res, version_str);
+    printf("t_versions failed - micro version not in version string %s\n", version_str);
   }
 
   if (*status == 0) {
