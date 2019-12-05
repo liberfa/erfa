@@ -52,6 +52,12 @@ Bugfixes
 ERFA includes smaller changes that may or may not eventually make it into SOFA,
 addressing localized bugs or similar smaller issues:
 
+* ERFA 1.7.0 and SOFA "20190722"
+
+  + There are no differences between ERFA 1.7.0 and SOFA "20190722" except
+    for the added ``eraVersion``, ``eraSofaVersion``, and leap second functions
+    noted above.
+
 * ERFA 1.6.0 and SOFA "20190722"
 
   + There are no differences between ERFA 1.6.0 and SOFA "20190722" except
