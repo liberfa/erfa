@@ -28,6 +28,24 @@ C macro prefixes
 All C macros used in ERFA are the same as their SOFA equivalents, but with an
 ``ERFA_`` prefix to prevent namespace collisions.
 
+Version information
+^^^^^^^^^^^^^^^^^^^
+
+ERFA provides a few utility functions for accessing version information at
+runtime which are not a part of SOFA.  Specifically, these are the
+``eraVersion`,` ``eraVersion*``, and ``eraSofaVersion`` functions that are
+exposed in the ``erfaextra.h`` header.
+
+Runtime leap second modification
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ERFA provides the capability to modify at runtime the leap seconds assumed for
+various calculations. These are accessed via the ``eraGetLeapSeconds`` and
+``eraSetLeapSeconds`` functions that are exposed in the ``erfaextra.h`` header.
+This functionality is currently considered somewhat experimental, meaning an
+improved API might be available in the future, but the current API can also be
+counted on for the near future.
+
 Bugfixes
 ^^^^^^^^
 
