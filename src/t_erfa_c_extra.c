@@ -60,20 +60,33 @@ static void t_leap_seconds(int *status)
 **  Test that the leap-second machinery yields something
 */
 {
-  int count_init, count_postset;
+  int count_init, count_postset, count_postreset;
   eraLEAPSECOND* leapseconds_init;
   eraLEAPSECOND* leapseconds_postset;
-  eraLEAPSECOND new_leapsecond[1] = {{ 2050, 5, 35. }};
+  eraLEAPSECOND* leapseconds_postreset;
+
+  eraLEAPSECOND fake_leapsecond[1] = {{ 2050, 5, 55.0 }};
 
   count_init = eraGetLeapSeconds(&leapseconds_init);
-  eraSetLeapSeconds(new_leapsecond, 1);
+
+  eraSetLeapSeconds(fake_leapsecond, 1);
   count_postset = eraGetLeapSeconds(&leapseconds_postset);
 
-  if (count_postset == (count_init+1)) {
-    printf("t_leap_seconds passed\n");
+  if (count_postset == 1) {
+    printf("t_leap_seconds set passed\n");
   } else {
     *status = 1;
-    printf("t_leap_seconds failed - after adding one change, leap second table has %d entries instead of %d\n", leapseconds_postset, count_init+1);
+    printf("t_leap_seconds set failed - leap second table has %d entries instead of %d\n", count_postreset, 1);
+  }
+
+  eraSetLeapSeconds(fake_leapsecond, -1);
+  count_postreset = eraGetLeapSeconds(&leapseconds_postreset);
+
+  if (count_postreset == count_init) {
+    printf("t_leap_seconds reset passed\n");
+  } else {
+    *status = 1;
+    printf("t_leap_seconds reset failed - leap second table has %d entries instead of %d\n", count_postreset, count_init);
   }
 }
 
