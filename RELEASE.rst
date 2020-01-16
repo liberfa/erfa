@@ -49,7 +49,7 @@ places no contraints on who has permissions to submit code changes.
 * A maintainer will check the Pull Request and merge once it's reviewed.
 
 
-Releasing SOFA
+Releasing ERFA
 --------------
 
 These steps should be done by a maintainer, as they require specific Github
