@@ -140,5 +140,5 @@ Travis build status
 
 Cite As
 -------
-.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.1021149.svg
-   :target: https://doi.org/10.5281/zenodo.1021149
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3564896.svg
+   :target: https://doi.org/10.5281/zenodo.3564896
