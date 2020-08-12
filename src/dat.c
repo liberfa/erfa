@@ -116,12 +116,12 @@ int eraDat(int iy, int im, int id, double fd, double *deltat)
 **  Called:
 **     eraCal2jd    Gregorian calendar to JD
 **
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
 /* Release year for this version of eraDat */
-   enum { IYV = 2019};
+   enum { IYV = 2020};
 
 /* Reference dates (MJD) and drift rates (s/day), pre leap seconds */
    static const double drift[][2] = {
@@ -249,7 +249,7 @@ int eraDat(int iy, int im, int id, double fd, double *deltat)
 /*----------------------------------------------------------------------
 **
 **
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  All rights reserved.
 **
 **  This library is derived, with permission, from the International

@@ -83,7 +83,7 @@ int eraTpors(double xi, double eta, double a, double b,
 **     Green, R.M., "Spherical Astronomy", Cambridge University Press,
 **     1987, Chapter 13.
 **
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -120,7 +120,7 @@ int eraTpors(double xi, double eta, double a, double b,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

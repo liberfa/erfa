@@ -17,7 +17,7 @@ static int verbose = 0;
 **
 **  All messages go to stdout.
 **
-**  This revision:  2017 December 6
+**  This revision:  2020 May 30
 **
 */
 
@@ -5664,7 +5664,7 @@ static void t_p06e(int *status)
 **
 **  Called:  eraP06e, vvd
 **
-**  This revision:  2013 August 7
+**  This revision:  2020 May 30
 */
 {
     double eps0, psia, oma, bpa, bqa, pia, bpia,
@@ -5699,7 +5699,7 @@ static void t_p06e(int *status)
        "eraP06e", "zetaa", status);
    vvd(thetaa, 0.2650932701657497181e-3, 1e-14,
        "eraP06e", "thetaa", status);
-   vvd(pa, 0.6651637681381016344e-3, 1e-14,
+   vvd(pa, 0.6651637681381016288e-3, 1e-14,
        "eraP06e", "pa", status);
    vvd(gam, 0.1398077115963754987e-5, 1e-14,
        "eraP06e", "gam", status);
@@ -10155,7 +10155,7 @@ int main(int argc, char *argv[])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

@@ -78,7 +78,7 @@ void eraFk45z(double r1950, double d1950, double bepoch,
 **     eraPvu       update a pv-vector
 **     eraS2c       spherical to p-vector
 **
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -149,7 +149,7 @@ void eraFk45z(double r1950, double d1950, double bepoch,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

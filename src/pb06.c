@@ -63,36 +63,42 @@ void eraPb06(double date1, double date2,
 **     eraPmat06    PB matrix, IAU 2006
 **     eraRz        rotate around Z-axis
 **
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
-   double r[3][3], r31, r32;
+   double r[3][3], y, x;
 
 
 /* Precession matrix via Fukushima-Williams angles. */
    eraPmat06(date1, date2, r);
 
-/* Solve for z. */
-   *bz = atan2(r[1][2], r[0][2]);
+/* Solve for z, choosing the +/- pi alternative. */
+   y = r[1][2];
+   x = -r[0][2];
+   if ( x < 0.0 ) {
+      y = -y;
+      x = -x;
+   }
+   *bz = ( x != 0.0 || y != 0.0 ) ? - atan2(y,x) : 0.0;
 
-/* Remove it from the matrix. */
-   eraRz(*bz, r);
+/* Derotate it out of the matrix. */
+   eraRz ( *bz, r );
 
 /* Solve for the remaining two angles. */
-   *bzeta = atan2 (r[1][0], r[1][1]);
-   r31 = r[2][0];
-   r32 = r[2][1];
-   *btheta = atan2(-ERFA_DSIGN(sqrt(r31 * r31 + r32 * r32), r[0][2]),
-                   r[2][2]);
+   y = r[0][2];
+   x = r[2][2];
+   *btheta = ( x != 0.0 || y != 0.0 ) ? - atan2(y,x) : 0.0;
 
-   return;
+   y = -r[1][0];
+   x = r[1][1];
+   *bzeta = ( x != 0.0 || y != 0.0 ) ? - atan2(y,x) : 0.0;
 
 }
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

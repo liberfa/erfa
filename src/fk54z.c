@@ -51,7 +51,7 @@ void eraFk54z(double r2000, double d2000, double bepoch,
 **     eraFk524     FK4 to FK5
 **     eraS2c       spherical to p-vector
 **
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -91,7 +91,7 @@ void eraFk54z(double r2000, double d2000, double bepoch,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

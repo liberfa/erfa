@@ -55,12 +55,12 @@ int eraJdcalf(int ndp, double dj1, double dj2, int iymdf[4])
 **     P. Kenneth Seidelmann (ed), University Science Books (1992),
 **     Section 12.92 (p604).
 **
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
    int j, js;
-   double denom, d1, d2, f1, f2, f;
+   double denom, d1, d2, f1, f2, d, djd, f, rf;
 
 
 /* Denominator of fraction (e.g. 100 for 2 decimal places). */
@@ -72,7 +72,7 @@ int eraJdcalf(int ndp, double dj1, double dj2, int iymdf[4])
       denom = 1.0;
    }
 
-/* Copy the date, big then small, and realign to midnight. */
+/* Copy the date, big then small. */
    if (fabs(dj1) >= fabs(dj2)) {
       d1 = dj1;
       d2 = dj2;
@@ -80,24 +80,35 @@ int eraJdcalf(int ndp, double dj1, double dj2, int iymdf[4])
       d1 = dj2;
       d2 = dj1;
    }
-   d2 -= 0.5;
 
-/* Separate days and fractions. */
-   f1 = fmod(d1, 1.0);
-   f2 = fmod(d2, 1.0);
-   d1 = ERFA_DNINT(d1-f1);
-   d2 = ERFA_DNINT(d2-f2);
+/* Realign to midnight (without rounding error). */
+   d1 -= 0.5;
+
+/* Separate day and fraction (as precisely as possible). */
+   d = ERFA_DNINT(d1);
+   f1 = d1 - d;
+   djd = d;
+   d = ERFA_DNINT(d2);
+   f2 = d2 - d;
+   djd += d;
+   d = ERFA_DNINT(f1 + f2);
+   f = (f1 - d) + f2;
+   if (f < 0.0) {
+       f += 1.0;
+       d -= 1.0;
+   }
+   djd += d;
 
 /* Round the total fraction to the specified number of places. */
-   f = ERFA_DNINT((f1+f2)*denom) / denom;
+   rf = ERFA_DNINT(f*denom) / denom;
 
-/* Re-assemble the rounded date and re-align to noon. */
-   d2 += f + 0.5;
+/* Re-align to noon. */
+   djd += 0.5;
 
 /* Convert to Gregorian calendar. */
-   js = eraJd2cal(d1, d2, &iymdf[0], &iymdf[1], &iymdf[2], &f);
+   js = eraJd2cal(djd, rf, &iymdf[0], &iymdf[1], &iymdf[2], &f);
    if (js == 0) {
-      iymdf[3] = (int) (f * denom);
+      iymdf[3] = (int) ERFA_DNINT(f * denom);
    } else {
       j = js;
    }
@@ -109,7 +120,7 @@ int eraJdcalf(int ndp, double dj1, double dj2, int iymdf[4])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

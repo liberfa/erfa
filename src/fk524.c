@@ -104,7 +104,7 @@ void eraFk524(double r2000, double d2000,
 **     from FK4 B1950.0 to FK5 J2000.0 using matrices in 6-space".
 **     Astron.J. 97, 274.
 **
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -186,7 +186,7 @@ void eraFk524(double r2000, double d2000,
       }
    }
 
-/* Apply E-terms (equivalent to Seidelmann 3.592-3, two iterations). */
+/* Apply E-terms (equivalent to Seidelmann 3.592-3, one iteration). */
 
 /* Direction. */
    w = eraPm(r1[0]);
@@ -231,7 +231,7 @@ void eraFk524(double r2000, double d2000,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International
