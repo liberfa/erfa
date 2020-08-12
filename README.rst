@@ -13,7 +13,7 @@ in this source distribution.
 Differences from SOFA
 ---------------------
 
-This version of ERFA (v1.8.0) is based on SOFA version "20200721", with the
+This version of ERFA (v1.7.1) is based on SOFA version "20200721", with the
 differences outlined below.
 
 ERFA branding
@@ -46,17 +46,17 @@ This functionality is currently considered somewhat experimental, meaning an
 improved API might be available in the future, but the current API can also be
 counted on for the near future.
 
-Bugfixes
-^^^^^^^^
+Bug fixes
+^^^^^^^^^
 
 ERFA includes smaller changes that may or may not eventually make it into SOFA,
 addressing localized bugs or similar smaller issues:
 
-* ERFA 1.8.0 and SOFA "20200721"
+* ERFA 1.7.1 and SOFA "20200721"
 
-  + There are no differences between ERFA 1.8.0 and SOFA "20200721" except
-    for the added ``eraVersion``, ``eraSofaVersion``, and leap second functions
-    noted above.
+  + Only bug fixes in the SOFA release.  The only differences between ERFA 1.7.1
+    and SOFA "20200721" remain the added ``eraVersion``, ``eraSofaVersion``, and
+    leap second functions noted above.
 
 * ERFA 1.7.0 and SOFA "20190722"
 
