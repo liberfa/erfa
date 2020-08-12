@@ -33,7 +33,7 @@ Version information
 
 ERFA provides a few utility functions for accessing version information at
 runtime which are not a part of SOFA.  Specifically, these are the
-``eraVersion`,` ``eraVersion*``, and ``eraSofaVersion`` functions that are
+``eraVersion``, ``eraVersion*``, and ``eraSofaVersion`` functions that are
 exposed in the ``erfaextra.h`` header.
 
 Runtime leap second modification
