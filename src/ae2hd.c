@@ -59,9 +59,9 @@ void eraAe2hd (double az, double el, double phi,
 **
 **  Last revision:   2017 September 12
 **
-**  ERFA release 2019-07-22
+**  ERFA release 2020-07-21
 **
-**  Copyright (C) 2019 IAU ERFA Board.  See notes at end.
+**  Copyright (C) 2020 IAU ERFA Board.  See notes at end.
 */
 {
    double sa, ca, se, ce, sp, cp, x, y, z, r;
@@ -91,7 +91,7 @@ void eraAe2hd (double az, double el, double phi,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

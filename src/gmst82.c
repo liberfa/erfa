@@ -60,7 +60,7 @@ double eraGmst82(double dj1, double dj2)
 **
 **     Aoki et al., Astron.Astrophys., 105, 359-361 (1982).
 **
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -70,9 +70,8 @@ double eraGmst82(double dj1, double dj2)
    double C = 0.093104;
    double D =  -6.2e-6;
 
-/* Note: the first constant, A, has to be adjusted by 12 hours */
-/* because the UT1 is supplied as a Julian date, which begins  */
-/* at noon.                                                    */
+/* The first constant, A, has to be adjusted by 12 hours because the */
+/* UT1 is supplied as a Julian date, which begins at noon.           */
 
    double d1, d2, t, f, gmst;
 
@@ -99,7 +98,7 @@ double eraGmst82(double dj1, double dj2)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

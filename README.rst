@@ -13,7 +13,7 @@ in this source distribution.
 Differences from SOFA
 ---------------------
 
-This version of ERFA (v1.6.0) is based on SOFA version "20190722", with the
+This version of ERFA (v1.7.1) is based on SOFA version "20200721", with the
 differences outlined below.
 
 ERFA branding
@@ -33,7 +33,7 @@ Version information
 
 ERFA provides a few utility functions for accessing version information at
 runtime which are not a part of SOFA.  Specifically, these are the
-``eraVersion`,` ``eraVersion*``, and ``eraSofaVersion`` functions that are
+``eraVersion``, ``eraVersion*``, and ``eraSofaVersion`` functions that are
 exposed in the ``erfaextra.h`` header.
 
 Runtime leap second modification
@@ -46,11 +46,17 @@ This functionality is currently considered somewhat experimental, meaning an
 improved API might be available in the future, but the current API can also be
 counted on for the near future.
 
-Bugfixes
-^^^^^^^^
+Bug fixes
+^^^^^^^^^
 
 ERFA includes smaller changes that may or may not eventually make it into SOFA,
 addressing localized bugs or similar smaller issues:
+
+* ERFA 1.7.1 and SOFA "20200721"
+
+  + Only bug fixes in the SOFA release.  The only differences between ERFA 1.7.1
+    and SOFA "20200721" remain the added ``eraVersion``, ``eraSofaVersion``, and
+    leap second functions noted above.
 
 * ERFA 1.7.0 and SOFA "20190722"
 

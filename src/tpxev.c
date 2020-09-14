@@ -65,7 +65,7 @@ int eraTpxev(double v[3], double v0[3], double *xi, double *eta)
 **     Green, R.M., "Spherical Astronomy", Cambridge University Press,
 **     1987, Chapter 13.
 **
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -121,7 +121,7 @@ int eraTpxev(double v[3], double v0[3], double *xi, double *eta)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2020, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International
