@@ -13,7 +13,7 @@ in this source distribution.
 Differences from SOFA
 ---------------------
 
-This version of ERFA (v1.7.1) is based on SOFA version "20200721", with the
+This version of ERFA (v1.7.2) is based on SOFA version "20200721", with the
 differences outlined below.
 
 ERFA branding
@@ -51,6 +51,14 @@ Bug fixes
 
 ERFA includes smaller changes that may or may not eventually make it into SOFA,
 addressing localized bugs or similar smaller issues:
+
+* ERFA 1.7.2 and SOFA "20200721"
+
+  + Only bug fixes in the SOFA release.  The only differences between ERFA 1.7.2
+    and SOFA "20200721" remain the added ``eraVersion``, ``eraSofaVersion``, and
+    leap second functions noted above.
+  + Fixes a bug in ERFA 1.7.1 that ``eraVersion`` would return 1.7.0 if
+    compiled directly rather than created as part of the library with ``make``.
 
 * ERFA 1.7.1 and SOFA "20200721"
 
