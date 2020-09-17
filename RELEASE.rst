@@ -68,6 +68,9 @@ permissions.
   described above).  Ensure the list of changes is accurate for this new
   version.
 
+* Also update the version in ``src/erfaversion.c``, in all relevant ``#define``
+  statements.
+
 * Commit these changes using ``git commit``, with a commit message like
   ``Preparing release v0.0.1``.
 
