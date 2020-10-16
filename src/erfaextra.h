@@ -21,6 +21,8 @@
 #ifndef _ERFA_EXTRA_H
 #define _ERFA_EXTRA_H
 
+#include "erfam.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
