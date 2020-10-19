@@ -6,21 +6,12 @@
 ** This file is NOT derived from SOFA sources
 */
 
-/* Define to the version of this package. */
-#define PACKAGE_VERSION "1.7.0"
-
-/* Define to the major version of this package. */
-#define PACKAGE_VERSION_MAJOR 1
-
-/* Define to the micro version of this package. */
-#define PACKAGE_VERSION_MICRO 0
-
-/* Define to the minor version of this package. */
-#define PACKAGE_VERSION_MINOR 7
-
-/* Define to the version of SOFA */
-#define SOFA_VERSION "20190722"
-
+/*
+ * config.h defines the version information macros;
+ * it is auto-generated in the autotools build process.
+ * without it, the macros have to be defined explicitly
+ * in the call to the compiler.
+ */
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif /* HAVE_CONFIG_H */
