@@ -1,13 +1,32 @@
-language: c
+matrix:
+  include:
+    - name: "Linux gcc (autotools)"
+      os: linux
+      language: c
+      env:
+        - CFLAGS="-Wall -Wstrict-prototypes"
+      compiler: gcc
+      # before build script, run autoreconf
+      before_script: ./bootstrap.sh
+      script: ./configure --disable-shared && make && make check
 
-env:
-  - CFLAGS="-Wall -Wstrict-prototypes"
+    - name: "Linux clang (autotools)"
+      os: linux
+      language: c
+      env:
+        - CFLAGS="-Wall -Wstrict-prototypes"
+      compiler: clang
+      # before build script, run autoreconf
+      before_script: ./bootstrap.sh
+      script: ./configure --disable-shared && make && make check
 
-compiler:
-  - clang
-  - gcc
-
-# before build script, run autoreconf
-before_script: ./bootstrap.sh
-
-script: ./configure --disable-shared && make && make check
+    - name: "Windows VS 2017 (cmake)"
+      os: windows
+      language: c
+      before_script:
+        - mkdir build
+        - cd build
+      script:
+        - cmake .. -G "Visual Studio 15 2017" -A x64 -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTS=ON
+        - cmake --build . --config Release
+        - ctest --verbose -C Release
