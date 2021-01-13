@@ -28,7 +28,8 @@ places no contraints on who has permissions to submit code changes.
   overwriting *intentional* changes between SOFA and ERFA (the README from the
   previous version is generally your friend here.)
 
-* Update the ``SOFA_VERSION`` macro in ``configure.ac`` to reflect the new SOFA
+* Update the ``SOFA_VERSION`` macro in ``configure.ac`` and the
+  ``ERFA_SOFA_VERSION`` variable in ``CMakeLists.txt`` to reflect the new SOFA
   version.
 
 * Update the SOFA version mentioned in `README.rst` to reflect what's now in, as
@@ -55,9 +56,10 @@ Releasing ERFA
 These steps should be done by a maintainer, as they require specific Github
 permissions.
 
-* Update the version number in the `AC_INIT` macro of `configure.ac` to
-  the version number you are about to release, and also  Follow the instructions
-  in the `Version numbering` "Package version number" section below.
+* Update the version number in the `AC_INIT` macro of `configure.ac` and the
+  ``project`` command in `CMakeLists.txt` to the version number you are about
+  to release, and also  Follow the instructions in the `Version numbering`
+  "Package version number" section below.
 
 * Update the version info of the shared library in the `ERFA_LIB_VERSION_INFO`
   macro of `configure.ac`. Follow the instructions in `Version numbering`
