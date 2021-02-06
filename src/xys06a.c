@@ -16,7 +16,7 @@ void eraXys06a(double date1, double date2,
 **
 **  Returned:
 **     x,y          double  Celestial Intermediate Pole (Note 2)
-**     s            double  the CIO locator s (Note 2)
+**     s            double  the CIO locator s (Note 3)
 **
 **  Notes:
 **
@@ -59,7 +59,9 @@ void eraXys06a(double date1, double date2,
 **
 **     Wallace, P.T. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 December 4
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -81,7 +83,7 @@ void eraXys06a(double date1, double date2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

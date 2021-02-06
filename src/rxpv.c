@@ -15,13 +15,21 @@ void eraRxpv(double r[3][3], double pv[2][3], double rpv[2][3])
 **  Returned:
 **     rpv      double[2][3]    r * pv
 **
-**  Note:
-**     It is permissible for pv and rpv to be the same array.
+**  Notes:
+**
+**  1) The algorithm is for the simple case where the r-matrix r is not
+**     a function of time.  The case where r is a function of time leads
+**     to an additional velocity component equal to the product of the
+**     derivative of r and the position vector.
+**
+**  2) It is permissible for pv and rpv to be the same array.
 **
 **  Called:
 **     eraRxp       product of r-matrix and p-vector
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 September 26
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -34,7 +42,7 @@ void eraRxpv(double r[3][3], double pv[2][3], double rpv[2][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

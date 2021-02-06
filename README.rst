@@ -13,7 +13,7 @@ in this source distribution.
 Differences from SOFA
 ---------------------
 
-This version of ERFA (v1.7.1) is based on SOFA version "20200721", with the
+This version of ERFA (vx.y.z) is based on SOFA version "20210125", with the
 differences outlined below.
 
 ERFA branding

@@ -56,7 +56,9 @@ void eraLtecm(double epj, double rm[3][3])
 **    expressions, valid for long time intervals (Corrigendum),
 **    Astron.Astrophys. 541, C1
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2015 December 6
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -96,7 +98,7 @@ void eraLtecm(double epj, double rm[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

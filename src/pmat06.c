@@ -49,9 +49,15 @@ void eraPmat06(double date1, double date2, double rbp[3][3])
 **
 **     Capitaine, N. & Wallace, P.T., 2006, Astron.Astrophys. 450, 855
 **
+**     IAU: Trans. International Astronomical Union, Vol. XXIVB;  Proc.
+**     24th General Assembly, Manchester, UK.  Resolutions B1.3, B1.6.
+**     (2000)
+**
 **     Wallace, P.T. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 November 24
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -70,7 +76,7 @@ void eraPmat06(double date1, double date2, double rbp[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

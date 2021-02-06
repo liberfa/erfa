@@ -19,7 +19,7 @@ double eraGst94(double uta, double utb)
 **
 **  1) The UT1 date uta+utb is a Julian Date, apportioned in any
 **     convenient way between the argument pair.  For example,
-**     JD=2450123.7 could be expressed in any of these ways, among
+**     JD(UT1)=2450123.7 could be expressed in any of these ways, among
 **     others:
 **
 **             uta            utb
@@ -62,7 +62,9 @@ double eraGst94(double uta, double utb)
 **
 **     IAU Resolution C7, Recommendation 3 (1994)
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 November 18
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -79,7 +81,7 @@ double eraGst94(double uta, double utb)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

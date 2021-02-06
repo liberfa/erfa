@@ -22,7 +22,9 @@ void eraRxr(double a[3][3], double b[3][3], double atb[3][3])
 **  Called:
 **     eraCr        copy r-matrix
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2013 June 18
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -47,7 +49,7 @@ void eraRxr(double a[3][3], double b[3][3], double atb[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

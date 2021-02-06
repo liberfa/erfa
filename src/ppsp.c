@@ -23,7 +23,9 @@ void eraPpsp(double a[3], double s, double b[3], double apsb[3])
 **     eraSxp       multiply p-vector by scalar
 **     eraPpp       p-vector plus p-vector
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2013 June 18
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -42,7 +44,7 @@ void eraPpsp(double a[3], double s, double b[3], double apsb[3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

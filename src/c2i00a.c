@@ -48,7 +48,7 @@ void eraC2i00a(double date1, double date2, double rc2i[3][3])
 **     Reference System (see IERS Conventions 2003), ERA is the Earth
 **     Rotation Angle and RPOM is the polar motion matrix.
 **
-**  3) A faster, but slightly less accurate result (about 1 mas), can be
+**  3) A faster, but slightly less accurate, result (about 1 mas) can be
 **     obtained by using instead the eraC2i00b function.
 **
 **  Called:
@@ -68,7 +68,9 @@ void eraC2i00a(double date1, double date2, double rc2i[3][3])
 **     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG (2004)
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 November 27
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -87,7 +89,7 @@ void eraC2i00a(double date1, double date2, double rc2i[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

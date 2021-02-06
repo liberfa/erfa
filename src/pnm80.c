@@ -10,16 +10,16 @@ void eraPnm80(double date1, double date2, double rmatpn[3][3])
 **  precession model, IAU 1980 nutation model.
 **
 **  Given:
-**     date1,date2    double         TDB date (Note 1)
+**     date1,date2 double       TT as a 2-part Julian Date (Note 1)
 **
 **  Returned:
 **     rmatpn         double[3][3]   combined precession/nutation matrix
 **
 **  Notes:
 **
-**  1) The TDB date date1+date2 is a Julian Date, apportioned in any
+**  1) The TT date date1+date2 is a Julian Date, apportioned in any
 **     convenient way between the two arguments.  For example,
-**     JD(TDB)=2450123.7 could be expressed in any of these ways,
+**     JD(TT)=2450123.7 could be expressed in any of these ways,
 **     among others:
 **
 **            date1          date2
@@ -52,7 +52,9 @@ void eraPnm80(double date1, double date2, double rmatpn[3][3])
 **     P. Kenneth Seidelmann (ed), University Science Books (1992),
 **     Section 3.3 (p145).
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 November 27
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -74,7 +76,7 @@ void eraPnm80(double date1, double date2, double rmatpn[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

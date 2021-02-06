@@ -78,7 +78,9 @@ void eraAtci13(double rc, double dc,
 **     eraApci13    astrometry parameters, ICRS-CIRS, 2013
 **     eraAtciq     quick ICRS to CIRS
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:   2017 March 12
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -98,7 +100,7 @@ void eraAtci13(double rc, double dc,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

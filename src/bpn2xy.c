@@ -34,7 +34,9 @@ void eraBpn2xy(double rbpn[3][3], double *x, double *y)
 **     n.b. The celestial ephemeris origin (CEO) was renamed "celestial
 **          intermediate origin" (CIO) by IAU 2006 Resolution 2.
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2013 June 18
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -48,7 +50,7 @@ void eraBpn2xy(double rbpn[3][3], double *x, double *y)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

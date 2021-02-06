@@ -112,7 +112,9 @@ void eraApci(double date1, double date2,
 **     eraApcg      astrometry parameters, ICRS-GCRS, geocenter
 **     eraC2ixys    celestial-to-intermediate matrix, given X,Y and s
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:   2013 September 25
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -129,7 +131,7 @@ void eraApci(double date1, double date2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

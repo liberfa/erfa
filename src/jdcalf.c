@@ -41,10 +41,11 @@ int eraJdcalf(int ndp, double dj1, double dj2, int iymdf[4])
 **     the Gregorian Calendar, nor is the AD/BC numbering convention
 **     observed.
 **
-**  3) Refer to the function eraJd2cal.
+**  3) See also the function eraJd2cal.
 **
-**  4) NDP should be 4 or less if internal overflows are to be
-**     avoided on machines which use 16-bit integers.
+**  4) The number of decimal places ndp should be 4 or less if internal
+**     overflows are to be avoided on platforms which use 16-bit
+**     integers.
 **
 **  Called:
 **     eraJd2cal    JD to Gregorian calendar
@@ -55,7 +56,9 @@ int eraJdcalf(int ndp, double dj1, double dj2, int iymdf[4])
 **     P. Kenneth Seidelmann (ed), University Science Books (1992),
 **     Section 12.92 (p604).
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 October 22
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -120,7 +123,7 @@ int eraJdcalf(int ndp, double dj1, double dj2, int iymdf[4])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

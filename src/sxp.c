@@ -18,7 +18,9 @@ void eraSxp(double s, double p[3], double sp[3])
 **  Note:
 **     It is permissible for p and sp to be the same array.
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2013 June 18
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -32,7 +34,7 @@ void eraSxp(double s, double p[3], double sp[3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

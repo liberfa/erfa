@@ -141,7 +141,9 @@ int eraAtoc13(const char *type, double ob1, double ob2,
 **     eraAtoiq     quick observed to CIRS
 **     eraAticq     quick CIRS to ICRS
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:   2013 October 9
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -172,7 +174,7 @@ int eraAtoc13(const char *type, double ob1, double ob2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

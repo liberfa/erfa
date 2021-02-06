@@ -21,7 +21,7 @@ void eraFk54z(double r2000, double d2000, double bepoch,
 **
 **  Notes:
 **
-**  1) In contrast to the eraFk524  routine, here the FK5 proper
+**  1) In contrast to the eraFk524 function, here the FK5 proper
 **     motions, the parallax and the radial velocity are presumed zero.
 **
 **  2) This function converts a star position from the IAU 1976 FK5
@@ -29,14 +29,14 @@ void eraFk54z(double r2000, double d2000, double bepoch,
 **     cases such as distant radio sources where it is presumed there is
 **     zero parallax and no proper motion.  Because of the E-terms of
 **     aberration, such objects have (in general) non-zero proper motion
-**     in FK4, and the present routine returns those fictitious proper
+**     in FK4, and the present function returns those fictitious proper
 **     motions.
 **
 **  3) Conversion from B1950.0 FK4 to J2000.0 FK5 only is provided for.
 **     Conversions involving other equinoxes would require additional
 **     treatment for precession.
 **
-**  4) The position returned by this routine is in the B1950.0 FK4
+**  4) The position returned by this function is in the B1950.0 FK4
 **     reference system but at Besselian epoch BEPOCH.  For comparison
 **     with catalogs the BEPOCH argument will frequently be 1950.0. (In
 **     this context the distinction between Besselian and Julian epoch
@@ -51,7 +51,9 @@ void eraFk54z(double r2000, double d2000, double bepoch,
 **     eraFk524     FK4 to FK5
 **     eraS2c       spherical to p-vector
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:   2020 November 19
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -91,7 +93,7 @@ void eraFk54z(double r2000, double d2000, double bepoch,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

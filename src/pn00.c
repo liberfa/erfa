@@ -95,7 +95,9 @@ void eraPn00(double date1, double date2, double dpsi, double deps,
 **     n.b. The celestial ephemeris origin (CEO) was renamed "celestial
 **          intermediate origin" (CIO) by IAU 2006 Resolution 2.
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2013 June 18
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -125,7 +127,7 @@ void eraPn00(double date1, double date2, double dpsi, double deps,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

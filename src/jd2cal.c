@@ -56,9 +56,11 @@ int eraJd2cal(double dj1, double dj2,
 **     Section 12.92 (p604).
 **
 **     Klein, A., A Generalized Kahan-Babuska-Summation-Algorithm.
-**     Computing 76, 279-293 (2006), Section 3.
+**     Computing, 76, 279-293 (2006), Section 3.
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 October 21
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -145,7 +147,7 @@ int eraJd2cal(double dj1, double dj2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

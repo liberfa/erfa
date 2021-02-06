@@ -51,7 +51,9 @@ void eraA2tf(int ndp, double angle, char *sign, int ihmsf[4])
 **  Called:
 **     eraD2tf      decompose days to hms
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 April 1
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -64,7 +66,7 @@ void eraA2tf(int ndp, double angle, char *sign, int ihmsf[4])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

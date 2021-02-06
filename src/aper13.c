@@ -108,7 +108,9 @@ void eraAper13(double ut11, double ut12, eraASTROM *astrom)
 **     eraAper      astrometry parameters: update ERA
 **     eraEra00     Earth rotation angle, IAU 2000
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:   2013 September 25
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -120,7 +122,7 @@ void eraAper13(double ut11, double ut12, eraASTROM *astrom)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International
