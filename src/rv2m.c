@@ -21,12 +21,14 @@ void eraRv2m(double w[3], double r[3][3])
 **     supplied to This function has the same direction as the Euler
 **     axis, and its magnitude is the angle in radians.
 **
-**  2) If w is null, the unit matrix is returned.
+**  2) If w is null, the identity matrix is returned.
 **
 **  3) The reference frame rotates clockwise as seen looking along the
 **     rotation vector from the origin.
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 August 21
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -66,7 +68,7 @@ void eraRv2m(double w[3], double r[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

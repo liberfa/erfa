@@ -67,11 +67,11 @@ void eraAtoiq(const char *type,
 **  3) The accuracy of the result is limited by the corrections for
 **     refraction, which use a simple A*tan(z) + B*tan^3(z) model.
 **     Providing the meteorological parameters are known accurately and
-**     there are no gross local effects, the predicted observed
+**     there are no gross local effects, the predicted intermediate
 **     coordinates should be within 0.05 arcsec (optical) or 1 arcsec
 **     (radio) for a zenith distance of less than 70 degrees, better
 **     than 30 arcsec (optical or radio) at 85 degrees and better than
-**     20 arcmin (optical) or 30 arcmin (radio) at the horizon.
+**     20 arcmin (optical) or 25 arcmin (radio) at the horizon.
 **
 **     Without refraction, the complementary functions eraAtioq and
 **     eraAtoiq are self-consistent to better than 1 microarcsecond all
@@ -88,15 +88,20 @@ void eraAtoiq(const char *type,
 **     eraC2s       p-vector to spherical
 **     eraAnp       normalize angle into range 0 to 2pi
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:   2020 December 7
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
+/* Minimum sin(alt) for refraction purposes */
+   const double SELMIN = 0.05;
+
    int c;
    double c1, c2, sphi, cphi, ce, xaeo, yaeo, zaeo, v[3],
           xmhdo, ymhdo, zmhdo, az, sz, zdo, refa, refb, tz, dref,
           zdt, xaet, yaet, zaet, xmhda, ymhda, zmhda,
-          f, xhd, yhd, zhd, xpl, ypl, w, hma;
+          f, xhd, yhd, zhd, sx, cx, sy, cy, hma;
 
 
 /* Coordinate type. */
@@ -158,7 +163,7 @@ void eraAtoiq(const char *type,
 /* Fast algorithm using two constant model. */
    refa = astrom->refa;
    refb = astrom->refb;
-   tz = sz / zaeo;
+   tz = sz / ( zaeo > SELMIN ? zaeo : SELMIN );
    dref = ( refa + refb*tz*tz ) * tz;
    zdt = zdo + dref;
 
@@ -180,12 +185,13 @@ void eraAtoiq(const char *type,
    zhd = f * zmhda;
 
 /* Polar motion. */
-   xpl = astrom->xpl;
-   ypl = astrom->ypl;
-   w = xpl*xhd - ypl*yhd + zhd;
-   v[0] = xhd - xpl*w;
-   v[1] = yhd + ypl*w;
-   v[2] = w - ( xpl*xpl + ypl*ypl ) * zhd;
+   sx = sin(astrom->xpl);
+   cx = cos(astrom->xpl);
+   sy = sin(astrom->ypl);
+   cy = cos(astrom->ypl);
+   v[0] = cx*xhd + sx*sy*yhd - sx*cy*zhd;
+   v[1] = cy*yhd + sy*zhd;
+   v[2] = sx*xhd - cx*sy*yhd + cx*cy*zhd;
 
 /* To spherical -HA,Dec. */
    eraC2s(v, &hma, di);
@@ -199,7 +205,7 @@ void eraAtoiq(const char *type,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

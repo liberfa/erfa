@@ -27,12 +27,14 @@ int eraTcgtt(double tcg1, double tcg2, double *tt1, double *tt2)
 **
 **  References:
 **
-**     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),.
+**     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG (2004)
 **
 **     IAU 2000 Resolution B1.9
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 October 23
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -57,7 +59,7 @@ int eraTcgtt(double tcg1, double tcg2, double *tt1, double *tt2)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

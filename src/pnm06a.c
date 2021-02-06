@@ -1,26 +1,27 @@
 #include "erfa.h"
 
-void eraPnm06a(double date1, double date2, double rnpb[3][3])
+void eraPnm06a(double date1, double date2, double rbpn[3][3])
 /*
 **  - - - - - - - - - -
 **   e r a P n m 0 6 a
 **  - - - - - - - - - -
 **
 **  Form the matrix of precession-nutation for a given date (including
-**  frame bias), IAU 2006 precession and IAU 2000A nutation models.
+**  frame bias), equinox based, IAU 2006 precession and IAU 2000A
+**  nutation models.
 **
 **  Given:
 **     date1,date2 double       TT as a 2-part Julian Date (Note 1)
 **
 **  Returned:
-**     rnpb        double[3][3] bias-precession-nutation matrix (Note 2)
+**     rbpn        double[3][3] bias-precession-nutation matrix (Note 2)
 **
 **  Notes:
 **
 **  1) The TT date date1+date2 is a Julian Date, apportioned in any
 **     convenient way between the two arguments.  For example,
-**     JD(TT)=2450123.7 could be expressed in any of these ways,
-**     among others:
+**     JD(TT)=2450123.7 could be expressed in any of these ways, among
+**     others:
 **
 **            date1          date2
 **
@@ -36,7 +37,7 @@ void eraPnm06a(double date1, double date2, double rnpb[3][3])
 **     optimum resolution.  The MJD method and the date & time methods
 **     are both good compromises between resolution and convenience.
 **
-**  2) The matrix operates in the sense V(date) = rnpb * V(GCRS), where
+**  2) The matrix operates in the sense V(date) = rbpn * V(GCRS), where
 **     the p-vector V(date) is with respect to the true equatorial triad
 **     of date date1+date2 and the p-vector V(GCRS) is with respect to
 **     the Geocentric Celestial Reference System (IAU, 2000).
@@ -50,7 +51,9 @@ void eraPnm06a(double date1, double date2, double rnpb[3][3])
 **
 **     Capitaine, N. & Wallace, P.T., 2006, Astron.Astrophys. 450, 855.
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 November 27
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -64,7 +67,7 @@ void eraPnm06a(double date1, double date2, double rnpb[3][3])
    eraNut06a(date1, date2, &dp, &de);
 
 /* Equinox based nutation x precession x bias matrix. */
-   eraFw2m(gamb, phib, psib + dp, epsa + de, rnpb);
+   eraFw2m(gamb, phib, psib + dp, epsa + de, rbpn);
 
    return;
 
@@ -72,7 +75,7 @@ void eraPnm06a(double date1, double date2, double rnpb[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

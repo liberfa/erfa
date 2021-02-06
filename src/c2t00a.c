@@ -8,12 +8,12 @@ void eraC2t00a(double tta, double ttb, double uta, double utb,
 **  - - - - - - - - - -
 **
 **  Form the celestial to terrestrial matrix given the date, the UT1 and
-**  the polar motion, using the IAU 2000A nutation model.
+**  the polar motion, using the IAU 2000A precession-nutation model.
 **
 **  Given:
 **     tta,ttb  double         TT as a 2-part Julian Date (Note 1)
 **     uta,utb  double         UT1 as a 2-part Julian Date (Note 1)
-**     xp,yp    double         coordinates of the pole (radians, Note 2)
+**     xp,yp    double         CIP coordinates (radians, Note 2)
 **
 **  Returned:
 **     rc2t     double[3][3]   celestial-to-terrestrial matrix (Note 3)
@@ -44,7 +44,7 @@ void eraC2t00a(double tta, double ttb, double uta, double utb,
 **  2) The arguments xp and yp are the coordinates (in radians) of the
 **     Celestial Intermediate Pole with respect to the International
 **     Terrestrial Reference System (see IERS Conventions 2003),
-**     measured along the meridians to 0 and 90 deg west respectively.
+**     measured along the meridians 0 and 90 deg west respectively.
 **
 **  3) The matrix rc2t transforms from celestial to terrestrial
 **     coordinates:
@@ -59,7 +59,7 @@ void eraC2t00a(double tta, double ttb, double uta, double utb,
 **     celestial-to-intermediate matrix, ERA is the Earth rotation
 **     angle and RPOM is the polar motion matrix.
 **
-**  4) A faster, but slightly less accurate result (about 1 mas), can
+**  4) A faster, but slightly less accurate, result (about 1 mas) can
 **     be obtained by using instead the eraC2t00b function.
 **
 **  Called:
@@ -74,7 +74,9 @@ void eraC2t00a(double tta, double ttb, double uta, double utb,
 **     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG (2004)
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 November 27
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -102,7 +104,7 @@ void eraC2t00a(double tta, double ttb, double uta, double utb,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

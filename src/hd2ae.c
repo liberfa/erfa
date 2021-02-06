@@ -58,9 +58,9 @@ void eraHd2ae (double ha, double dec, double phi,
 **
 **  Last revision:   2017 September 12
 **
-**  ERFA release 2020-07-21
+**  ERFA release 2021-01-25
 **
-**  Copyright (C) 2020 IAU ERFA Board.  See notes at end.
+**  Copyright (C) 2021 IAU ERFA Board.  See notes at end.
 */
 {
    double sh, ch, sd, cd, sp, cp, x, y, z, r, a;
@@ -91,7 +91,7 @@ void eraHd2ae (double ha, double dec, double phi,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

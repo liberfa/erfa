@@ -7,20 +7,20 @@ void eraPnm00a(double date1, double date2, double rbpn[3][3])
 **  - - - - - - - - - -
 **
 **  Form the matrix of precession-nutation for a given date (including
-**  frame bias), equinox-based, IAU 2000A model.
+**  frame bias), equinox based, IAU 2000A model.
 **
 **  Given:
-**     date1,date2  double     TT as a 2-part Julian Date (Note 1)
+**     date1,date2 double       TT as a 2-part Julian Date (Note 1)
 **
 **  Returned:
-**     rbpn         double[3][3]    classical NPB matrix (Note 2)
+**     rbpn        double[3][3] bias-precession-nutation matrix (Note 2)
 **
 **  Notes:
 **
 **  1) The TT date date1+date2 is a Julian Date, apportioned in any
 **     convenient way between the two arguments.  For example,
-**     JD(TT)=2450123.7 could be expressed in any of these ways,
-**     among others:
+**     JD(TT)=2450123.7 could be expressed in any of these ways, among
+**     others:
 **
 **            date1          date2
 **
@@ -41,7 +41,7 @@ void eraPnm00a(double date1, double date2, double rbpn[3][3])
 **     of date date1+date2 and the p-vector V(GCRS) is with respect to
 **     the Geocentric Celestial Reference System (IAU, 2000).
 **
-**  3) A faster, but slightly less accurate result (about 1 mas), can be
+**  3) A faster, but slightly less accurate, result (about 1 mas) can be
 **     obtained by using instead the eraPnm00b function.
 **
 **  Called:
@@ -53,7 +53,9 @@ void eraPnm00a(double date1, double date2, double rbpn[3][3])
 **     24th General Assembly, Manchester, UK.  Resolutions B1.3, B1.6.
 **     (2000)
 **
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  This revision:  2020 November 27
+**
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -69,7 +71,7 @@ void eraPnm00a(double date1, double date2, double rbpn[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2020, NumFOCUS Foundation.
+**  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International
