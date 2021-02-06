@@ -2,7 +2,7 @@
 
 AC_PREREQ([2.68])
 ## Follow the instructions in RELEASE.rst to change package version
-AC_INIT([erfa],[1.7.1])
+AC_INIT([erfa],[1.7.2])
 AC_CONFIG_SRCDIR([src/erfa.h])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
@@ -17,7 +17,7 @@ ERFA_NUMVER
 ## A library supports interfaces from current downto current - age
 ## Revision is the version of the current interface
 ## Follow the instructions in RELEASE.rst to change the version info
-ERFA_LIB_VERSION_INFO(8, 1, 7)
+ERFA_LIB_VERSION_INFO(8, 2, 7)
 
 ## SOFA version, update if needed in new relases
 AC_DEFINE([SOFA_VERSION], ["20210125"], [Define to the version of SOFA])
