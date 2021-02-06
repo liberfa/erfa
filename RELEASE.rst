@@ -71,12 +71,16 @@ permissions.
 * Commit these changes using ``git commit``, with a commit message like
   ``Preparing release v0.0.1``.
 
-* Run `./bootstrap.sh`: you need `automake`, `autoconf` and `libtool`
+* Run ``git clean -fxd`` to be sure you are building in a clean environment.
+
+* Run ``./bootstrap.sh``: you need `automake`, `autoconf` and `libtool`
   installed.  If no errors appear, this will create a new `./configure`
   file.
 
 * Run ``./configure``, which should create a `Makefile` in the top level
-  directory and in ./src
+  directory and in ./src, as well as a `config.h` file in the top level.
+  To avoid possible trouble, check that in the latter, `PACKAGE_VERSION`
+  is set correctly.
 
 * Run ``make check``, which will build the library and run the tests -
   make sure they pass before proceeding. (This is already done by continuous
