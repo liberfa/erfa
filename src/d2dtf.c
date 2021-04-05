@@ -71,7 +71,7 @@ int eraD2dtf(const char *scale, int ndp, double d1, double d2,
 **     eraD2tf      decompose days to hms
 **     eraDat       delta(AT) = TAI-UTC
 **
-**  This revision:  2014 February 15
+**  This revision:  2021 February 12
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -113,7 +113,7 @@ int eraD2dtf(const char *scale, int ndp, double d1, double d2,
       dleap = dat24 - (2.0*dat12 - dat0);
 
    /* If leap second day, scale the fraction of a day into SI. */
-      leap = (dleap != 0.0);
+      leap = (fabs(dleap) > 0.5);
       if (leap) fd += fd * dleap/ERFA_DAYSEC;
    }
 
