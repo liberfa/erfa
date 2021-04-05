@@ -166,7 +166,7 @@ If the version is given in the form MAJOR.MINOR.PATCH, then
         you are either fixing a bug or making other improvements. Increase
         patch by one and do not change the others.
 
-Change the version number in `README.rst`, the `AC_INIT` macro, and the macros in `src/erfaversion.c`.
+Change the version number in `README.rst` and the `AC_INIT` macro.
 
 Shared library version info
 ---------------------------
