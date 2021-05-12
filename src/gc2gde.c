@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraGc2gde ( double a, double f, double xyz[3],
                 double *elong, double *phi, double *height )
@@ -56,7 +57,7 @@ int eraGc2gde ( double a, double f, double xyz[3],
 **     coordinates accelerated by Halley's method", J.Geodesy (2006)
 **     79: 689-693
 **
-**  This revision:  2014 November 7
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -144,6 +145,8 @@ int eraGc2gde ( double a, double f, double xyz[3],
 
 /* OK status. */
    return 0;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

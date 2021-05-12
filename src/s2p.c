@@ -20,7 +20,7 @@ void eraS2p(double theta, double phi, double r, double p[3])
 **     eraS2c       spherical coordinates to unit vector
 **     eraSxp       multiply p-vector by scalar
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -32,7 +32,7 @@ void eraS2p(double theta, double phi, double r, double p[3])
    eraS2c(theta, phi, u);
    eraSxp(r, u, p);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

@@ -1,5 +1,6 @@
-#include <stdio.h>
 #include <erfa.h>
+#include "erfam.h"
+#include <stdio.h>
 
 static int verbose = 0;
 
@@ -17,7 +18,7 @@ static int verbose = 0;
 **
 **  All messages go to stdout.
 **
-**  This revision:  2021 January 5
+**  This revision:  2021 April 18
 **
 */
 
@@ -1138,6 +1139,79 @@ static void t_apio13(int *status)
    vvd(astrom.refb, -0.2361408314943696227e-6, 1e-18,
                     "eraApio13", "refb", status);
    viv(j, 0, "eraApio13", "j", status);
+
+}
+
+static void t_atcc13(int *status)
+/*
+**  - - - - - - - - -
+**   t _ a t c c 1 3
+**  - - - - - - - - -
+**
+**  Test eraAtcc13 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraAtcc13, vvd
+**
+**  This revision:  2021 April 18
+*/
+{
+   double rc, dc, pr, pd, px, rv, date1, date2, ra, da;
+
+
+   rc = 2.71;
+   dc = 0.174;
+   pr = 1e-5;
+   pd = 5e-6;
+   px = 0.1;
+   rv = 55.0;
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+
+   eraAtcc13(rc, dc, pr, pd, px, rv, date1, date2, &ra, &da);
+
+   vvd(ra,  2.710126504531372384, 1e-12,
+           "eraAtcc13", "ra", status);
+   vvd(da, 0.1740632537628350152, 1e-12,
+           "eraAtcc13", "da", status);
+
+}
+
+static void t_atccq(int *status)
+/*
+**  - - - - - - - -
+**   t _ a t c c q
+**  - - - - - - - -
+**
+**  Test eraAtccq function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraApcc13, eraAtccq, vvd
+**
+**  This revision:  2021 April 18
+*/
+{
+   double date1, date2, eo, rc, dc, pr, pd, px, rv, ra, da;
+   eraASTROM astrom;
+
+   date1 = 2456165.5;
+   date2 = 0.401182685;
+   eraApci13(date1, date2, &astrom, &eo);
+   rc = 2.71;
+   dc = 0.174;
+   pr = 1e-5;
+   pd = 5e-6;
+   px = 0.1;
+   rv = 55.0;
+
+   eraAtccq(rc, dc, pr, pd, px, rv, &astrom, &ra, &da);
+
+   vvd(ra, 2.710126504531372384, 1e-12, "eraAtccq", "ra", status);
+   vvd(da, 0.1740632537628350152, 1e-12, "eraAtccq", "da", status);
 
 }
 
@@ -5269,6 +5343,43 @@ static void t_ltpequ(int *status)
        "eraLtpequ", "veq2", status);
    vvd(veq[2], 0.9118552442250819624, 1e-14,
        "eraLtpequ", "veq3", status);
+
+}
+
+static void t_moon98(int *status)
+/*
+**  - - - - - - - - -
+**   t _ m o o n 9 8
+**  - - - - - - - - -
+**
+**  Test eraMoon98 function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraMoon98, vvd, viv
+**
+**  This revision:  2021 April 12
+*/
+{
+   double pv[2][3];
+
+
+   eraMoon98(2400000.5, 43999.9, pv);
+
+   vvd(pv[0][0], -0.2601295959971044180e-2, 1e-11,
+       "eraMoon98", "x 4", status);
+   vvd(pv[0][1], 0.6139750944302742189e-3, 1e-11,
+       "eraMoon98", "y 4", status);
+   vvd(pv[0][2], 0.2640794528229828909e-3, 1e-11,
+       "eraMoon98", "z 4", status);
+
+   vvd(pv[1][0], -0.1244321506649895021e-3, 1e-11,
+       "eraMoon98", "xd 4", status);
+   vvd(pv[1][1], -0.5219076942678119398e-3, 1e-11,
+       "eraMoon98", "yd 4", status);
+   vvd(pv[1][2], -0.1716132214378462047e-3, 1e-11,
+       "eraMoon98", "zd 4", status);
 
 }
 
@@ -9883,7 +9994,7 @@ int main(int argc, char *argv[])
 **   m a i n
 **  - - - - -
 **
-**  This revision:  2017 October 21
+**  This revision:  2021 April 18
 */
 {
    int status;
@@ -9918,6 +10029,8 @@ int main(int argc, char *argv[])
    t_aper13(&status);
    t_apio(&status);
    t_apio13(&status);
+   t_atcc13(&status);
+   t_atccq(&status);
    t_atci13(&status);
    t_atciq(&status);
    t_atciqn(&status);
@@ -10030,6 +10143,7 @@ int main(int argc, char *argv[])
    t_ltpb(&status);
    t_ltpecl(&status);
    t_ltpequ(&status);
+   t_moon98(&status);
    t_num00a(&status);
    t_num00b(&status);
    t_num06a(&status);

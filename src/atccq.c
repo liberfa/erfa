@@ -1,58 +1,82 @@
 #include "erfa.h"
-#include "erfam.h"
-#include <stdlib.h>
 
-int eraTf2a(char s, int ihour, int imin, double sec, double *rad)
+void eraAtccq(double rc, double dc,
+              double pr, double pd, double px, double rv,
+              eraASTROM *astrom, double *ra, double *da)
 /*
-**  - - - - - - - -
-**   e r a T f 2 a
-**  - - - - - - - -
+**  - - - - - - - - -
+**   e r a A t c c q
+**  - - - - - - - - -
 **
-**  Convert hours, minutes, seconds to radians.
+**  Quick transformation of a star's ICRS catalog entry (epoch J2000.0)
+**  into ICRS astrometric place, given precomputed star-independent
+**  astrometry parameters.
+**
+**  Use of this function is appropriate when efficiency is important and
+**  where many star positions are to be transformed for one date.  The
+**  star-independent parameters can be obtained by calling one of the
+**  functions eraApci[13], eraApcg[13], eraApco[13] or eraApcs[13].
+**
+**  If the parallax and proper motions are zero the transformation has
+**  no effect.
 **
 **  Given:
-**     s         char    sign:  '-' = negative, otherwise positive
-**     ihour     int     hours
-**     imin      int     minutes
-**     sec       double  seconds
+**     rc,dc  double     ICRS RA,Dec at J2000.0 (radians)
+**     pr     double     RA proper motion (radians/year, Note 3)
+**     pd     double     Dec proper motion (radians/year)
+**     px     double     parallax (arcsec)
+**     rv     double     radial velocity (km/s, +ve if receding)
+**     astrom eraASTROM* star-independent astrometry parameters:
+**      pmt    double       PM time interval (SSB, Julian years)
+**      eb     double[3]    SSB to observer (vector, au)
+**      eh     double[3]    Sun to observer (unit vector)
+**      em     double       distance from Sun to observer (au)
+**      v      double[3]    barycentric observer velocity (vector, c)
+**      bm1    double       sqrt(1-|v|^2): reciprocal of Lorenz factor
+**      bpn    double[3][3] bias-precession-nutation matrix
+**      along  double       longitude + s' (radians)
+**      xpl    double       polar motion xp wrt local meridian (radians)
+**      ypl    double       polar motion yp wrt local meridian (radians)
+**      sphi   double       sine of geodetic latitude
+**      cphi   double       cosine of geodetic latitude
+**      diurab double       magnitude of diurnal aberration vector
+**      eral   double       "local" Earth rotation angle (radians)
+**      refa   double       refraction constant A (radians)
+**      refb   double       refraction constant B (radians)
 **
 **  Returned:
-**     rad       double  angle in radians
-**
-**  Returned (function value):
-**               int     status:  0 = OK
-**                                1 = ihour outside range 0-23
-**                                2 = imin outside range 0-59
-**                                3 = sec outside range 0-59.999...
+**     ra,da  double*    ICRS astrometric RA,Dec (radians)
 **
 **  Notes:
 **
-**  1)  The result is computed even if any of the range checks fail.
+**  1) All the vectors are with respect to BCRS axes.
 **
-**  2)  Negative ihour, imin and/or sec produce a warning status, but
-**      the absolute value is used in the conversion.
+**  2) Star data for an epoch other than J2000.0 (for example from the
+**     Hipparcos catalog, which has an epoch of J1991.25) will require a
+**     preliminary call to eraPmsafe before use.
 **
-**  3)  If there are multiple errors, the status value reflects only the
-**      first, the smallest taking precedence.
+**  3) The proper motion in RA is dRA/dt rather than cos(Dec)*dRA/dt.
 **
-**  This revision:  2021 May 11
+**  Called:
+**     eraPmpx      proper motion and parallax
+**     eraC2s       p-vector to spherical
+**     eraAnp       normalize angle into range 0 to 2pi
+**
+**  This revision:   2021 April 18
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
+   double p[3], w;
 
-/* Compute the interval. */
-   *rad  = ( s == '-' ? -1.0 : 1.0 ) *
-           ( 60.0 * ( 60.0 * ( (double) abs(ihour) ) +
-                             ( (double) abs(imin) ) ) +
-                                        fabs(sec) ) * ERFA_DS2R;
 
-/* Validate arguments and return status. */
-   if ( ihour < 0 || ihour > 23 ) return 1;
-   if ( imin < 0 || imin > 59 ) return 2;
-   if ( sec < 0.0 || sec >= 60.0 ) return 3;
-   return 0;
+/* Proper motion and parallax, giving BCRS coordinate direction. */
+   eraPmpx(rc, dc, pr, pd, px, rv, astrom->pmt, astrom->eb, p);
+
+/* ICRS astrometric RA,Dec. */
+   eraC2s(p, &w, da);
+   *ra = eraAnp(w);
 
 /* Finished. */
 

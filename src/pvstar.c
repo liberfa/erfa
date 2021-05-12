@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraPvstar(double pv[2][3], double *ra, double *dec,
               double *pmr, double *pmd, double *px, double *rv)
@@ -93,7 +94,7 @@ int eraPvstar(double pv[2][3], double *ra, double *dec,
 **
 **     Stumpff, P., 1985, Astron.Astrophys. 144, 232-240.
 **
-**  This revision:  2017 March 16
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -150,8 +151,10 @@ int eraPvstar(double pv[2][3], double *ra, double *dec,
 /* Return radial velocity in km/s. */
    *rv = 1e-3 * rd * ERFA_DAU / ERFA_DAYSEC;
 
-/* OK status. */
+/* Success. */
    return 0;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

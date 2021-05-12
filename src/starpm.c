@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraStarpm(double ra1, double dec1,
               double pmr1, double pmd1, double px1, double rv1,
@@ -106,7 +107,7 @@ int eraStarpm(double ra1, double dec1,
 **     eraPdp       scalar product of two p-vectors
 **     eraPvstar    space motion pv-vector to star catalog data
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -150,6 +151,8 @@ int eraStarpm(double ra1, double dec1,
    j = (j2 == 0) ? j1 : -1;
 
    return j;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

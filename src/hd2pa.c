@@ -46,7 +46,7 @@ double eraHd2pa (double ha, double dec, double phi)
 **
 **  Last revision:   2017 September 12
 **
-**  ERFA release 2021-01-25
+**  ERFA release 2021-05-12
 **
 **  Copyright (C) 2021 IAU ERFA Board.  See notes at end.
 */

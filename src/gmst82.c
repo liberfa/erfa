@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 double eraGmst82(double dj1, double dj2)
 /*
@@ -60,7 +61,7 @@ double eraGmst82(double dj1, double dj2)
 **
 **     Aoki et al., Astron.Astrophys., 105, 359-361 (1982).
 **
-**  This revision:  2020 January 12
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -95,6 +96,8 @@ double eraGmst82(double dj1, double dj2)
    gmst = eraAnp(ERFA_DS2R * ((A + (B + (C + D * t) * t) * t) + f));
 
    return gmst;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

@@ -14,13 +14,15 @@ double eraPm(double p[3])
 **  Returned (function value):
 **            double        modulus
 **
-**  This revision:  2013 August 7
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
    return sqrt( p[0]*p[0] + p[1]*p[1] + p[2]*p[2] );
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

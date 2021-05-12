@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 double eraS00(double date1, double date2, double x, double y)
 /*
@@ -76,7 +77,7 @@ double eraS00(double date1, double date2, double x, double y)
 **     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG (2004)
 **
-**  This revision:  2020 November 4
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -316,6 +317,8 @@ double eraS00(double date1, double date2, double x, double y)
         w5 * t) * t) * t) * t) * t) * ERFA_DAS2R - x*y/2.0;
 
    return s;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

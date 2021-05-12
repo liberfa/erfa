@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraApcs(double date1, double date2, double pv[2][3],
              double ebpv[2][3], double ehp[3],
@@ -122,7 +123,7 @@ void eraApcs(double date1, double date2, double pv[2][3],
 **     eraPn        decompose p-vector into modulus and direction
 **     eraIr        initialize r-matrix to identity
 **
-**  This revision:   2017 March 16
+**  This revision:   2021 February 24
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.

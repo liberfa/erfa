@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraNut00a(double date1, double date2, double *dpsi, double *deps)
 /*
@@ -148,7 +149,7 @@ void eraNut00a(double date1, double date2, double *dpsi, double *deps)
 **     Wallace, P.T., "Software for Implementing the IAU 2000
 **     Resolutions", in IERS Workshop 5.1 (2002)
 **
-**  This revision:  2019 June 23
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -1991,7 +1992,7 @@ void eraNut00a(double date1, double date2, double *dpsi, double *deps)
    *dpsi = dpsils + dpsipl;
    *deps = depsls + depspl;
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

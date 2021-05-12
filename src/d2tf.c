@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraD2tf(int ndp, double days, char *sign, int ihmsf[4])
 /*
@@ -48,7 +49,7 @@ void eraD2tf(int ndp, double days, char *sign, int ihmsf[4])
 **     case where days is very nearly 1.0 and rounds up to 24 hours,
 **     by testing for ihmsf[0]=24 and setting ihmsf[0-3] to zero.
 **
-**  This revision:  2020 April 20
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -104,7 +105,7 @@ void eraD2tf(int ndp, double days, char *sign, int ihmsf[4])
    ihmsf[2] = (int) as;
    ihmsf[3] = (int) af;
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

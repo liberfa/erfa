@@ -22,7 +22,7 @@ void eraS2xpv(double s1, double s2, double pv[2][3], double spv[2][3])
 **  Called:
 **     eraSxp       multiply p-vector by scalar
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -31,7 +31,7 @@ void eraS2xpv(double s1, double s2, double pv[2][3], double spv[2][3])
    eraSxp(s1, pv[0], spv[0]);
    eraSxp(s2, pv[1], spv[1]);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

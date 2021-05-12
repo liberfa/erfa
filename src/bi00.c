@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraBi00(double *dpsibi, double *depsbi, double *dra)
 /*
@@ -42,7 +43,7 @@ void eraBi00(double *dpsibi, double *depsbi, double *dra)
 **     2002.  The MHB2000 code itself was obtained on 2002 September 9
 **     from ftp://maia.usno.navy.mil/conv2000/chapter5/IAU2000A.
 **
-**  This revision:  2020 October 29
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -61,7 +62,7 @@ void eraBi00(double *dpsibi, double *depsbi, double *dra)
    *depsbi = DEBIAS;
    *dra = DRA0;
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

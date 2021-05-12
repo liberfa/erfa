@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraApio13(double utc1, double utc2, double dut1,
               double elong, double phi, double hm, double xp, double yp,
@@ -162,7 +163,7 @@ int eraApio13(double utc1, double utc2, double dut1,
 **     eraRefco     refraction constants for given ambient conditions
 **     eraApio      astrometry parameters, CIRS-observed
 **
-**  This revision:   2013 October 9
+**  This revision:   2021 February 24
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.

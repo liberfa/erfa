@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraStarpv(double ra, double dec,
               double pmr, double pmd, double px, double rv,
@@ -113,7 +114,7 @@ int eraStarpv(double ra, double dec,
 **
 **     Stumpff, P., 1985, Astron.Astrophys. 144, 232-240.
 **
-**  This revision:  2017 March 16
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -210,6 +211,8 @@ int eraStarpv(double ra, double dec,
 
 /* Return the status. */
    return iwarn;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

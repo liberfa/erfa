@@ -22,7 +22,7 @@ void eraPvup(double dt, double pv[2][3], double p[3])
 **
 **  2) The time units of dt must match those of the velocity.
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -32,7 +32,7 @@ void eraPvup(double dt, double pv[2][3], double p[3])
    p[1] = pv[0][1] + dt * pv[1][1];
    p[2] = pv[0][2] + dt * pv[1][2];
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraPrec76(double date01, double date02, double date11, double date12,
                double *zeta, double *z, double *theta)
@@ -66,7 +67,7 @@ void eraPrec76(double date01, double date02, double date11, double date12,
 **     Lieske, J.H., 1979, Astron.Astrophys. 73, 282, equations
 **     (6) & (7), p283.
 **
-**  This revision:  2013 November 19
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -92,7 +93,7 @@ void eraPrec76(double date01, double date02, double date11, double date12,
    *theta = ((2004.3109 + (-0.85330 - 0.000217 * t0) * t0)
           + ((-0.42665 - 0.000217 * t0) - 0.041833 * t) * t) * tas2r;
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

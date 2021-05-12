@@ -51,7 +51,7 @@ void eraLteqec(double epj, double dr, double dd, double *dl, double *db)
 **    expressions, valid for long time intervals (Corrigendum),
 **    Astron.Astrophys. 541, C1
 **
-**  This revision:  2016 February 9
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -75,6 +75,8 @@ void eraLteqec(double epj, double dr, double dd, double *dl, double *db)
 /* Express in conventional ranges. */
    *dl = eraAnp(a);
    *db = eraAnpm(b);
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

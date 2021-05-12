@@ -21,7 +21,7 @@ double eraSeps(double al, double ap, double bl, double bp)
 **     eraS2c       spherical coordinates to unit vector
 **     eraSepp      angular separation between two p-vectors
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -38,6 +38,8 @@ double eraSeps(double al, double ap, double bl, double bp)
    s = eraSepp(ac, bc);
 
    return s;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

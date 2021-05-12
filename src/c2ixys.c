@@ -47,7 +47,7 @@ void eraC2ixys(double x, double y, double s, double rc2i[3][3])
 **     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG (2004)
 **
-**  This revision:  2014 November 7
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -67,7 +67,7 @@ void eraC2ixys(double x, double y, double s, double rc2i[3][3])
    eraRy(d, rc2i);
    eraRz(-(e+s), rc2i);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

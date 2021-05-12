@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 double eraEqeq94(double date1, double date2)
 /*
@@ -51,7 +52,7 @@ double eraEqeq94(double date1, double date2)
 **     Capitaine, N. & Gontier, A.-M., 1993, Astron.Astrophys., 275,
 **     645-650.
 **
-**  This revision:  2017 October 12
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -77,6 +78,8 @@ double eraEqeq94(double date1, double date2)
    ee = dpsi*cos(eps0) + ERFA_DAS2R*(0.00264*sin(om) + 0.000063*sin(om+om));
 
    return ee;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

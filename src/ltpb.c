@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraLtpb(double epj, double rpb[3][3])
 /*
@@ -45,7 +46,7 @@ void eraLtpb(double epj, double rpb[3][3])
 **    expressions, valid for long time intervals (Corrigendum),
 **    Astron.Astrophys. 541, C1
 **
-**  This revision:  2015 December 6
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -69,6 +70,8 @@ void eraLtpb(double epj, double rpb[3][3])
       rpb[i][1] =  rp[i][0]*dr + rp[i][1]    + rp[i][2]*de;
       rpb[i][2] = -rp[i][0]*dx - rp[i][1]*de + rp[i][2];
    }
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

@@ -12,41 +12,6 @@
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 
-/* Star-independent astrometry parameters */
-typedef struct {
-   double pmt;        /* PM time interval (SSB, Julian years) */
-   double eb[3];      /* SSB to observer (vector, au) */
-   double eh[3];      /* Sun to observer (unit vector) */
-   double em;         /* distance from Sun to observer (au) */
-   double v[3];       /* barycentric observer velocity (vector, c) */
-   double bm1;        /* sqrt(1-|v|^2): reciprocal of Lorenz factor */
-   double bpn[3][3];  /* bias-precession-nutation matrix */
-   double along;      /* longitude + s' + dERA(DUT) (radians) */
-   double phi;        /* geodetic latitude (radians) */
-   double xpl;        /* polar motion xp wrt local meridian (radians) */
-   double ypl;        /* polar motion yp wrt local meridian (radians) */
-   double sphi;       /* sine of geodetic latitude */
-   double cphi;       /* cosine of geodetic latitude */
-   double diurab;     /* magnitude of diurnal aberration vector */
-   double eral;       /* "local" Earth rotation angle (radians) */
-   double refa;       /* refraction constant A (radians) */
-   double refb;       /* refraction constant B (radians) */
-} eraASTROM;
-/* (Vectors eb, eh, em and v are all with respect to BCRS axes.) */
-
-/* Body parameters for light deflection */
-typedef struct {
-   double bm;         /* mass of the body (solar masses) */
-   double dl;         /* deflection limiter (radians^2/2) */
-   double pv[2][3];   /* barycentric PV of the body (au, au/day) */
-} eraLDBODY;
-
-/* Leap second definition */
-typedef struct {
-   int iyear, month;
-   double delat;
-} eraLEAPSECOND;
-
 /* Pi */
 #define ERFA_DPI (3.141592653589793238462643)
 
@@ -152,15 +117,15 @@ typedef struct {
 
 
 /*----------------------------------------------------------------------
-**
-**
+**  
+**  
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  All rights reserved.
-**
+**  
 **  This library is derived, with permission, from the International
 **  Astronomical Union's "Standards of Fundamental Astronomy" library,
 **  available from http://www.iausofa.org.
-**
+**  
 **  The ERFA version is intended to retain identical functionality to
 **  the SOFA library, but made distinct through different function and
 **  file names, as set out in the SOFA license conditions.  The SOFA
@@ -169,36 +134,36 @@ typedef struct {
 **  state.  The ERFA version is not subject to this restriction and
 **  therefore can be included in distributions which do not support the
 **  concept of "read only" software.
-**
+**  
 **  Although the intent is to replicate the SOFA API (other than
 **  replacement of prefix names) and results (with the exception of
 **  bugs;  any that are discovered will be fixed), SOFA is not
 **  responsible for any errors found in this version of the library.
-**
+**  
 **  If you wish to acknowledge the SOFA heritage, please acknowledge
 **  that you are using a library derived from SOFA, rather than SOFA
 **  itself.
-**
-**
+**  
+**  
 **  TERMS AND CONDITIONS
-**
+**  
 **  Redistribution and use in source and binary forms, with or without
 **  modification, are permitted provided that the following conditions
 **  are met:
-**
+**  
 **  1 Redistributions of source code must retain the above copyright
 **    notice, this list of conditions and the following disclaimer.
-**
+**  
 **  2 Redistributions in binary form must reproduce the above copyright
 **    notice, this list of conditions and the following disclaimer in
 **    the documentation and/or other materials provided with the
 **    distribution.
-**
+**  
 **  3 Neither the name of the Standards Of Fundamental Astronomy Board,
 **    the International Astronomical Union nor the names of its
 **    contributors may be used to endorse or promote products derived
 **    from this software without specific prior written permission.
-**
+**  
 **  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 **  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 **  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -211,5 +176,5 @@ typedef struct {
 **  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 **  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 **  POSSIBILITY OF SUCH DAMAGE.
-**
+**  
 */

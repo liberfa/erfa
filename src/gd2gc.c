@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraGd2gc ( int n, double elong, double phi, double height,
                double xyz[3] )
@@ -54,7 +55,7 @@ int eraGd2gc ( int n, double elong, double phi, double height,
 **     eraGd2gce    geodetic to geocentric transformation, general
 **     eraZp        zero p-vector
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -78,6 +79,8 @@ int eraGd2gc ( int n, double elong, double phi, double height,
 
 /* Return the status. */
    return j;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

@@ -18,7 +18,7 @@ void eraP2pv(double p[3], double pv[2][3])
 **     eraCp        copy p-vector
 **     eraZp        zero p-vector
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -27,7 +27,7 @@ void eraP2pv(double p[3], double pv[2][3])
    eraCp(p, pv[0]);
    eraZp(pv[1]);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

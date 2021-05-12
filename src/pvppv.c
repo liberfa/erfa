@@ -22,7 +22,7 @@ void eraPvppv(double a[2][3], double b[2][3], double apb[2][3])
 **  Called:
 **     eraPpp       p-vector plus p-vector
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -31,7 +31,7 @@ void eraPvppv(double a[2][3], double b[2][3], double apb[2][3])
    eraPpp(a[0], b[0], apb[0]);
    eraPpp(a[1], b[1], apb[1]);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

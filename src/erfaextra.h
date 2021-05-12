@@ -9,19 +9,17 @@
 ** information, and for updating the leap second table.
 **
 ** The eraGetLeapSeconds and eraSetLeapSeconds functions are used as an
-** experimental interface for getting and setting the leap second table in
-** astropy 4.0.  They will be supported as long as astropy 4.0 is supported
-** (until 2021), but not necessarily beyond.  Comments and ideas about the
-** best way to keep the leap second tables up to date for all users of erfa
-** are welcome (https://github.com/liberfa/erfa).
+** experimental interface for getting and setting the leap second table
+** starting in astropy 4.0.  They will be supported as long as needed for
+** astropy.  Comments and ideas about the best way to keep the leap
+** second tables up to date for all users of erfa are welcome
+** (https://github.com/liberfa/erfa).
 **
 */
 
 
 #ifndef _ERFA_EXTRA_H
 #define _ERFA_EXTRA_H
-
-#include "erfam.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -67,6 +65,12 @@ const char* eraSofaVersion(void);
 /*
 ** Get and set leap seconds (not supported by SOFA; EXPERIMENTAL)
 */
+
+typedef struct {
+   int iyear, month;
+   double delat;
+} eraLEAPSECOND;
+
 int eraGetLeapSeconds(eraLEAPSECOND **leapseconds);
 void eraSetLeapSeconds(eraLEAPSECOND *leapseconds, int count);
 

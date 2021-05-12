@@ -51,7 +51,7 @@ void eraNum06a(double date1, double date2, double rmatn[3][3])
 **     P. Kenneth Seidelmann (ed), University Science Books (1992),
 **     Section 3.222-3 (p114).
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -69,7 +69,7 @@ void eraNum06a(double date1, double date2, double rmatn[3][3])
 /* Nutation matrix. */
    eraNumat(eps, dp, de, rmatn);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

@@ -68,7 +68,7 @@ void eraC2i00b(double date1, double date2, double rc2i[3][3])
 **     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG (2004)
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -83,7 +83,7 @@ void eraC2i00b(double date1, double date2, double rc2i[3][3])
 /* Form the celestial-to-intermediate matrix. */
    eraC2ibpn(date1, date2, rbpn, rc2i);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

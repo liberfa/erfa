@@ -15,7 +15,7 @@ double eraPdp(double a[3], double b[3])
 **  Returned (function value):
 **            double        a . b
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -29,6 +29,8 @@ double eraPdp(double a[3], double b[3])
       + a[2] * b[2];
 
    return w;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

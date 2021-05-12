@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraAb(double pnat[3], double v[3], double s, double bm1,
            double ppr[3])
@@ -48,7 +49,7 @@ void eraAb(double pnat[3], double v[3], double s, double bm1,
 **  Called:
 **     eraPdp       scalar product of two p-vectors
 **
-**  This revision:   2013 October 9
+**  This revision:   2021 February 24
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.

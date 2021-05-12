@@ -25,7 +25,7 @@ void eraPvdpv(double a[2][3], double b[2][3], double adb[2])
 **  Called:
 **     eraPdp       scalar product of two p-vectors
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -46,7 +46,7 @@ void eraPvdpv(double a[2][3], double b[2][3], double adb[2])
 /* Velocity part of result. */
    adb[1] = adbd + addb;
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

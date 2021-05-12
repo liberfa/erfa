@@ -47,7 +47,7 @@ void eraLtp(double epj, double rp[3][3])
 **    expressions, valid for long time intervals (Corrigendum),
 **    Astron.Astrophys. 541, C1
 **
-**  This revision:  2015 December 6
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -76,6 +76,8 @@ void eraLtp(double epj, double rp[3][3])
       rp[1][i] = v[i];
       rp[2][i] = peqr[i];
    }
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraFk45z(double r1950, double d1950, double bepoch,
               double *r2000, double *d2000)
@@ -78,7 +79,7 @@ void eraFk45z(double r1950, double d1950, double bepoch,
 **     eraPvu       update a pv-vector
 **     eraS2c       spherical to p-vector
 **
-**  This revision:   2020 November 19
+**  This revision:   2021 February 24
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.

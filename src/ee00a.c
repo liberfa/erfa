@@ -58,7 +58,7 @@ double eraEe00a(double date1, double date2)
 **     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG (2004).
 **
-**  This revision:  2008 May 16
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -80,6 +80,8 @@ double eraEe00a(double date1, double date2)
    ee = eraEe00(date1, date2, epsa, dpsi);
 
    return ee;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

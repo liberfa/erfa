@@ -21,7 +21,7 @@ void eraSxpv(double s, double pv[2][3], double spv[2][3])
 **  Called:
 **     eraS2xpv     multiply pv-vector by two scalars
 **
-**  This revision:  2020 August 25
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -29,7 +29,7 @@ void eraSxpv(double s, double pv[2][3], double spv[2][3])
 {
    eraS2xpv(s, s, pv, spv);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

@@ -28,7 +28,7 @@ void eraRz(double psi, double r[3][3])
 **         (                                 )
 **         (       0            0         1  )
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -54,7 +54,7 @@ void eraRz(double psi, double r[3][3])
    r[1][1] = a11;
    r[1][2] = a12;
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

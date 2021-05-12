@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraAtoc13(const char *type, double ob1, double ob2,
               double utc1, double utc2, double dut1,
@@ -141,7 +142,7 @@ int eraAtoc13(const char *type, double ob1, double ob2,
 **     eraAtoiq     quick observed to CIRS
 **     eraAticq     quick CIRS to ICRS
 **
-**  This revision:   2013 October 9
+**  This revision:   2021 February 24
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.

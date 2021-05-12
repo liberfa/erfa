@@ -70,7 +70,7 @@ void eraFw2m(double gamb, double phib, double psi, double eps,
 **
 **     Hilton, J. et al., 2006, Celest.Mech.Dyn.Astron. 94, 351
 **
-**  This revision:  2020 November 17
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -83,7 +83,7 @@ void eraFw2m(double gamb, double phib, double psi, double eps,
    eraRz(-psi, r);
    eraRx(-eps, r);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

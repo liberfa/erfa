@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraTdbtcb(double tdb1, double tdb2, double *tcb1, double *tcb2)
 /*
@@ -47,7 +48,7 @@ int eraTdbtcb(double tdb1, double tdb2, double *tcb1, double *tcb2)
 **
 **     IAU 2006 Resolution B3
 **
-**  This revision:  2019 June 20
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -82,6 +83,8 @@ int eraTdbtcb(double tdb1, double tdb2, double *tcb1, double *tcb2)
 
 /* Status (always OK). */
    return 0;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

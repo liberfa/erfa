@@ -51,7 +51,7 @@ void eraPnm06a(double date1, double date2, double rbpn[3][3])
 **
 **     Capitaine, N. & Wallace, P.T., 2006, Astron.Astrophys. 450, 855.
 **
-**  This revision:  2020 November 27
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -69,7 +69,7 @@ void eraPnm06a(double date1, double date2, double rbpn[3][3])
 /* Equinox based nutation x precession x bias matrix. */
    eraFw2m(gamb, phib, psib + dp, epsa + de, rbpn);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

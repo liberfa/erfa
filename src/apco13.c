@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraApco13(double utc1, double utc2, double dut1,
               double elong, double phi, double hm, double xp, double yp,
@@ -173,7 +174,7 @@ int eraApco13(double utc1, double utc2, double dut1,
 **     eraApco      astrometry parameters, ICRS-observed
 **     eraEors      equation of the origins, given NPB matrix and s
 **
-**  This revision:   2013 December 5
+**  This revision:   2021 February 24
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.

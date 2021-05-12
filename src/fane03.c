@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 double eraFane03(double t)
 /*
@@ -31,7 +32,7 @@ double eraFane03(double t)
 **     Simon, J.-L., Bretagnon, P., Chapront, J., Chapront-Touze, M.,
 **     Francou, G., Laskar, J. 1994, Astron.Astrophys. 282, 663-683
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -44,6 +45,8 @@ double eraFane03(double t)
    a = fmod(5.311886287 + 3.8133035638 * t, ERFA_D2PI);
 
    return a;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

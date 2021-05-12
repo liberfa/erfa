@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraBp06(double date1, double date2,
              double rb[3][3], double rp[3][3], double rbp[3][3])
@@ -64,7 +65,7 @@ void eraBp06(double date1, double date2,
 **
 **     Wallace, P.T. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
 **
-**  This revision:  2013 August 21
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -87,7 +88,7 @@ void eraBp06(double date1, double date2,
 /* PxB matrix. */
    eraCr(rbpw, rbp);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

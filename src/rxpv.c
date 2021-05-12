@@ -27,7 +27,7 @@ void eraRxpv(double r[3][3], double pv[2][3], double rpv[2][3])
 **  Called:
 **     eraRxp       product of r-matrix and p-vector
 **
-**  This revision:  2020 September 26
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -36,7 +36,7 @@ void eraRxpv(double r[3][3], double pv[2][3], double rpv[2][3])
    eraRxp(r, pv[0], rpv[0]);
    eraRxp(r, pv[1], rpv[1]);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

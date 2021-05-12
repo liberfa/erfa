@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraPlan94(double date1, double date2, int np, double pv[2][3])
 /*
@@ -9,6 +10,8 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
 **  Approximate heliocentric position and velocity of a nominated major
 **  planet:  Mercury, Venus, EMB, Mars, Jupiter, Saturn, Uranus or
 **  Neptune (but not the Earth itself).
+**
+**  n.b. Not IAU-endorsed and without canonical status.
 **
 **  Given:
 **     date1  double       TDB date part A (Note 1)
@@ -151,13 +154,13 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
 **     which in turn takes precedence over the remote date warning.
 **
 **  Called:
-**     eraAnp       normalize angle into range 0 to 2pi
+**     eraAnpm      normalize angle into range +/- pi
 **
 **  Reference:  Simon, J.L, Bretagnon, P., Chapront, J.,
 **              Chapront-Touze, M., Francou, G., and Laskar, J.,
 **              Astron.Astrophys., 282, 663 (1994).
 **
-**  This revision:  2019 June 23
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -459,6 +462,8 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
 
 /* Return the status. */
    return jstat;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------
