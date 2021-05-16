@@ -14,7 +14,7 @@ void eraZpv(double pv[2][3])
 **  Called:
 **     eraZp        zero p-vector
 **
-**  This revision:  2020 August 25
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -23,7 +23,7 @@ void eraZpv(double pv[2][3])
    eraZp(pv[0]);
    eraZp(pv[1]);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

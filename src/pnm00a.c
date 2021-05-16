@@ -53,7 +53,7 @@ void eraPnm00a(double date1, double date2, double rbpn[3][3])
 **     24th General Assembly, Manchester, UK.  Resolutions B1.3, B1.6.
 **     (2000)
 **
-**  This revision:  2020 November 27
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -65,7 +65,7 @@ void eraPnm00a(double date1, double date2, double rbpn[3][3])
 /* Obtain the required matrix (discarding other results). */
    eraPn00a(date1, date2, &dpsi, &deps, &epsa, rb, rp, rbp, rn, rbpn);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

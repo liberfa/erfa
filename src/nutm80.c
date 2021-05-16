@@ -45,7 +45,7 @@ void eraNutm80(double date1, double date2, double rmatn[3][3])
 **     eraObl80     mean obliquity, IAU 1980
 **     eraNumat     form nutation matrix
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -61,7 +61,7 @@ void eraNutm80(double date1, double date2, double rmatn[3][3])
 /* Build the rotation matrix. */
    eraNumat(epsa, dpsi, deps, rmatn);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

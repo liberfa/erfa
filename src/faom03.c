@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 double eraFaom03(double t)
 /*
@@ -31,7 +32,7 @@ double eraFaom03(double t)
 **     Simon, J.-L., Bretagnon, P., Chapront, J., Chapront-Touze, M.,
 **     Francou, G., Laskar, J., 1994, Astron.Astrophys. 282, 663-683.
 **
-**  This revision:  2020 November 16
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -49,6 +50,8 @@ double eraFaom03(double t)
              t * (       - 0.00005939 ) ) ) ), ERFA_TURNAS ) * ERFA_DAS2R;
 
    return a;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

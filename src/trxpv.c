@@ -28,7 +28,7 @@ void eraTrxpv(double r[3][3], double pv[2][3], double trpv[2][3])
 **     eraTr        transpose r-matrix
 **     eraRxpv      product of r-matrix and pv-vector
 **
-**  This revision:  2020 September 26
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -43,7 +43,7 @@ void eraTrxpv(double r[3][3], double pv[2][3], double trpv[2][3])
 /* Matrix tr * vector pv -> vector trpv. */
    eraRxpv(tr, pv, trpv);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

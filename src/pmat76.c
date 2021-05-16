@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraPmat76(double date1, double date2, double rmatp[3][3])
 /*
@@ -66,7 +67,7 @@ void eraPmat76(double date1, double date2, double rmatp[3][3])
 **
 **     Kaplan,G.H., 1981. USNO circular no. 163, pA2.
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -85,7 +86,7 @@ void eraPmat76(double date1, double date2, double rmatp[3][3])
    eraRz( -z, wmat);
    eraCr( wmat, rmatp);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

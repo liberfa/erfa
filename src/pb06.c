@@ -63,7 +63,7 @@ void eraPb06(double date1, double date2,
 **     eraPmat06    PB matrix, IAU 2006
 **     eraRz        rotate around Z-axis
 **
-**  This revision:  2020 May 27
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -95,6 +95,8 @@ void eraPb06(double date1, double date2,
    y = -r[1][0];
    x = r[1][1];
    *bzeta = ( x != 0.0 || y != 0.0 ) ? - atan2(y,x) : 0.0;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

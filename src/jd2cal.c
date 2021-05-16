@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 #include <float.h>
 
 int eraJd2cal(double dj1, double dj2,
@@ -58,7 +59,7 @@ int eraJd2cal(double dj1, double dj2,
 **     Klein, A., A Generalized Kahan-Babuska-Summation-Algorithm.
 **     Computing, 76, 279-293 (2006), Section 3.
 **
-**  This revision:  2020 October 21
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -141,7 +142,10 @@ int eraJd2cal(double dj1, double dj2,
    *iy = (int) (100L * (n - 49L) + i + l);
    *fd = f;
 
+/* Success. */
    return 0;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

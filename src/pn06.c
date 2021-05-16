@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraPn06(double date1, double date2, double dpsi, double deps,
              double *epsa,
@@ -93,7 +94,7 @@ void eraPn06(double date1, double date2, double dpsi, double deps,
 **
 **     Wallace, P.T. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
 **
-**  This revision:  2020 November 25
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -131,7 +132,7 @@ void eraPn06(double date1, double date2, double dpsi, double deps,
 /* Obliquity, mean of date. */
    *epsa = eps;
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

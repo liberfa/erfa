@@ -25,7 +25,7 @@ void eraAtciqn(double rc, double dc, double pr, double pd,
 **
 **  Given:
 **     rc,dc  double       ICRS RA,Dec at J2000.0 (radians)
-**     pr     double       RA proper motion (radians/year; Note 3)
+**     pr     double       RA proper motion (radians/year, Note 3)
 **     pd     double       Dec proper motion (radians/year)
 **     px     double       parallax (arcsec)
 **     rv     double       radial velocity (km/s, +ve if receding)
@@ -101,7 +101,7 @@ void eraAtciqn(double rc, double dc, double pr, double pd,
 **     eraC2s       p-vector to spherical
 **     eraAnp       normalize angle into range 0 to 2pi
 **
-**  This revision:   2021 January 6
+**  This revision:   2021 April 3
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.

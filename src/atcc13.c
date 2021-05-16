@@ -1,102 +1,83 @@
 #include "erfa.h"
 
-void eraC2t00a(double tta, double ttb, double uta, double utb,
-               double xp, double yp, double rc2t[3][3])
+void eraAtcc13(double rc, double dc,
+               double pr, double pd, double px, double rv,
+               double date1, double date2,
+               double *ra, double *da)
 /*
 **  - - - - - - - - - -
-**   e r a C 2 t 0 0 a
+**   e r a A t c c 1 3
 **  - - - - - - - - - -
 **
-**  Form the celestial to terrestrial matrix given the date, the UT1 and
-**  the polar motion, using the IAU 2000A precession-nutation model.
+**  Transform a star's ICRS catalog entry (epoch J2000.0) into ICRS
+**  astrometric place.
 **
 **  Given:
-**     tta,ttb  double         TT as a 2-part Julian Date (Note 1)
-**     uta,utb  double         UT1 as a 2-part Julian Date (Note 1)
-**     xp,yp    double         CIP coordinates (radians, Note 2)
+**     rc     double   ICRS right ascension at J2000.0 (radians, Note 1)
+**     dc     double   ICRS declination at J2000.0 (radians, Note 1)
+**     pr     double   RA proper motion (radians/year, Note 2)
+**     pd     double   Dec proper motion (radians/year)
+**     px     double   parallax (arcsec)
+**     rv     double   radial velocity (km/s, +ve if receding)
+**     date1  double   TDB as a 2-part...
+**     date2  double   ...Julian Date (Note 3)
 **
 **  Returned:
-**     rc2t     double[3][3]   celestial-to-terrestrial matrix (Note 3)
+**     ra,da  double*  ICRS astrometric RA,Dec (radians)
 **
 **  Notes:
 **
-**  1) The TT and UT1 dates tta+ttb and uta+utb are Julian Dates,
-**     apportioned in any convenient way between the arguments uta and
-**     utb.  For example, JD(UT1)=2450123.7 could be expressed in any of
-**     these ways, among others:
+**  1) Star data for an epoch other than J2000.0 (for example from the
+**     Hipparcos catalog, which has an epoch of J1991.25) will require a
+**     preliminary call to eraPmsafe before use.
 **
-**             uta            utb
+**  2) The proper motion in RA is dRA/dt rather than cos(Dec)*dRA/dt.
+**
+**  3) The TDB date date1+date2 is a Julian Date, apportioned in any
+**     convenient way between the two arguments.  For example,
+**     JD(TDB)=2450123.7 could be expressed in any of these ways, among
+**     others:
+**
+**            date1          date2
 **
 **         2450123.7           0.0       (JD method)
 **         2451545.0       -1421.3       (J2000 method)
 **         2400000.5       50123.2       (MJD method)
 **         2450123.5           0.2       (date & time method)
 **
-**     The JD method is the most natural and convenient to use in
-**     cases where the loss of several decimal digits of resolution is
-**     acceptable.  The J2000 and MJD methods are good compromises
-**     between resolution and convenience.  In the case of uta,utb, the
-**     date & time method is best matched to the Earth rotation angle
-**     algorithm used:  maximum precision is delivered when the uta
-**     argument is for 0hrs UT1 on the day in question and the utb
-**     argument lies in the range 0 to 1, or vice versa.
+**     The JD method is the most natural and convenient to use in cases
+**     where the loss of several decimal digits of resolution is
+**     acceptable.  The J2000 method is best matched to the way the
+**     argument is handled internally and will deliver the optimum
+**     resolution.  The MJD method and the date & time methods are both
+**     good compromises between resolution and convenience.  For most
+**     applications of this function the choice will not be at all
+**     critical.
 **
-**  2) The arguments xp and yp are the coordinates (in radians) of the
-**     Celestial Intermediate Pole with respect to the International
-**     Terrestrial Reference System (see IERS Conventions 2003),
-**     measured along the meridians 0 and 90 deg west respectively.
-**
-**  3) The matrix rc2t transforms from celestial to terrestrial
-**     coordinates:
-**
-**        [TRS] = RPOM * R_3(ERA) * RC2I * [CRS]
-**
-**              = rc2t * [CRS]
-**
-**     where [CRS] is a vector in the Geocentric Celestial Reference
-**     System and [TRS] is a vector in the International Terrestrial
-**     Reference System (see IERS Conventions 2003), RC2I is the
-**     celestial-to-intermediate matrix, ERA is the Earth rotation
-**     angle and RPOM is the polar motion matrix.
-**
-**  4) A faster, but slightly less accurate, result (about 1 mas) can
-**     be obtained by using instead the eraC2t00b function.
+**     TT can be used instead of TDB without any significant impact on
+**     accuracy.
 **
 **  Called:
-**     eraC2i00a    celestial-to-intermediate matrix, IAU 2000A
-**     eraEra00     Earth rotation angle, IAU 2000
-**     eraSp00      the TIO locator s', IERS 2000
-**     eraPom00     polar motion matrix
-**     eraC2tcio    form CIO-based celestial-to-terrestrial matrix
+**     eraApci13    astrometry parameters, ICRS-CIRS, 2013
+**     eraAtccq     quick catalog ICRS to astrometric
 **
-**  Reference:
-**
-**     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
-**     IERS Technical Note No. 32, BKG (2004)
-**
-**  This revision:  2021 May 11
+**  This revision:   2021 April 18
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
-   double rc2i[3][3], era, sp, rpom[3][3];
+/* Star-independent astrometry parameters */
+   eraASTROM astrom;
+
+   double w;
 
 
-/* Form the celestial-to-intermediate matrix for this TT (IAU 2000A). */
-   eraC2i00a(tta, ttb, rc2i );
+/* The transformation parameters. */
+   eraApci13(date1, date2, &astrom, &w);
 
-/* Predict the Earth rotation angle for this UT1. */
-   era = eraEra00(uta, utb);
-
-/* Estimate s'. */
-   sp = eraSp00(tta, ttb);
-
-/* Form the polar motion matrix. */
-   eraPom00(xp, yp, sp, rpom);
-
-/* Combine to form the celestial-to-terrestrial matrix. */
-   eraC2tcio(rc2i, era, rpom, rc2t);
+/* Catalog ICRS (epoch J2000.0) to astrometric. */
+   eraAtccq(rc, dc, pr, pd, px, rv, &astrom, ra, da);
 
 /* Finished. */
 

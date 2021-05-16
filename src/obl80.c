@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 double eraObl80(double date1, double date2)
 /*
@@ -44,7 +45,7 @@ double eraObl80(double date1, double date2)
 **     P. Kenneth Seidelmann (ed), University Science Books (1992),
 **     Expression 3.222-1 (p114).
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -63,6 +64,8 @@ double eraObl80(double date1, double date2)
                   ( 0.001813) * t) * t) * t);
 
    return eps0;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

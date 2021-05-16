@@ -62,7 +62,7 @@ double eraGst94(double uta, double utb)
 **
 **     IAU Resolution C7, Recommendation 3 (1994)
 **
-**  This revision:  2020 November 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -76,6 +76,8 @@ double eraGst94(double uta, double utb)
    gst = eraAnp(gmst82  + eqeq94);
 
    return gst;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

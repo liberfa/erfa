@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 double eraEect00(double date1, double date2)
 /*
@@ -91,7 +92,7 @@ double eraEect00(double date1, double date2)
 **     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG (2004)
 **
-**  This revision:  2019 June 23
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -227,6 +228,8 @@ double eraEect00(double date1, double date2)
    eect = (s0 + s1 * t ) * ERFA_DAS2R;
 
    return eect;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

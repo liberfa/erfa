@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraBp00(double date1, double date2,
              double rb[3][3], double rp[3][3], double rbp[3][3])
@@ -70,7 +71,7 @@ void eraBp00(double date1, double date2,
 **     n.b. The celestial ephemeris origin (CEO) was renamed "celestial
 **          intermediate origin" (CIO) by IAU 2006 Resolution 2.
 **
-**  This revision:  2013 August 21
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -116,7 +117,7 @@ void eraBp00(double date1, double date2,
 /* Bias-precession matrix: GCRS to mean of date. */
    eraRxr(rp, rbw, rbp);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

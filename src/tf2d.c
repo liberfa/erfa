@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 #include <stdlib.h>
 
 int eraTf2d(char s, int ihour, int imin, double sec, double *days)
@@ -34,7 +35,7 @@ int eraTf2d(char s, int ihour, int imin, double sec, double *days)
 **  3)  If there are multiple errors, the status value reflects only the
 **      first, the smallest taking precedence.
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -52,6 +53,8 @@ int eraTf2d(char s, int ihour, int imin, double sec, double *days)
    if ( imin < 0 || imin > 59 ) return 2;
    if ( sec < 0.0 || sec >= 60.0 ) return 3;
    return 0;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

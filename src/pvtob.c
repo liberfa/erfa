@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraPvtob(double elong, double phi, double hm,
               double xp, double yp, double sp, double theta,
@@ -61,7 +62,7 @@ void eraPvtob(double elong, double phi, double hm,
 **     eraPom00     polar motion matrix
 **     eraTrxp      product of transpose of r-matrix and p-vector
 **
-**  This revision:   2013 October 9
+**  This revision:   2021 February 24
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.

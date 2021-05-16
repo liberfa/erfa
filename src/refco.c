@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraRefco(double phpa, double tc, double rh, double wl,
               double *refa, double *refb)
@@ -149,7 +150,7 @@ void eraRefco(double phpa, double tc, double rh, double wl,
 **
 **     Stone, Ronald C., P.A.S.P. 108, 1051-1058, 1996.
 **
-**  This revision:   2020 August 17
+**  This revision:   2021 February 24
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.

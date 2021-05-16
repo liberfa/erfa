@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraP06e(double date1, double date2,
              double *eps0, double *psia, double *oma, double *bpa,
@@ -127,7 +128,7 @@ void eraP06e(double date1, double date2,
 **  Called:
 **     eraObl06     mean obliquity, IAU 2006
 **
-**  This revision:  2020 June 2
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -272,7 +273,7 @@ void eraP06e(double date1, double date2,
           (   -0.0000000148 )
           * t) * t) * t) * t) * t * ERFA_DAS2R;
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraFk5hz(double r5, double d5, double date1, double date2,
               double *rh, double *dh)
@@ -69,7 +70,7 @@ void eraFk5hz(double r5, double d5, double date1, double date2,
 **
 **     F.Mignard & M.Froeschle, 2000, Astron.Astrophys. 354, 732-739.
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -104,7 +105,7 @@ void eraFk5hz(double r5, double d5, double date1, double date2,
    eraC2s(ph, &w, dh);
    *rh = eraAnp(w);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

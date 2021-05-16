@@ -30,7 +30,7 @@ double eraSepp(double a[3], double b[3])
 **     eraPm        modulus of p-vector
 **     eraPdp       scalar product of two p-vectors
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -50,6 +50,8 @@ double eraSepp(double a[3], double b[3])
    s = ((ss != 0.0) || (cs != 0.0)) ? atan2(ss, cs) : 0.0;
 
    return s;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

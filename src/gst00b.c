@@ -77,7 +77,7 @@ double eraGst00b(double uta, double utb)
 **     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG (2004)
 **
-**  This revision:  2020 November 19
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -91,6 +91,8 @@ double eraGst00b(double uta, double utb)
    gst = eraAnp(gmst00 + ee00b);
 
    return gst;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

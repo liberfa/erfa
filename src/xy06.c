@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraXy06(double date1, double date2, double *x, double *y)
 /*
@@ -85,7 +86,7 @@ void eraXy06(double date1, double date2, double *x, double *y)
 **
 **     Wallace, P.T. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
 **
-**  This revision:  2019 June 23
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -2702,7 +2703,7 @@ void eraXy06(double date1, double date2, double *x, double *y)
    *x = ERFA_DAS2R * (xypr[0] + (xyls[0] + xypl[0]) / 1e6);
    *y = ERFA_DAS2R * (xypr[1] + (xyls[1] + xypl[1]) / 1e6);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

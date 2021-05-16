@@ -72,7 +72,7 @@ void eraC2t06a(double tta, double ttb, double uta, double utb,
 **     McCarthy, D. D., Petit, G. (eds.), 2004, IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG
 **
-**  This revision:  2020 October 31
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -96,7 +96,7 @@ void eraC2t06a(double tta, double ttb, double uta, double utb,
 /* Combine to form the celestial-to-terrestrial matrix. */
    eraC2tcio(rc2i, era, rpom, rc2t);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

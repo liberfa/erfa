@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraTdbtt(double tdb1, double tdb2, double dtr,
              double *tt1, double *tt2 )
@@ -45,7 +46,7 @@ int eraTdbtt(double tdb1, double tdb2, double dtr,
 **
 **     IAU 2006 Resolution 3
 **
-**  This revision:  2019 June 20
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -66,6 +67,8 @@ int eraTdbtt(double tdb1, double tdb2, double dtr,
 
 /* Status (always OK). */
    return 0;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

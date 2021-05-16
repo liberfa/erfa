@@ -6,6 +6,7 @@
 ** This file is NOT derived from SOFA sources.
 **
 */
+#include "erfaextra.h"
 
 /*
 **  Get the leap second table, initializing it to the built-in version

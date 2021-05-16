@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraA2tf(int ndp, double angle, char *sign, int ihmsf[4])
 /*
@@ -51,7 +52,7 @@ void eraA2tf(int ndp, double angle, char *sign, int ihmsf[4])
 **  Called:
 **     eraD2tf      decompose days to hms
 **
-**  This revision:  2020 April 1
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -60,7 +61,7 @@ void eraA2tf(int ndp, double angle, char *sign, int ihmsf[4])
 /* Scale then use days to h,m,s function. */
    eraD2tf(ndp, angle/ERFA_D2PI, sign, ihmsf);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

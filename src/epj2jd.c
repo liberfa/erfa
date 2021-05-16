@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 void eraEpj2jd(double epj, double *djm0, double *djm)
 /*
@@ -26,7 +27,7 @@ void eraEpj2jd(double epj, double *djm0, double *djm)
 **
 **     Lieske, J.H., 1979, Astron.Astrophys. 73, 282.
 **
-**  This revision:  2013 August 7
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -35,7 +36,7 @@ void eraEpj2jd(double epj, double *djm0, double *djm)
    *djm0 = ERFA_DJM0;
    *djm  = ERFA_DJM00 + (epj - 2000.0) * 365.25;
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

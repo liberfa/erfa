@@ -1,7 +1,8 @@
 lib_LTLIBRARIES = liberfa.la
 liberfa_la_SOURCES = a2af.c a2tf.c ab.c ae2hd.c af2a.c anp.c anpm.c apcg13.c \
 apcg.c apci13.c apci.c apco13.c apco.c apcs13.c apcs.c aper13.c \
-aper.c apio13.c apio.c atci13.c atciq.c atciqn.c atciqz.c atco13.c \
+aper.c apio13.c apio.c atcc13.c atccq.c \
+atci13.c atciq.c atciqn.c atciqz.c atco13.c \
 atic13.c aticq.c aticqn.c atio13.c atioq.c atoc13.c atoi13.c atoiq.c \
 bi00.c bp00.c bp06.c bpn2xy.c c2i00a.c c2i00b.c c2i06a.c c2ibpn.c \
 c2ixy.c c2ixys.c c2s.c c2t00a.c c2t00b.c c2t06a.c c2tcio.c c2teqx.c \
@@ -16,6 +17,7 @@ gd2gce.c gmst00.c gmst06.c gmst82.c gst00a.c gst00b.c gst06a.c \
 gst06.c gst94.c hd2ae.c hd2pa.c h2fk5.c hfk5z.c icrs2g.c ir.c \
 jd2cal.c jdcalf.c ld.c \
 ldn.c ldsun.c lteceq.c ltecm.c lteqec.c ltpb.c ltp.c ltpecl.c ltpequ.c \
+moon98.c \
 num00a.c num00b.c num06a.c numat.c nut00a.c nut00b.c \
 nut06a.c nut80.c nutm80.c obl06.c obl80.c p06e.c p2pv.c p2s.c pap.c \
 pas.c pb06.c pdp.c pfw06.c plan94.c pmat00.c pmat06.c pmat76.c \

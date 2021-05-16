@@ -26,7 +26,7 @@ void eraP2s(double p[3], double *theta, double *phi, double *r)
 **     eraC2s       p-vector to spherical
 **     eraPm        modulus of p-vector
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -35,7 +35,7 @@ void eraP2s(double p[3], double *theta, double *phi, double *r)
    eraC2s(p, theta, phi);
    *r = eraPm(p);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

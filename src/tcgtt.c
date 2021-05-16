@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraTcgtt(double tcg1, double tcg2, double *tt1, double *tt2)
 /*
@@ -32,7 +33,7 @@ int eraTcgtt(double tcg1, double tcg2, double *tt1, double *tt2)
 **
 **     IAU 2000 Resolution B1.9
 **
-**  This revision:  2020 October 23
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -54,6 +55,8 @@ int eraTcgtt(double tcg1, double tcg2, double *tt1, double *tt2)
 
 /* OK status. */
    return 0;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

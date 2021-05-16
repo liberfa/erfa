@@ -46,7 +46,7 @@ void eraPom00(double xp, double yp, double sp, double rpom[3][3])
 **     McCarthy, D. D., Petit, G. (eds.), IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG (2004)
 **
-**  This revision:  2020 October 31
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -59,7 +59,7 @@ void eraPom00(double xp, double yp, double sp, double rpom[3][3])
    eraRy(-xp, rpom);
    eraRx(-yp, rpom);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

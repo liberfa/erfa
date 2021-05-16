@@ -13,7 +13,7 @@ in this source distribution.
 Differences from SOFA
 ---------------------
 
-This version of ERFA (v1.7.3) is based on SOFA version "20210125_a", with the
+This version of ERFA (v2.0.0) is based on SOFA version "20210512", with the
 differences outlined below.
 
 ERFA branding
@@ -51,6 +51,15 @@ Bug fixes
 
 ERFA includes smaller changes that may or may not eventually make it into SOFA,
 addressing localized bugs or similar smaller issues:
+
+* ERFA 2.0.0 and SOFA "20210512"
+
+  + Functionally, there no differences except for the added ``eraVersion``,
+    ``eraSofaVersion``, and leap second functions noted above.
+  + The three new functions added in SOFA are added to ERFA as well.
+  + Like for SOFA, one now has to explicitly include ``erfam.h`` to use its
+    macros defining constants, etc. Including just ``erfa.h`` (or
+    ``erfaextra.h``) will no longer includes ``erfam.h`` implicitly.
 
 * ERFA 1.7.3 and SOFA "20210125_a"
 

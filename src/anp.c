@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 double eraAnp(double a)
 /*
@@ -14,7 +15,7 @@ double eraAnp(double a)
 **  Returned (function value):
 **              double     angle in range 0-2pi
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -27,6 +28,8 @@ double eraAnp(double a)
    if (w < 0) w += ERFA_D2PI;
 
    return w;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

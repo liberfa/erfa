@@ -28,7 +28,7 @@ void eraPn(double p[3], double *r, double u[3])
 **     eraZp        zero p-vector
 **     eraSxp       multiply p-vector by scalar
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -53,7 +53,7 @@ void eraPn(double p[3], double *r, double u[3])
 /* Return the modulus. */
    *r = w;
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

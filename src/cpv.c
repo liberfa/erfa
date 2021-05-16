@@ -17,7 +17,7 @@ void eraCpv(double pv[2][3], double c[2][3])
 **  Called:
 **     eraCp        copy p-vector
 **
-**  This revision:  2013 June 18
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -26,7 +26,7 @@ void eraCpv(double pv[2][3], double c[2][3])
    eraCp(pv[0], c[0]);
    eraCp(pv[1], c[1]);
 
-   return;
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------

@@ -1,4 +1,5 @@
 #include "erfa.h"
+#include "erfam.h"
 
 int eraCal2jd(int iy, int im, int id, double *djm0, double *djm)
 /*
@@ -43,7 +44,7 @@ int eraCal2jd(int iy, int im, int id, double *djm0, double *djm)
 **     P. Kenneth Seidelmann (ed), University Science Books (1992),
 **     Section 12.92 (p604).
 **
-**  This revision:  2013 August 7
+**  This revision:  2021 May 11
 **
 **  Copyright (C) 2013-2021, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
@@ -84,6 +85,8 @@ int eraCal2jd(int iy, int im, int id, double *djm0, double *djm)
 
 /* Return status. */
    return j;
+
+/* Finished. */
 
 }
 /*----------------------------------------------------------------------
