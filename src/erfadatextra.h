@@ -6,6 +6,11 @@
 ** This file is NOT derived from SOFA sources.
 **
 */
+
+
+#ifndef _ERFA_DAT_EXTRA_H
+#define _ERFA_DAT_EXTRA_H
+
 #include "erfaextra.h"
 
 /*
@@ -17,3 +22,5 @@
 */
 int eraDatini(const eraLEAPSECOND *builtin, int n_builtin,
               eraLEAPSECOND **leapseconds);
+
+#endif
