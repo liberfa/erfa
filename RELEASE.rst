@@ -22,13 +22,13 @@ places no contraints on who has permissions to submit code changes.
   repository`_ in its own directory.  That will create a directory called `erfa`
   inside the `erfa-fetch` directory, and   you should copy its contents to the
   `src` directory of `erfa`.  Add any new C files or header files added by SOFA
-  to ``src/Makefile.am``, as appropriate.
+  to ``src/meson.build``, as appropriate.
 
 * Use ``git diff`` in `erfa` to inspect the changes, ensuring that you are not
   overwriting *intentional* changes between SOFA and ERFA (the README from the
   previous version is generally your friend here.)
 
-* Update the ``SOFA_VERSION`` macro in ``configure.ac`` to reflect the new SOFA
+* Update the ``SOFA_VERSION`` define in ``meson.build`` to reflect the new SOFA
   version.
 
 * Update the SOFA version mentioned in `README.rst` to reflect what's now in, as
@@ -55,12 +55,12 @@ Releasing ERFA
 These steps should be done by a maintainer, as they require specific Github
 permissions.
 
-* Update the version number in the `AC_INIT` macro of `configure.ac` to
+* Update the version number in the `project()` version field of `meson.build` to
   the version number you are about to release, and also  Follow the instructions
   in the `Version numbering` "Package version number" section below.
 
-* Update the version info of the shared library in the `ERFA_LIB_VERSION_INFO`
-  macro of `configure.ac`. Follow the instructions in `Version numbering`
+* Update the version info of the shared library in the `libtool_version`
+  variable of `meson.build`. Follow the instructions in `Version numbering`
   "Shared library version info" section below.
 
 * Update the `README.rst` to reference the version you filled in above for
@@ -71,26 +71,21 @@ permissions.
 * Commit these changes using ``git commit``, with a commit message like
   ``Preparing release v0.0.1``.
 
-* Run ``git clean -fxd`` to be sure you are building in a clean environment.
-
-* Run ``./bootstrap.sh``: you need `automake`, `autoconf` and `libtool`
-  installed.  If no errors appear, this will create a new `./configure`
-  file.
-
-* Run ``./configure``, which should create a `Makefile` in the top level
-  directory and in ./src, as well as a `config.h` file in the top level.
+* Run ``meson setup builddir``: you need `meson` installed.  If no errors appear,
+  this will create a `build.ninja` file in the build directory, as well as a
+  `config.h`.
   To avoid possible trouble, check that in the latter, `PACKAGE_VERSION`
   is set correctly.
 
-* Run ``make check``, which will build the library and run the tests -
+* Run ``meson test -C builddir``, which will build the library and run the tests -
   make sure they pass before proceeding. (This is already done by continuous
   integration in Github so it really *should* pass, but better to be safe than
   sorry!)
 
-* Run ``make distcheck``: this creates the distribution tarball,
+* Run ``meson dist -C builddir``: this creates the distribution tarball,
   unpackages it and runs the check inside the untarred directory.
   The resulting tarball will be named e.g., `erfa-0.0.1.tar.gz` and
-  will be placed in the working directory.
+  will be placed in `builddir/meson-dist` (its filename will be printed out as well).
 
 * Tag the current commit with the version number.  A signed tag is preferred if
   you have an a signing key (e.g., do ``git tag -s v0.0.1``).
@@ -166,7 +161,7 @@ If the version is given in the form MAJOR.MINOR.PATCH, then
         you are either fixing a bug or making other improvements. Increase
         patch by one and do not change the others.
 
-Change the version number in `README.rst` and the `AC_INIT` macro.
+Change the version number in `README.rst` and the `project()` version argument.
 
 Shared library version info
 ---------------------------
@@ -184,7 +179,7 @@ Again, the release manager has to review the relevant information:
   * relevant bug reports in the github project page
 
 The shared library version info is stored in three numbers called *current*,
-*revision* and *age*. These numbers appear in the macro `ERFA_LIB_VERSION_INFO`
+*revision* and *age*. These numbers appear in the variable `libtool_version`
 in the mentioned order.
 
 If the version is given in the form CURRENT,REVISION,AGE then
@@ -200,7 +195,7 @@ If the version is given in the form CURRENT,REVISION,AGE then
   * else
        do not change the version info (c,r,a -> c,r,a)
 
-Change the version info in `ERFA_LIB_VERSION_INFO`
+Change the version info in `libtool_version`
 
 Examples
 ---------
