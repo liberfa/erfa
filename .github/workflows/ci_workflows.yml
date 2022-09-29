@@ -73,3 +73,22 @@ jobs:
       run: meson test -C builddir
     - name: distcheck
       run: meson dist -C builddir
+
+  Windows-meson:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: install dependencies
+      run: pip install --pre meson ninja
+    - uses: ilammy/msvc-dev-cmd@v1
+    - name: configure
+      run: meson setup builddir --fatal-meson-warnings
+    - name: build
+      run: ninja -C builddir
+    - name: check
+      run: meson test -C builddir
+    - name: distcheck
+      run: meson dist -C builddir
