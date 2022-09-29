@@ -85,7 +85,7 @@ jobs:
       run: pip install --pre meson ninja
     - uses: ilammy/msvc-dev-cmd@v1
     - name: configure
-      run: meson setup builddir --fatal-meson-warnings
+      run: meson setup builddir --fatal-meson-warnings -Ddefault_library=static
     - name: build
       run: ninja -C builddir
     - name: check
