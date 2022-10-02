@@ -121,27 +121,29 @@ Building and installing ERFA
 ----------------------------
 
 To build and install a released version of ERFA in your OS's standard
-location, simply do::
+location, you need to install `meson <https://mesonbuild.com/Getting-meson.html>`_
+and `ninja <https://ninja-build.org/>`_. On Debian-based OSes, these
+can be installed with ``apt install meson``.
 
-    ./configure
-    make
-    make install
+Then, simply do::
+
+    meson setup builddir/
+    ninja -C builddir/
+    meson install -C builddir/
 
 If you want to run the tests to make sure ERFA built correctly, before
 installing do::
 
-    make check
+    meson test -C builddir/
 
 
 For developers
 ^^^^^^^^^^^^^^
 
-If you are using a developer version from github, you will need to first do
-``./bootstrap.sh`` before the above commands. This requires ``autoconf`` and
-``libtool``.
-
 If you wish to build against the ERFA static library without installing, you
-will find it in ``$ERFAROOT/src/.libs/liberfa.a`` after running ``make``.
+can add ``$PWD/builddir/meson-uninstalled/`` to the ``$PKG_CONFIG_PATH``
+variable. Other projects will then be able to pick up and link to the uninstalled
+dependency using pkg-config as normal.
 
 Creating a single-file version of the source code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
