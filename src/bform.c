@@ -1,89 +1,119 @@
 #include "erfa.h"
 #include "erfam.h"
 
-int eraGc2gd ( int n, double xyz[3],
-               double *elong, double *phi, double *height )
+int eraBform ( int n, double *a, double *f )
 /*
 **  - - - - - - - - -
-**   e r a G c 2 g d
+**   e r a B f o r m
 **  - - - - - - - - -
 **
-**  Transform geocentric coordinates to geodetic using the specified
-**  reference ellipsoid.
+**  Solar Systems Body reference ellipsoids.
 **
 **  Given:
-**     n       int        ellipsoid identifier (Note 1)
-**     xyz     double[3]  geocentric vector (Note 2)
+**     n    int         ellipsoid identifier (Note 1)
 **
 **  Returned:
-**     elong   double     longitude (radians, east +ve, Note 3)
-**     phi     double     latitude (geodetic, radians, Note 3)
-**     height  double     height above ellipsoid (geodetic, Notes 2,3)
+**     a    double      equatorial radius (meters, Note 2)
+**     f    double      flattening (Note 2)
 **
 **  Returned (function value):
-**            int         status:  0 = OK
-**                                -1 = illegal identifier (Note 3)
-**                                -2 = internal error (Note 3)
+**          int         status:  0 = OK
+**                              -1 = illegal identifier (Note 3)
 **
 **  Notes:
 **
 **  1) The identifier n is a number that specifies the choice of
-**     reference ellipsoid.  The following are supported:
-**
-**        n    ellipsoid
-**
-**        1     ERFA_WGS84
-**        2     ERFA_GRS80
-**        3     ERFA_WGS72
-**
+**     reference ellipsoid.
 **     The n value has no significance outside the ERFA software.  For
 **     convenience, symbols ERFA_WGS84 etc. are defined in erfam.h.
 **
-**  2) The geocentric vector (xyz, given) and height (height, returned)
-**     are in meters.
+**  2) The ellipsoid parameters are returned in the form of equatorial
+**     radius in meters (a) and flattening (f).
 **
-**  3) An error status -1 means that the identifier n is illegal.  An
-**     error status -2 is theoretically impossible.  In all error cases,
-**     all three results are set to -1e9.
+**  3) For the case where an unsupported n value is supplied, zero a and
+**     f are returned, as well as error status.
 **
-**  4) The inverse transformation is performed in the function eraGd2gc.
+**  References:
 **
-**  Called:
-**     eraEform     Earth reference ellipsoids
-**     eraGc2gde    geocentric to geodetic transformation, general
+**     IAU Working Group on Cartographic Coordinates and Rotational Elements
+**       (WGCCRE) Reports
+**     https://astrogeology.usgs.gov/groups/iau-wgccre
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 Mar 21
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
-**  Derived, with permission, from the SOFA library.  See notes at end of file.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 */
 {
-   int j;
-   double a, f;
 
+/* Look up a and f for the specified reference ellipsoid. */
+   switch ( n ) {
 
-/* Obtain reference ellipsoid parameters. */
-   if ( n < 4 ) {
-      j = eraEform ( n, &a, &f );
-   } else {
-      j = eraBform ( n, &a, &f );
+   case ERFA_IAUMOON1988:
+   /* M. E. Davies et al (1989) https://doi.org/10.1007/BF00053048 */
+      *a = 1738400.0;
+      *f = 0.0;
+      break;
+
+   case ERFA_IAUMOON1979:
+   /* M. E. Davies et al (1980) https://doi.org/10.1007/BF01229508 */
+      *a = 1738000.0;
+      *f = 0.0;
+      break;
+
+   case ERFA_IAUMERCURY2015:
+   /* Archinal et al (2018) https://doi.org/10.1007/s10569-017-9805-5 */
+      *a = 2439400.0;
+      *f = 0.0;
+      break;
+      
+   case ERFA_IAUMERCURY2009:
+   /* Archinal et al (2011) https://doi.org/10.1007/s10569-010-9320-4 */
+      *a = 2439700.0;
+      *f = 0.0;
+      break;
+
+   case ERFA_IAUMERCURY1979:
+   /* M. E. Davies et al (1980) https://doi.org/10.1007/BF01229508 */
+      *a = 2439000.0;
+      *f = 0.0;
+      break;
+
+   case ERFA_IAUVENUS1991:
+   /* M. E. Davies et al (1992) https://doi.org/10.1007/BF00051818 */
+      *a = 6051800.0;
+      *f = 0.0;
+      break;
+
+   case ERFA_IAUVENUS1982:
+   /* Davies et al (1982) https://doi.org/10.1007/BF01228525
+      This is the Magellan spheroid */
+      *a = 6051000.0;
+      *f = 0.0;
+      break;
+
+   case ERFA_IAUMARS2000:
+   /* Seidelmann et al (2002) https://doi.org/10.1023/A:1013939327465 */
+      *a = 3396190.0;
+      *f = 1.0 / 169.894447224;
+      break;
+
+   case ERFA_IAUMARS1979:
+   /* M. E. Davies et al (1980) https://doi.org/10.1007/BF01229508 */
+      *a = 3393400.0;
+      *f = 1.0 / 192.80825219319385;
+      break;
+
+   default:
+
+   /* Invalid identifier. */
+      *a = 0.0;
+      *f = 0.0;
+      return -1;
+
    }
 
-/* If OK, transform x,y,z to longitude, geodetic latitude, height. */
-   if ( j == 0 ) {
-      j = eraGc2gde ( a, f, xyz, elong, phi, height );
-      if ( j < 0 ) j = -2;
-   }
-
-/* Deal with any errors. */
-   if ( j < 0 ) {
-      *elong = -1e9;
-      *phi = -1e9;
-      *height = -1e9;
-   }
-
-/* Return the status. */
-   return j;
+/* OK status. */
+   return 0;
 
 /* Finished. */
 

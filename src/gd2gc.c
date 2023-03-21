@@ -66,7 +66,11 @@ int eraGd2gc ( int n, double elong, double phi, double height,
 
 
 /* Obtain reference ellipsoid parameters. */
-   j = eraEform ( n, &a, &f );
+   if ( n < 4 ) {
+      j = eraEform ( n, &a, &f );
+   } else {
+      j = eraBform ( n, &a, &f );
+   }
 
 /* If OK, transform longitude, geodetic latitude, height to x,y,z. */
    if ( j == 0 ) {

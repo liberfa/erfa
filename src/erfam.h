@@ -109,9 +109,28 @@
 #define ERFA_GMIN(A,B) (((A)<(B))?(A):(B))
 
 /* Reference ellipsoids */
+
+/* Earth */
 #define ERFA_WGS84 1
 #define ERFA_GRS80 2
 #define ERFA_WGS72 3
+
+/* Moon */
+#define ERFA_IAUMOON1988 4
+#define ERFA_IAUMOON1979 5
+
+/* Mercury */
+#define ERFA_IAUMERCURY2015 6
+#define ERFA_IAUMERCURY2009 7
+#define ERFA_IAUMERCURY1979 8
+
+/* Venus */
+#define ERFA_IAUVENUS1991 9
+#define ERFA_IAUVENUS1982 10
+
+/* Mars */
+#define ERFA_IAUMARS2000 11
+#define ERFA_IAUMARS1979 12
 
 #endif
 

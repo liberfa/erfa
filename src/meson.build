@@ -8,7 +8,7 @@ liberfa = library(
     'aper.c', 'apio13.c', 'apio.c', 'atcc13.c', 'atccq.c',
     'atci13.c', 'atciq.c', 'atciqn.c', 'atciqz.c', 'atco13.c',
     'atic13.c', 'aticq.c', 'aticqn.c', 'atio13.c', 'atioq.c', 'atoc13.c', 'atoi13.c', 'atoiq.c',
-    'bi00.c', 'bp00.c', 'bp06.c', 'bpn2xy.c', 'c2i00a.c', 'c2i00b.c', 'c2i06a.c', 'c2ibpn.c',
+    'bi00.c', 'bform.c', 'bp00.c', 'bp06.c', 'bpn2xy.c', 'c2i00a.c', 'c2i00b.c', 'c2i06a.c', 'c2ibpn.c',
     'c2ixy.c', 'c2ixys.c', 'c2s.c', 'c2t00a.c', 'c2t00b.c', 'c2t06a.c', 'c2tcio.c', 'c2teqx.c',
     'c2tpe.c', 'c2txy.c', 'cal2jd.c', 'cp.c', 'cpv.c', 'cr.c', 'd2dtf.c', 'd2tf.c', 'dat.c', 'dtdb.c',
     'dtf2d.c', 'eceq06.c', 'ee00a.c', 'ee00.c', 'eect00.c', 'eo06a.c', 'epb2jd.c', 'epj2jd.c', 'epv00.c',

@@ -379,6 +379,7 @@ void eraIcrs2g(double dr, double dd, double *dl, double *db);
 
 /* Astronomy/GeodeticGeocentric */
 int eraEform(int n, double *a, double *f);
+int eraBform(int n, double *a, double *f);
 int eraGc2gd(int n, double xyz[3],
              double *elong, double *phi, double *height);
 int eraGc2gde(double a, double f, double xyz[3],

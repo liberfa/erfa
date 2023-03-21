@@ -3330,6 +3330,87 @@ static void t_eform(int *status)
    viv(j, -1, "eraEform", "j3", status);
 }
 
+static void t_bform(int *status)
+/*
+**  - - - - - - - -
+**   t _ b f o r m
+**  - - - - - - - -
+**
+**  Test eraBform function.
+**
+**  Returned:
+**     status    int         FALSE = success, TRUE = fail
+**
+**  Called:  eraBform, viv, vvd
+**
+**  This revision:  2023 March 21
+*/
+{
+   int j;
+   double a, f;
+
+   j = eraBform(0, &a, &f);
+
+   viv(j, -1, "eraBform", "j0", status);
+
+   j = eraBform(ERFA_IAUMOON1988, &a, &f);
+
+   viv(j, 0, "eraBform", "j1", status);
+   vvd(a, 1738400.0, 1e-10, "eraBform", "a1", status);
+   vvd(f, 0.0, 1e-18, "eraBform", "f1", status);
+
+   j = eraBform(ERFA_IAUMOON1979, &a, &f);
+
+   viv(j, 0, "eraBform", "j2", status);
+   vvd(a, 1738000.0, 1e-10, "eraBform", "a2", status);
+   vvd(f, 0.0, 1e-18, "eraBform", "f2", status);
+
+   j = eraBform(ERFA_IAUMERCURY2015, &a, &f);
+
+   viv(j, 0, "eraBform", "j3", status);
+   vvd(a, 2439400.0, 1e-10, "eraBform", "a3", status);
+   vvd(f, 0.0, 1e-18, "eraBform", "f3", status);
+
+   j = eraBform(ERFA_IAUMERCURY2009, &a, &f);
+
+   viv(j, 0, "eraBform", "j4", status);
+   vvd(a, 2439700.0, 1e-10, "eraBform", "a4", status);
+   vvd(f, 0.0, 1e-18, "eraBform", "f4", status);
+
+   j = eraBform(ERFA_IAUMERCURY1979, &a, &f);
+
+   viv(j, 0, "eraBform", "j5", status);
+   vvd(a, 2439000.0, 1e-10, "eraBform", "a5", status);
+   vvd(f, 0.0, 1e-18, "eraBform", "f5", status);
+
+   j = eraBform(ERFA_IAUVENUS1991, &a, &f);
+
+   viv(j, 0, "eraBform", "j6", status);
+   vvd(a, 6051800.0, 1e-10, "eraBform", "a6", status);
+   vvd(f, 0.0, 1e-18, "eraBform", "f6", status);
+
+   j = eraBform(ERFA_IAUVENUS1982, &a, &f);
+
+   viv(j, 0, "eraBform", "j7", status);
+   vvd(a, 6051000.0, 1e-10, "eraBform", "a7", status);
+   vvd(f, 0.0, 1e-18, "eraBform", "f7", status);
+
+   j = eraBform(ERFA_IAUMARS2000, &a, &f);
+
+   viv(j, 0, "eraBform", "j8", status);
+   vvd(a, 3396190.0, 1e-10, "eraBform", "a8", status);
+   vvd(f, 0.58860075555120074e-2, 1e-18, "eraBform", "f8", status);
+
+   j = eraBform(ERFA_IAUMARS1979, &a, &f);
+
+   viv(j, 0, "eraBform", "j9", status);
+   vvd(a, 3393400.0, 1e-10, "eraBform", "a9", status);
+   vvd(f, 0.51865e-2, 1e-18, "eraBform", "f9", status);
+
+   j = eraBform(20, &a, &f);
+   viv(j, -1, "eraBform", "j10", status);
+}
+
 static void t_eo06a(int *status)
 /*
 **  - - - - - - - -
@@ -4421,7 +4502,7 @@ static void t_gd2gc(int *status)
    vvd(xyz[1], 233011.5975297822211, 1e-7, "eraGd2gc", "2/3", status);
    vvd(xyz[2], -3040908.6861467111, 1e-7, "eraGd2gc", "3/3", status);
 
-   j = eraGd2gc(4, e, p, h, xyz);
+   j = eraGd2gc(20, e, p, h, xyz);
 
    viv(j, -1, "eraGd2gc", "j4", status);
 }
@@ -10045,6 +10126,7 @@ int main(int argc, char *argv[])
    t_atoi13(&status);
    t_atoiq(&status);
    t_bi00(&status);
+   t_bform(&status);
    t_bp00(&status);
    t_bp06(&status);
    t_bpn2xy(&status);
