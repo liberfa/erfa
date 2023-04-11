@@ -4396,6 +4396,10 @@ static void t_gc2gd(int *status)
 {
    int j;
    double xyz[] = {2e6, 3e6, 5.244e6};
+   double xyz1[] = {6e5, 8.5e5, 1.39e6};
+   double xyz2[] = {1.e6, 1.2e6, 1.875e6};
+   double xyz3[] = {2e6, 2.77e6, 5.e6};
+   double xyz4[] = {1.1e6, 1.5e6, 2.825e6};
    double e, p, h;
 
    j = eraGc2gd(0, xyz, &e, &p, &h);
@@ -4423,9 +4427,72 @@ static void t_gc2gd(int *status)
    vvd(p, 0.9716018181101511937, 1e-14, "eraGc2gd", "p3", status);
    vvd(h, 333.2770726130318123, 1e-8, "eraGc2gd", "h3", status);
 
-   j = eraGc2gd(4, xyz, &e, &p, &h);
+   j = eraGc2gd(ERFA_IAUMOON1988, xyz1, &e, &p, &h);
 
-   viv(j, -1, "eraGc2gd", "j4", status);
+   viv(j, 0, "eraGc2gd", "j4", status);
+   vvd(e, 0.95613337487273109, 1e-14, "eraGc2gd", "e4", status);
+   vvd(p, 0.92824779310565875, 1e-14, "eraGc2gd", "p4", status);
+   vvd(h, -2139.65085877750971, 1e-8, "eraGc2gd", "h4", status);
+
+   j = eraGc2gd(ERFA_IAUMOON1979, xyz1, &e, &p, &h);
+
+   viv(j, 0, "eraGc2gd", "j5", status);
+   vvd(e, 0.95613337487273109, 1e-14, "eraGc2gd", "e5", status);
+   vvd(p, 0.92824779310565875, 1e-14, "eraGc2gd", "p5", status);
+   vvd(h, -1739.65085877738898, 1e-8, "eraGc2gd", "h5", status);
+
+   j = eraGc2gd(ERFA_IAUMERCURY2015, xyz2, &e, &p, &h);
+
+   viv(j, 0, "eraGc2gd", "j6", status);
+   vvd(e, 0.87605805059819353, 1e-14, "eraGc2gd", "e6", status);
+   vvd(p, 0.87619972706832705, 1e-14, "eraGc2gd", "p6", status);
+   vvd(h, 1014.92373735488684, 1e-8, "eraGc2gd", "h6", status);
+
+   j = eraGc2gd(ERFA_IAUMERCURY2009, xyz2, &e, &p, &h);
+
+   viv(j, 0, "eraGc2gd", "j7", status);
+   vvd(e, 0.87605805059819353, 1e-14, "eraGc2gd", "e7", status);
+   vvd(p, 0.87619972706832705, 1e-14, "eraGc2gd", "p7", status);
+   vvd(h, 714.92373735498495, 1e-8, "eraGc2gd", "h7", status);
+
+   j = eraGc2gd(ERFA_IAUMERCURY1979, xyz2, &e, &p, &h);
+
+   viv(j, 0, "eraGc2gd", "j8", status);
+   vvd(e, 0.87605805059819353, 1e-14, "eraGc2gd", "e8", status);
+   vvd(p, 0.87619972706832705, 1e-14, "eraGc2gd", "p8", status);
+   vvd(h, 1414.92373735527099, 1e-8, "eraGc2gd", "h8", status);
+
+   j = eraGc2gd(ERFA_IAUVENUS1991, xyz3, &e, &p, &h);
+
+   viv(j, 0, "eraGc2gd", "j9", status);
+   vvd(e, 0.94544310833186163, 1e-14, "eraGc2gd", "e9", status);
+   vvd(p, 0.97135803030703449, 1e-14, "eraGc2gd", "p9", status);
+   vvd(h, 4015.38688226513113, 1e-8, "eraGc2gd", "h9", status);
+
+   j = eraGc2gd(ERFA_IAUVENUS1982, xyz3, &e, &p, &h);
+
+   viv(j, 0, "eraGc2gd", "j10", status);
+   vvd(e, 0.94544310833186163, 1e-14, "eraGc2gd", "e10", status);
+   vvd(p, 0.97135803030703449, 1e-14, "eraGc2gd", "p10", status);
+   vvd(h, 4815.38688226492832, 1e-8, "eraGc2gd", "h10", status);
+
+   j = eraGc2gd(ERFA_IAUMARS2000, xyz4, &e, &p, &h);
+
+   viv(j, 0, "eraGc2gd", "j11", status);
+   vvd(e, 0.93804749179271363, 1e-14, "eraGc2gd", "e11", status);
+   vvd(p, 0.99391711699551999, 1e-14, "eraGc2gd", "p11", status);
+   vvd(h, 190.96843422054491, 1e-8, "eraGc2gd", "h11", status);
+
+   j = eraGc2gd(ERFA_IAUMARS1979, xyz4, &e, &p, &h);
+
+   viv(j, 0, "eraGc2gd", "j12", status);
+   vvd(e, 0.93804749179271363, 1e-14, "eraGc2gd", "e12", status);
+   vvd(p, 0.99327229092585878, 1e-14, "eraGc2gd", "p12", status);
+   vvd(h, 1305.31566425992537, 1e-8, "eraGc2gd", "h12", status);
+
+   j = eraGc2gd(20, xyz, &e, &p, &h);
+
+   viv(j, -1, "eraGc2gd", "j20", status);
 }
 
 static void t_gc2gde(int *status)
@@ -4502,9 +4569,72 @@ static void t_gd2gc(int *status)
    vvd(xyz[1], 233011.5975297822211, 1e-7, "eraGd2gc", "2/3", status);
    vvd(xyz[2], -3040908.6861467111, 1e-7, "eraGd2gc", "3/3", status);
 
+   j = eraGd2gc(ERFA_IAUMOON1988, e, p, h, xyz);
+
+   viv(j, 0, "eraGd2gc", "j4", status);
+   vvd(xyz[0], -1526462.17886806, 1e-7, "eraGd2gc", "0/1", status);
+   vvd(xyz[1], 63526.24923599, 1e-7, "eraGd2gc", "1/1", status);
+   vvd(xyz[2], -834631.92015606, 1e-7, "eraGd2gc", "2/1", status);
+
+   j = eraGd2gc(ERFA_IAUMOON1979, e, p, h, xyz);
+
+   viv(j, 0, "eraGd2gc", "j5", status);
+   vvd(xyz[0], -1526111.44943412, 1e-7, "eraGd2gc", "0/2", status);
+   vvd(xyz[1], 63511.65305028, 1e-7, "eraGd2gc", "1/2", status);
+   vvd(xyz[2], -834440.14994062, 1e-7, "eraGd2gc", "2/2", status);
+
+   j = eraGd2gc(ERFA_IAUMERCURY2015, e, p, h, xyz);
+
+   viv(j, 0, "eraGd2gc", "j6", status);
+   vvd(xyz[0], -2141115.51184899, 1e-7, "eraGd2gc", "0/3", status);
+   vvd(xyz[1], 89106.06468457, 1e-7, "eraGd2gc", "1/3", status);
+   vvd(xyz[2], -1170709.2227176, 1e-7, "eraGd2gc", "2/3", status);
+
+   j = eraGd2gc(ERFA_IAUMERCURY2009, e, p, h, xyz);
+
+   viv(j, 0, "eraGd2gc", "j7", status);
+   vvd(xyz[0], -2141378.55892445, 1e-7, "eraGd2gc", "0/3", status);
+   vvd(xyz[1], 89117.01182385, 1e-7, "eraGd2gc", "1/3", status);
+   vvd(xyz[2], -1170853.05037918, 1e-7, "eraGd2gc", "2/3", status);
+
+   j = eraGd2gc(ERFA_IAUMERCURY1979, e, p, h, xyz);
+
+   viv(j, 0, "eraGd2gc", "j8", status);
+   vvd(xyz[0], -2140764.78241505, 1e-7, "eraGd2gc", "0/3", status);
+   vvd(xyz[1], 89091.46849886, 1e-7, "eraGd2gc", "1/3", status);
+   vvd(xyz[2], -1170517.45250216, 1e-7, "eraGd2gc", "2/3", status);
+
+   j = eraGd2gc(ERFA_IAUVENUS1991, e, p, h, xyz);
+
+   viv(j, 0, "eraGd2gc", "j9", status);
+   vvd(xyz[0], -5308553.02976672, 1e-7, "eraGd2gc", "0/3", status);
+   vvd(xyz[1], 220924.21778933, 1e-7, "eraGd2gc", "1/3", status);
+   vvd(xyz[2], -2902586.03837143, 1e-7, "eraGd2gc", "2/3", status);
+
+   j = eraGd2gc(ERFA_IAUVENUS1982, e, p, h, xyz);
+
+   viv(j, 0, "eraGd2gc", "j10", status);
+   vvd(xyz[0], -5307851.57089884, 1e-7, "eraGd2gc", "0/3", status);
+   vvd(xyz[1], 220895.02541792, 1e-7, "eraGd2gc", "1/3", status);
+   vvd(xyz[2], -2902202.49794054, 1e-7, "eraGd2gc", "2/3", status);
+
+   j = eraGd2gc(ERFA_IAUMARS2000, e, p, h, xyz);
+
+   viv(j, 0, "eraGd2gc", "j11", status);
+    vvd(xyz[0], -2984076.56139034, 1e-7, "eraGd2gc", "0/3", status);
+    vvd(xyz[1], 124187.28351247, 1e-7, "eraGd2gc", "1/3", status);
+    vvd(xyz[2], -1612482.70656047, 1e-7, "eraGd2gc", "2/3", status);
+
+   j = eraGd2gc(ERFA_IAUMARS1979, e, p, h, xyz);
+
+   viv(j, 0, "eraGd2gc", "j12", status);
+    vvd(xyz[0], -2981149.3587085, 1e-7, "eraGd2gc", "0/3", status);
+    vvd(xyz[1], 124065.46312956, 1e-7, "eraGd2gc", "1/3", status);
+    vvd(xyz[2], -1613167.09890853, 1e-7, "eraGd2gc", "2/3", status);
+
    j = eraGd2gc(20, e, p, h, xyz);
 
-   viv(j, -1, "eraGd2gc", "j4", status);
+   viv(j, -1, "eraGd2gc", "j20", status);
 }
 
 static void t_gd2gce(int *status)
