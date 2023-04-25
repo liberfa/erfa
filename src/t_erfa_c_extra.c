@@ -153,23 +153,23 @@ static void t_bform(int *status)
 
    viv(j, -1, "eraBform", "j0", status);
 
-   j = eraEform(ERFA_WGS84, &a, &f);
+   j = eraBform(ERFA_WGS84, &a, &f);
 
-   viv(j, 0, "eraEform", "j1", status);
-   vvd(a, 6378137.0, 1e-10, "eraEform", "a1", status);
-   vvd(f, 0.3352810664747480720e-2, 1e-18, "eraEform", "f1", status);
+   viv(j, 0, "eraBform", "j1", status);
+   vvd(a, 6378137.0, 1e-10, "eraBform", "a1", status);
+   vvd(f, 0.3352810664747480720e-2, 1e-18, "eraBform", "f1", status);
 
-   j = eraEform(ERFA_GRS80, &a, &f);
+   j = eraBform(ERFA_GRS80, &a, &f);
 
-   viv(j, 0, "eraEform", "j2", status);
-   vvd(a, 6378137.0, 1e-10, "eraEform", "a2", status);
-   vvd(f, 0.3352810681182318935e-2, 1e-18, "eraEform", "f2", status);
+   viv(j, 0, "eraBform", "j2", status);
+   vvd(a, 6378137.0, 1e-10, "eraBform", "a2", status);
+   vvd(f, 0.3352810681182318935e-2, 1e-18, "eraBform", "f2", status);
 
-   j = eraEform(ERFA_WGS72, &a, &f);
+   j = eraBform(ERFA_WGS72, &a, &f);
 
-   viv(j, 0, "eraEform", "j3", status);
-   vvd(a, 6378135.0, 1e-10, "eraEform", "a3", status);
-   vvd(f, 0.3352779454167504862e-2, 1e-18, "eraEform", "f3", status);
+   viv(j, 0, "eraBform", "j3", status);
+   vvd(a, 6378135.0, 1e-10, "eraBform", "a3", status);
+   vvd(f, 0.3352779454167504862e-2, 1e-18, "eraBform", "f3", status);
 
    j = eraBform(ERFA_IAUMOON1988, &a, &f);
 
