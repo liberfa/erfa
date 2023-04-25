@@ -21,6 +21,25 @@
 #ifndef _ERFA_EXTRA_H
 #define _ERFA_EXTRA_H
 
+/* Reference ellipsoids */
+
+/* Moon */
+#define ERFA_IAUMOON1988 4
+#define ERFA_IAUMOON1979 5
+
+/* Mercury */
+#define ERFA_IAUMERCURY2015 6
+#define ERFA_IAUMERCURY2009 7
+#define ERFA_IAUMERCURY1979 8
+
+/* Venus */
+#define ERFA_IAUVENUS1991 9
+#define ERFA_IAUVENUS1982 10
+
+/* Mars */
+#define ERFA_IAUMARS2000 11
+#define ERFA_IAUMARS1979 12
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -61,6 +80,8 @@ int eraVersionMicro(void);
 */
 const char* eraSofaVersion(void);
 
+/* Astronomy/Planetary/GeodeticGeocentric */
+int eraBform(int n, double *a, double *f);
 
 /*
 ** Get and set leap seconds (not supported by SOFA; EXPERIMENTAL)

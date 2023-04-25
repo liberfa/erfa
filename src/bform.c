@@ -1,5 +1,6 @@
 #include "erfa.h"
 #include "erfam.h"
+#include "erfaextra.h"
 
 int eraBform ( int n, double *a, double *f )
 /*
@@ -47,6 +48,21 @@ int eraBform ( int n, double *a, double *f )
 
 /* Look up a and f for the specified reference ellipsoid. */
    switch ( n ) {
+
+   case ERFA_WGS84:
+      *a = 6378137.0;
+      *f = 1.0 / 298.257223563;
+      break;
+
+   case ERFA_GRS80:
+      *a = 6378137.0;
+      *f = 1.0 / 298.257222101;
+      break;
+
+   case ERFA_WGS72:
+      *a = 6378135.0;
+      *f = 1.0 / 298.26;
+      break;
 
    case ERFA_IAUMOON1988:
    /* M. E. Davies et al (1989) https://doi.org/10.1007/BF00053048 */
