@@ -1,7 +1,7 @@
 project(
     'erfa', 'c',
     version: '2.0.1',
-    meson_version: '>=0.46.0',
+    meson_version: '>=0.50.0',
 )
 
 cc = meson.get_compiler('c')
