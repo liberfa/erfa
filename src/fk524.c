@@ -105,9 +105,9 @@ void eraFk524(double r2000, double d2000,
 **     from FK4 B1950.0 to FK5 J2000.0 using matrices in 6-space".
 **     Astron.J. 97, 274.
 **
-**  This revision:   2021 February 24
+**  This revision:   2023 March 20
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -128,7 +128,7 @@ void eraFk524(double r2000, double d2000,
 ** CANONICAL CONSTANTS (Seidelmann 1992)
 */
 
-/* Km per sec to AU per tropical century */
+/* Km per sec to au per tropical century */
 /* = 86400 * 36524.2198782 / 149597870.7 */
    const double VF = 21.095;
 
@@ -234,7 +234,7 @@ void eraFk524(double r2000, double d2000,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

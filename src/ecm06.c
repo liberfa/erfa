@@ -35,7 +35,7 @@ void eraEcm06(double date1, double date2, double rm[3][3])
 **     optimum resolution.  The MJD method and the date & time methods
 **     are both good compromises between resolution and convenience.
 **
-**  1) The matrix is in the sense
+**  2) The matrix is in the sense
 **
 **        E_ep = rm x P_ICRS,
 **
@@ -43,7 +43,7 @@ void eraEcm06(double date1, double date2, double rm[3][3])
 **     and declination axes and E_ep is the same vector with respect to
 **     the (inertial) ecliptic and equinox of date.
 **
-**  2) P_ICRS is a free vector, merely a direction, typically of unit
+**     P_ICRS is a free vector, merely a direction, typically of unit
 **     magnitude, and not bound to any particular spatial origin, such
 **     as the Earth, Sun or SSB.  No assumptions are made about whether
 **     it represents starlight and embodies astrometric effects such as
@@ -59,9 +59,9 @@ void eraEcm06(double date1, double date2, double rm[3][3])
 **     eraRx        rotate around X-axis
 **     eraRxr       product of two r-matrices
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 February 26
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -87,7 +87,7 @@ void eraEcm06(double date1, double date2, double rm[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

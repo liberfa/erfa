@@ -66,8 +66,8 @@ int eraEpv00(double date1, double date2,
 **        pvb[1][1]  ydot    } barycentric velocity, au/d
 **        pvb[1][2]  zdot    }
 **
-**     The vectors are with respect to the Barycentric Celestial
-**     Reference System.  The time unit is one day in TDB.
+**     The vectors are oriented with respect to the BCRS.  The time unit
+**     is one day in TDB.
 **
 **  3) The function is a SIMPLIFIED SOLUTION from the planetary theory
 **     VSOP2000 (X. Moisson, P. Bretagnon, 2001, Celes. Mechanics &
@@ -95,9 +95,9 @@ int eraEpv00(double date1, double date2,
 **  5) It is permissible to use the same array for pvh and pvb, which
 **     will receive the barycentric values.
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 March 1
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -2542,7 +2542,7 @@ int eraEpv00(double date1, double date2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

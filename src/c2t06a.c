@@ -22,8 +22,8 @@ void eraC2t06a(double tta, double ttb, double uta, double utb,
 **  Notes:
 **
 **  1) The TT and UT1 dates tta+ttb and uta+utb are Julian Dates,
-**     apportioned in any convenient way between the arguments uta and
-**     utb.  For example, JD(UT1)=2450123.7 could be expressed in any of
+**     apportioned in any convenient way between the two arguments.  For
+**     example, JD(UT1)=2450123.7 could be expressed in any of
 **     these ways, among others:
 **
 **             uta            utb
@@ -72,9 +72,9 @@ void eraC2t06a(double tta, double ttb, double uta, double utb,
 **     McCarthy, D. D., Petit, G. (eds.), 2004, IERS Conventions (2003),
 **     IERS Technical Note No. 32, BKG
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 January 18
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -102,7 +102,7 @@ void eraC2t06a(double tta, double ttb, double uta, double utb,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

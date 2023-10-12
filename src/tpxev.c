@@ -67,7 +67,7 @@ int eraTpxev(double v[3], double v0[3], double *xi, double *eta)
 **
 **  This revision:   2018 January 2
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -123,7 +123,7 @@ int eraTpxev(double v[3], double v0[3], double *xi, double *eta)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

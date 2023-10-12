@@ -114,9 +114,9 @@ int eraStarpv(double ra, double dec,
 **
 **     Stumpff, P., 1985, Astron.Astrophys. 144, 232-240.
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 May 4
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -130,7 +130,7 @@ int eraStarpv(double ra, double dec,
    static const int IMAX = 100;
 
    int i, iwarn;
-   double w, r, rd, rad, decd, v, x[3], usr[3], ust[3],
+   double w, r, rd, rad, decd, v, pu[3], usr[3], ust[3],
           vsr, vst, betst, betsr, bett, betr,
           dd, ddel, ur[3], ut[3],
           d = 0.0, del = 0.0,       /* to prevent */
@@ -148,7 +148,7 @@ int eraStarpv(double ra, double dec,
    }
    r = ERFA_DR2AS / w;
 
-/* Radial velocity (au/day). */
+/* Radial speed (au/day). */
    rd = ERFA_DAYSEC * rv * 1e3 / ERFA_DAU;
 
 /* Proper motion (radian/day). */
@@ -166,9 +166,9 @@ int eraStarpv(double ra, double dec,
    }
 
 /* Isolate the radial component of the velocity (au/day). */
-   eraPn(pv[0], &w, x);
-   vsr = eraPdp(x, pv[1]);
-   eraSxp(vsr, x, usr);
+   eraPn(pv[0], &w, pu);
+   vsr = eraPdp(pu, pv[1]);
+   eraSxp(vsr, pu, usr);
 
 /* Isolate the transverse component of the velocity (au/day). */
    eraPmp(pv[1], usr, ust);
@@ -178,7 +178,7 @@ int eraStarpv(double ra, double dec,
    betsr = vsr / ERFA_DC;
    betst = vst / ERFA_DC;
 
-/* Determine the inertial-to-observed relativistic correction terms. */
+/* Determine the observed-to-inertial correction terms. */
    bett = betst;
    betr = betsr;
    for (i = 0; i < IMAX; i++) {
@@ -199,14 +199,13 @@ int eraStarpv(double ra, double dec,
    }
    if (i >= IMAX) iwarn += 4;
 
-/* Replace observed radial velocity with inertial value. */
-   w = (betsr != 0.0) ? d + del / betsr : 1.0;
-   eraSxp(w, usr, ur);
-
-/* Replace observed tangential velocity with inertial value. */
+/* Scale observed tangential velocity vector into inertial (au/d). */
    eraSxp(d, ust, ut);
 
-/* Combine the two to obtain the inertial space velocity. */
+/* Compute inertial radial velocity vector (au/d). */
+   eraSxp(ERFA_DC*(d*betsr+del), pu, ur);
+
+/* Combine the two to obtain the inertial space velocity vector. */
    eraPpp(ur, ut, pv[1]);
 
 /* Return the status. */
@@ -218,7 +217,7 @@ int eraStarpv(double ra, double dec,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

@@ -22,7 +22,7 @@ void eraLtp(double epj, double rp[3][3])
 **
 **     where P_J2000 is a vector with respect to the J2000.0 mean
 **     equator and equinox and P_date is the same vector with respect to
-**     the equator and equinox of epoch epj.
+**     the mean equator and equinox of epoch epj.
 **
 **  2) The Vondrak et al. (2011, 2012) 400 millennia precession model
 **     agrees with the IAU 2006 precession at J2000.0 and stays within
@@ -47,9 +47,9 @@ void eraLtp(double epj, double rp[3][3])
 **    expressions, valid for long time intervals (Corrigendum),
 **    Astron.Astrophys. 541, C1
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 March 19
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -83,7 +83,7 @@ void eraLtp(double epj, double rp[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

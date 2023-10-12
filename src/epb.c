@@ -10,14 +10,28 @@ double eraEpb(double dj1, double dj2)
 **  Julian Date to Besselian Epoch.
 **
 **  Given:
-**     dj1,dj2    double     Julian Date (see note)
+**     dj1,dj2    double     Julian Date (Notes 3,4)
 **
 **  Returned (function value):
 **                double     Besselian Epoch.
 **
-**  Note:
+**  Notes:
 **
-**     The Julian Date is supplied in two pieces, in the usual ERFA
+**  1) Besselian Epoch is a method of expressing a moment in time as a
+**     year plus fraction.  It was superseded by Julian Year (see the
+**     function eraEpj).
+**
+**  2) The start of a Besselian year is when the right ascension of
+**     the fictitious mean Sun is 18h 40m, and the unit is the tropical
+**     year.  The conventional definition (see Lieske 1979) is that
+**     Besselian Epoch B1900.0 is JD 2415020.31352 and the length of the
+**     year is 365.242198781 days.
+**
+**  3) The time scale for the JD, originally Ephemeris Time, is TDB,
+**     which for all practical purposes in the present context is
+**     indistinguishable from TT.
+**
+**  4) The Julian Date is supplied in two pieces, in the usual ERFA
 **     manner, which is designed to preserve time resolution.  The
 **     Julian Date is available as a single number by adding dj1 and
 **     dj2.  The maximum resolution is achieved if dj1 is 2451545.0
@@ -27,9 +41,9 @@ double eraEpb(double dj1, double dj2)
 **
 **     Lieske, J.H., 1979. Astron.Astrophys., 73, 282.
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 May 5
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -44,7 +58,7 @@ double eraEpb(double dj1, double dj2)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

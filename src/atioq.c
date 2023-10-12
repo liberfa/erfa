@@ -82,8 +82,9 @@ void eraAtioq(double ri, double di, eraASTROM *astrom,
 **     then adjusting for refraction.  The HA,Dec is obtained by
 **     rotating back into equatorial coordinates, and is the position
 **     that would be seen by a perfect equatorial with its polar axis
-**     aligned to the Earth's axis of rotation.  Finally, the RA is
-**     obtained by subtracting the HA from the local ERA.
+**     aligned to the Earth's axis of rotation.  Finally, the
+**     (CIO-based) RA is obtained by subtracting the HA from the local
+**     ERA.
 **
 **  6) The star-independent CIRS-to-observed-place parameters in ASTROM
 **     may be computed with eraApio[13] or eraApco[13].  If nothing has
@@ -95,9 +96,9 @@ void eraAtioq(double ri, double di, eraASTROM *astrom,
 **     eraC2s       p-vector to spherical
 **     eraAnp       normalize angle into range 0 to 2pi
 **
-**  This revision:   2020 December 7
+**  This revision:   2022 August 30
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -188,7 +189,7 @@ void eraAtioq(double ri, double di, eraASTROM *astrom,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

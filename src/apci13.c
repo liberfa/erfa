@@ -38,7 +38,7 @@ void eraApci13(double date1, double date2,
 **      eral   double       unchanged
 **      refa   double       unchanged
 **      refb   double       unchanged
-**     eo     double*     equation of the origins (ERA-GST)
+**     eo     double*     equation of the origins (ERA-GST, radians)
 **
 **  Notes:
 **
@@ -110,9 +110,9 @@ void eraApci13(double date1, double date2,
 **     eraApci      astrometry parameters, ICRS-CIRS
 **     eraEors      equation of the origins, given NPB matrix and s
 **
-**  This revision:   2013 October 9
+**  This revision:   2022 May 3
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -143,7 +143,7 @@ void eraApci13(double date1, double date2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

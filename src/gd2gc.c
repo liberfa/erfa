@@ -13,7 +13,7 @@ int eraGd2gc ( int n, double elong, double phi, double height,
 **
 **  Given:
 **     n       int        ellipsoid identifier (Note 1)
-**     elong   double     longitude (radians, east +ve)
+**     elong   double     longitude (radians, east +ve, Note 3)
 **     phi     double     latitude (geodetic, radians, Note 3)
 **     height  double     height above ellipsoid (geodetic, Notes 2,3)
 **
@@ -55,9 +55,9 @@ int eraGd2gc ( int n, double elong, double phi, double height,
 **     eraGd2gce    geodetic to geocentric transformation, general
 **     eraZp        zero p-vector
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 March 9
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -86,7 +86,7 @@ int eraGd2gc ( int n, double elong, double phi, double height,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

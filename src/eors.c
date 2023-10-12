@@ -33,9 +33,9 @@ double eraEors(double rnpb[3][3], double s)
 **
 **     Wallace, P. & Capitaine, N., 2006, Astron.Astrophys. 459, 981
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 May 6
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -50,7 +50,7 @@ double eraEors(double rnpb[3][3], double s)
    zs = -x;
    p = rnpb[0][0] * xs + rnpb[0][1] * ys + rnpb[0][2] * zs;
    q = rnpb[1][0] * xs + rnpb[1][1] * ys + rnpb[1][2] * zs;
-   eo = ((p != 0) || (q != 0)) ? s - atan2(q, p) : s;
+   eo = ((p != 0.0) || (q != 0.0)) ? s - atan2(q, p) : s;
 
    return eo;
 
@@ -60,7 +60,7 @@ double eraEors(double rnpb[3][3], double s)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International
