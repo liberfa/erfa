@@ -10265,6 +10265,7 @@ int main(int argc, char *argv[])
       printf("t_erfa_c validation successful\n");
    }
    return status;
+}
 
 /*----------------------------------------------------------------------
 **  
