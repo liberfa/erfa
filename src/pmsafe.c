@@ -14,37 +14,37 @@ int eraPmsafe(double ra1, double dec1, double pmr1, double pmd1,
 **  special handling to handle the zero parallax case.
 **
 **  Given:
-**     ra1    double      right ascension (radians), before
-**     dec1   double      declination (radians), before
-**     pmr1   double      RA proper motion (radians/year), before
-**     pmd1   double      Dec proper motion (radians/year), before
-**     px1    double      parallax (arcseconds), before
-**     rv1    double      radial velocity (km/s, +ve = receding), before
-**     ep1a   double      "before" epoch, part A (Note 1)
-**     ep1b   double      "before" epoch, part B (Note 1)
-**     ep2a   double      "after" epoch, part A (Note 1)
-**     ep2b   double      "after" epoch, part B (Note 1)
+**     ra1    double     right ascension (radians), before
+**     dec1   double     declination (radians), before
+**     pmr1   double     RA proper motion (radians/year), before
+**     pmd1   double     Dec proper motion (radians/year), before
+**     px1    double     parallax (arcseconds), before
+**     rv1    double     radial velocity (km/s, +ve = receding), before
+**     ep1a   double     "before" epoch, part A (Note 1)
+**     ep1b   double     "before" epoch, part B (Note 1)
+**     ep2a   double     "after" epoch, part A (Note 1)
+**     ep2b   double     "after" epoch, part B (Note 1)
 **
 **  Returned:
-**     ra2    double      right ascension (radians), after
-**     dec2   double      declination (radians), after
-**     pmr2   double      RA proper motion (radians/year), after
-**     pmd2   double      Dec proper motion (radians/year), after
-**     px2    double      parallax (arcseconds), after
-**     rv2    double      radial velocity (km/s, +ve = receding), after
+**     ra2    double     right ascension (radians), after
+**     dec2   double     declination (radians), after
+**     pmr2   double     RA proper motion (radians/year), after
+**     pmd2   double     Dec proper motion (radians/year), after
+**     px2    double     parallax (arcseconds), after
+**     rv2    double     radial velocity (km/s, +ve = receding), after
 **
 **  Returned (function value):
-**            int         status:
-**                         -1 = system error (should not occur)
-**                          0 = no warnings or errors
-**                          1 = distance overridden (Note 6)
-**                          2 = excessive velocity (Note 7)
-**                          4 = solution didn't converge (Note 8)
-**                       else = binary logical OR of the above warnings
+**            int        status:
+**                          -1 = system error (should not occur)
+**                           0 = no warnings or errors
+**                           1 = distance overridden (Note 6)
+**                           2 = excessive velocity (Note 7)
+**                           4 = solution didn't converge (Note 8)
+**                        else = binary logical OR of the above warnings
 **
 **  Notes:
 **
-**  1) The starting and ending TDB epochs ep1a+ep1b and ep2a+ep2b are
+**  1) The starting and ending TDB dates ep1a+ep1b and ep2a+ep2b are
 **     Julian Dates, apportioned in any convenient way between the two
 **     parts (A and B).  For example, JD(TDB)=2450123.7 could be
 **     expressed in any of these ways, among others:
@@ -105,9 +105,9 @@ int eraPmsafe(double ra1, double dec1, double pmr1, double pmd1,
 **     eraSeps      angle between two points
 **     eraStarpm    update star catalog data for space motion
 **
-**  This revision:   2014 July 1
+**  This revision:   2023 April 7
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -147,7 +147,7 @@ int eraPmsafe(double ra1, double dec1, double pmr1, double pmd1,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

@@ -43,7 +43,7 @@ int eraAtco13(double rc, double dc,
 **     hob    double*  observed hour angle (radians)
 **     dob    double*  observed declination (radians)
 **     rob    double*  observed right ascension (CIO-based, radians)
-**     eo     double*  equation of the origins (ERA-GST)
+**     eo     double*  equation of the origins (ERA-GST, radians)
 **
 **  Returned (function value):
 **            int      status: +1 = dubious year (Note 4)
@@ -152,9 +152,9 @@ int eraAtco13(double rc, double dc,
 **     eraAtciq     quick ICRS to CIRS
 **     eraAtioq     quick CIRS to observed
 **
-**  This revision:   2021 April 3
+**  This revision:   2022 May 3
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -185,7 +185,7 @@ int eraAtco13(double rc, double dc,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

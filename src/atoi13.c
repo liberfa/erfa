@@ -47,10 +47,11 @@ int eraAtoi13(const char *type, double ob1, double ob2,
 **      allowance is made for depression of the horizon.)  This is
 **      related to the observed HA,Dec via the standard rotation, using
 **      the geodetic latitude (corrected for polar motion), while the
-**      observed HA and RA are related simply through the Earth rotation
-**      angle and the site longitude.  "Observed" RA,Dec or HA,Dec thus
-**      means the position that would be seen by a perfect equatorial
-**      with its polar axis aligned to the Earth's axis of rotation.
+**      observed HA and (CIO-based) RA are related simply through the
+**      Earth rotation angle and the site longitude.  "Observed" RA,Dec
+**      or HA,Dec thus means the position that would be seen by a
+**      perfect equatorial with its polar axis aligned to the Earth's
+**      axis of rotation.
 **
 **  2)  Only the first character of the type argument is significant.
 **      "R" or "r" indicates that ob1 and ob2 are the observed right
@@ -141,9 +142,9 @@ int eraAtoi13(const char *type, double ob1, double ob2,
 **     eraApio13    astrometry parameters, CIRS-observed, 2013
 **     eraAtoiq     quick observed to CIRS
 **
-**  This revision:   2021 February 24
+**  This revision:   2022 August 30
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -170,7 +171,7 @@ int eraAtoi13(const char *type, double ob1, double ob2,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

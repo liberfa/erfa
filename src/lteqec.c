@@ -6,9 +6,8 @@ void eraLteqec(double epj, double dr, double dd, double *dl, double *db)
 **   e r a L t e q e c
 **  - - - - - - - - - -
 **
-**  Transformation from ICRS equatorial coordinates to ecliptic
-**  coordinates (mean equinox and ecliptic of date) using a long-term
-**  precession model.
+**  Transformation from ICRS RA,Dec to ecliptic coordinates (mean equinox
+**  and ecliptic of date), using a long-term precession model.
 **
 **  Given:
 **     epj     double     Julian epoch (TT)
@@ -51,9 +50,9 @@ void eraLteqec(double epj, double dr, double dd, double *dl, double *db)
 **    expressions, valid for long time intervals (Corrigendum),
 **    Astron.Astrophys. 541, C1
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 March 18
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -82,7 +81,7 @@ void eraLteqec(double epj, double dr, double dd, double *dl, double *db)
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

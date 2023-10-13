@@ -76,7 +76,7 @@ static void t_leap_seconds(int *status)
     printf("t_leap_seconds set passed\n");
   } else {
     *status = 1;
-    printf("t_leap_seconds set failed - leap second table has %d entries instead of %d\n", count_postreset, 1);
+    printf("t_leap_seconds set failed - leap second table has %d entries instead of %d\n", count_postset, 1);
   }
 
   eraSetLeapSeconds(fake_leapsecond, -1);
@@ -116,10 +116,11 @@ int main(int argc, char *argv[])
    }
    return status;
 }
+
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2019, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

@@ -65,7 +65,7 @@ void eraAtciqz(double rc, double dc, eraASTROM *astrom,
 **
 **  This revision:   2013 October 9
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -94,7 +94,7 @@ void eraAtciqz(double rc, double dc, eraASTROM *astrom,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

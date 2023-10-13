@@ -8,7 +8,7 @@
 **
 **  Prototype function declarations for ERFA library.
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 
@@ -326,7 +326,6 @@ int eraStarpv(double ra, double dec,
               double pv[2][3]);
 
 /* Astronomy/StarCatalogs */
-
 void eraFk425(double r1950, double d1950,
               double dr1950, double dd1950,
               double p1950, double v1950,
@@ -527,15 +526,15 @@ void eraSxpv(double s, double pv[2][3], double spv[2][3]);
 
 
 /*----------------------------------------------------------------------
-**
-**
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  
+**  
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
-**
+**  
 **  This library is derived, with permission, from the International
 **  Astronomical Union's "Standards of Fundamental Astronomy" library,
 **  available from http://www.iausofa.org.
-**
+**  
 **  The ERFA version is intended to retain identical functionality to
 **  the SOFA library, but made distinct through different function and
 **  file names, as set out in the SOFA license conditions.  The SOFA
@@ -544,36 +543,36 @@ void eraSxpv(double s, double pv[2][3], double spv[2][3]);
 **  state.  The ERFA version is not subject to this restriction and
 **  therefore can be included in distributions which do not support the
 **  concept of "read only" software.
-**
+**  
 **  Although the intent is to replicate the SOFA API (other than
 **  replacement of prefix names) and results (with the exception of
 **  bugs;  any that are discovered will be fixed), SOFA is not
 **  responsible for any errors found in this version of the library.
-**
+**  
 **  If you wish to acknowledge the SOFA heritage, please acknowledge
 **  that you are using a library derived from SOFA, rather than SOFA
 **  itself.
-**
-**
+**  
+**  
 **  TERMS AND CONDITIONS
-**
+**  
 **  Redistribution and use in source and binary forms, with or without
 **  modification, are permitted provided that the following conditions
 **  are met:
-**
+**  
 **  1 Redistributions of source code must retain the above copyright
 **    notice, this list of conditions and the following disclaimer.
-**
+**  
 **  2 Redistributions in binary form must reproduce the above copyright
 **    notice, this list of conditions and the following disclaimer in
 **    the documentation and/or other materials provided with the
 **    distribution.
-**
+**  
 **  3 Neither the name of the Standards Of Fundamental Astronomy Board,
 **    the International Astronomical Union nor the names of its
 **    contributors may be used to endorse or promote products derived
 **    from this software without specific prior written permission.
-**
+**  
 **  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 **  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 **  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -586,5 +585,5 @@ void eraSxpv(double s, double pv[2][3], double spv[2][3]);
 **  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 **  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 **  POSSIBILITY OF SUCH DAMAGE.
-**
+**  
 */

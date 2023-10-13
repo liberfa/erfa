@@ -7,11 +7,11 @@ void eraG2icrs ( double dl, double db, double *dr, double *dd )
 **   e r a G 2 i c r s
 **  - - - - - - - - - -
 **
-**  Transformation from Galactic Coordinates to ICRS.
+**  Transformation from Galactic coordinates to ICRS.
 **
 **  Given:
-**     dl     double      galactic longitude (radians)
-**     db     double      galactic latitude (radians)
+**     dl     double      Galactic longitude (radians)
+**     db     double      Galactic latitude (radians)
 **
 **  Returned:
 **     dr     double      ICRS right ascension (radians)
@@ -39,7 +39,7 @@ void eraG2icrs ( double dl, double db, double *dr, double *dd )
 **     coordinates with the above factors taken into account.  The
 **     matrix is derived from three angles, namely the ICRS coordinates
 **     of the Galactic pole and the longitude of the ascending node of
-**     the galactic equator on the ICRS equator.  They are given in
+**     the Galactic equator on the ICRS equator.  They are given in
 **     degrees to five decimal places and for canonical purposes are
 **     regarded as exact.  In the Hipparcos Catalogue the matrix
 **     elements are given to 10 decimal places (about 20 microarcsec).
@@ -62,16 +62,16 @@ void eraG2icrs ( double dl, double db, double *dr, double *dd )
 **     derived from the ESA Hipparcos Space Astrometry Mission.  ESA
 **     Publications Division, Noordwijk, Netherlands.
 **
-**  This revision:   2021 January 25
+**  This revision:   2023 April 16
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
    double v1[3], v2[3];
 
 /*
-**  L2,B2 system of galactic coordinates in the form presented in the
+**  L2,B2 system of Galactic coordinates in the form presented in the
 **  Hipparcos Catalogue.  In degrees:
 **
 **  P = 192.85948    right ascension of the Galactic north pole in ICRS
@@ -79,7 +79,7 @@ void eraG2icrs ( double dl, double db, double *dr, double *dd )
 **  R =  32.93192    Galactic longitude of the ascending node of
 **                   the Galactic equator on the ICRS equator
 **
-**  ICRS to galactic rotation matrix, obtained by computing
+**  ICRS to Galactic rotation matrix, obtained by computing
 **  R_3(-R) R_1(pi/2-Q) R_3(pi/2+P) to the full precision shown:
 */
    double r[3][3] = { { -0.054875560416215368492398900454,
@@ -112,7 +112,7 @@ void eraG2icrs ( double dl, double db, double *dr, double *dd )
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

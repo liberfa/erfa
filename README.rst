@@ -52,6 +52,12 @@ Bug fixes
 ERFA includes smaller changes that may or may not eventually make it into SOFA,
 addressing localized bugs or similar smaller issues:
 
+* ERFA 2.0.1 and SOFA "20231011"
+
+  + Only small bug fixes in the SOFA release.  The only differences
+    between ERFA 2.0.1 and SOFA "20231011" remain the added ``eraVersion``,
+    ``eraSofaVersion``, and leap second functions noted above.
+
 * ERFA 2.0.0 and SOFA "20210512"
 
   + Functionally, there no differences except for the added ``eraVersion``,

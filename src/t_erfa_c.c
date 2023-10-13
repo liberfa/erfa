@@ -18,7 +18,7 @@ static int verbose = 0;
 **
 **  All messages go to stdout.
 **
-**  This revision:  2021 April 18
+**  This revision:  2021 July 29
 **
 */
 
@@ -1190,9 +1190,9 @@ static void t_atccq(int *status)
 **  Returned:
 **     status    int         FALSE = success, TRUE = fail
 **
-**  Called:  eraApcc13, eraAtccq, vvd
+**  Called:  eraApci13, eraAtccq, vvd
 **
-**  This revision:  2021 April 18
+**  This revision:  2021 July 29
 */
 {
    double date1, date2, eo, rc, dc, pr, pd, px, rv, ra, da;
@@ -10266,10 +10266,11 @@ int main(int argc, char *argv[])
    }
    return status;
 }
+
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

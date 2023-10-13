@@ -7,7 +7,7 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
 **   e r a P l a n 9 4
 **  - - - - - - - - - -
 **
-**  Approximate heliocentric position and velocity of a nominated major
+**  Approximate heliocentric position and velocity of a nominated
 **  planet:  Mercury, Venus, EMB, Mars, Jupiter, Saturn, Uranus or
 **  Neptune (but not the Earth itself).
 **
@@ -54,9 +54,9 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
 **  2) If an np value outside the range 1-8 is supplied, an error status
 **     (function value -1) is returned and the pv vector set to zeroes.
 **
-**  3) For np=3 the result is for the Earth-Moon Barycenter.  To obtain
-**     the heliocentric position and velocity of the Earth, use instead
-**     the ERFA function eraEpv00.
+**  3) For np=3 the result is for the Earth-Moon barycenter (EMB).  To
+**     obtain the heliocentric position and velocity of the Earth, use
+**     instead the ERFA function eraEpv00.
 **
 **  4) On successful return, the array pv contains the following:
 **
@@ -107,8 +107,8 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
 **        Neptune         158000              14.4
 **
 **     Comparisons against DE200 over the interval 1800-2100 gave the
-**     following maximum absolute differences.  (The results using
-**     DE406 were essentially the same.)
+**     following maximum absolute differences (the results using
+**     DE406 were essentially the same):
 **
 **                   L (arcsec)   B (arcsec)     R (km)   Rdot (m/s)
 **
@@ -160,9 +160,9 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
 **              Chapront-Touze, M., Francou, G., and Laskar, J.,
 **              Astron.Astrophys., 282, 663 (1994).
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 May 5
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -469,7 +469,7 @@ int eraPlan94(double date1, double date2, int np, double pv[2][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

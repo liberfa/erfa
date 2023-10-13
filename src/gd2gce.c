@@ -12,9 +12,9 @@ int eraGd2gce ( double a, double f, double elong, double phi,
 **  ellipsoid of specified form.
 **
 **  Given:
-**     a       double     equatorial radius (Notes 1,4)
+**     a       double     equatorial radius (Notes 1,3,4)
 **     f       double     flattening (Notes 2,4)
-**     elong   double     longitude (radians, east +ve)
+**     elong   double     longitude (radians, east +ve, Note 4)
 **     phi     double     latitude (geodetic, radians, Note 4)
 **     height  double     height above ellipsoid (geodetic, Notes 3,4)
 **
@@ -56,9 +56,9 @@ int eraGd2gce ( double a, double f, double elong, double phi,
 **     P. Kenneth Seidelmann (ed), University Science Books (1992),
 **     Section 4.22, p202.
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 March 10
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -90,7 +90,7 @@ int eraGd2gce ( double a, double f, double elong, double phi,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

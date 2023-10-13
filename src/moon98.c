@@ -17,7 +17,7 @@ void eraMoon98 ( double date1, double date2, double pv[2][3] )
 **     date2  double         TT date part B (Notes 1,4)
 **
 **  Returned:
-**     pv     double[2][3]   Moon p,v, GCRS (AU, AU/d, Note 5)
+**     pv     double[2][3]   Moon p,v, GCRS (au, au/d, Note 5)
 **
 **  Notes:
 **
@@ -95,9 +95,9 @@ void eraMoon98 ( double date1, double date2, double pv[2][3] )
 **     eraRx        rotate around X-axis
 **     eraRxpv      product of r-matrix and pv-vector
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 March 20
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -533,7 +533,7 @@ static struct termb tb[] = {{0,  0,  0,  1,  5.128122},
 /* Transformation into final form */
 /* ------------------------------ */
 
-/* Longitude, latitude to x, y, z (AU). */
+/* Longitude, latitude to x, y, z (au). */
    eraS2pv ( el, b, r, del, db, dr, pv );
 
 /* IAU 2006 Fukushima-Williams bias+precession angles. */
@@ -554,7 +554,7 @@ static struct termb tb[] = {{0,  0,  0,  1,  5.128122},
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

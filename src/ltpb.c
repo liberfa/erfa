@@ -13,7 +13,7 @@ void eraLtpb(double epj, double rpb[3][3])
 **     epj     double         Julian epoch (TT)
 **
 **  Returned:
-**     rpb     double[3][3]   precession-bias matrix, J2000.0 to date
+**     rpb     double[3][3]   precession+bias matrix, J2000.0 to date
 **
 **  Notes:
 **
@@ -46,9 +46,9 @@ void eraLtpb(double epj, double rpb[3][3])
 **    expressions, valid for long time intervals (Corrigendum),
 **    Astron.Astrophys. 541, C1
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 March 20
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -77,7 +77,7 @@ void eraLtpb(double epj, double rpb[3][3])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

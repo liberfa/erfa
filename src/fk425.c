@@ -15,7 +15,7 @@ void eraFk425(double r1950, double d1950,
 **  Convert B1950.0 FK4 star catalog data to J2000.0 FK5.
 **
 **  This function converts a star's catalog data from the old FK4
-** (Bessel-Newcomb) system to the later IAU 1976 FK5 (Fricke) system.
+**  (Bessel-Newcomb) system to the later IAU 1976 FK5 (Fricke) system.
 **
 **  Given: (all B1950.0, FK4)
 **     r1950,d1950    double   B1950.0 RA,Dec (rad)
@@ -111,9 +111,9 @@ void eraFk425(double r1950, double d1950,
 **     from FK4 B1950.0 to FK5 J2000.0 using matrices in 6-space".
 **     Astron.J. 97, 274.
 **
-**  This revision:   2021 February 24
+**  This revision:   2023 March 20
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -134,7 +134,7 @@ void eraFk425(double r1950, double d1950,
 ** CANONICAL CONSTANTS (Seidelmann 1992)
 */
 
-/* Km per sec to AU per tropical century */
+/* Km per sec to au per tropical century */
 /* = 86400 * 36524.2198782 / 149597870.7 */
    const double VF = 21.095;
 
@@ -222,7 +222,7 @@ void eraFk425(double r1950, double d1950,
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International

@@ -22,7 +22,7 @@ int eraJdcalf(int ndp, double dj1, double dj2, int iymdf[4])
 **               int      status:
 **                          -1 = date out of range
 **                           0 = OK
-**                          +1 = NDP not 0-9 (interpreted as 0)
+**                          +1 = ndp not 0-9 (interpreted as 0)
 **
 **  Notes:
 **
@@ -57,9 +57,9 @@ int eraJdcalf(int ndp, double dj1, double dj2, int iymdf[4])
 **     P. Kenneth Seidelmann (ed), University Science Books (1992),
 **     Section 12.92 (p604).
 **
-**  This revision:  2021 May 11
+**  This revision:  2023 January 16
 **
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 {
@@ -126,7 +126,7 @@ int eraJdcalf(int ndp, double dj1, double dj2, int iymdf[4])
 /*----------------------------------------------------------------------
 **  
 **  
-**  Copyright (C) 2013-2021, NumFOCUS Foundation.
+**  Copyright (C) 2013-2023, NumFOCUS Foundation.
 **  All rights reserved.
 **  
 **  This library is derived, with permission, from the International
