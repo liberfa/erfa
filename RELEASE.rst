@@ -28,8 +28,8 @@ places no contraints on who has permissions to submit code changes.
   overwriting *intentional* changes between SOFA and ERFA (the README from the
   previous version is generally your friend here.)
 
-* Update the ``SOFA_VERSION`` define in ``meson.build`` to reflect the new SOFA
-  version.
+* Update the ``SOFA_VERSION`` define in both `meson.build` and `configure.ac`
+  to reflect the new SOFA version.
 
 * Update the SOFA version mentioned in `README.rst` to reflect what's now in, as
   well as any relevant changes in the "Differences from SOFA" section or any
@@ -55,18 +55,19 @@ Releasing ERFA
 These steps should be done by a maintainer, as they require specific Github
 permissions.
 
-* Update the version number in the `project()` version field of `meson.build` to
-  the version number you are about to release, and also  Follow the instructions
-  in the `Version numbering` "Package version number" section below.
+* Update the version number in the ``project()`` version field of `meson.build`
+  as well as ``AC_INIT`` in `configure.ac` to the version number you are about
+  to release. Follow the instructions in the `Version numbering`
+  "Package version number" section below.
 
-* Update the version info of the shared library in the `libtool_version`
-  variable of `meson.build`. Follow the instructions in `Version numbering`
+* Update the version info of the shared library in the ``libtool_version``
+  variable of `meson.build` and ``ERFA_LIB_VERSION_INFO`` in `configure.ac`.
+  Follow the instructions in `Version numbering`
   "Shared library version info" section below.
 
-* Update the `README.rst` to reference the version you filled in above for
-  `configure.ac` (it may be ``x.y.z`` if a maintainer followed the processes
-  described above).  Ensure the list of changes is accurate for this new
-  version.
+* Update the `README.rst` to reference the version you filled in above
+  (it may be ``x.y.z`` if a maintainer followed the processes described above).
+  Ensure the list of changes is accurate for this new version.
 
 * Commit these changes using ``git commit``, with a commit message like
   ``Preparing release v0.0.1``.
@@ -74,7 +75,7 @@ permissions.
 * Run ``meson setup builddir``: you need `meson` installed.  If no errors appear,
   this will create a `build.ninja` file in the build directory, as well as a
   `config.h`.
-  To avoid possible trouble, check that in the latter, `PACKAGE_VERSION`
+  To avoid possible trouble, check that in the latter, ``PACKAGE_VERSION``
   is set correctly.
 
 * Run ``meson test -C builddir``, which will build the library and run the tests -
