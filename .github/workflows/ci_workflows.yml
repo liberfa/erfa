@@ -62,7 +62,7 @@ jobs:
         if [ "$RUNNER_OS" = Linux ]; then
             sudo apt-get -y install meson ninja-build
         else
-            brew install meson
+            brew install meson autoconf automake libtool
         fi
 
     - name: configure
@@ -90,5 +90,3 @@ jobs:
       run: ninja -C builddir
     - name: check
       run: meson test -C builddir
-    - name: distcheck
-      run: meson dist -C builddir
