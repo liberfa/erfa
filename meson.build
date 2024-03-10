@@ -20,7 +20,7 @@ soversion = '@0@.@1@.@2@'.format(
 )
 
 # API versions
-version = meson.project_version().split('.')
+version = tuple(int(_) for _ in meson.project_version().split('.'))
 confdata.set_quoted('PACKAGE_VERSION', meson.project_version())
 confdata.set('PACKAGE_VERSION_MAJOR', version[0])
 confdata.set('PACKAGE_VERSION_MINOR', version[1])
