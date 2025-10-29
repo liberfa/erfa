@@ -37,7 +37,7 @@ jobs:
             os: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       with:
         fetch-depth: 0
         persist-credentials: false
@@ -69,7 +69,7 @@ jobs:
             os: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       with:
         fetch-depth: 0
         persist-credentials: false
@@ -94,13 +94,13 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       with:
         fetch-depth: 0
         persist-credentials: false
     - name: install dependencies
       run: pip install --pre meson ninja
-    - uses: ilammy/msvc-dev-cmd@v1
+    - uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1.13.0
     - name: configure
       run: meson setup builddir --fatal-meson-warnings -Ddefault_library=static
     - name: build
