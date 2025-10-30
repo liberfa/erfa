@@ -8,7 +8,22 @@ on:
     - '*'
   pull_request:
 
+permissions: {}
+
 jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+
+      - name: Run zizmor 🌈
+        uses: zizmorcore/zizmor-action@e673c3917a1aef3c65c972347ed84ccd013ecda4 # v0.2.0
+
   tests:
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
@@ -23,9 +38,10 @@ jobs:
             os: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       with:
         fetch-depth: 0
+        persist-credentials: false
     - name: Install dependencies
       if: contains(matrix.os, 'macos')
       run: brew install autoconf automake libtool
@@ -54,9 +70,10 @@ jobs:
             os: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       with:
         fetch-depth: 0
+        persist-credentials: false
     - name: Install dependencies
       run: |
         if [ "$RUNNER_OS" = Linux ]; then
@@ -78,12 +95,13 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       with:
         fetch-depth: 0
+        persist-credentials: false
     - name: install dependencies
       run: pip install --pre meson ninja
-    - uses: ilammy/msvc-dev-cmd@v1
+    - uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1.13.0
     - name: configure
       run: meson setup builddir --fatal-meson-warnings -Ddefault_library=static
     - name: build
