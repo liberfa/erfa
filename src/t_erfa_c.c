@@ -6412,7 +6412,7 @@ static void t_pmsafe(int *status)
             "eraPmsafe", "px2", status);
    vvd(rv2, 10.38468380293920069, 1e-10,
             "eraPmsafe", "rv2", status);
-   viv ( j, 0, "eraPmsafe", "j", status);
+   viv( j, 0, "eraPmsafe", "j", status);
 
 }
 
