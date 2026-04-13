@@ -166,11 +166,6 @@ the ERFA source code into just two files: a ``erfa.c`` source file, and an
 If possible, however, it is recommended that you provide an option to use any
 copy of the ERFA library that is already installed on the system.
 
-Travis build status
--------------------
-.. image:: https://travis-ci.org/liberfa/erfa.png
-    :target: https://travis-ci.org/liberfa/erfa
-
 .. _erfa-fetch repository: https://github.com/liberfa/erfa-fetch
 
 Cite As
