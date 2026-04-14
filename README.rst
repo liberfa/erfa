@@ -151,28 +151,6 @@ can add ``$PWD/builddir/meson-uninstalled/`` to the ``$PKG_CONFIG_PATH``
 variable. Other projects will then be able to pick up and link to the uninstalled
 dependency using pkg-config as normal.
 
-Creating a single-file version of the source code
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Alternatively, if you wish to bundle the ERFA source code with a separate
-package, you can use the ``source_flattener.py`` script from the
-`erfa-fetch repository`_ to combine
-the ERFA source code into just two files: a ``erfa.c`` source file, and an
-``erfa.h`` include file.  You should run this script like this::
-
-    cd /path/to/erfa-source-code
-    python /path/to/erfa-fetch/source_flattener.py src -n erfa
-
-If possible, however, it is recommended that you provide an option to use any
-copy of the ERFA library that is already installed on the system.
-
-Travis build status
--------------------
-.. image:: https://travis-ci.org/liberfa/erfa.png
-    :target: https://travis-ci.org/liberfa/erfa
-
-.. _erfa-fetch repository: https://github.com/liberfa/erfa-fetch
-
 Cite As
 -------
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3564896.svg
