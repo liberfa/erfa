@@ -4,7 +4,7 @@ AC_PREREQ([2.68])
 ## Follow the instructions in RELEASE.rst to change package version
 AC_INIT([erfa],[2.0.1])
 AC_CONFIG_SRCDIR([src/erfa.h])
-AC_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([foreign])
