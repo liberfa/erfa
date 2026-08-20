@@ -12,7 +12,7 @@
 **  Derived, with permission, from the SOFA library.  See notes at end of file.
 */
 
-#include "math.h"
+#include <math.h>
 
 #ifdef __cplusplus
 extern "C" {
