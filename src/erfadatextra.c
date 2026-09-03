@@ -17,9 +17,10 @@
 */
 #include "erfa.h"
 #include "erfaextra.h"
+#include "erfadatextra.h"
 
-static eraLEAPSECOND *changes;
-static int NDAT = -1;
+static ERFA_THREAD_LOCAL eraLEAPSECOND *changes;
+static ERFA_THREAD_LOCAL int NDAT = -1;
 
 
 int eraGetLeapSeconds(eraLEAPSECOND **leapseconds)
