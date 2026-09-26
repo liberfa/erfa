@@ -98,7 +98,7 @@ int eraUtctai(double utc1, double utc2, double *tai1, double *tai2)
 
 /* Separate TAI-UTC change into per-day (DLOD) and any jump (DLEAP). */
    dlod = 2.0 * (dat12 - dat0);
-   dleap = dat24 - (dat0 + dlod);
+   dleap = (dat24 - (dat0 + dlod)) * (ERFA_DAYSEC / (ERFA_DAYSEC + dlod));
 
 /* Remove any scaling applied to spread leap into preceding day. */
    fd *= (ERFA_DAYSEC+dleap)/ERFA_DAYSEC;

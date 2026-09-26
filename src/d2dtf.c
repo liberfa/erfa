@@ -81,7 +81,7 @@ int eraD2dtf(const char *scale, int ndp, double d1, double d2,
    int leap;
    char s;
    int iy1, im1, id1, js, iy2, im2, id2, ihmsf1[4], i;
-   double a1, b1, fd, dat0, dat12, w, dat24, dleap;
+   double a1, b1, fd, dat0, dat12, w, dat24, dlod, dleap;
 
 
 /* The two-part JD. */
@@ -111,10 +111,11 @@ int eraD2dtf(const char *scale, int ndp, double d1, double d2,
       if ( js < 0 ) return -1;
 
    /* Any sudden change in TAI-UTC (seconds). */
-      dleap = dat24 - (2.0*dat12 - dat0);
+      dlod = 2.0 * (dat12 - dat0);
+      dleap = (dat24 - (dat0 + dlod)) * (ERFA_DAYSEC / (ERFA_DAYSEC + dlod));
 
    /* If leap second day, scale the fraction of a day into SI. */
-      leap = (fabs(dleap) > 0.5);
+      leap = (fabs(dleap) > 0.0025);
       if (leap) fd += fd * dleap/ERFA_DAYSEC;
    }
 

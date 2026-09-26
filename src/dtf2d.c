@@ -83,7 +83,7 @@ int eraDtf2d(const char *scale, int iy, int im, int id,
 */
 {
    int js, iy2, im2, id2;
-   double dj, w, day, seclim, dat0, dat12, dat24, dleap, time;
+   double dj, w, day, seclim, dat0, dat12, dat24, dlod, dleap, time;
 
 
 /* Today's Julian Day Number. */
@@ -113,7 +113,8 @@ int eraDtf2d(const char *scale, int iy, int im, int id,
       if ( js < 0 ) return js;
 
    /* Any sudden change in TAI-UTC between today and tomorrow. */
-      dleap = dat24 - (2.0*dat12 - dat0);
+      dlod = 2.0 * (dat12 - dat0);
+      dleap = (dat24 - (dat0 + dlod)) * (ERFA_DAYSEC / (ERFA_DAYSEC + dlod));
 
    /* If leap second day, correct the day and final minute lengths. */
       day += dleap;
