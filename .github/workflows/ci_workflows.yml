@@ -103,7 +103,7 @@ jobs:
       run: pip install --pre meson ninja
     - uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1.13.0
     - name: configure
-      run: meson setup builddir --fatal-meson-warnings -Ddefault_library=static
+      run: meson setup builddir --fatal-meson-warnings -Ddefault_library=shared
     - name: build
       run: ninja -C builddir
     - name: check

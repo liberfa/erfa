@@ -38,6 +38,7 @@ liberfa = library(
     'xy06.c', 'xys00a.c', 'xys00b.c', 'xys06a.c', 'zp.c', 'zpv.c', 'zr.c',
     'erfaversion.c', 'erfadatextra.c',
     dependencies: libm,
+	vs_module_defs: '../windows/erfa.def',
     version: soversion,
     install: true,
 )
